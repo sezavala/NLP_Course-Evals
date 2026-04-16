@@ -7,7 +7,7 @@ from google import genai
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
-from experiments.struct import SentimentScore, TopicCategorization, Comment, AllTopics
+from experiments.struct import TopicCategorization, Comment, AllTopics
 from experiments.json_to_sheet import json_to_dataframe
 from data import TOPIC_KEYS, TOPIC_DEFS, FEEDBACK_LIST
 
@@ -28,37 +28,29 @@ class CommentClassification(BaseModel):
     topics: List[str] = Field(
         description=f"List of topics this feedback belongs to. Must be from: {TOPIC_KEYS + [OTHER_LABEL]}"
     )
-    score: int = Field(description="Score from -3 to 3")
-    intensity: str = Field(description="Weak, Medium, or Strong")
-    label: str = Field(description="negative, neutral, or positive")
-    confidence: float = Field(description="Confidence between 0 and 1")
 
 
-def classify_with_gemini(feedback: str, attempt: int = 1) -> CommentClassification:
+def classify_with_gemini(feedback: str, attempt: int = 1) -> List[str]:
     """Classify a single feedback comment to one or more topics with retry logic."""
     
     topics_str = "\n".join(f"- {t}: {TOPIC_DEFS[t]}" for t in TOPIC_KEYS)
     
     prompt = f"""You are classifying a course evaluation comment into one or more topics.
 
-    ALLOWED TOPICS:
-    {topics_str}
-    - None of the above / Other: Generic praise or comments that don't fit the above categories.
+ALLOWED TOPICS:
+{topics_str}
+- {OTHER_LABEL}: Generic praise or comments that don't fit the above categories.
 
-    RULES:
-    1. Assign to ALL applicable topics (can be 1 or multiple).
-    2. If a comment is generic praise with no substance (e.g., "Best professor ever", "Eric Wu is my goat"), assign ONLY to "None of the above / Other". If a comment is assigned to None of the above / Other, it should NOT be assigned to any other topic.
-    3. Provide sentiment analysis:
-    - score: integer in [-3, 3] where -3 is very negative, 0 is neutral, +3 is very positive
-    - intensity: "Weak", "Medium", or "Strong"
-    - label: "negative", "neutral", or "positive"
-    - confidence: float between 0 and 1
+RULES:
+1. Assign to ALL applicable topics (can be 1 or multiple).
+2. If a comment is generic praise with no substance (e.g., "Best professor ever", "Eric Wu is my goat"), assign ONLY to "{OTHER_LABEL}". Do NOT assign to any other topic if "{OTHER_LABEL}" is selected.
+3. Topic names must be exact matches from the list above.
 
-    Return valid JSON only.
+Return valid JSON only.
 
-    FEEDBACK:
-    "{feedback}"
-    """.strip()
+FEEDBACK:
+"{feedback}"
+""".strip()
 
     try:
         response = client.models.generate_content(
@@ -77,13 +69,7 @@ def classify_with_gemini(feedback: str, attempt: int = 1) -> CommentClassificati
         if not valid_topics:
             valid_topics = [OTHER_LABEL]
         
-        return CommentClassification(
-            topics=valid_topics,
-            score=result.score,
-            intensity=result.intensity,
-            label=result.label,
-            confidence=result.confidence,
-        )
+        return valid_topics
     
     except Exception as e:
         if attempt < MAX_RETRIES:
@@ -93,13 +79,7 @@ def classify_with_gemini(feedback: str, attempt: int = 1) -> CommentClassificati
             return classify_with_gemini(feedback, attempt + 1)
         else:
             print(f"  Failed after {MAX_RETRIES} attempts. Assigning to Other.")
-            return CommentClassification(
-                topics=[OTHER_LABEL],
-                score=0,
-                intensity="Weak",
-                label="neutral",
-                confidence=0.5,
-            )
+            return [OTHER_LABEL]
 
 
 def main() -> None:
@@ -110,24 +90,16 @@ def main() -> None:
     for idx, feedback in enumerate(FEEDBACK_LIST, 1):
         print(f"Processing {idx}/{len(FEEDBACK_LIST)}: {feedback[:50]}...")
         
-        classification = classify_with_gemini(feedback)
-        
-        # Create SentimentScore with rubric='AI_MODEL'
-        sentiment = SentimentScore(
-            score=classification.score,
-            intensity=classification.intensity,
-            label=classification.label,
-            confidence=classification.confidence,
-            rubric="AI_MODEL"
-        )
+        topics = classify_with_gemini(feedback)
+        print(f"  → Topics: {topics}")
         
         # Add comment to each assigned topic
         comment = Comment(
             text=feedback,
-            sentiment=sentiment
+            sentiment=None
         )
         
-        for topic in classification.topics:
+        for topic in topics:
             bucket[topic].append(comment)
 
     # Build final JSON output

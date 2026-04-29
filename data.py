@@ -1,14 +1,16 @@
 TOPIC_DEFS = {
-    "Course organization and structure": "The feedback explicitly mentions course organization, structure, layout, sequencing, or how the class was put together.",
-    "Pace and workload": "The feedback explicitly mentions lecture pace, course speed, amount of work, difficulty load, or whether the workload was manageable or overwhelming.",
-    "Student engagement and participation": "The feedback explicitly mentions student engagement, participation, asking questions, interactivity, or ways students could participate during class.",
-    "Clarity of explanations": "The feedback explicitly says the instructor explained concepts clearly, understandably, thoroughly, step by step, or made ideas easy to understand.",
-    "Effectiveness of assignments": "The feedback explicitly mentions homework, assignments, quizzes, worksheets, or practice problems being useful, effective, or unhelpful for learning.",
-    "Classroom atmosphere and interaction": "The feedback explicitly mentions the classroom environment, class atmosphere, lecture vibe, or how the class felt socially or emotionally.",
-    "Instructor's communication and availability": "The feedback explicitly mentions office hours, email responsiveness, communication, accessibility, availability, or opportunities to ask for help outside class.",
-    "Inclusivity and sense of belonging": "The feedback explicitly mentions feeling welcomed, included, supported, comfortable, respected, or that the instructor made students feel they belonged.",
-    "Assessment, grading, and feedback": "The feedback explicitly mentions exams, quizzes, midterms, grading fairness, scoring, timing of assessments, or feedback on performance.",
-    "Learning resources and materials": "The feedback explicitly mentions lecture notes, slides, recordings, review sessions, study guides, posted materials, or other learning resources."
+    "Course organization and structure": "The feedback explicitly mentions course organization or structure.",
+    "Pace": "The feedback explicitly mentions the pace of the course.",
+    "Workload": "The feedback explicitly mentions the courses workload.",
+    "Student engagement and participation": "The feedback explicitly mentions student engagement and participation in the course.",
+    "Clarity of explanations": "The feedback explicitly states how the instructor explained concepts.",
+    "Effectiveness of assignments": "The feedback explicitly mentions the effectiveness of assignments.",
+    "Classroom atmosphere": "The feedback explicitly mentions if the class atmosphere was supportive or not.",
+    "Instructor's communication and availability": "The feedback explicitly mentions the instructors accessibility and availability.",
+    "Inclusivity and sense of belonging": "The feedback explicitly mentions feeling included by the instructor in class.",
+    "Assessment": "The feedback explicitly mentions the alignment of assessments with course material.",
+    "Grading and feedback": "The feedback explicitly mentions grading fairness, or feedback received on performance and assignments.",
+    "Learning resources and materials": "The feedback explicitly mentions how useful or bad the learning materials provided were."
 }
 
 TOPIC_KEYS = [t for t in TOPIC_DEFS.keys()]
@@ -221,82 +223,98 @@ FEEDBACK_LIST = [
 
 SCORING_RUBRIC = {
     "Course organization and structure": {
-        0: "Organization: The course organization makes it hard to understand/learn.\nor\nStructure: The course structure feels random and disconnected.",
-        1: "Organization: The course organization has several issues and can be confusing at times.\nor\nStructure: The course structure feels somewhat out of order or has weak transitions.",
-        2: "Organization: The course organization was okay.\nor\nStructure: The course structure was okay.",
-        3: "Organization: The course organization was clear and worked well.\nor\nStructure: The course structure was clear and easy to follow.",
-        4: "Organization: The course organization was excellent and made the material easy to understand.\nor\nStructure: The course structure was very clear, logical, and easy to follow throughout."
+        1: "The course organization and structure makes it hard to understand/learn.",
+        2: "The course organization and structure has several issues and can be confusing at times.",
+        3: "The course organization and structure was okay.",
+        4: "The course organization and structure was clear and worked well.",
+        5: "The course organization and structure was excellent and made the material easy to understand."
     },
 
-    "Pace and workload": {
-        0: "Pace: The course pace was far too slow and made it hard to stay engaged.\nor\nWorkload: The workload was extremely light and did not feel meaningful.",
-        1: "Pace: The course pace was somewhat slow at times.\nor\nWorkload: The course workload was a bit light and could have been more challenging.",
-        2: "Pace: The course pace was reasonable overall.\nor\nWorkload: The course workload was manageable.",
-        3: "Pace: The course pace moves somewhat fast.\nor\nWorkload: The course workload feels a bit too much.",
-        4: "Pace: The course pace moves way too fast, making it hard to keep up.\nor\nWorkload: The course workload is too much; it is a struggle to keep up."
+    "Pace": {
+        1: "The course pace was far too slow and made it hard to stay engaged.",
+        2: "The course pace was somewhat slow at times.",
+        3: "The course pace was reasonable overall.",
+        4: "The course pace moves somewhat fast.",
+        5: "The course pace moves way too fast, making it hard to keep up."
+    },
+
+    "Workload": {
+        1: "The workload was extremely light and did not feel meaningful.",
+        2: "The course workload was a bit light and could have been more challenging.",
+        3: "The course workload was manageable.",
+        4: "The course workload feels a bit too much.",
+        5: "The course workload is too much; it is a struggle to keep up."
     },
 
     "Student engagement and participation": {
-        0: "Engagement: The course had no meaningful opportunities for students to engage.\nor\nParticipation: The course lacked activities, or participation was not encouraged at all.",
-        1: "Engagement: There were limited opportunities to engage, and it was hard to stay involved at times.\nor\nParticipation: There were few activities, and participation felt minimal or inconsistent.",
-        2: "Engagement: The level of engagement was okay overall.\nor\nParticipation: There were some opportunities to participate, but nothing stood out.",
-        3: "Engagement: The course provided good opportunities to stay engaged.\nor\nParticipation: There were regular activities that encouraged participation.",
-        4: "Engagement: The course was highly engaging and consistently kept students engaged.\nor\nParticipation: The course has several interactive activities that encourage participation."
+        1: "The course had no meaningful opportunities for students to engage.",
+        2: "There were limited opportunities to engage, and it was hard to stay involved at times.",
+        3: "The level of engagement was okay overall.",
+        4: "The course provided good opportunities to stay engaged.",
+        5: "The course was highly engaging and consistently kept students engaged."
     },
 
     "Clarity of explanations": {
-        0: "Clarity: Explanations did not make sense, were vague, and made it difficult to understand.",
-        1: "Clarity: Explanations were not always clear, making some parts hard to understand.",
-        2: "Clarity: Explanations were somewhat clear and helped with basic understanding, but required additional effort to fully grasp.",
-        3: "Clarity: Explanations were clear and generally easy to understand.",
-        4: "Clarity: Explanations were very clear, and no additional time was needed to understand."
+        1: "Explanations did not make sense, were vague, and made it difficult to understand.",
+        2: "Explanations were not always clear, making some parts hard to understand.",
+        3: "Explanations were somewhat clear and helped with basic understanding, but required additional effort to fully grasp.",
+        4: "Explanations were clear and generally easy to understand.",
+        5: "Explanations were very clear, and no additional time was needed to understand."
     },
 
     "Effectiveness of assignments": {
-        0: "Effectiveness: Assignments had no impact on understanding or did not help with practice.",
-        1: "Effectiveness: Assignments were barely helpful and had little impact on understanding.",
-        2: "Effectiveness: Assignments were somewhat helpful and supported basic understanding.",
-        3: "Effectiveness: The assignments were helpful and supported understanding of the material.",
-        4: "Effectiveness: Assignments were very effective and greatly improved understanding and practice."
+        1: "Assignments had no impact on understanding or did not help with practice.",
+        2: "Assignments were barely helpful and had little impact on understanding.",
+        3: "Assignments were somewhat helpful and supported basic understanding.",
+        4: "The assignments were helpful and supported understanding of the material.",
+        5: "Assignments were very effective and greatly improved understanding and practice."
     },
 
-    "Classroom atmosphere and interaction": {
-        0: "Atmosphere: The class atmosphere is unwelcoming and demotivating.\nor\nInteraction: Classroom interaction is not encouraged at all.",
-        1: "Atmosphere: The class atmosphere is somewhat uncomfortable and makes it harder to succeed.\nor\nInteraction: Interaction is limited, and it can be difficult to engage with others.",
-        2: "Atmosphere: The class atmosphere is okay overall.\nor\nInteraction: There are some opportunities for interaction, but nothing stands out.",
-        3: "Atmosphere: The class atmosphere is welcoming and supports learning.\nor\nInteraction: Interaction is encouraged, and students can engage with others.",
-        4: "Atmosphere: The class atmosphere is very welcoming and creates a positive learning environment.\nor\nInteraction: Classroom interaction is highly encouraged and fosters meaningful engagement."
+    "Classroom atmosphere": {
+        1: "The class atmosphere is unwelcoming and demotivating.",
+        2: "The class atmosphere is somewhat uncomfortable and makes it harder to succeed.",
+        3: "The class atmosphere is okay overall.",
+        4: "The class atmosphere is welcoming and supports learning.",
+        5: "The class atmosphere is very welcoming and creates a positive learning environment."
     },
 
     "Instructor's communication and availability": {
-        0: "Communication: The instructor rarely or never responded and did not keep the class informed.\nor\nAvailability: The instructor was not available and did not offer opportunities for support.",
-        1: "Communication: The instructor was slow or inconsistent in responding and did not always keep the class updated.\nor\nAvailability: The instructor had limited availability and was sometimes difficult to reach.",
-        2: "Communication: The instructor communicated adequately and kept the class reasonably informed.\nor\nAvailability: The instructor was available at times, but access to support was not consistent.",
-        3: "Communication: The instructor communicated clearly and responded in a timely manner.\nor\nAvailability: The instructor was available and provided opportunities for support when needed.",
-        4: "Communication: The instructor communicated very clearly, responded promptly, and consistently kept the class well-informed.\nor\nAvailability: The instructor was highly available and made it easy to get help through office hours or other support."
+        1: "The instructor rarely or never responded and did not keep the class informed or was not available much.",
+        2: "The instructor was slow or inconsistent in responding and did not always keep the class updated or had limited availability.",
+        3: "The instructor communicated adequately and kept the class reasonably informed or the instructor was available at times.",
+        4: "The instructor communicated clearly and responded in a timely manner or the instructor was available.",
+        5: "The instructor communicated very clearly, responded promptly, and consistently kept the class well-informed or the instructor was highly available."
     },
 
     "Inclusivity and sense of belonging": {
-        0: "Inclusivity: The course environment felt exclusionary and unwelcoming to certain students.\nor\nBelonging: Students did not feel like they belonged or were supported in the class.",
-        1: "Inclusivity: The course was somewhat inclusive, but some students may have felt left out or overlooked.\nor\nBelonging: It was occasionally difficult to feel included or comfortable in the class.",
-        2: "Inclusivity: The course was generally inclusive, but nothing stood out.\nor\nBelonging: Students could feel comfortable, but there was no strong sense of belonging.",
-        3: "Inclusivity: The course was inclusive and respectful of different students.\nor\nBelonging: Students generally felt comfortable and included in the class.",
-        4: "Inclusivity: The course was highly inclusive and created a welcoming environment for all students.\nor\nBelonging: Students felt a strong sense of belonging and support throughout the course."
+        1: "The course environment felt exclusionary and unwelcoming to certain students.",
+        2: "The course was somewhat inclusive, but some students may have felt left out or overlooked.",
+        3: "The course was generally inclusive, but nothing stood out.",
+        4: "The course was inclusive and respectful of different students.",
+        5: "The course was highly inclusive and created a welcoming environment for all students."
     },
 
-    "Assessment, grading, and feedback": {
-        0: "Assessment: Assessments were unclear, unfair, or did not reflect course content.\nor\nGrading/Feedback: Grading was inconsistent, or feedback was not provided or was not helpful.",
-        1: "Assessment: Assessments had some issues with clarity or alignment with the material.\nor\nGrading/Feedback: Feedback was limited, unclear, or not very helpful.",
-        2: "Assessment: Assessments were acceptable and generally reflected the material.\nor\nGrading/Feedback: Feedback was provided, but not especially helpful or detailed.",
-        3: "Assessment: Assessments were clear and aligned with the course material.\nor\nGrading/Feedback: Feedback was helpful and supported understanding.",
-        4: "Assessment: Assessments were very clear, fair, and well-aligned with course objectives.\nor\nGrading/Feedback: Feedback was detailed, timely, and significantly improved learning."
+    "Assessment": {
+        1: "Assessments were unclear, unfair, or did not reflect course content.",
+        2: "Assessments had some issues with clarity or alignment with the material.",
+        3: "Assessments were acceptable and generally reflected the material.",
+        4: "Assessments were clear and aligned with the course material.",
+        5: "Assessments were very clear, fair, and well-aligned with course objectives."
+    },
+
+    "Grading and feedback": {
+        1: "Grading was inconsistent, or feedback was not provided or was not helpful.",
+        2: "Feedback was limited, unclear, or not very helpful.",
+        3: "Feedback was provided, but not especially helpful or detailed.",
+        4: "Feedback was helpful and supported understanding.",
+        5: "Feedback was detailed, timely, and significantly improved learning."
     },
 
     "Learning resources and materials": {
-        0: "Resources: Learning materials were missing, unclear, or not useful.\nor\nMaterials: Resources did not support understanding or learning.",
-        1: "Resources: Learning materials were somewhat helpful but had noticeable issues or gaps.\nor\nMaterials: Some resources were unclear or difficult to use.",
-        2: "Resources: Learning materials were adequate and supported basic understanding.\nor\nMaterials: Resources were usable but not particularly helpful.",
-        3: "Resources: Learning materials were helpful and supported the understanding of the course.\nor\nMaterials: Resources were clear and useful.",
-        4: "Resources: Learning materials were very helpful, clear, and enhanced learning significantly.\nor\nMaterials: Resources were well-designed and made concepts easy to understand."
+        1: "Learning materials were missing, unclear, or not useful.",
+        2: "Learning materials were somewhat helpful but had noticeable issues or gaps.",
+        3: "Learning materials were adequate and supported basic understanding.",
+        4: "Learning materials were helpful and supported the understanding of the course.",
+        5: "Learning materials were very helpful, clear, and enhanced learning significantly."
     }
 }

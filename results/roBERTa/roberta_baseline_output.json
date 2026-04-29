@@ -12,6 +12,10 @@
           "sentiment": null
         },
         {
+          "text": "Excellent Professor. Such a shame he isn't teaching OChem next quarter",
+          "sentiment": null
+        },
+        {
           "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
           "sentiment": null
         },
@@ -20,7 +24,15 @@
           "sentiment": null
         },
         {
+          "text": "One of Wu's greatest strengths is his lecture–filled notes. If we are already familiar with the course material, we can just follow the lecture with the notes without having to write down anything. It is also a great tool for reviewing before, say, a midterm or the final exam. Another great strength of his is his coffee hours that he has with students after class. It's nice to get to know your teacher personally and establish a great connection. His final strength is the review sessions he has before midterms. They are well–organized and go over a good chunk of the material. The only weakness I can think of with Wu is how fast he goes during his lectures.",
+          "sentiment": null
+        },
+        {
           "text": "Very excellent professor and lecturer. The environment he fosters for his students is impeccable, and his dedication towards his students shines.",
+          "sentiment": null
+        },
+        {
+          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
           "sentiment": null
         },
         {
@@ -32,15 +44,19 @@
           "sentiment": null
         },
         {
+          "text": "Great lecture style and posts notes and recordings which is very useful. Test prep is provided which I like. No complaints!",
+          "sentiment": null
+        },
+        {
+          "text": "Fair with his exams and an excellent lecturer",
+          "sentiment": null
+        },
+        {
           "text": "Professor Wu is very organized and teaches in a way that was digestible. I hope my future teachers are like him because even though this class was tough, I was able to thrive due to his teaching techniques.",
           "sentiment": null
         },
         {
-          "text": "All the info needed for exams were on his slides and given to us. I think the exams tested our knowledge adequately. I think the pace of his class was quick which made me overwhelmed at times.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is great!",
+          "text": "Excellent communicator and very organized. Only weakness of this course is that it seems to do a lot of hand–waving over more complex concepts.",
           "sentiment": null
         },
         {
@@ -68,6 +84,10 @@
           "sentiment": null
         },
         {
+          "text": "Phenomenal professor, explains everything thoroughly in lectures and prepares perfect practice and review sessions.",
+          "sentiment": null
+        },
+        {
           "text": "Professor Eric was always prepared with clear lectures and notes, and provided us with various resources.",
           "sentiment": null
         },
@@ -92,7 +112,11 @@
           "sentiment": null
         },
         {
-          "text": "Great job, I love this class!",
+          "text": "He is a great lecturer but his midterms are too long for 50 minutes.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is extremely organized and adapts based on feedback.",
           "sentiment": null
         },
         {
@@ -104,19 +128,7 @@
           "sentiment": null
         },
         {
-          "text": "Professor Wu was so helpful and passionate.",
-          "sentiment": null
-        },
-        {
           "text": "Professor Wu is extremely organized and clear as a lecturer.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is an amazing chemistry teacher!",
-          "sentiment": null
-        },
-        {
-          "text": "Super great lecturer!",
           "sentiment": null
         },
         {
@@ -130,86 +142,14 @@
         {
           "text": "This instructor is fantastic and very organized.",
           "sentiment": null
-        },
-        {
-          "text": "Eric is a very knowledgeable professor.",
-          "sentiment": null
         }
       ]
     },
     {
-      "topic": "Pace and workload",
+      "topic": "Pace",
       "feedback": [
         {
-          "text": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
-          "sentiment": null
-        },
-        {
-          "text": "Excellent Professor. Such a shame he isn't teaching OChem next quarter",
-          "sentiment": null
-        },
-        {
           "text": "Great professor, the only thing was that the lectures were very fast. Sometimes it made it hard to follow along. I think a good solution would be to do less examples, and spend more times on the ones that we do in lecture.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu's knowledge of chemistry is evident in his teaching. Every lecture was well prepared and provided information in a clear and organized way. It is also obvious that Dr. Wu truly cares about helping students learn. He provides a lot of helpful resources before every exam and also holds review sessions. Overall, he is a great teacher.",
-          "sentiment": null
-        },
-        {
-          "text": "Incredible teacher that was fair and taught me a lot!",
-          "sentiment": null
-        },
-        {
-          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
-          "sentiment": null
-        },
-        {
-          "text": "Best professor ever",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was very organized with his lecture notes and always posted materials online, which were very helpful. His review sessions prior to midterms were also very helpful and definitely contributed to my success in the class.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized, very manageable workload and difficulty, extremely helpful resources and practice problems for studying, lectures moved a little fast at times but not too bad, very conducive to learning overall",
-          "sentiment": null
-        },
-        {
-          "text": "Fair with his exams and an excellent lecturer",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair – not too challenging, but also not too easy.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is very organized and teaches in a way that was digestible. I hope my future teachers are like him because even though this class was tough, I was able to thrive due to his teaching techniques.",
-          "sentiment": null
-        },
-        {
-          "text": "All the info needed for exams were on his slides and given to us. I think the exams tested our knowledge adequately. I think the pace of his class was quick which made me overwhelmed at times.",
-          "sentiment": null
-        },
-        {
-          "text": "He was the best professor I have had so far. He takes the time to really help us grasp the topic while still keeping us at a good pace to finish the class.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is great!",
-          "sentiment": null
-        },
-        {
-          "text": "I was already quite knowledgeable about the course material before taking this course, but I still found professor Wu to be an incredibly dedicated and knowledgeable professor.",
-          "sentiment": null
-        },
-        {
-          "text": "He's awesome, does lecture in a clear and concise way, explains what we need to know before exams, class is organized.",
           "sentiment": null
         },
         {
@@ -217,31 +157,7 @@
           "sentiment": null
         },
         {
-          "text": "Great lecturer and note taker, though tends to talk too quickly.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric is an excellent professor. From his lectures to his homework to his tests he is very organized and very communicative.",
-          "sentiment": null
-        },
-        {
-          "text": "Chemistry 20B can be challenging at times but Professor Wu was probably the best person for the job.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu understands how to teach an undergraduate course. Workloads are manageable and the class is well–taught.",
-          "sentiment": null
-        },
-        {
-          "text": "Chemistry is difficult and a lot to digest, but Professor Wu made it extremely manageable.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized, clear and concise.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is thorough and complete in his teaching.",
+          "text": "Excellent course. Only criticism is lectures move very quickly.",
           "sentiment": null
         },
         {
@@ -251,49 +167,26 @@
         {
           "text": "He is a great lecturer but his midterms are too long for 50 minutes.",
           "sentiment": null
-        },
+        }
+      ]
+    },
+    {
+      "topic": "Workload",
+      "feedback": [
         {
-          "text": "Everything helped me learn, and no time was wasted.",
+          "text": "Great professor, the only thing was that the lectures were very fast. Sometimes it made it hard to follow along. I think a good solution would be to do less examples, and spend more times on the ones that we do in lecture.",
           "sentiment": null
         },
         {
-          "text": "This instructor was very caring and knowledgeable.",
+          "text": "Eric is an excellent professor. From his lectures to his homework to his tests he is very organized and very communicative.",
           "sentiment": null
         },
         {
-          "text": "Great job, I love this class!",
+          "text": "Excellent course. Only criticism is lectures move very quickly.",
           "sentiment": null
         },
         {
-          "text": "I really like the notes for this course.",
-          "sentiment": null
-        },
-        {
-          "text": "Prof Wu is the GOAT.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is truly an outstanding educator!",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is an amazing chemistry teacher!",
-          "sentiment": null
-        },
-        {
-          "text": "Super great lecturer!",
-          "sentiment": null
-        },
-        {
-          "text": "This instructor is fantastic and very organized.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu genuinely cares about students' learning.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is one of the best professors I've had at UCLA.",
+          "text": "He is a great lecturer but his midterms are too long for 50 minutes.",
           "sentiment": null
         }
       ]
@@ -310,19 +203,11 @@
           "sentiment": null
         },
         {
-          "text": "Excellent Professor. Such a shame he isn't teaching OChem next quarter",
-          "sentiment": null
-        },
-        {
           "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
           "sentiment": null
         },
         {
           "text": "Dr. Wu's knowledge of chemistry is evident in his teaching. Every lecture was well prepared and provided information in a clear and organized way. It is also obvious that Dr. Wu truly cares about helping students learn. He provides a lot of helpful resources before every exam and also holds review sessions. Overall, he is a great teacher.",
-          "sentiment": null
-        },
-        {
-          "text": "Incredible teacher that was fair and taught me a lot!",
           "sentiment": null
         },
         {
@@ -338,31 +223,15 @@
           "sentiment": null
         },
         {
-          "text": "Best professor ever",
-          "sentiment": null
-        },
-        {
           "text": "Professor Wu is extremely understanding and caring about his students needs. During the fires he was the only professor of mine to offer accommodations to those struggling. Not only is he extremely kind but he is a very good lecturer as well.",
           "sentiment": null
         },
         {
-          "text": "Professor Wu was very organized with his lecture notes and always posted materials online, which were very helpful. His review sessions prior to midterms were also very helpful and definitely contributed to my success in the class.",
-          "sentiment": null
-        },
-        {
-          "text": "Great lecture style and posts notes and recordings which is very useful. Test prep is provided which I like. No complaints!",
+          "text": "Fair with his exams and an excellent lecturer",
           "sentiment": null
         },
         {
           "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair – not too challenging, but also not too easy.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is very organized and teaches in a way that was digestible. I hope my future teachers are like him because even though this class was tough, I was able to thrive due to his teaching techniques.",
-          "sentiment": null
-        },
-        {
-          "text": "He was the best professor I have had so far. He takes the time to really help us grasp the topic while still keeping us at a good pace to finish the class.",
           "sentiment": null
         },
         {
@@ -378,15 +247,7 @@
           "sentiment": null
         },
         {
-          "text": "Professor Wu is a fantastic professor all around. He accounts for different learning styles and is very thorough in his lectures.",
-          "sentiment": null
-        },
-        {
           "text": "Great at teaching the content and makes the learning very straightforward. Gives wonderful examples to help his students learn.",
-          "sentiment": null
-        },
-        {
-          "text": "I was already quite knowledgeable about the course material before taking this course, but I still found professor Wu to be an incredibly dedicated and knowledgeable professor.",
           "sentiment": null
         },
         {
@@ -402,15 +263,11 @@
           "sentiment": null
         },
         {
-          "text": "I think that Dr. Wu was an excellent professor and one of the best professors I have had so far.",
+          "text": "Professor Wu is extremely organized and explains concepts very clearly. He truly wants to help students succeed.",
           "sentiment": null
         },
         {
-          "text": "Eric Wu is the best professor I have had so far at UCLA.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was an excellent teacher. He explained topics well, and I really appreciate that he recorded the lectures.",
+          "text": "Phenomenal professor, explains everything thoroughly in lectures and prepares perfect practice and review sessions.",
           "sentiment": null
         },
         {
@@ -422,11 +279,15 @@
           "sentiment": null
         },
         {
-          "text": "Dr. Wu showed a lot of concern for the students and was always making sure to answer any confusion.",
+          "text": "Professor Wu is very approachable and seems to care about his students.",
           "sentiment": null
         },
         {
-          "text": "He is one of the best professors I've had so far, his explanations are so clear.",
+          "text": "Dr. Wu genuinely cares for his students and wants us to succeed.",
+          "sentiment": null
+        },
+        {
+          "text": "Eric Wu cares about his students and provides ample support and resources.",
           "sentiment": null
         },
         {
@@ -450,23 +311,11 @@
           "sentiment": null
         },
         {
-          "text": "Dr. Wu hosts helpful review sessions and makes lectures entertaining.",
-          "sentiment": null
-        },
-        {
           "text": "Professor Wu is an amazing professor who cares deeply about his students.",
           "sentiment": null
         },
         {
-          "text": "This instructor was very caring and knowledgeable.",
-          "sentiment": null
-        },
-        {
           "text": "Great job, I love this class!",
-          "sentiment": null
-        },
-        {
-          "text": "Eric helped to make Chemistry approachable.",
           "sentiment": null
         },
         {
@@ -478,23 +327,11 @@
           "sentiment": null
         },
         {
-          "text": "Eric Wu is one of the nicest professors I have ever had.",
-          "sentiment": null
-        },
-        {
           "text": "Very good professor and very interesting.",
           "sentiment": null
         },
         {
-          "text": "Professor Wu was so helpful and passionate.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is extremely organized and clear as a lecturer.",
-          "sentiment": null
-        },
-        {
-          "text": "I loved Eric Wu. He is such an enthusiastic professor.",
+          "text": "Keep doing what you're doing, cause everyone loves it!",
           "sentiment": null
         },
         {
@@ -502,7 +339,7 @@
           "sentiment": null
         },
         {
-          "text": "Overall, Professor Wu was an amazing instructor.",
+          "text": "Professor Wu goes above and beyond for students.",
           "sentiment": null
         },
         {
@@ -514,27 +351,11 @@
           "sentiment": null
         },
         {
-          "text": "Eric Wu is the best lecturer I have ever had.",
+          "text": "Very organized, and the class material is easy to understand.",
           "sentiment": null
         },
         {
-          "text": "Prof Wu is an excellent lecturer and instructor.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric is a very knowledgeable professor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is a talented professor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is one of the best professors I've had at UCLA.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric is the most wonderful professor I have had at UCLA so far.",
+          "text": "Dr. Wu genuinely cares about students' learning.",
           "sentiment": null
         }
       ]
@@ -547,10 +368,6 @@
           "sentiment": null
         },
         {
-          "text": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
-          "sentiment": null
-        },
-        {
           "text": "Excellent Professor. Such a shame he isn't teaching OChem next quarter",
           "sentiment": null
         },
@@ -583,14 +400,6 @@
           "sentiment": null
         },
         {
-          "text": "Professor Wu was very organized with his lecture notes and always posted materials online, which were very helpful. His review sessions prior to midterms were also very helpful and definitely contributed to my success in the class.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized, very manageable workload and difficulty, extremely helpful resources and practice problems for studying, lectures moved a little fast at times but not too bad, very conducive to learning overall",
-          "sentiment": null
-        },
-        {
           "text": "Great lecture style and posts notes and recordings which is very useful. Test prep is provided which I like. No complaints!",
           "sentiment": null
         },
@@ -615,830 +424,6 @@
           "sentiment": null
         },
         {
-          "text": "Instructor E.C. Wu demonstrates several strengths in his teaching, including kindness, understanding, and a genuine care for his students.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is great!",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is a fantastic professor all around. He accounts for different learning styles and is very thorough in his lectures.",
-          "sentiment": null
-        },
-        {
-          "text": "Great at teaching the content and makes the learning very straightforward. Gives wonderful examples to help his students learn.",
-          "sentiment": null
-        },
-        {
-          "text": "I was already quite knowledgeable about the course material before taking this course, but I still found professor Wu to be an incredibly dedicated and knowledgeable professor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was very good about making students feel welcome and he made himself very approachable.",
-          "sentiment": null
-        },
-        {
-          "text": "He's awesome, does lecture in a clear and concise way, explains what we need to know before exams, class is organized.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu led an organized, well structured class with a lot of helpful resources.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu is very organized and his lectures reflect his test and quizzes.",
-          "sentiment": null
-        },
-        {
-          "text": "Wu is very explanatory and in depth with the material. However, material is very advanced for those without a background in chemistry.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric is an excellent professor. From his lectures to his homework to his tests he is very organized and very communicative.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is extremely organized and explains concepts very clearly. He truly wants to help students succeed.",
-          "sentiment": null
-        },
-        {
-          "text": "I think that Dr. Wu was an excellent professor and one of the best professors I have had so far.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is the best professor I have had so far at UCLA.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu understands how to teach an undergraduate course. Workloads are manageable and the class is well–taught.",
-          "sentiment": null
-        },
-        {
-          "text": "Phenomenal professor, explains everything thoroughly in lectures and prepares perfect practice and review sessions.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Eric was always prepared with clear lectures and notes, and provided us with various resources.",
-          "sentiment": null
-        },
-        {
-          "text": "I like his teaching and the problem set problems are effective in teaching me the material.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was an excellent teacher. He explained topics well, and I really appreciate that he recorded the lectures.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu was amazing! Great lecturer who is very well organized and clearly cares about his students.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is an amazing professor! His lectures are super organized and he gives students notetakers as a guide.",
-          "sentiment": null
-        },
-        {
-          "text": "Chemistry is difficult and a lot to digest, but Professor Wu made it extremely manageable.",
-          "sentiment": null
-        },
-        {
-          "text": "I think Dr. Wu is always very helpful. He is really good at explaining topics in a way that is easy to understand.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu showed a lot of concern for the students and was always making sure to answer any confusion.",
-          "sentiment": null
-        },
-        {
-          "text": "He is one of the best professors I've had so far, his explanations are so clear.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized, clear and concise.",
-          "sentiment": null
-        },
-        {
-          "text": "His ability to explain concepts in a way that keeps students engaged.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu does a very good job of lecturing and making sure we understand the concepts.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was very organized in his lecture notes and very good at breaking down complicated concepts.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is thorough and complete in his teaching.",
-          "sentiment": null
-        },
-        {
-          "text": "Instructor was communicative, approachable, and very concerned with student success.",
-          "sentiment": null
-        },
-        {
-          "text": "Everything helped me learn, and no time was wasted.",
-          "sentiment": null
-        },
-        {
-          "text": "This instructor was very caring and knowledgeable.",
-          "sentiment": null
-        },
-        {
-          "text": "Great job, I love this class!",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu knows what he's teaching and can be understood by many.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized and great communication.",
-          "sentiment": null
-        },
-        {
-          "text": "Good communicator and always engaged with students.",
-          "sentiment": null
-        },
-        {
-          "text": "I really like the notes for this course.",
-          "sentiment": null
-        },
-        {
-          "text": "Prof Wu is the GOAT.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is one of the nicest professors I have ever had.",
-          "sentiment": null
-        },
-        {
-          "text": "Very good professor and very interesting.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was so helpful and passionate.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is extremely organized and clear as a lecturer.",
-          "sentiment": null
-        },
-        {
-          "text": "Keep doing what you're doing, cause everyone loves it!",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is truly an outstanding educator!",
-          "sentiment": null
-        },
-        {
-          "text": "Overall, Professor Wu was an amazing instructor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is an amazing chemistry teacher!",
-          "sentiment": null
-        },
-        {
-          "text": "Super great lecturer!",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is the best lecturer I have ever had.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized, and the class material is easy to understand.",
-          "sentiment": null
-        },
-        {
-          "text": "Prof Wu is an excellent lecturer and instructor.",
-          "sentiment": null
-        },
-        {
-          "text": "This instructor is fantastic and very organized.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is a talented professor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is one of the best professors I've had at UCLA.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric is the most wonderful professor I have had at UCLA so far.",
-          "sentiment": null
-        }
-      ]
-    },
-    {
-      "topic": "Effectiveness of assignments",
-      "feedback": [
-        {
-          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress–free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
-          "sentiment": null
-        },
-        {
-          "text": "Excellent Professor. Such a shame he isn't teaching OChem next quarter",
-          "sentiment": null
-        },
-        {
-          "text": "Great professor, the only thing was that the lectures were very fast. Sometimes it made it hard to follow along. I think a good solution would be to do less examples, and spend more times on the ones that we do in lecture.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu's knowledge of chemistry is evident in his teaching. Every lecture was well prepared and provided information in a clear and organized way. It is also obvious that Dr. Wu truly cares about helping students learn. He provides a lot of helpful resources before every exam and also holds review sessions. Overall, he is a great teacher.",
-          "sentiment": null
-        },
-        {
-          "text": "Incredible teacher that was fair and taught me a lot!",
-          "sentiment": null
-        },
-        {
-          "text": "Very excellent professor and lecturer. The environment he fosters for his students is impeccable, and his dedication towards his students shines.",
-          "sentiment": null
-        },
-        {
-          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
-          "sentiment": null
-        },
-        {
-          "text": "Best professor ever",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is extremely understanding and caring about his students needs. During the fires he was the only professor of mine to offer accommodations to those struggling. Not only is he extremely kind but he is a very good lecturer as well.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was very organized with his lecture notes and always posted materials online, which were very helpful. His review sessions prior to midterms were also very helpful and definitely contributed to my success in the class.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is very good at explaining math concepts, but he doesn't always explain the conceptual side of things very well. I think that he could focus a bit more on explaining the conceptual aspects of the class.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized, very manageable workload and difficulty, extremely helpful resources and practice problems for studying, lectures moved a little fast at times but not too bad, very conducive to learning overall",
-          "sentiment": null
-        },
-        {
-          "text": "Great lecture style and posts notes and recordings which is very useful. Test prep is provided which I like. No complaints!",
-          "sentiment": null
-        },
-        {
-          "text": "Fair with his exams and an excellent lecturer",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair – not too challenging, but also not too easy.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is very organized and teaches in a way that was digestible. I hope my future teachers are like him because even though this class was tough, I was able to thrive due to his teaching techniques.",
-          "sentiment": null
-        },
-        {
-          "text": "All the info needed for exams were on his slides and given to us. I think the exams tested our knowledge adequately. I think the pace of his class was quick which made me overwhelmed at times.",
-          "sentiment": null
-        },
-        {
-          "text": "He was the best professor I have had so far. He takes the time to really help us grasp the topic while still keeping us at a good pace to finish the class.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is great!",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is a fantastic professor all around. He accounts for different learning styles and is very thorough in his lectures.",
-          "sentiment": null
-        },
-        {
-          "text": "I was already quite knowledgeable about the course material before taking this course, but I still found professor Wu to be an incredibly dedicated and knowledgeable professor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was very good about making students feel welcome and he made himself very approachable.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu is very organized and his lectures reflect his test and quizzes.",
-          "sentiment": null
-        },
-        {
-          "text": "Wu is very explanatory and in depth with the material. However, material is very advanced for those without a background in chemistry.",
-          "sentiment": null
-        },
-        {
-          "text": "Great lecturer and note taker, though tends to talk too quickly.",
-          "sentiment": null
-        },
-        {
-          "text": "He was an amazing professor who provided us with so much resources and truly wanted us to succeed.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric is an excellent professor. From his lectures to his homework to his tests he is very organized and very communicative.",
-          "sentiment": null
-        },
-        {
-          "text": "Chemistry 20B can be challenging at times but Professor Wu was probably the best person for the job.",
-          "sentiment": null
-        },
-        {
-          "text": "I think that Dr. Wu was an excellent professor and one of the best professors I have had so far.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is the best professor I have had so far at UCLA.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu understands how to teach an undergraduate course. Workloads are manageable and the class is well–taught.",
-          "sentiment": null
-        },
-        {
-          "text": "Phenomenal professor, explains everything thoroughly in lectures and prepares perfect practice and review sessions.",
-          "sentiment": null
-        },
-        {
-          "text": "I like his teaching and the problem set problems are effective in teaching me the material.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was an excellent teacher. He explained topics well, and I really appreciate that he recorded the lectures.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is my goat.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu was amazing! Great lecturer who is very well organized and clearly cares about his students.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is an amazing professor! His lectures are super organized and he gives students notetakers as a guide.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is very approachable and seems to care about his students.",
-          "sentiment": null
-        },
-        {
-          "text": "Chemistry is difficult and a lot to digest, but Professor Wu made it extremely manageable.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu genuinely cares for his students and wants us to succeed.",
-          "sentiment": null
-        },
-        {
-          "text": "He is one of the best professors I've had so far, his explanations are so clear.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu cares about his students and provides ample support and resources.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized, clear and concise.",
-          "sentiment": null
-        },
-        {
-          "text": "The professor clearly cares about student learning and provides plenty of helpful material.",
-          "sentiment": null
-        },
-        {
-          "text": "His ability to explain concepts in a way that keeps students engaged.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was very organized in his lecture notes and very good at breaking down complicated concepts.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is thorough and complete in his teaching.",
-          "sentiment": null
-        },
-        {
-          "text": "Instructor was communicative, approachable, and very concerned with student success.",
-          "sentiment": null
-        },
-        {
-          "text": "Strengths: simplifying course material. Weakness: fast pacing.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu hosts helpful review sessions and makes lectures entertaining.",
-          "sentiment": null
-        },
-        {
-          "text": "He is a great lecturer but his midterms are too long for 50 minutes.",
-          "sentiment": null
-        },
-        {
-          "text": "Everything helped me learn, and no time was wasted.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is an amazing professor who cares deeply about his students.",
-          "sentiment": null
-        },
-        {
-          "text": "This instructor was very caring and knowledgeable.",
-          "sentiment": null
-        },
-        {
-          "text": "Great job, I love this class!",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu knows what he's teaching and can be understood by many.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric helped to make Chemistry approachable.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized and great communication.",
-          "sentiment": null
-        },
-        {
-          "text": "Good communicator and always engaged with students.",
-          "sentiment": null
-        },
-        {
-          "text": "I really like the notes for this course.",
-          "sentiment": null
-        },
-        {
-          "text": "Prof Wu is the GOAT.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is one of the nicest professors I have ever had.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric is such a nice and empathetic person.",
-          "sentiment": null
-        },
-        {
-          "text": "Very good professor and very interesting.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is energetic and capable.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was so helpful and passionate.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is extremely organized and clear as a lecturer.",
-          "sentiment": null
-        },
-        {
-          "text": "Keep doing what you're doing, cause everyone loves it!",
-          "sentiment": null
-        },
-        {
-          "text": "I loved Eric Wu. He is such an enthusiastic professor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is truly an outstanding educator!",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu goes above and beyond for students.",
-          "sentiment": null
-        },
-        {
-          "text": "Overall, Professor Wu was an amazing instructor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is an amazing chemistry teacher!",
-          "sentiment": null
-        },
-        {
-          "text": "Super great lecturer!",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is the best lecturer I have ever had.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized, and the class material is easy to understand.",
-          "sentiment": null
-        },
-        {
-          "text": "Prof Wu is an excellent lecturer and instructor.",
-          "sentiment": null
-        },
-        {
-          "text": "This instructor is fantastic and very organized.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu genuinely cares about students' learning.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric is a very knowledgeable professor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is a talented professor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is one of the best professors I've had at UCLA.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric is the most wonderful professor I have had at UCLA so far.",
-          "sentiment": null
-        }
-      ]
-    },
-    {
-      "topic": "Classroom atmosphere and interaction",
-      "feedback": [
-        {
-          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress–free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
-          "sentiment": null
-        },
-        {
-          "text": "Excellent Professor. Such a shame he isn't teaching OChem next quarter",
-          "sentiment": null
-        },
-        {
-          "text": "Very excellent professor and lecturer. The environment he fosters for his students is impeccable, and his dedication towards his students shines.",
-          "sentiment": null
-        },
-        {
-          "text": "Best professor ever",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is extremely understanding and caring about his students needs. During the fires he was the only professor of mine to offer accommodations to those struggling. Not only is he extremely kind but he is a very good lecturer as well.",
-          "sentiment": null
-        },
-        {
-          "text": "Fair with his exams and an excellent lecturer",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair – not too challenging, but also not too easy.",
-          "sentiment": null
-        },
-        {
-          "text": "I was already quite knowledgeable about the course material before taking this course, but I still found professor Wu to be an incredibly dedicated and knowledgeable professor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was very good about making students feel welcome and he made himself very approachable.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu led an organized, well structured class with a lot of helpful resources.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu is very organized and his lectures reflect his test and quizzes.",
-          "sentiment": null
-        },
-        {
-          "text": "He was an amazing professor who provided us with so much resources and truly wanted us to succeed.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is the best professor I have had so far at UCLA.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Eric was always prepared with clear lectures and notes, and provided us with various resources.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was an excellent teacher. He explained topics well, and I really appreciate that he recorded the lectures.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is my goat.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu was amazing! Great lecturer who is very well organized and clearly cares about his students.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is very approachable and seems to care about his students.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is thorough and complete in his teaching.",
-          "sentiment": null
-        },
-        {
-          "text": "Instructor was communicative, approachable, and very concerned with student success.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu hosts helpful review sessions and makes lectures entertaining.",
-          "sentiment": null
-        },
-        {
-          "text": "Everything helped me learn, and no time was wasted.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is an amazing professor who cares deeply about his students.",
-          "sentiment": null
-        },
-        {
-          "text": "This instructor was very caring and knowledgeable.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric helped to make Chemistry approachable.",
-          "sentiment": null
-        },
-        {
-          "text": "Prof Wu is the GOAT.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is one of the nicest professors I have ever had.",
-          "sentiment": null
-        },
-        {
-          "text": "Very good professor and very interesting.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is energetic and capable.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was so helpful and passionate.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is extremely organized and clear as a lecturer.",
-          "sentiment": null
-        },
-        {
-          "text": "Keep doing what you're doing, cause everyone loves it!",
-          "sentiment": null
-        },
-        {
-          "text": "I loved Eric Wu. He is such an enthusiastic professor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is truly an outstanding educator!",
-          "sentiment": null
-        },
-        {
-          "text": "Overall, Professor Wu was an amazing instructor.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is the best lecturer I have ever had.",
-          "sentiment": null
-        },
-        {
-          "text": "Prof Wu is an excellent lecturer and instructor.",
-          "sentiment": null
-        },
-        {
-          "text": "This instructor is fantastic and very organized.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric is a very knowledgeable professor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is a talented professor.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is one of the best professors I've had at UCLA.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric is the most wonderful professor I have had at UCLA so far.",
-          "sentiment": null
-        }
-      ]
-    },
-    {
-      "topic": "Instructor's communication and availability",
-      "feedback": [
-        {
-          "text": "Professor Wu was very good about making students feel welcome and he made himself very approachable.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu led an organized, well structured class with a lot of helpful resources.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is very approachable and seems to care about his students.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu cares about his students and provides ample support and resources.",
-          "sentiment": null
-        },
-        {
-          "text": "Instructor was communicative, approachable, and very concerned with student success.",
-          "sentiment": null
-        },
-        {
-          "text": "Everything helped me learn, and no time was wasted.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized and great communication.",
-          "sentiment": null
-        },
-        {
-          "text": "Good communicator and always engaged with students.",
-          "sentiment": null
-        }
-      ]
-    },
-    {
-      "topic": "Inclusivity and sense of belonging",
-      "feedback": [
-        {
-          "text": "Incredible teacher that was fair and taught me a lot!",
-          "sentiment": null
-        },
-        {
-          "text": "Eric explains concepts very clearly with an emphasis on intuition and he encourages students to understand the material rather than rely solely on rote memory. His enthusiasm for chemistry is contagious. He is extremely welcoming, knowledgeable, approachable, and responsive to questions, and he takes the time to make sure students understand what is going on.",
-          "sentiment": null
-        },
-        {
-          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is extremely understanding and caring about his students needs. During the fires he was the only professor of mine to offer accommodations to those struggling. Not only is he extremely kind but he is a very good lecturer as well.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized, very manageable workload and difficulty, extremely helpful resources and practice problems for studying, lectures moved a little fast at times but not too bad, very conducive to learning overall",
-          "sentiment": null
-        },
-        {
-          "text": "Great lecture style and posts notes and recordings which is very useful. Test prep is provided which I like. No complaints!",
-          "sentiment": null
-        },
-        {
-          "text": "Fair with his exams and an excellent lecturer",
-          "sentiment": null
-        },
-        {
-          "text": "He was the best professor I have had so far. He takes the time to really help us grasp the topic while still keeping us at a good pace to finish the class.",
-          "sentiment": null
-        },
-        {
-          "text": "I really enjoyed being in Professor Wu's class this quarter! I would highly recommend anyone to take him in the future. He gives clear explanations for topics and provides lots of examples.",
-          "sentiment": null
-        },
-        {
-          "text": "Instructor E.C. Wu demonstrates several strengths in his teaching, including kindness, understanding, and a genuine care for his students.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is a fantastic professor all around. He accounts for different learning styles and is very thorough in his lectures.",
-          "sentiment": null
-        },
-        {
           "text": "Great at teaching the content and makes the learning very straightforward. Gives wonderful examples to help his students learn.",
           "sentiment": null
         },
@@ -1451,19 +436,15 @@
           "sentiment": null
         },
         {
-          "text": "He was an amazing professor who provided us with so much resources and truly wanted us to succeed.",
+          "text": "Dr. Wu is very organized and his lectures reflect his test and quizzes.",
+          "sentiment": null
+        },
+        {
+          "text": "Eric is an excellent professor. From his lectures to his homework to his tests he is very organized and very communicative.",
           "sentiment": null
         },
         {
           "text": "Professor Wu is extremely organized and explains concepts very clearly. He truly wants to help students succeed.",
-          "sentiment": null
-        },
-        {
-          "text": "I think that Dr. Wu was an excellent professor and one of the best professors I have had so far.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is the best professor I have had so far at UCLA.",
           "sentiment": null
         },
         {
@@ -1491,6 +472,330 @@
           "sentiment": null
         },
         {
+          "text": "Dr. Wu was amazing! Great lecturer who is very well organized and clearly cares about his students.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is an amazing professor! His lectures are super organized and he gives students notetakers as a guide.",
+          "sentiment": null
+        },
+        {
+          "text": "I think Dr. Wu is always very helpful. He is really good at explaining topics in a way that is easy to understand.",
+          "sentiment": null
+        },
+        {
+          "text": "He is one of the best professors I've had so far, his explanations are so clear.",
+          "sentiment": null
+        },
+        {
+          "text": "Very organized, clear and concise.",
+          "sentiment": null
+        },
+        {
+          "text": "His ability to explain concepts in a way that keeps students engaged.",
+          "sentiment": null
+        },
+        {
+          "text": "Eric Wu does a very good job of lecturing and making sure we understand the concepts.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu was very organized in his lecture notes and very good at breaking down complicated concepts.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is thorough and complete in his teaching.",
+          "sentiment": null
+        },
+        {
+          "text": "Instructor was communicative, approachable, and very concerned with student success.",
+          "sentiment": null
+        },
+        {
+          "text": "He is a great lecturer but his midterms are too long for 50 minutes.",
+          "sentiment": null
+        },
+        {
+          "text": "Everything helped me learn, and no time was wasted.",
+          "sentiment": null
+        },
+        {
+          "text": "Great job, I love this class!",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu knows what he's teaching and can be understood by many.",
+          "sentiment": null
+        },
+        {
+          "text": "Very organized and great communication.",
+          "sentiment": null
+        },
+        {
+          "text": "Good communicator and always engaged with students.",
+          "sentiment": null
+        },
+        {
+          "text": "I really like the notes for this course.",
+          "sentiment": null
+        },
+        {
+          "text": "Very good professor and very interesting.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is extremely organized and clear as a lecturer.",
+          "sentiment": null
+        },
+        {
+          "text": "I loved Eric Wu. He is such an enthusiastic professor.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is truly an outstanding educator!",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is an amazing chemistry teacher!",
+          "sentiment": null
+        },
+        {
+          "text": "Super great lecturer!",
+          "sentiment": null
+        },
+        {
+          "text": "Eric Wu is the best lecturer I have ever had.",
+          "sentiment": null
+        },
+        {
+          "text": "Very organized, and the class material is easy to understand.",
+          "sentiment": null
+        },
+        {
+          "text": "Prof Wu is an excellent lecturer and instructor.",
+          "sentiment": null
+        }
+      ]
+    },
+    {
+      "topic": "Effectiveness of assignments",
+      "feedback": [
+        {
+          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
+          "sentiment": null
+        },
+        {
+          "text": "I like his teaching and the problem set problems are effective in teaching me the material.",
+          "sentiment": null
+        },
+        {
+          "text": "Very organized, clear and concise.",
+          "sentiment": null
+        },
+        {
+          "text": "Everything helped me learn, and no time was wasted.",
+          "sentiment": null
+        }
+      ]
+    },
+    {
+      "topic": "Classroom atmosphere",
+      "feedback": [
+        {
+          "text": "Very excellent professor and lecturer. The environment he fosters for his students is impeccable, and his dedication towards his students shines.",
+          "sentiment": null
+        },
+        {
+          "text": "Very organized, clear and concise.",
+          "sentiment": null
+        },
+        {
+          "text": "Eric is a very knowledgeable professor.",
+          "sentiment": null
+        }
+      ]
+    },
+    {
+      "topic": "Instructor's communication and availability",
+      "feedback": [
+        {
+          "text": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "sentiment": null
+        },
+        {
+          "text": "Eric explains concepts very clearly with an emphasis on intuition and he encourages students to understand the material rather than rely solely on rote memory. His enthusiasm for chemistry is contagious. He is extremely welcoming, knowledgeable, approachable, and responsive to questions, and he takes the time to make sure students understand what is going on.",
+          "sentiment": null
+        },
+        {
+          "text": "Very excellent professor and lecturer. The environment he fosters for his students is impeccable, and his dedication towards his students shines.",
+          "sentiment": null
+        },
+        {
+          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is extremely understanding and caring about his students needs. During the fires he was the only professor of mine to offer accommodations to those struggling. Not only is he extremely kind but he is a very good lecturer as well.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu was very good about making students feel welcome and he made himself very approachable.",
+          "sentiment": null
+        },
+        {
+          "text": "He was an amazing professor who provided us with so much resources and truly wanted us to succeed.",
+          "sentiment": null
+        },
+        {
+          "text": "Eric is an excellent professor. From his lectures to his homework to his tests he is very organized and very communicative.",
+          "sentiment": null
+        },
+        {
+          "text": "Dr. Wu was amazing! Great lecturer who is very well organized and clearly cares about his students.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is very approachable and seems to care about his students.",
+          "sentiment": null
+        },
+        {
+          "text": "Eric Wu cares about his students and provides ample support and resources.",
+          "sentiment": null
+        },
+        {
+          "text": "The professor clearly cares about student learning and provides plenty of helpful material.",
+          "sentiment": null
+        },
+        {
+          "text": "Instructor was communicative, approachable, and very concerned with student success.",
+          "sentiment": null
+        },
+        {
+          "text": "This instructor was very caring and knowledgeable.",
+          "sentiment": null
+        },
+        {
+          "text": "Good communicator and always engaged with students.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is energetic and capable.",
+          "sentiment": null
+        }
+      ]
+    },
+    {
+      "topic": "Inclusivity and sense of belonging",
+      "feedback": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress–free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": null
+        },
+        {
+          "text": "Excellent Professor. Such a shame he isn't teaching OChem next quarter",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
+          "sentiment": null
+        },
+        {
+          "text": "Dr. Wu's knowledge of chemistry is evident in his teaching. Every lecture was well prepared and provided information in a clear and organized way. It is also obvious that Dr. Wu truly cares about helping students learn. He provides a lot of helpful resources before every exam and also holds review sessions. Overall, he is a great teacher.",
+          "sentiment": null
+        },
+        {
+          "text": "Incredible teacher that was fair and taught me a lot!",
+          "sentiment": null
+        },
+        {
+          "text": "Eric explains concepts very clearly with an emphasis on intuition and he encourages students to understand the material rather than rely solely on rote memory. His enthusiasm for chemistry is contagious. He is extremely welcoming, knowledgeable, approachable, and responsive to questions, and he takes the time to make sure students understand what is going on.",
+          "sentiment": null
+        },
+        {
+          "text": "Best professor ever",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is extremely understanding and caring about his students needs. During the fires he was the only professor of mine to offer accommodations to those struggling. Not only is he extremely kind but he is a very good lecturer as well.",
+          "sentiment": null
+        },
+        {
+          "text": "Fair with his exams and an excellent lecturer",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair – not too challenging, but also not too easy.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is very organized and teaches in a way that was digestible. I hope my future teachers are like him because even though this class was tough, I was able to thrive due to his teaching techniques.",
+          "sentiment": null
+        },
+        {
+          "text": "He was the best professor I have had so far. He takes the time to really help us grasp the topic while still keeping us at a good pace to finish the class.",
+          "sentiment": null
+        },
+        {
+          "text": "I really enjoyed being in Professor Wu's class this quarter! I would highly recommend anyone to take him in the future. He gives clear explanations for topics and provides lots of examples.",
+          "sentiment": null
+        },
+        {
+          "text": "Instructor E.C. Wu demonstrates several strengths in his teaching, including kindness, understanding, and a genuine care for his students.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is great!",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is a fantastic professor all around. He accounts for different learning styles and is very thorough in his lectures.",
+          "sentiment": null
+        },
+        {
+          "text": "Great at teaching the content and makes the learning very straightforward. Gives wonderful examples to help his students learn.",
+          "sentiment": null
+        },
+        {
+          "text": "I was already quite knowledgeable about the course material before taking this course, but I still found professor Wu to be an incredibly dedicated and knowledgeable professor.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu was very good about making students feel welcome and he made himself very approachable.",
+          "sentiment": null
+        },
+        {
+          "text": "He's awesome, does lecture in a clear and concise way, explains what we need to know before exams, class is organized.",
+          "sentiment": null
+        },
+        {
+          "text": "He was an amazing professor who provided us with so much resources and truly wanted us to succeed.",
+          "sentiment": null
+        },
+        {
+          "text": "I think that Dr. Wu was an excellent professor and one of the best professors I have had so far.",
+          "sentiment": null
+        },
+        {
+          "text": "Eric Wu is the best professor I have had so far at UCLA.",
+          "sentiment": null
+        },
+        {
+          "text": "Phenomenal professor, explains everything thoroughly in lectures and prepares perfect practice and review sessions.",
+          "sentiment": null
+        },
+        {
+          "text": "I like his teaching and the problem set problems are effective in teaching me the material.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu was an excellent teacher. He explained topics well, and I really appreciate that he recorded the lectures.",
+          "sentiment": null
+        },
+        {
+          "text": "Dr. Wu was amazing! Great lecturer who is very well organized and clearly cares about his students.",
+          "sentiment": null
+        },
+        {
           "text": "Professor Wu is an amazing professor! His lectures are super organized and he gives students notetakers as a guide.",
           "sentiment": null
         },
@@ -1500,10 +805,6 @@
         },
         {
           "text": "Dr. Wu genuinely cares for his students and wants us to succeed.",
-          "sentiment": null
-        },
-        {
-          "text": "I think Dr. Wu is always very helpful. He is really good at explaining topics in a way that is easy to understand.",
           "sentiment": null
         },
         {
@@ -1519,23 +820,11 @@
           "sentiment": null
         },
         {
-          "text": "The professor clearly cares about student learning and provides plenty of helpful material.",
+          "text": "Professor Wu is thorough and complete in his teaching.",
           "sentiment": null
         },
         {
-          "text": "His ability to explain concepts in a way that keeps students engaged.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu does a very good job of lecturing and making sure we understand the concepts.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was very organized in his lecture notes and very good at breaking down complicated concepts.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu hosts helpful review sessions and makes lectures entertaining.",
+          "text": "Instructor was communicative, approachable, and very concerned with student success.",
           "sentiment": null
         },
         {
@@ -1543,15 +832,11 @@
           "sentiment": null
         },
         {
-          "text": "Professor Wu knows what he's teaching and can be understood by many.",
+          "text": "This instructor was very caring and knowledgeable.",
           "sentiment": null
         },
         {
-          "text": "Eric helped to make Chemistry approachable.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized and great communication.",
+          "text": "Great job, I love this class!",
           "sentiment": null
         },
         {
@@ -1559,7 +844,129 @@
           "sentiment": null
         },
         {
-          "text": "Some strengths include organization and being welcoming.",
+          "text": "Eric Wu is one of the nicest professors I have ever had.",
+          "sentiment": null
+        },
+        {
+          "text": "Very good professor and very interesting.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu was so helpful and passionate.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is extremely organized and clear as a lecturer.",
+          "sentiment": null
+        },
+        {
+          "text": "I loved Eric Wu. He is such an enthusiastic professor.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is truly an outstanding educator!",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu goes above and beyond for students.",
+          "sentiment": null
+        },
+        {
+          "text": "Overall, Professor Wu was an amazing instructor.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is an amazing chemistry teacher!",
+          "sentiment": null
+        },
+        {
+          "text": "Super great lecturer!",
+          "sentiment": null
+        },
+        {
+          "text": "Eric Wu is the best lecturer I have ever had.",
+          "sentiment": null
+        },
+        {
+          "text": "Prof Wu is an excellent lecturer and instructor.",
+          "sentiment": null
+        },
+        {
+          "text": "This instructor is fantastic and very organized.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had at UCLA.",
+          "sentiment": null
+        },
+        {
+          "text": "Eric is the most wonderful professor I have had at UCLA so far.",
+          "sentiment": null
+        }
+      ]
+    },
+    {
+      "topic": "Assessment",
+      "feedback": [
+        {
+          "text": "Dr. Wu is very organized and his lectures reflect his test and quizzes.",
+          "sentiment": null
+        }
+      ]
+    },
+    {
+      "topic": "Grading and feedback",
+      "feedback": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress–free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": null
+        },
+        {
+          "text": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
+          "sentiment": null
+        },
+        {
+          "text": "Incredible teacher that was fair and taught me a lot!",
+          "sentiment": null
+        },
+        {
+          "text": "Best professor ever",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu was very organized with his lecture notes and always posted materials online, which were very helpful. His review sessions prior to midterms were also very helpful and definitely contributed to my success in the class.",
+          "sentiment": null
+        },
+        {
+          "text": "Fair with his exams and an excellent lecturer",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair – not too challenging, but also not too easy.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is great!",
+          "sentiment": null
+        },
+        {
+          "text": "I think that Dr. Wu was an excellent professor and one of the best professors I have had so far.",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is thorough and complete in his teaching.",
+          "sentiment": null
+        },
+        {
+          "text": "This instructor was very caring and knowledgeable.",
+          "sentiment": null
+        },
+        {
+          "text": "Great job, I love this class!",
           "sentiment": null
         },
         {
@@ -1575,23 +982,19 @@
           "sentiment": null
         },
         {
-          "text": "Very good professor and very interesting.",
-          "sentiment": null
-        },
-        {
           "text": "Professor Wu is energetic and capable.",
           "sentiment": null
         },
         {
-          "text": "Keep doing what you're doing, cause everyone loves it!",
+          "text": "Professor Wu was so helpful and passionate.",
           "sentiment": null
         },
         {
-          "text": "I loved Eric Wu. He is such an enthusiastic professor.",
+          "text": "Professor Wu is extremely organized and clear as a lecturer.",
           "sentiment": null
         },
         {
-          "text": "Professor Wu goes above and beyond for students.",
+          "text": "Professor Wu is truly an outstanding educator!",
           "sentiment": null
         },
         {
@@ -1599,15 +1002,19 @@
           "sentiment": null
         },
         {
+          "text": "Professor Wu is an amazing chemistry teacher!",
+          "sentiment": null
+        },
+        {
           "text": "Eric Wu is the best lecturer I have ever had.",
           "sentiment": null
         },
         {
-          "text": "Very organized, and the class material is easy to understand.",
+          "text": "Prof Wu is an excellent lecturer and instructor.",
           "sentiment": null
         },
         {
-          "text": "Dr. Wu genuinely cares about students' learning.",
+          "text": "This instructor is fantastic and very organized.",
           "sentiment": null
         },
         {
@@ -1619,48 +1026,11 @@
           "sentiment": null
         },
         {
+          "text": "Professor Wu is one of the best professors I've had at UCLA.",
+          "sentiment": null
+        },
+        {
           "text": "Eric is the most wonderful professor I have had at UCLA so far.",
-          "sentiment": null
-        }
-      ]
-    },
-    {
-      "topic": "Assessment, grading, and feedback",
-      "feedback": [
-        {
-          "text": "Great lecture style and posts notes and recordings which is very useful. Test prep is provided which I like. No complaints!",
-          "sentiment": null
-        },
-        {
-          "text": "All the info needed for exams were on his slides and given to us. I think the exams tested our knowledge adequately. I think the pace of his class was quick which made me overwhelmed at times.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu is my goat.",
-          "sentiment": null
-        },
-        {
-          "text": "Strengths: simplifying course material. Weakness: fast pacing.",
-          "sentiment": null
-        },
-        {
-          "text": "He is a great lecturer but his midterms are too long for 50 minutes.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric helped to make Chemistry approachable.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is energetic and capable.",
-          "sentiment": null
-        },
-        {
-          "text": "Keep doing what you're doing, cause everyone loves it!",
-          "sentiment": null
-        },
-        {
-          "text": "I loved Eric Wu. He is such an enthusiastic professor.",
           "sentiment": null
         }
       ]
@@ -1669,39 +1039,48 @@
       "topic": "Learning resources and materials",
       "feedback": [
         {
+          "text": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "sentiment": null
+        },
+        {
           "text": "Great professor, the only thing was that the lectures were very fast. Sometimes it made it hard to follow along. I think a good solution would be to do less examples, and spend more times on the ones that we do in lecture.",
           "sentiment": null
         },
         {
-          "text": "One of Wu's greatest strengths is his lecture–filled notes. If we are already familiar with the course material, we can just follow the lecture with the notes without having to write down anything. It is also a great tool for reviewing before, say, a midterm or the final exam. Another great strength of his is his coffee hours that he has with students after class. It's nice to get to know your teacher personally and establish a great connection. His final strength is the review sessions he has before midterms. They are well–organized and go over a good chunk of the material. The only weakness I can think of with Wu is how fast he goes during his lectures.",
+          "text": "Very organized, very manageable workload and difficulty, extremely helpful resources and practice problems for studying, lectures moved a little fast at times but not too bad, very conducive to learning overall",
           "sentiment": null
         },
         {
-          "text": "Eric explains concepts very clearly with an emphasis on intuition and he encourages students to understand the material rather than rely solely on rote memory. His enthusiasm for chemistry is contagious. He is extremely welcoming, knowledgeable, approachable, and responsive to questions, and he takes the time to make sure students understand what is going on.",
+          "text": "I like his teaching and the problem set problems are effective in teaching me the material.",
           "sentiment": null
         },
         {
-          "text": "Professor Wu is extremely understanding and caring about his students needs. During the fires he was the only professor of mine to offer accommodations to those struggling. Not only is he extremely kind but he is a very good lecturer as well.",
+          "text": "Strengths: simplifying course material. Weakness: fast pacing.",
           "sentiment": null
         },
+        {
+          "text": "Great job, I love this class!",
+          "sentiment": null
+        },
+        {
+          "text": "Professor Wu is extremely organized and clear as a lecturer.",
+          "sentiment": null
+        },
+        {
+          "text": "Eric is a very knowledgeable professor.",
+          "sentiment": null
+        }
+      ]
+    },
+    {
+      "topic": "None of the above / Other",
+      "feedback": [
         {
           "text": "Professor Wu is very good at explaining math concepts, but he doesn't always explain the conceptual side of things very well. I think that he could focus a bit more on explaining the conceptual aspects of the class.",
           "sentiment": null
         },
         {
           "text": "All the info needed for exams were on his slides and given to us. I think the exams tested our knowledge adequately. I think the pace of his class was quick which made me overwhelmed at times.",
-          "sentiment": null
-        },
-        {
-          "text": "I really enjoyed being in Professor Wu's class this quarter! I would highly recommend anyone to take him in the future. He gives clear explanations for topics and provides lots of examples.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is a fantastic professor all around. He accounts for different learning styles and is very thorough in his lectures.",
-          "sentiment": null
-        },
-        {
-          "text": "Great at teaching the content and makes the learning very straightforward. Gives wonderful examples to help his students learn.",
           "sentiment": null
         },
         {
@@ -1713,27 +1092,7 @@
           "sentiment": null
         },
         {
-          "text": "He was an amazing professor who provided us with so much resources and truly wanted us to succeed.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is extremely organized and explains concepts very clearly. He truly wants to help students succeed.",
-          "sentiment": null
-        },
-        {
-          "text": "I think that Dr. Wu was an excellent professor and one of the best professors I have had so far.",
-          "sentiment": null
-        },
-        {
-          "text": "Phenomenal professor, explains everything thoroughly in lectures and prepares perfect practice and review sessions.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Eric was always prepared with clear lectures and notes, and provided us with various resources.",
-          "sentiment": null
-        },
-        {
-          "text": "I like his teaching and the problem set problems are effective in teaching me the material.",
+          "text": "Chemistry 20B can be challenging at times but Professor Wu was probably the best person for the job.",
           "sentiment": null
         },
         {
@@ -1741,35 +1100,7 @@
           "sentiment": null
         },
         {
-          "text": "Professor Wu is very approachable and seems to care about his students.",
-          "sentiment": null
-        },
-        {
-          "text": "I think Dr. Wu is always very helpful. He is really good at explaining topics in a way that is easy to understand.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu cares about his students and provides ample support and resources.",
-          "sentiment": null
-        },
-        {
-          "text": "The professor clearly cares about student learning and provides plenty of helpful material.",
-          "sentiment": null
-        },
-        {
-          "text": "His ability to explain concepts in a way that keeps students engaged.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric Wu does a very good job of lecturing and making sure we understand the concepts.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu was very organized in his lecture notes and very good at breaking down complicated concepts.",
-          "sentiment": null
-        },
-        {
-          "text": "Strengths: simplifying course material. Weakness: fast pacing.",
+          "text": "Chemistry is difficult and a lot to digest, but Professor Wu made it extremely manageable.",
           "sentiment": null
         },
         {
@@ -1777,48 +1108,11 @@
           "sentiment": null
         },
         {
-          "text": "He is a great lecturer but his midterms are too long for 50 minutes.",
+          "text": "Eric helped to make Chemistry approachable.",
           "sentiment": null
         },
         {
-          "text": "Professor Wu is an amazing professor who cares deeply about his students.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu knows what he's teaching and can be understood by many.",
-          "sentiment": null
-        },
-        {
-          "text": "Eric is such a nice and empathetic person.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is energetic and capable.",
-          "sentiment": null
-        },
-        {
-          "text": "Very organized, and the class material is easy to understand.",
-          "sentiment": null
-        },
-        {
-          "text": "Dr. Wu genuinely cares about students' learning.",
-          "sentiment": null
-        }
-      ]
-    },
-    {
-      "topic": "None of the above / Other",
-      "feedback": [
-        {
-          "text": "Excellent communicator and very organized. Only weakness of this course is that it seems to do a lot of hand–waving over more complex concepts.",
-          "sentiment": null
-        },
-        {
-          "text": "Excellent course. Only criticism is lectures move very quickly.",
-          "sentiment": null
-        },
-        {
-          "text": "Professor Wu is extremely organized and adapts based on feedback.",
+          "text": "Some strengths include organization and being welcoming.",
           "sentiment": null
         }
       ]

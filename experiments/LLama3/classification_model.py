@@ -22,7 +22,7 @@ def classify_with_llama(feedback: str) -> List[str]:
     
     topics_str = "\n".join(f"- {t}: {TOPIC_DEFS[t]}" for t in TOPIC_KEYS)
     
-    prompt = f"""Classify this course feedback into ALL applicable topics.
+    prompt = f"""Classify this course feedback into ALL applicable topics if explicitly mentioned.
 
 TOPICS:
 {topics_str}

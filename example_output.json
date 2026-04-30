@@ -1,0 +1,93 @@
+{
+  "course_id": "CHEM_14A",
+  "overall_score": 3.0,
+  "category_scores": [
+    {
+      "category": "Course organization and structure",
+      "score": 4.0
+    },
+    {
+      "category": "Pace",
+      "score": 1.0
+    },
+    {
+      "category": "Workload",
+      "score": 1.0
+    },
+    {
+      "category": "Student engagement and participation",
+      "score": 5.0
+    },
+    {
+      "category": "Clarity of explanations",
+      "score": 4.5
+    },
+    {
+      "category": "Effectiveness of assignments",
+      "score": 3.0
+    },
+    {
+      "category": "Classroom atmosphere",
+      "score": 3.0
+    },
+    {
+      "category": "Instructor's communication and availability",
+      "score": 3.0
+    },
+    {
+      "category": "Inclusivity and sense of belonging",
+      "score": 3.0
+    },
+    {
+      "category": "Assessment",
+      "score": 0.0
+    },
+    {
+      "category": "Grading and feedback",
+      "score": 3.0
+    },
+    {
+      "category": "Learning resources and materials",
+      "score": 3.0
+    }
+  ],
+  "key_strengths": [
+    "Course organization and structure",
+    "Clarity of explanations",
+    "Student engagement and participation"
+  ],
+  "key_weaknesses": [
+    "Pace",
+    "Workload",
+    "Assessment"
+  ],
+  "analyzed_comments": [
+    {
+      "text": "Professor Wu is a fantastic educator who clearly cares about student success. Lectures are well-organized and engaging.",
+      "topics": [
+        "Course organization and structure",
+        "Clarity of explanations",
+        "Student engagement and participation"
+      ],
+      "rating": 4.7
+    },
+    {
+      "text": "The pace was too fast and the workload was overwhelming. Exams were extremely difficult.",
+      "topics": [
+        "Pace",
+        "Workload",
+        "Assessment"
+      ],
+      "rating": 0.7
+    },
+    {
+      "text": "Great course organization and clear explanations. Could use better learning materials.",
+      "topics": [
+        "Course organization and structure",
+        "Clarity of explanations",
+        "Learning resources and materials"
+      ],
+      "rating": 3.7
+    }
+  ]
+}

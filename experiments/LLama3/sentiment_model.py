@@ -53,11 +53,11 @@ FEEDBACK: "{feedback}"
 
 Task: 
 1. Determine if this feedback is POSITIVE, NEGATIVE, or NEUTRAL relative to this topic.
-2. Assign a score from 0-4 based on the rubric (0=very negative, 4=very positive, 2=neutral).
+2. Assign a score from 1-5 based on the rubric (1=very negative, 5=very positive, 3=neutral).
 3. Explain briefly which rubric level this feedback matches.
 
 Return ONLY valid JSON with these exact keys:
-{{"sentiment": "positive|negative|neutral", "score": 0, "reasoning": "brief explanation"}}
+{{"sentiment": "positive|negative|neutral", "score": 1, "reasoning": "brief explanation"}}
 """
 
     try:
@@ -82,7 +82,7 @@ Return ONLY valid JSON with these exact keys:
             return classify_sentiment_with_llama(feedback, topic, attempt + 1)
         return {
             "sentiment": "neutral",
-            "score": 2,
+            "score": 3,
             "reasoning": "Failed to classify"
         }
     
@@ -105,25 +105,28 @@ Return ONLY valid JSON with these exact keys:
         if parsed["sentiment"].lower() not in ["positive", "negative", "neutral"]:
             parsed["sentiment"] = "neutral"
         
-        # Validate score is integer 0-4
+        # Validate score is integer 1-5
         try:
             parsed["score"] = int(parsed["score"])
-            if parsed["score"] < 0 or parsed["score"] > 4:
-                parsed["score"] = 2
+            if parsed["score"] < 1 or parsed["score"] > 5:
+                parsed["score"] = 3
         except (ValueError, TypeError):
-            parsed["score"] = 2
+            parsed["score"] = 3
         
         return parsed
     except Exception as e:
         print(f"  JSON parse error: {e}")
         return {
             "sentiment": "neutral",
-            "score": 2,
+            "score": 3,
             "reasoning": "Failed to parse response"
         }
 
 
 def main() -> None:
+    import time as time_module
+    start_time = time_module.time()
+    
     # Load classification results
     json_path = BASE_DIR / "results" / "Llama3" / "LLAMA_OUTPUT.json"
     
@@ -132,13 +135,23 @@ def main() -> None:
 
     # Output structure
     sentiment_results = {
-        "topics": []
+        "topics": [],
+        "metadata": {
+            "model": "Llama3",
+            "start_time": start_time,
+            "end_time": None,
+            "total_time": None,
+            "num_feedbacks": 0
+        }
     }
 
+    total_feedbacks = 0
+    
     # Process each topic
     for topic_item in llama_output.get("topics", []):
         current_topic = topic_item.get("topic", "N/A")
         feedbacks = topic_item.get("feedback", [])
+        total_feedbacks += len(feedbacks)
         
         print(f"\n{'='*60}")
         print(f"TOPIC: {current_topic}")
@@ -151,28 +164,40 @@ def main() -> None:
         
         for idx, feedback_item in enumerate(feedbacks, 1):
             current_feedback = feedback_item.get("text", "N/A")
+            item_start = time_module.time()
             print(f"\n[{idx}/{len(feedbacks)}] {current_feedback[:70]}...")
             
             sentiment = classify_sentiment_with_llama(current_feedback, current_topic)
+            item_time = time_module.time() - item_start
             
             # Safe access with defaults
             sentiment_label = sentiment.get("sentiment", "neutral").upper()
-            sentiment_score = sentiment.get("score", 2)
+            sentiment_score = sentiment.get("score", 3)
             sentiment_reasoning = sentiment.get("reasoning", "N/A")
             
-            print(f"  → Sentiment: {sentiment_label} (Score: {sentiment_score}/4)")
+            print(f"  → Sentiment: {sentiment_label} (Score: {sentiment_score}/5)")
+            print(f"  → Time: {item_time:.2f}s")
             print(f"  → Reasoning: {sentiment_reasoning}")
             
             topic_sentiments["feedback_with_sentiment"].append({
                 "text": current_feedback,
                 "sentiment": sentiment.get("sentiment", "neutral"),
-                "score": sentiment.get("score", 2),
-                "reasoning": sentiment.get("reasoning", "")
+                "score": sentiment.get("score", 3),
+                "reasoning": sentiment.get("reasoning", ""),
+                "processing_time": item_time
             })
             
             time.sleep(0.5)  # Rate limit
         
         sentiment_results["topics"].append(topic_sentiments)
+
+    end_time = time_module.time()
+    total_time = end_time - start_time
+    
+    sentiment_results["metadata"]["end_time"] = end_time
+    sentiment_results["metadata"]["total_time"] = total_time
+    sentiment_results["metadata"]["num_feedbacks"] = total_feedbacks
+    sentiment_results["metadata"]["avg_time_per_feedback"] = total_time / total_feedbacks if total_feedbacks > 0 else 0
 
     # Save results
     json_output_path = BASE_DIR / "results" / "Llama3" / "LLAMA_SENTIMENT.json"
@@ -183,6 +208,7 @@ def main() -> None:
 
     print(f"\n{'='*60}")
     print(f"Sentiment analysis complete. Saved to {json_output_path}.")
+    print(f"Total time: {total_time:.2f}s | Avg per feedback: {sentiment_results['metadata']['avg_time_per_feedback']:.2f}s")
 
     # Convert to CSV
     csv_output_path = BASE_DIR / "results" / "Llama3" / "LLAMA_SENTIMENT.csv"

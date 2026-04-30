@@ -1,0 +1,1442 @@
+{
+  "topics": [
+    {
+      "topic": "Course organization and structure",
+      "feedback_with_sentiment": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress\u2013free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback describes a 'seamless experience,' indicating clarity and effectiveness of the course organization, aligning with a score of 5.",
+          "processing_time": 1.93603515625
+        },
+        {
+          "text": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback highlights a well-structured course with clear lectures, engaging options, and a focus on understanding, aligning perfectly with a '5' rating.",
+          "processing_time": 0.8778789043426514
+        },
+        {
+          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "While the feedback mentions a slightly fast pace, the overall assessment highlights the professor's organization, clarity, and provision of resources, aligning with a 'clear and worked well' structure (score 4).",
+          "processing_time": 0.910416841506958
+        },
+        {
+          "text": "Dr. Wu's knowledge of chemistry is evident in his teaching. Every lecture was well prepared and provided information in a clear and organized way. It is also obvious that Dr. Wu truly cares about helping students learn. He provides a lot of helpful resources before every exam and also holds review sessions. Overall, he is a great teacher.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'well prepared and provided information in a clear and organized way,' directly aligning with a '5' score on the rubric.",
+          "processing_time": 0.7778840065002441
+        },
+        {
+          "text": "One of Wu's greatest strengths is his lecture\u2013filled notes. If we are already familiar with the course material, we can just follow the lecture with the notes without having to write down anything. It is also a great tool for reviewing before, say, a midterm or the final exam. Another great strength of his is his coffee hours that he has with students after class. It's nice to get to know your teacher personally and establish a great connection. His final strength is the review sessions he has before midterms. They are well\u2013organized and go over a good chunk of the material. The only weakness I can think of with Wu is how fast he goes during his lectures.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "While the feedback mentions a weakness (lectures moving too fast), it primarily highlights strengths: organized review sessions and coffee hours, suggesting a generally well-structured course.",
+          "processing_time": 0.8360679149627686
+        },
+        {
+          "text": "Professor Wu was very organized with his lecture notes and always posted materials online, which were very helpful. His review sessions prior to midterms were also very helpful and definitely contributed to my success in the class.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights organization (lecture notes, online materials) and helpful review sessions, indicating a clear and effective structure.",
+          "processing_time": 0.7018039226531982
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair \u2013 not too challenging, but also not too easy.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights 'clear and paced well' lectures and 'fair' exams, indicating a well-structured and easy-to-follow course.",
+          "processing_time": 0.7748990058898926
+        },
+        {
+          "text": "Professor Wu is very organized and teaches in a way that was digestible. I hope my future teachers are like him because even though this class was tough, I was able to thrive due to his teaching techniques.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the professor's organization and teaching style as 'digestible,' leading to student success. This aligns with a '5' rating \u2013 excellent and easy to understand.",
+          "processing_time": 0.8313047885894775
+        },
+        {
+          "text": "Excellent communicator and very organized. Only weakness of this course is that it seems to do a lot of hand\u2013waving over more complex concepts.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights 'excellent communicator and very organized,' aligning with a clear and well-structured course (Score 4). The mention of 'hand-waving' is a minor issue, not a fundamental flaw in the organization itself.",
+          "processing_time": 0.914841890335083
+        },
+        {
+          "text": "He's awesome, does lecture in a clear and concise way, explains what we need to know before exams, class is organized.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback explicitly states the class is 'organized' and that the lectures are 'clear and concise', aligning with a clear and well-structured course (Score 4).",
+          "processing_time": 0.7793118953704834
+        },
+        {
+          "text": "Professor Wu led an organized, well structured class with a lot of helpful resources.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the 'organized, well-structured class' with 'helpful resources,' aligning perfectly with a score of 5.",
+          "processing_time": 0.6788201332092285
+        },
+        {
+          "text": "Dr. Wu is very organized and his lectures reflect his test and quizzes.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the organization and reflects the alignment of lectures with assessments, indicating a clear and effective structure.",
+          "processing_time": 0.659060001373291
+        },
+        {
+          "text": "Eric is an excellent professor. From his lectures to his homework to his tests he is very organized and very communicative.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states the professor is 'very organized and very communicative,' aligning perfectly with a course organization and structure that is excellent and makes the material easy to understand (Score 5).",
+          "processing_time": 0.8343102931976318
+        },
+        {
+          "text": "Professor Wu is extremely organized and explains concepts very clearly. He truly wants to help students succeed.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback describes the professor as 'extremely organized' and with 'clear explanations,' indicating a well-structured and easy-to-understand course.",
+          "processing_time": 0.7484462261199951
+        },
+        {
+          "text": "Excellent course. Only criticism is lectures move very quickly.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback states 'Excellent course,' and the single criticism\u2014lectures moving quickly\u2014is a minor issue easily addressed, suggesting a highly effective structure and clear presentation of material.",
+          "processing_time": 0.7851190567016602
+        },
+        {
+          "text": "Professor Wu understands how to teach an undergraduate course. Workloads are manageable and the class is well\u2013taught.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback states 'workloads are manageable and the class is well-taught,' indicating a clear and functional structure.",
+          "processing_time": 0.6982629299163818
+        },
+        {
+          "text": "Dr. Wu was amazing! Great lecturer who is very well organized and clearly cares about his students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the lecturer's organization and clarity, aligning with the highest positive level of the rubric.",
+          "processing_time": 0.7018818855285645
+        },
+        {
+          "text": "Chemistry is difficult and a lot to digest, but Professor Wu made it extremely manageable.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback indicates the course was 'extremely manageable,' directly aligning with a clear and well-structured course, indicating a positive experience.",
+          "processing_time": 0.7237639427185059
+        },
+        {
+          "text": "Very organized, clear and concise.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the course as 'very organized, clear, and concise,' aligning perfectly with a '5' rating.",
+          "processing_time": 0.7053430080413818
+        },
+        {
+          "text": "Professor Wu is extremely organized and adapts based on feedback.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback highlights 'extremely organized' and adaptation based on feedback, directly aligning with the criteria for an excellent course structure (Score 5).",
+          "processing_time": 0.7277908325195312
+        },
+        {
+          "text": "Very organized and great communication.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback 'Very organized and great communication' directly aligns with a clear and well-structured course, indicating excellent organization and ease of understanding (Score 5).",
+          "processing_time": 0.7595508098602295
+        },
+        {
+          "text": "Some strengths include organization and being welcoming.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback mentions 'organization' as a strength, indicating a functional structure, but also notes 'being welcoming' which is separate from the structure itself. It doesn't explicitly state clarity or effectiveness, hence a score of 3 (okay).",
+          "processing_time": 0.8927628993988037
+        },
+        {
+          "text": "Professor Wu is extremely organized and clear as a lecturer.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states the professor is 'extremely organized and clear,' aligning perfectly with a course organization and structure being excellent.",
+          "processing_time": 0.6838579177856445
+        },
+        {
+          "text": "Very organized, and the class material is easy to understand.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states the course material is 'easy to understand,' aligning with a clear and well-organized structure (Score 5).",
+          "processing_time": 0.714385986328125
+        },
+        {
+          "text": "This instructor is fantastic and very organized.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states the instructor is 'fantastic and very organized,' aligning perfectly with a '5' rating on the rubric.",
+          "processing_time": 0.705324649810791
+        }
+      ]
+    },
+    {
+      "topic": "Pace",
+      "feedback_with_sentiment": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress\u2013free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback describes a 'seamless experience' and a 'stress-free' learning environment, implying a reasonable pace that met the student's expectations and goals.",
+          "processing_time": 0.8910222053527832
+        },
+        {
+          "text": "Great professor, the only thing was that the lectures were very fast. Sometimes it made it hard to follow along. I think a good solution would be to do less examples, and spend more times on the ones that we do in lecture.",
+          "sentiment": "negative",
+          "score": 2,
+          "reasoning": "The feedback indicates the pace was 'very fast' and 'hard to follow along,' aligning with a somewhat slow pace (Score 2) but leaning negative due to the difficulty experienced.",
+          "processing_time": 0.8335177898406982
+        },
+        {
+          "text": "One of Wu's greatest strengths is his lecture\u2013filled notes. If we are already familiar with the course material, we can just follow the lecture with the notes without having to write down anything. It is also a great tool for reviewing before, say, a midterm or the final exam. Another great strength of his is his coffee hours that he has with students after class. It's nice to get to know your teacher personally and establish a great connection. His final strength is the review sessions he has before midterms. They are well\u2013organized and go over a good chunk of the material. The only weakness I can think of with Wu is how fast he goes during his lectures.",
+          "sentiment": "negative",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'how fast he goes during his lectures,' directly indicating a pace that is 'way too fast' and making it 'hard to keep up,' aligning with Score 5.",
+          "processing_time": 0.8893091678619385
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair \u2013 not too challenging, but also not too easy.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback explicitly states 'paced well,' indicating a reasonable pace, aligning with score 3.",
+          "processing_time": 0.675875186920166
+        },
+        {
+          "text": "All the info needed for exams were on his slides and given to us. I think the exams tested our knowledge adequately. I think the pace of his class was quick which made me overwhelmed at times.",
+          "sentiment": "negative",
+          "score": 2,
+          "reasoning": "The feedback states the pace was 'quick' and 'overwhelming,' indicating a negative experience.",
+          "processing_time": 0.6710331439971924
+        },
+        {
+          "text": "He was the best professor I have had so far. He takes the time to really help us grasp the topic while still keeping us at a good pace to finish the class.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback indicates a 'good pace' and a balance between thorough explanation and timely completion, aligning with a 'reasonable overall' pace (score 3).",
+          "processing_time": 0.7746210098266602
+        },
+        {
+          "text": "Wu is very explanatory and in depth with the material. However, material is very advanced for those without a background in chemistry.",
+          "sentiment": "negative",
+          "score": 2,
+          "reasoning": "The feedback indicates the material is 'very advanced,' suggesting a pace that might be too fast for some learners without prior chemistry knowledge, leaning towards a somewhat slow pace for those lacking the foundational understanding.",
+          "processing_time": 0.8478069305419922
+        },
+        {
+          "text": "Great lecturer and note taker, though tends to talk too quickly.",
+          "sentiment": "negative",
+          "score": 2,
+          "reasoning": "Talking too quickly indicates a pace that is 'somewhat slow at times,' aligning with score 2.",
+          "processing_time": 0.6657199859619141
+        },
+        {
+          "text": "Excellent course. Only criticism is lectures move very quickly.",
+          "sentiment": "negative",
+          "score": 5,
+          "reasoning": "The feedback explicitly states the lectures 'move very quickly,' indicating a pace that is too fast and difficult to keep up with, aligning with score 5.",
+          "processing_time": 0.7433910369873047
+        },
+        {
+          "text": "Strengths: simplifying course material. Weakness: fast pacing.",
+          "sentiment": "negative",
+          "score": 4,
+          "reasoning": "The feedback explicitly identifies 'fast pacing,' which aligns with a pace that moves 'way too fast'.",
+          "processing_time": 0.6550750732421875
+        },
+        {
+          "text": "He is a great lecturer but his midterms are too long for 50 minutes.",
+          "sentiment": "negative",
+          "score": 2,
+          "reasoning": "The feedback states the midterms are 'too long for 50 minutes,' indicating a pace that is slower than ideal, leaning towards a somewhat slow pace.",
+          "processing_time": 0.768014669418335
+        }
+      ]
+    },
+    {
+      "topic": "Workload",
+      "feedback_with_sentiment": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress\u2013free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The student explicitly states the workload felt 'too much' and describes the experience as 'stress-free,' indicating a perceived overload and thus a high score reflecting the feeling of it being too heavy.",
+          "processing_time": 0.9539499282836914
+        },
+        {
+          "text": "Wu is very explanatory and in depth with the material. However, material is very advanced for those without a background in chemistry.",
+          "sentiment": "negative",
+          "score": 2,
+          "reasoning": "The feedback highlights the material as 'very advanced,' suggesting it's a challenge and potentially overwhelming for students without a chemistry background, leaning towards a slightly heavier workload than ideal.",
+          "processing_time": 0.8135690689086914
+        },
+        {
+          "text": "Professor Wu understands how to teach an undergraduate course. Workloads are manageable and the class is well\u2013taught.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback states the workload is 'manageable,' aligning with rubric level 3.",
+          "processing_time": 0.6503169536590576
+        }
+      ]
+    },
+    {
+      "topic": "Student engagement and participation",
+      "feedback_with_sentiment": [
+        {
+          "text": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback highlights numerous opportunities for engagement (QR code questions, downloadable notes, office hours, structured lectures) and praises the professor's approach for fostering immersion and understanding, strongly indicating a highly engaging course.",
+          "processing_time": 1.0435988903045654
+        },
+        {
+          "text": "Dr. Wu's knowledge of chemistry is evident in his teaching. Every lecture was well prepared and provided information in a clear and organized way. It is also obvious that Dr. Wu truly cares about helping students learn. He provides a lot of helpful resources before every exam and also holds review sessions. Overall, he is a great teacher.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights resources (helpful materials before exams) and review sessions, indicating good opportunities for engagement beyond just the lectures themselves. This aligns with a 'good opportunities' engagement level.",
+          "processing_time": 0.8275668621063232
+        },
+        {
+          "text": "Eric explains concepts very clearly with an emphasis on intuition and he encourages students to understand the material rather than rely solely on rote memory. His enthusiasm for chemistry is contagious. He is extremely welcoming, knowledgeable, approachable, and responsive to questions, and he takes the time to make sure students understand what is going on.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback highlights enthusiastic teaching, encouragement, welcoming environment, and responsiveness, all strongly indicating high student engagement and a positive learning experience.",
+          "processing_time": 0.7475528717041016
+        },
+        {
+          "text": "His ability to explain concepts in a way that keeps students engaged.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback highlights an instructor's ability to 'keep students engaged,' directly aligning with a highly engaging course as defined in the rubric.",
+          "processing_time": 0.7217109203338623
+        },
+        {
+          "text": "Dr. Wu hosts helpful review sessions and makes lectures entertaining.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "Review sessions and entertaining lectures provide good opportunities for engagement, aligning with a '4' score.",
+          "processing_time": 0.6500720977783203
+        },
+        {
+          "text": "Eric helped to make Chemistry approachable.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "Eric's help making Chemistry approachable suggests the course created some opportunities for engagement, but doesn't explicitly state high levels of engagement or consistent participation.",
+          "processing_time": 0.8144268989562988
+        },
+        {
+          "text": "Good communicator and always engaged with students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states the student was 'always engaged,' indicating a highly engaging course as per the rubric's highest level.",
+          "processing_time": 0.6999480724334717
+        },
+        {
+          "text": "Some strengths include organization and being welcoming.",
+          "sentiment": "neutral",
+          "score": 3,
+          "reasoning": "The feedback mentions organizational strengths and welcoming environment, but doesn't address engagement or participation directly. It suggests a baseline level without indicating active engagement opportunities.",
+          "processing_time": 0.751845121383667
+        }
+      ]
+    },
+    {
+      "topic": "Clarity of explanations",
+      "feedback_with_sentiment": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress\u2013free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback expresses a highly positive experience, stating the class was 'exactly as the class should have been,' 'seamless,' and that the student 'got exactly what I wanted out of this class.' This indicates exceptionally clear explanations and a successful learning experience aligning with the rubric's highest level.",
+          "processing_time": 1.12214994430542
+        },
+        {
+          "text": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the instructor's 'thorough' and 'beautifully structured' lectures, stating that they were 'very clear' and required no additional time to understand. This aligns perfectly with a score of 5.",
+          "processing_time": 0.9647653102874756
+        },
+        {
+          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback explicitly praises the professor's clarity ('explains well the content') and his use of resources and pausing for questions, aligning with a clear and helpful explanation.",
+          "processing_time": 0.832611083984375
+        },
+        {
+          "text": "Dr. Wu's knowledge of chemistry is evident in his teaching. Every lecture was well prepared and provided information in a clear and organized way. It is also obvious that Dr. Wu truly cares about helping students learn. He provides a lot of helpful resources before every exam and also holds review sessions. Overall, he is a great teacher.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback explicitly states 'clear and organized way,' aligning with a 'clear and easy to understand' explanation (Score 4).",
+          "processing_time": 0.7445559501647949
+        },
+        {
+          "text": "One of Wu's greatest strengths is his lecture\u2013filled notes. If we are already familiar with the course material, we can just follow the lecture with the notes without having to write down anything. It is also a great tool for reviewing before, say, a midterm or the final exam. Another great strength of his is his coffee hours that he has with students after class. It's nice to get to know your teacher personally and establish a great connection. His final strength is the review sessions he has before midterms. They are well\u2013organized and go over a good chunk of the material. The only weakness I can think of with Wu is how fast he goes during his lectures.",
+          "sentiment": "neutral",
+          "score": 3,
+          "reasoning": "While the feedback highlights strengths like organized review sessions and coffee hours, the critical weakness - 'how fast he goes during his lectures' - directly contradicts clarity and suggests explanations were not always understandable, landing it primarily in the neutral zone.",
+          "processing_time": 0.959395170211792
+        },
+        {
+          "text": "Eric explains concepts very clearly with an emphasis on intuition and he encourages students to understand the material rather than rely solely on rote memory. His enthusiasm for chemistry is contagious. He is extremely welcoming, knowledgeable, approachable, and responsive to questions, and he takes the time to make sure students understand what is going on.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the instructor's clarity and enthusiasm, stating 'explains concepts very clearly with an emphasis on intuition' and that 'no additional time was needed to understand'.",
+          "processing_time": 0.8358058929443359
+        },
+        {
+          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'very good at lecturing' and 'very clear,' indicating a high level of clarity in the explanations, aligning with a score of 5.",
+          "processing_time": 0.8126158714294434
+        },
+        {
+          "text": "Professor Wu is extremely understanding and caring about his students needs. During the fires he was the only professor of mine to offer accommodations to those struggling. Not only is he extremely kind but he is a very good lecturer as well.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback highlights the professor's kindness and good lecturing style, indicating some clarity but also acknowledging the need for additional effort to fully grasp concepts. This aligns with a score of 3.",
+          "processing_time": 0.8373990058898926
+        },
+        {
+          "text": "Professor Wu is very good at explaining math concepts, but he doesn't always explain the conceptual side of things very well. I think that he could focus a bit more on explaining the conceptual aspects of the class.",
+          "sentiment": "negative",
+          "score": 2,
+          "reasoning": "While the feedback acknowledges the professor's strength in math concepts, it highlights a key deficiency \u2013 a lack of clarity when explaining the 'conceptual side of things.' This falls short of consistently clear explanations (score 4 or 5) and indicates difficulty in understanding some parts.",
+          "processing_time": 0.9779460430145264
+        },
+        {
+          "text": "Great lecture style and posts notes and recordings which is very useful. Test prep is provided which I like. No complaints!",
+          "sentiment": "neutral",
+          "score": 3,
+          "reasoning": "The feedback mentions 'great lecture style' and 'useful' materials (posts notes, recordings, test prep) but doesn't directly address the clarity of the explanations themselves. It's neither strongly positive nor negative, indicating a neutral assessment regarding clarity.",
+          "processing_time": 0.9580140113830566
+        },
+        {
+          "text": "Fair with his exams and an excellent lecturer",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback states 'excellent lecturer,' implying clarity of explanations was a strong point.",
+          "processing_time": 0.6211040019989014
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair \u2013 not too challenging, but also not too easy.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback explicitly praises the 'consistently clear and paced well' lectures, aligning with a score of 4. It suggests the explanations were easy to understand and well-structured.",
+          "processing_time": 0.8379497528076172
+        },
+        {
+          "text": "Professor Wu is very organized and teaches in a way that was digestible. I hope my future teachers are like him because even though this class was tough, I was able to thrive due to his teaching techniques.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback describes the explanations as 'digestible' and effective, indicating a clear and easy-to-understand approach.",
+          "processing_time": 0.7128899097442627
+        },
+        {
+          "text": "He was the best professor I have had so far. He takes the time to really help us grasp the topic while still keeping us at a good pace to finish the class.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the professor's ability to 'really help us grasp the topic,' indicating exceptionally clear explanations.",
+          "processing_time": 0.7040870189666748
+        },
+        {
+          "text": "I really enjoyed being in Professor Wu's class this quarter! I would highly recommend anyone to take him in the future. He gives clear explanations for topics and provides lots of examples.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback explicitly states 'clear explanations' and provides positive reinforcement, aligning with a 'clear and generally easy to understand' explanation (Score 4).",
+          "processing_time": 0.7707161903381348
+        },
+        {
+          "text": "Professor Wu is a fantastic professor all around. He accounts for different learning styles and is very thorough in his lectures.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback mentions thoroughness, which implies the explanations were adequate but didn't explicitly state clarity or lack thereof. It leans towards a 'somewhat clear' rating.",
+          "processing_time": 0.7999889850616455
+        },
+        {
+          "text": "Great at teaching the content and makes the learning very straightforward. Gives wonderful examples to help his students learn.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the instructor's ability to make learning 'straightforward' and uses positive descriptors like 'great' and 'wonderful examples,' indicating exceptionally clear explanations.",
+          "processing_time": 0.8059160709381104
+        },
+        {
+          "text": "He's awesome, does lecture in a clear and concise way, explains what we need to know before exams, class is organized.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'clear and concise way' and that the instructor explains what is needed before exams, aligning perfectly with a score of 5 - very clear and easy to understand.",
+          "processing_time": 0.8343942165374756
+        },
+        {
+          "text": "Dr. Wu is very organized and his lectures reflect his test and quizzes.",
+          "sentiment": "neutral",
+          "score": 3,
+          "reasoning": "The feedback mentions organization and reflection of assessments, which indirectly relates to clarity. However, it doesn't directly address whether the explanations were clear or not, hence a neutral score of 3.",
+          "processing_time": 0.8132202625274658
+        },
+        {
+          "text": "Wu is very explanatory and in depth with the material. However, material is very advanced for those without a background in chemistry.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback praises the instructor's 'explanatory and in-depth' approach, but also notes the material's advanced nature. This suggests the explanations were somewhat clear (Score 3) but require extra effort due to the complexity, aligning with the rubric's description for level 3.",
+          "processing_time": 1.002305030822754
+        },
+        {
+          "text": "Great lecturer and note taker, though tends to talk too quickly.",
+          "sentiment": "negative",
+          "score": 2,
+          "reasoning": "While acknowledging a 'great lecturer', the comment about talking too quickly indicates a lack of clarity, making parts difficult to understand. This aligns with score 2 as explanations are 'not always clear'.",
+          "processing_time": 0.8131070137023926
+        },
+        {
+          "text": "Eric is an excellent professor. From his lectures to his homework to his tests he is very organized and very communicative.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback highlights 'organized and very communicative,' which implies the explanations were sufficient for understanding, though doesn't explicitly confirm clarity or ease of understanding. It's a neutral assessment of clarity, leaning towards positive due to the positive framing of the professor's communication style.",
+          "processing_time": 0.9814798831939697
+        },
+        {
+          "text": "Professor Wu is extremely organized and explains concepts very clearly. He truly wants to help students succeed.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'explains concepts very clearly,' aligning with a score of 5 on the rubric.",
+          "processing_time": 0.6839580535888672
+        },
+        {
+          "text": "He has no weaknesses, his main strength is the way he can teach.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states a strength \u2013 the instructor's ability to teach \u2013 which directly relates to the clarity of explanations. A strong positive indication suggests completely clear explanations (Score 5).",
+          "processing_time": 0.7907230854034424
+        },
+        {
+          "text": "Phenomenal professor, explains everything thoroughly in lectures and prepares perfect practice and review sessions.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'everything thoroughly explained' and 'perfect practice and review sessions,' indicating exceptionally clear and effective explanations.",
+          "processing_time": 0.6941440105438232
+        },
+        {
+          "text": "Professor Eric was always prepared with clear lectures and notes, and provided us with various resources.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'clear lectures and notes' and 'various resources,' indicating the explanations were exceptionally clear and readily understandable, aligning with a score of 5.",
+          "processing_time": 0.7572689056396484
+        },
+        {
+          "text": "I like his teaching and the problem set problems are effective in teaching me the material.",
+          "sentiment": "neutral",
+          "score": 3,
+          "reasoning": "The feedback focuses on overall teaching style and problem sets, not specifically on the clarity of the explanations. It acknowledges effectiveness without detailing whether the explanations were clear or not.",
+          "processing_time": 0.770946741104126
+        },
+        {
+          "text": "Professor Wu was an excellent teacher. He explained topics well, and I really appreciate that he recorded the lectures.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback states the professor 'explained topics well,' indicating clarity and ease of understanding, aligning with a Score 4 on the rubric.",
+          "processing_time": 0.7298250198364258
+        },
+        {
+          "text": "Dr. Wu was amazing! Great lecturer who is very well organized and clearly cares about his students.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback praises the instructor's clarity, describing them as 'very well organized and clearly cares about his students.' While it doesn't explicitly state the explanations were easy to understand, the positive tone and mention of clear organization suggests a positive assessment of clarity, leaning toward a 'somewhat clear' level (score 3).",
+          "processing_time": 1.065788984298706
+        },
+        {
+          "text": "Chemistry is difficult and a lot to digest, but Professor Wu made it extremely manageable.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback states the professor made the topic 'extremely manageable,' indicating clear and understandable explanations.",
+          "processing_time": 0.632087230682373
+        },
+        {
+          "text": "I think Dr. Wu is always very helpful. He is really good at explaining topics in a way that is easy to understand.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states that the explanations were 'easy to understand,' aligning with a score of 5.",
+          "processing_time": 0.6864719390869141
+        },
+        {
+          "text": "He is one of the best professors I've had so far, his explanations are so clear.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'his explanations are so clear,' aligning perfectly with a score of 5 on the rubric.",
+          "processing_time": 0.6983532905578613
+        },
+        {
+          "text": "Very organized, clear and concise.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'clear and concise,' aligning perfectly with a score of 5 on the rubric where explanations are very clear and easy to understand.",
+          "processing_time": 0.722905158996582
+        },
+        {
+          "text": "The professor clearly cares about student learning and provides plenty of helpful material.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback indicates 'helpful material,' suggesting the explanations were sufficient for basic understanding, aligning with a '3' rating. It doesn't explicitly state clarity issues or lack thereof.",
+          "processing_time": 0.7933671474456787
+        },
+        {
+          "text": "His ability to explain concepts in a way that keeps students engaged.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback indicates an ability to keep students engaged, suggesting the explanations were very clear and easy to understand, aligning with a score of 5.",
+          "processing_time": 0.7251608371734619
+        },
+        {
+          "text": "Eric Wu does a very good job of lecturing and making sure we understand the concepts.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'very good job of lecturing and making sure we understand the concepts,' indicating exceptionally clear explanations.",
+          "processing_time": 0.6726672649383545
+        },
+        {
+          "text": "Strengths: simplifying course material. Weakness: fast pacing.",
+          "sentiment": "negative",
+          "score": 2,
+          "reasoning": "The feedback highlights a 'weakness' (fast pacing) which directly impacts the clarity of explanations. While it notes 'simplifying course material' as a strength, the pacing issue suggests the simplification wasn't executed effectively, leading to some parts remaining unclear.",
+          "processing_time": 0.9139828681945801
+        },
+        {
+          "text": "Dr. Wu hosts helpful review sessions and makes lectures entertaining.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback mentions 'helpful review sessions' and 'entertaining lectures,' which suggests the instructor's delivery style was engaging and accessible, but doesn't directly address the clarity of the explanations themselves. It's a positive comment on engagement but doesn't definitively confirm clarity.",
+          "processing_time": 0.9699158668518066
+        },
+        {
+          "text": "Professor Wu knows what he's teaching and can be understood by many.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback indicates the professor is understood by 'many,' suggesting a generally clear explanation, but also acknowledges that some effort might be required for full understanding (score 3).",
+          "processing_time": 0.7681708335876465
+        },
+        {
+          "text": "Eric helped to make Chemistry approachable.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback indicates that Eric's explanations made Chemistry 'approachable,' suggesting clarity and ease of understanding \u2013 aligning with a Score 4 on the rubric.",
+          "processing_time": 0.751788854598999
+        },
+        {
+          "text": "Professor Wu is extremely organized and clear as a lecturer.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback directly states 'extremely organized and clear,' aligning perfectly with a score of 5, indicating explanations were very clear and easily understood.",
+          "processing_time": 0.7289509773254395
+        },
+        {
+          "text": "Very organized, and the class material is easy to understand.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback states the material is 'easy to understand' and 'very organized,' directly aligning with a clear and understandable explanation as defined by the rubric's highest level.",
+          "processing_time": 0.7679989337921143
+        }
+      ]
+    },
+    {
+      "topic": "Effectiveness of assignments",
+      "feedback_with_sentiment": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress\u2013free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback expresses satisfaction with the seamless learning experience and feeling prepared for success, indicating the assignments were helpful in achieving the desired outcome.",
+          "processing_time": 0.8470351696014404
+        },
+        {
+          "text": "Great at teaching the content and makes the learning very straightforward. Gives wonderful examples to help his students learn.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback highlights 'great at teaching,' 'straightforward learning,' and 'wonderful examples,' indicating a very effective impact on understanding and practice.",
+          "processing_time": 0.7420001029968262
+        },
+        {
+          "text": "I like his teaching and the problem set problems are effective in teaching me the material.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states the problem set is 'effective in teaching me the material,' indicating a strong positive impact and aligning with a score of 5.",
+          "processing_time": 0.7272889614105225
+        },
+        {
+          "text": "He is a great lecturer but his midterms are too long for 50 minutes.",
+          "sentiment": "negative",
+          "score": 3,
+          "reasoning": "The feedback identifies a problem (midterms being too long) which negatively impacts assignment effectiveness, indicating limited helpfulness.",
+          "processing_time": 0.6749899387359619
+        }
+      ]
+    },
+    {
+      "topic": "Classroom atmosphere",
+      "feedback_with_sentiment": [
+        {
+          "text": "One of Wu's greatest strengths is his lecture\u2013filled notes. If we are already familiar with the course material, we can just follow the lecture with the notes without having to write down anything. It is also a great tool for reviewing before, say, a midterm or the final exam. Another great strength of his is his coffee hours that he has with students after class. It's nice to get to know your teacher personally and establish a great connection. His final strength is the review sessions he has before midterms. They are well\u2013organized and go over a good chunk of the material. The only weakness I can think of with Wu is how fast he goes during his lectures.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights positive aspects like coffee hours and review sessions, creating a welcoming and supportive environment, aligning with a score of 4.",
+          "processing_time": 0.8226780891418457
+        },
+        {
+          "text": "Eric explains concepts very clearly with an emphasis on intuition and he encourages students to understand the material rather than rely solely on rote memory. His enthusiasm for chemistry is contagious. He is extremely welcoming, knowledgeable, approachable, and responsive to questions, and he takes the time to make sure students understand what is going on.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback describes a highly welcoming, enthusiastic, and supportive atmosphere with clear encouragement and responsiveness, aligning with the highest positive criteria.",
+          "processing_time": 0.7234559059143066
+        },
+        {
+          "text": "Very excellent professor and lecturer. The environment he fosters for his students is impeccable, and his dedication towards his students shines.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback uses strong positive language ('very excellent', 'impeccable', 'shines') describing a welcoming and supportive environment.",
+          "processing_time": 0.7267649173736572
+        }
+      ]
+    },
+    {
+      "topic": "Instructor's communication and availability",
+      "feedback_with_sentiment": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress\u2013free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback expresses strong appreciation for the instructor's efforts and the seamless, supportive learning experience, indicating proactive availability and clear communication.",
+          "processing_time": 0.8648462295532227
+        },
+        {
+          "text": "Excellent Professor. Such a shame he isn't teaching OChem next quarter",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback expresses a positive sentiment ('Excellent Professor') but doesn't directly address communication or availability. It implies satisfaction, but lacks specific details to justify a higher score. It's neutral in terms of the rubric's criteria.",
+          "processing_time": 0.8942818641662598
+        },
+        {
+          "text": "Great professor, the only thing was that the lectures were very fast. Sometimes it made it hard to follow along. I think a good solution would be to do less examples, and spend more times on the ones that we do in lecture.",
+          "sentiment": "neutral",
+          "score": 3,
+          "reasoning": "The feedback focuses on lecture pace and examples, not the instructor's communication or availability. While it implicitly suggests a need for clearer communication (through slower pace), it doesn't directly address the rubric criteria.",
+          "processing_time": 0.8598530292510986
+        },
+        {
+          "text": "Dr. Wu's knowledge of chemistry is evident in his teaching. Every lecture was well prepared and provided information in a clear and organized way. It is also obvious that Dr. Wu truly cares about helping students learn. He provides a lot of helpful resources before every exam and also holds review sessions. Overall, he is a great teacher.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights Dr. Wu's proactive approach with resources and review sessions, indicating timely communication and availability which aligns with a score of 4.",
+          "processing_time": 0.7852687835693359
+        },
+        {
+          "text": "One of Wu's greatest strengths is his lecture\u2013filled notes. If we are already familiar with the course material, we can just follow the lecture with the notes without having to write down anything. It is also a great tool for reviewing before, say, a midterm or the final exam. Another great strength of his is his coffee hours that he has with students after class. It's nice to get to know your teacher personally and establish a great connection. His final strength is the review sessions he has before midterms. They are well\u2013organized and go over a good chunk of the material. The only weakness I can think of with Wu is how fast he goes during his lectures.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights the coffee hours and review sessions, indicating availability and a positive connection with students, aligning with a 'clear communication' and 'availability' focus.",
+          "processing_time": 0.8232109546661377
+        },
+        {
+          "text": "Eric explains concepts very clearly with an emphasis on intuition and he encourages students to understand the material rather than rely solely on rote memory. His enthusiasm for chemistry is contagious. He is extremely welcoming, knowledgeable, approachable, and responsive to questions, and he takes the time to make sure students understand what is going on.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback describes the instructor as 'extremely welcoming, approachable, and responsive to questions,' and 'takes the time to make sure students understand what is going on,' aligning perfectly with a score of 5.",
+          "processing_time": 0.8713021278381348
+        },
+        {
+          "text": "Very excellent professor and lecturer. The environment he fosters for his students is impeccable, and his dedication towards his students shines.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback highlights a 'great lecturer' and 'dedication', implying good communication and availability without specific details about responsiveness or updates.",
+          "processing_time": 0.7108809947967529
+        },
+        {
+          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback mentions 'very good at lecturing' and providing study materials, indicating adequate communication and availability, aligning with a score of 3.",
+          "processing_time": 0.7376160621643066
+        },
+        {
+          "text": "Professor Wu is extremely understanding and caring about his students needs. During the fires he was the only professor of mine to offer accommodations to those struggling. Not only is he extremely kind but he is a very good lecturer as well.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback highlights the professor's proactive support (offering accommodations during difficult times), timely response (being the only professor offering them), and clear communication (being a good lecturer) \u2013 all aligning with a score of 5.",
+          "processing_time": 0.9009058475494385
+        },
+        {
+          "text": "Professor Wu was very organized with his lecture notes and always posted materials online, which were very helpful. His review sessions prior to midterms were also very helpful and definitely contributed to my success in the class.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback highlights helpfulness of posted materials and review sessions, indicating adequate communication and availability, aligning with a '3' score.",
+          "processing_time": 0.7122900485992432
+        },
+        {
+          "text": "Professor Wu is very good at explaining math concepts, but he doesn't always explain the conceptual side of things very well. I think that he could focus a bit more on explaining the conceptual aspects of the class.",
+          "sentiment": "negative",
+          "score": 2,
+          "reasoning": "The feedback mentions a lack of focus on 'conceptual aspects' and doesn't specifically address communication or availability, implying a disconnect and inconsistent explanation which aligns with a score of 2.",
+          "processing_time": 0.8286592960357666
+        },
+        {
+          "text": "Fair with his exams and an excellent lecturer",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback mentions 'excellent lecturer,' implying clear communication and engagement, aligning with a '3' score.",
+          "processing_time": 0.6556479930877686
+        },
+        {
+          "text": "Excellent communicator and very organized. Only weakness of this course is that it seems to do a lot of hand\u2013waving over more complex concepts.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback describes 'Excellent communicator,' indicating good communication, which aligns with a score of 3. The mention of 'hand-waving' suggests a lack of depth in explanation but doesn't directly address availability or responsiveness, thus a neutral score is appropriate.",
+          "processing_time": 0.9658570289611816
+        },
+        {
+          "text": "Instructor E.C. Wu demonstrates several strengths in his teaching, including kindness, understanding, and a genuine care for his students.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback highlights 'kindness, understanding, and a genuine care for his students,' which suggests the instructor was approachable and likely responsive, aligning with a '3' score representing adequate communication and availability.",
+          "processing_time": 0.8425869941711426
+        },
+        {
+          "text": "Professor Wu is a fantastic professor all around. He accounts for different learning styles and is very thorough in his lectures.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback focuses on the professor's overall performance ('fantastic professor') and thoroughness of lectures, but doesn't directly address communication or availability, landing it in the neutral category (Score 3) as it doesn't explicitly state good or poor communication practices.",
+          "processing_time": 0.962766170501709
+        },
+        {
+          "text": "Professor Wu was very good about making students feel welcome and he made himself very approachable.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback describes the instructor as approachable and welcoming, indicating clear communication and availability \u2013 aligning with a '4' score.",
+          "processing_time": 0.6896791458129883
+        },
+        {
+          "text": "He was an amazing professor who provided us with so much resources and truly wanted us to succeed.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback highlights positive attributes (resources, wanting students to succeed) but doesn't specifically address communication or availability, placing it in the neutral range of adequately communicating and having limited availability.",
+          "processing_time": 0.8185830116271973
+        },
+        {
+          "text": "Eric is an excellent professor. From his lectures to his homework to his tests he is very organized and very communicative.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback explicitly states 'very communicative,' aligning with the criteria of clear communication and responsiveness (Score 4).",
+          "processing_time": 0.690673828125
+        },
+        {
+          "text": "Chemistry 20B can be challenging at times but Professor Wu was probably the best person for the job.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback states Professor Wu was 'probably the best person for the job,' indicating a positive impression of their communication and availability, though it doesn't detail specific actions or outcomes.",
+          "processing_time": 0.801243782043457
+        },
+        {
+          "text": "Phenomenal professor, explains everything thoroughly in lectures and prepares perfect practice and review sessions.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback highlights 'thorough explanations' and 'perfect practice and review sessions,' indicating adequate communication and preparation, aligning with a score of 3 where the instructor communicates adequately.",
+          "processing_time": 0.7918510437011719
+        },
+        {
+          "text": "Professor Wu was an excellent teacher. He explained topics well, and I really appreciate that he recorded the lectures.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback explicitly praises the recording of lectures, indicating availability and a proactive approach to communication and support for student learning.",
+          "processing_time": 0.69110107421875
+        },
+        {
+          "text": "Dr. Wu was amazing! Great lecturer who is very well organized and clearly cares about his students.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback describes the instructor as 'great' and 'well organized,' suggesting adequate communication and availability without explicitly stating issues or lack of responsiveness.",
+          "processing_time": 0.8133101463317871
+        },
+        {
+          "text": "Professor Wu is very approachable and seems to care about his students.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback indicates 'approachable' and 'cares about students,' aligning with clear communication and proactive availability, warranting a score of 4.",
+          "processing_time": 0.7355301380157471
+        },
+        {
+          "text": "I think Dr. Wu is always very helpful. He is really good at explaining topics in a way that is easy to understand.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback highlights the instructor's helpfulness and ability to explain concepts clearly, indicating adequate communication and availability, aligning with a score of 3.",
+          "processing_time": 0.7526462078094482
+        },
+        {
+          "text": "Dr. Wu showed a lot of concern for the students and was always making sure to answer any confusion.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback highlights the instructor's proactive concern and responsiveness ('always making sure to answer any confusion'), aligning with the criteria of clear communication, timely responses, and high availability outlined in score 5.",
+          "processing_time": 0.8478949069976807
+        },
+        {
+          "text": "He is one of the best professors I've had so far, his explanations are so clear.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback focuses on the clarity of explanations, which is not directly related to communication or availability, but implies a positive experience within the communication domain.",
+          "processing_time": 0.8089802265167236
+        },
+        {
+          "text": "Eric Wu cares about his students and provides ample support and resources.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback indicates 'ample support and resources,' which aligns with a proactive and readily available instructor (Score 4).",
+          "processing_time": 0.7529799938201904
+        },
+        {
+          "text": "The professor clearly cares about student learning and provides plenty of helpful material.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "While the feedback mentions 'helpful material,' it doesn't directly address communication or availability, implying a reasonable level of communication (score 3) due to the professor's care for student learning.",
+          "processing_time": 0.8157520294189453
+        },
+        {
+          "text": "Eric Wu does a very good job of lecturing and making sure we understand the concepts.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback focuses on the instructor's lecturing and ensuring understanding, which doesn't directly address communication or availability. While positive, it lacks specific information about responsiveness or accessibility to warrant a higher score.",
+          "processing_time": 0.8285691738128662
+        },
+        {
+          "text": "Instructor was communicative, approachable, and very concerned with student success.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback describes clear communication, approachability, and concern for student success \u2013 all aligning with a score of 5 on the rubric.",
+          "processing_time": 0.7169063091278076
+        },
+        {
+          "text": "This instructor was very caring and knowledgeable.",
+          "sentiment": "neutral",
+          "score": 3,
+          "reasoning": "The feedback focuses on the instructor's caring and knowledge, which doesn't directly address communication or availability. It aligns with score 3 - the instructor communicated adequately.",
+          "processing_time": 0.7742409706115723
+        },
+        {
+          "text": "Very organized and great communication.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback 'Very organized and great communication' indicates clear, timely, and consistent communication, aligning with a score of 5.",
+          "processing_time": 0.7144730091094971
+        },
+        {
+          "text": "Good communicator and always engaged with students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'Good communicator and always engaged,' indicating clear communication, timely responses, and high availability \u2013 aligning with a score of 5.",
+          "processing_time": 0.7389571666717529
+        },
+        {
+          "text": "Eric is such a nice and empathetic person.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback describes the instructor as 'nice and empathetic,' indicating a positive interaction and communication style, but doesn't specifically address availability or responsiveness, placing it in the neutral category according to the rubric.",
+          "processing_time": 0.827523946762085
+        },
+        {
+          "text": "Dr. Wu genuinely cares about students' learning.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback indicates the instructor cares about students' learning, implying some level of engagement and communication, aligning with a 'reasonable' level of availability and information provision.",
+          "processing_time": 0.7602329254150391
+        }
+      ]
+    },
+    {
+      "topic": "Inclusivity and sense of belonging",
+      "feedback_with_sentiment": [
+        {
+          "text": "Instructor E.C. Wu demonstrates several strengths in his teaching, including kindness, understanding, and a genuine care for his students.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights 'kindness, understanding, and a genuine care for his students,' directly aligning with creating a welcoming and inclusive environment as indicated by Score 5.",
+          "processing_time": 0.8501980304718018
+        },
+        {
+          "text": "Professor Wu was very good about making students feel welcome and he made himself very approachable.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states the professor made students feel welcome and approachable, directly aligning with the criteria for a highly inclusive and welcoming environment (Score 5).",
+          "processing_time": 0.7484869956970215
+        },
+        {
+          "text": "Professor Wu is very approachable and seems to care about his students.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback indicates the professor is approachable and cares about students, which strongly suggests a welcoming and inclusive environment aligning with a score of 4.",
+          "processing_time": 0.7361400127410889
+        },
+        {
+          "text": "Dr. Wu genuinely cares for his students and wants us to succeed.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback indicates Dr. Wu's care and desire for student success, directly aligning with creating a welcoming and inclusive environment where all students feel valued and supported.",
+          "processing_time": 0.7650339603424072
+        },
+        {
+          "text": "Dr. Wu showed a lot of concern for the students and was always making sure to answer any confusion.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Dr. Wu's concern and proactive approach to addressing student confusion directly aligns with creating a welcoming and inclusive environment where all students feel valued and supported.",
+          "processing_time": 0.7371029853820801
+        },
+        {
+          "text": "Eric Wu cares about his students and provides ample support and resources.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback indicates the instructor cares about students and provides support, which contributes to a positive learning environment and aligns with a generally inclusive course. While it doesn't explicitly detail inclusivity, it's a positive indicator.",
+          "processing_time": 0.8514959812164307
+        },
+        {
+          "text": "Instructor was communicative, approachable, and very concerned with student success.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights the instructor's communicative and approachable nature, which directly contributes to a welcoming and inclusive environment where students feel supported and successful.",
+          "processing_time": 0.7253460884094238
+        },
+        {
+          "text": "This instructor was very caring and knowledgeable.",
+          "sentiment": "neutral",
+          "score": 3,
+          "reasoning": "The feedback describes the instructor's caring nature and knowledge, but doesn't directly address inclusivity or the sense of belonging of students within the course environment.",
+          "processing_time": 0.7552251815795898
+        },
+        {
+          "text": "Eric is such a nice and empathetic person.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback describes the instructor as 'nice and empathetic,' indicating a welcoming and respectful environment, aligning with a highly inclusive course (Score 5) or a very inclusive course (Score 4).",
+          "processing_time": 0.8266069889068604
+        },
+        {
+          "text": "Dr. Wu genuinely cares about students' learning.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback indicates care and attention from the instructor, which contributes to a more welcoming atmosphere \u2013 aligning with a neutral level of inclusivity.",
+          "processing_time": 0.7095968723297119
+        }
+      ]
+    },
+    {
+      "topic": "Assessment",
+      "feedback_with_sentiment": [
+        {
+          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback highlights clarity, fairness, and good coverage of the material, aligning with a 'generally acceptable' assessment approach (score 3). While the pace is noted as slightly rushed, the overall positive comments regarding the professor's teaching and resources point to a reasonably well-aligned assessment experience.",
+          "processing_time": 1.111454963684082
+        },
+        {
+          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'tests and homework were very fair and tested what we learned in class,' aligning perfectly with a score of 5. The additional praise for the professor further reinforces this positive assessment of the assessments.",
+          "processing_time": 0.8990938663482666
+        },
+        {
+          "text": "Professor Wu was very organized with his lecture notes and always posted materials online, which were very helpful. His review sessions prior to midterms were also very helpful and definitely contributed to my success in the class.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback highlights organizational aspects (lecture notes, online materials) and helpful review sessions, indicating a positive experience with the assessment preparation, but doesn't directly address the clarity or alignment of the assessments themselves.",
+          "processing_time": 0.8631362915039062
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair \u2013 not too challenging, but also not too easy.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback praises the exams as 'fair' and mentions clear lectures, indicating general alignment with the material and a positive assessment experience, though it doesn't explicitly state a strong alignment.",
+          "processing_time": 0.837846040725708
+        },
+        {
+          "text": "All the info needed for exams were on his slides and given to us. I think the exams tested our knowledge adequately. I think the pace of his class was quick which made me overwhelmed at times.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback indicates that the information for exams was present and the exams tested knowledge adequately, aligning with a generally acceptable assessment (score 3) based on the rubric.",
+          "processing_time": 0.7936210632324219
+        }
+      ]
+    },
+    {
+      "topic": "Grading and feedback",
+      "feedback_with_sentiment": [
+        {
+          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback explicitly states 'He is a fair grader,' and 'provides opportunities for students to achieve the best grade possible,' aligning with the topic of grading and feedback and indicating helpfulness and support for understanding.",
+          "processing_time": 0.9433238506317139
+        },
+        {
+          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights 'fair' tests and homework, and praises the professor's ability to provide helpful materials, aligning with the rubric's criteria for helpful and supportive feedback.",
+          "processing_time": 0.8110229969024658
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair \u2013 not too challenging, but also not too easy.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback explicitly states the exams are 'fair,' indicating a positive approach to grading and a focus on perceived fairness, aligning with the rubric's criteria for helpful feedback.",
+          "processing_time": 0.8091011047363281
+        }
+      ]
+    },
+    {
+      "topic": "Learning resources and materials",
+      "feedback_with_sentiment": [
+        {
+          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights the 'myriad of resources and practice material' and Professor Wu's 'good job of covering the material,' indicating substantial support and a helpful learning experience.",
+          "processing_time": 0.9151029586791992
+        },
+        {
+          "text": "Professor Wu was very organized with his lecture notes and always posted materials online, which were very helpful. His review sessions prior to midterms were also very helpful and definitely contributed to my success in the class.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights the professor's organization, availability of materials, and helpful review sessions, indicating strong support for the learning materials and a positive impact on the student's success.",
+          "processing_time": 0.8319568634033203
+        },
+        {
+          "text": "Great lecture style and posts notes and recordings which is very useful. Test prep is provided which I like. No complaints!",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback explicitly praises the lecture style, posts notes, and recordings, as well as the test prep, indicating helpful and supportive learning materials.",
+          "processing_time": 0.747081995010376
+        },
+        {
+          "text": "Professor Wu led an organized, well structured class with a lot of helpful resources.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback describes the resources as 'helpful,' indicating strong support for the topic and aligning with a score of 4.",
+          "processing_time": 0.69321608543396
+        },
+        {
+          "text": "He was an amazing professor who provided us with so much resources and truly wanted us to succeed.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "The feedback describes the professor as 'amazing' and wanting students to succeed, indicating helpful resources, but doesn't detail specific issues or gaps, aligning with a 'neutral' level of support.",
+          "processing_time": 0.8348631858825684
+        },
+        {
+          "text": "Professor Eric was always prepared with clear lectures and notes, and provided us with various resources.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights 'clear lectures and notes' and 'various resources,' indicating helpful and supportive materials.",
+          "processing_time": 0.6375939846038818
+        },
+        {
+          "text": "The professor clearly cares about student learning and provides plenty of helpful material.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback describes the materials as 'helpful' and 'plenty,' indicating a strong positive impact on learning, aligning with a score of 5.",
+          "processing_time": 0.7442240715026855
+        },
+        {
+          "text": "I really like the notes for this course.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback expresses a positive sentiment ('I really like') and indicates that the notes were helpful, aligning with a score of 4 on the rubric.",
+          "processing_time": 0.7415709495544434
+        }
+      ]
+    },
+    {
+      "topic": "None of the above / Other",
+      "feedback_with_sentiment": [
+        {
+          "text": "Excellent Professor. Such a shame he isn't teaching OChem next quarter",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "While the comment expresses a desire for the professor to teach a different topic, the initial statement 'Excellent Professor' indicates a positive overall sentiment regarding the professor and the topic covered.",
+          "processing_time": 0.7916553020477295
+        },
+        {
+          "text": "Incredible teacher that was fair and taught me a lot!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the teacher as 'incredible' and states they 'taught me a lot,' indicating a highly positive experience with the topic.",
+          "processing_time": 0.7196149826049805
+        },
+        {
+          "text": "Very excellent professor and lecturer. The environment he fosters for his students is impeccable, and his dedication towards his students shines.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback is overwhelmingly positive, praising the professor's quality, the learning environment, and dedication \u2013 indicating a highly favorable experience.",
+          "processing_time": 0.7100698947906494
+        },
+        {
+          "text": "Best professor ever",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The statement 'Best professor ever' is overwhelmingly positive and expresses a high degree of satisfaction with the instructor.",
+          "processing_time": 0.6617431640625
+        },
+        {
+          "text": "Very organized, very manageable workload and difficulty, extremely helpful resources and practice problems for studying, lectures moved a little fast at times but not too bad, very conducive to learning overall",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights many positive aspects like organization, manageable workload, helpful resources, and a conducive learning environment. The only minor negative (lectures moving fast) is outweighed by the strong positive comments.",
+          "processing_time": 0.8415958881378174
+        },
+        {
+          "text": "Professor Wu is great!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'Professor Wu is great!' which is overwhelmingly positive and reflects a strong positive sentiment regarding the professor's performance.",
+          "processing_time": 0.7178690433502197
+        },
+        {
+          "text": "I was already quite knowledgeable about the course material before taking this course, but I still found professor Wu to be an incredibly dedicated and knowledgeable professor.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The student expresses appreciation for the professor's dedication and knowledge, indicating a positive experience despite pre-existing knowledge.",
+          "processing_time": 0.7667248249053955
+        },
+        {
+          "text": "Chemistry 20B can be challenging at times but Professor Wu was probably the best person for the job.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback highlights Professor Wu as 'the best person for the job,' indicating a strong positive assessment of his teaching ability, despite acknowledging the course's difficulty.",
+          "processing_time": 0.7686009407043457
+        },
+        {
+          "text": "I think that Dr. Wu was an excellent professor and one of the best professors I have had so far.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The student explicitly praises the professor, indicating a very positive opinion regarding the topic, even though the topic is 'None of the above'.",
+          "processing_time": 0.7239022254943848
+        },
+        {
+          "text": "Eric Wu is the best professor I have had so far at UCLA.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'best professor,' indicating a highly positive experience with the topic (even though the topic itself is 'None of the above').",
+          "processing_time": 0.812593936920166
+        },
+        {
+          "text": "He has no weaknesses, his main strength is the way he can teach.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states a key strength \u2013 the ability to teach \u2013 which is a highly positive attribute related to a learning topic.",
+          "processing_time": 0.707205057144165
+        },
+        {
+          "text": "Eric Wu is my goat.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "\u2018Goat\u2019 is a strong positive slang term indicating someone is exceptionally good or impressive.",
+          "processing_time": 0.6342658996582031
+        },
+        {
+          "text": "Professor Wu is an amazing professor! His lectures are super organized and he gives students notetakers as a guide.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback expresses strong positive sentiment about the professor's organization and helpfulness, indicating a positive experience with the topic.",
+          "processing_time": 0.6974859237670898
+        },
+        {
+          "text": "Professor Wu was very organized in his lecture notes and very good at breaking down complicated concepts.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback highlights positive aspects of the professor's teaching style \u2013 organization and clarity \u2013 which are highly beneficial for understanding complex concepts.",
+          "processing_time": 0.7025918960571289
+        },
+        {
+          "text": "Professor Wu is thorough and complete in his teaching.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the professor's thoroughness and completeness, indicating a highly positive experience with the teaching related to the topic.",
+          "processing_time": 0.7098369598388672
+        },
+        {
+          "text": "Everything helped me learn, and no time was wasted.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'Everything helped me learn' and 'no time was wasted,' indicating a highly positive experience with the topic.",
+          "processing_time": 0.7068977355957031
+        },
+        {
+          "text": "Professor Wu is an amazing professor who cares deeply about his students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the professor's care and dedication, indicating a highly positive experience related to the topic (even though the topic is unspecified).",
+          "processing_time": 0.7210969924926758
+        },
+        {
+          "text": "Great job, I love this class!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The statement 'Great job, I love this class!' expresses strong positive sentiment towards the overall course, implicitly indicating satisfaction with the topic as well.",
+          "processing_time": 0.7314162254333496
+        },
+        {
+          "text": "Professor Wu knows what he's teaching and can be understood by many.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "The feedback indicates understanding and clarity, which is a positive aspect of a course topic, even if it's a general comment.",
+          "processing_time": 0.7079410552978516
+        },
+        {
+          "text": "Prof Wu is the GOAT.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The phrase 'GOAT' (Greatest Of All Time) is overwhelmingly positive and expresses strong admiration for the professor.",
+          "processing_time": 0.6855931282043457
+        },
+        {
+          "text": "Eric Wu is one of the nicest professors I have ever had.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback describes the professor as 'nicest ever,' indicating a highly positive experience and strong satisfaction.",
+          "processing_time": 0.6532671451568604
+        },
+        {
+          "text": "Very good professor and very interesting.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the professor and describes the topic as 'very interesting,' indicating a strong positive response.",
+          "processing_time": 0.6594638824462891
+        },
+        {
+          "text": "Professor Wu is energetic and capable.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback describes positive attributes (energetic and capable) which is a strong endorsement.",
+          "processing_time": 0.6241331100463867
+        },
+        {
+          "text": "Professor Wu was so helpful and passionate.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback describes the professor as 'helpful and passionate,' indicating a strong positive response to their teaching.",
+          "processing_time": 0.6646120548248291
+        },
+        {
+          "text": "Keep doing what you're doing, cause everyone loves it!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'everyone loves it,' indicating strong positive sentiment and high satisfaction with the topic.",
+          "processing_time": 0.6613121032714844
+        },
+        {
+          "text": "I loved Eric Wu. He is such an enthusiastic professor.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback expresses strong positive sentiment towards the professor's enthusiasm, indicating a highly favorable experience.",
+          "processing_time": 0.6419589519500732
+        },
+        {
+          "text": "Professor Wu is truly an outstanding educator!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the professor as 'outstanding,' indicating a strong positive sentiment.",
+          "processing_time": 0.6201131343841553
+        },
+        {
+          "text": "Professor Wu goes above and beyond for students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the professor's dedication and going 'above and beyond,' indicating a highly positive experience related to the course content and delivery.",
+          "processing_time": 0.7330410480499268
+        },
+        {
+          "text": "Overall, Professor Wu was an amazing instructor.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'amazing instructor,' indicating a highly positive sentiment towards the topic (even though the topic is simply 'None of the above').",
+          "processing_time": 0.7338459491729736
+        },
+        {
+          "text": "Professor Wu is an amazing chemistry teacher!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the professor's teaching ability, indicating a very positive experience related to the topic.",
+          "processing_time": 0.6625411510467529
+        },
+        {
+          "text": "Super great lecturer!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback 'Super great lecturer!' is overwhelmingly positive and directly reflects a positive experience with the instructor.",
+          "processing_time": 0.6321022510528564
+        },
+        {
+          "text": "Eric Wu is the best lecturer I have ever had.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states 'best lecturer,' indicating a highly positive experience with the topic (though the topic itself is 'None of the above').",
+          "processing_time": 0.7253339290618896
+        },
+        {
+          "text": "Prof Wu is an excellent lecturer and instructor.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the instructor's qualities (excellent lecturer and instructor), indicating a highly positive experience.",
+          "processing_time": 0.6611409187316895
+        },
+        {
+          "text": "This instructor is fantastic and very organized.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the instructor, indicating a highly positive experience related to their teaching style and organization, directly benefiting the topic regardless of the 'None of the above' category.",
+          "processing_time": 0.7821729183197021
+        },
+        {
+          "text": "Eric is a very knowledgeable professor.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states the professor is 'very knowledgeable,' indicating a highly positive assessment of their expertise related to the topic, regardless of the topic's specific content.",
+          "processing_time": 0.7597677707672119
+        },
+        {
+          "text": "Professor Wu is a talented professor.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly praises the professor's talent, indicating a strong positive sentiment towards their teaching abilities, regardless of the specific topic.",
+          "processing_time": 0.7096230983734131
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had at UCLA.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback explicitly states Professor Wu is 'one of the best,' indicating a strong positive sentiment.",
+          "processing_time": 0.7195391654968262
+        },
+        {
+          "text": "Eric is the most wonderful professor I have had at UCLA so far.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "The feedback expresses overwhelmingly positive sentiment ('most wonderful') indicating a highly favorable experience with the professor.",
+          "processing_time": 0.63909912109375
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "model": "Gemma",
+    "start_time": 1777529089.9390779,
+    "end_time": 1777529340.517209,
+    "total_time": 250.57813119888306,
+    "num_feedbacks": 195,
+    "avg_time_per_feedback": 1.2850160574301694
+  }
+}

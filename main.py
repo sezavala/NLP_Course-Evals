@@ -12,15 +12,6 @@ TOPICS = list(TOPIC_KEYS) + [OTHER]
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL = "llama3"
 
-# Topic grouping for better reporting
-TOPIC_GROUPS = {
-    "Pace and Workload": ["Pace", "Workload"],
-    "Assessment, Grading, and Feedback": ["Assessment", "Grading and feedback"],
-    "Classroom Atmosphere and Student Engagement": ["Classroom atmosphere", "Student engagement and participation"],
-    "Availability, Inclusivity, and Resources": ["Instructor's communication and availability", "Inclusivity and sense of belonging", "Learning resources and materials"],
-    "Course Organization and Clarity": ["Course organization and structure", "Clarity of explanations", "Effectiveness of assignments"]
-}
-
 
 def classify_with_llama(comment: str) -> List[str]:
     """Use llama for topic classification"""
@@ -174,25 +165,6 @@ def extract_strengths_weaknesses(results: List[Dict], top_n: int = 3) -> tuple:
     return [t[0] for t in top_strengths], [t[0] for t in top_weaknesses]
 
 
-def calculate_category_scores(results: List[Dict]) -> Dict[str, float]:
-    """Calculate average scores for each topic group"""
-    category_scores = defaultdict(list)
-    
-    for result in results:
-        for topic, sentiments in result["topic_sentiments"].items():
-            for sent in sentiments:
-                # Find which group this topic belongs to
-                for group, topics_in_group in TOPIC_GROUPS.items():
-                    if topic in topics_in_group:
-                        category_scores[group].append(sent["score"])
-    
-    # Calculate averages
-    return {
-        group: round(sum(scores) / len(scores), 1) if scores else 3.0
-        for group, scores in category_scores.items()
-    }
-
-
 def calculate_all_topic_scores(results: List[Dict]) -> Dict[str, float]:
     """Calculate average scores for ALL individual topics from data.py"""
     topic_scores = defaultdict(list)
@@ -244,7 +216,6 @@ def analysis_pipeline(course_id: str, raw_comments: List[str]) -> Dict:
         })
     
     # Calculate scores
-    category_scores = calculate_category_scores(results)
     all_topic_scores = calculate_all_topic_scores(results)
     overall_score = round(sum(all_scores) / len(all_scores), 1) if all_scores else 3.0
     strengths, weaknesses = extract_strengths_weaknesses(results)
@@ -254,11 +225,7 @@ def analysis_pipeline(course_id: str, raw_comments: List[str]) -> Dict:
         "course_id": course_id,
         "overall_score": overall_score,
         "category_scores": [
-            {"category": cat, "score": score}
-            for cat, score in category_scores.items()
-        ],
-        "topic_scores": [
-            {"topic": topic, "score": score}
+            {"category": topic, "score": score}
             for topic, score in all_topic_scores.items()
         ],
         "key_strengths": strengths,

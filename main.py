@@ -150,7 +150,7 @@ def sentiment_with_llama(comment: str, topic: str) -> Dict:
         return {"sentiment": "neutral", "score": 3, "confidence": 0.0}
 
 
-def extract_strengths_weaknesses(results: List[Dict]) -> tuple:
+def extract_strengths_weaknesses(results: List[Dict], top_n: int = 3) -> tuple:
     """Extract key strengths and weaknesses from analyzed comments"""
     strengths = defaultdict(int)
     weaknesses = defaultdict(int)
@@ -168,8 +168,8 @@ def extract_strengths_weaknesses(results: List[Dict]) -> tuple:
                     weaknesses[topic] += 1
     
     # Get top strengths and weaknesses
-    top_strengths = sorted(strengths.items(), key=lambda x: x[1], reverse=True)[:3]
-    top_weaknesses = sorted(weaknesses.items(), key=lambda x: x[1], reverse=True)[:3]
+    top_strengths = sorted(strengths.items(), key=lambda x: x[1], reverse=True)[:top_n]
+    top_weaknesses = sorted(weaknesses.items(), key=lambda x: x[1], reverse=True)[:top_n]
     
     return [t[0] for t in top_strengths], [t[0] for t in top_weaknesses]
 
@@ -191,6 +191,26 @@ def calculate_category_scores(results: List[Dict]) -> Dict[str, float]:
         group: round(sum(scores) / len(scores), 1) if scores else 3.0
         for group, scores in category_scores.items()
     }
+
+
+def calculate_all_topic_scores(results: List[Dict]) -> Dict[str, float]:
+    """Calculate average scores for ALL individual topics from data.py"""
+    topic_scores = defaultdict(list)
+    
+    for result in results:
+        for topic, sentiments in result["topic_sentiments"].items():
+            for sent in sentiments:
+                topic_scores[topic].append(sent["score"])
+    
+    # Include all topics from TOPIC_KEYS, even if not mentioned (score = 3.0)
+    all_scores = {}
+    for topic in TOPIC_KEYS:
+        if topic in topic_scores and topic_scores[topic]:
+            all_scores[topic] = round(sum(topic_scores[topic]) / len(topic_scores[topic]), 1)
+        else:
+            all_scores[topic] = 3.0  # Default neutral score
+    
+    return all_scores
 
 
 def analysis_pipeline(course_id: str, raw_comments: List[str]) -> Dict:
@@ -225,6 +245,7 @@ def analysis_pipeline(course_id: str, raw_comments: List[str]) -> Dict:
     
     # Calculate scores
     category_scores = calculate_category_scores(results)
+    all_topic_scores = calculate_all_topic_scores(results)
     overall_score = round(sum(all_scores) / len(all_scores), 1) if all_scores else 3.0
     strengths, weaknesses = extract_strengths_weaknesses(results)
     
@@ -235,6 +256,10 @@ def analysis_pipeline(course_id: str, raw_comments: List[str]) -> Dict:
         "category_scores": [
             {"category": cat, "score": score}
             for cat, score in category_scores.items()
+        ],
+        "topic_scores": [
+            {"topic": topic, "score": score}
+            for topic, score in all_topic_scores.items()
         ],
         "key_strengths": strengths,
         "key_weaknesses": weaknesses,

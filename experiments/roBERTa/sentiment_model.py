@@ -10,17 +10,18 @@ from experiments.json_to_sheet import sentiment_json_to_dataframe
 BASE_DIR = Path(__file__).resolve().parents[2]
 DEVICE = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
-# Use a sentiment-specific DistilBERT model (lighter variant of BERT)
-SENTIMENT_MODEL_NAME = "distilbert-base-uncased-finetuned-sst-2-english"
+# Use a sentiment-specific roBERTa model
+SENTIMENT_MODEL_NAME = "cardiffnlp/twitter-roberta-base-sentiment-latest"
 sentiment_tokenizer = AutoTokenizer.from_pretrained(SENTIMENT_MODEL_NAME)
 sentiment_model = AutoModelForSequenceClassification.from_pretrained(SENTIMENT_MODEL_NAME).to(DEVICE)
 sentiment_model.eval()
 
-# Label mapping for this model (negative=0, positive=1)
-LABEL_MAP = {0: "negative", 1: "positive"}
+# Label mapping for this model (negative=0, neutral=1, positive=2)
+LABEL_MAP = {0: "negative", 1: "neutral", 2: "positive"}
 SENTIMENT_TO_SCORE = {
-    "negative": 2,
-    "positive": 4
+    "negative": 1,
+    "neutral": 3,
+    "positive": 5
 }
 
 
@@ -42,11 +43,11 @@ def get_rubric_for_topic(topic: str) -> str:
     return ""
 
 
-def classify_sentiment_with_distilroberta(
+def classify_sentiment_with_roberta(
     feedback: str, 
     topic: str
 ) -> Dict:
-    """Use DistilroBERTa transformer to classify feedback sentiment for a specific topic."""
+    """Use roBERTa to classify feedback sentiment for a specific topic."""
     
     rubric = get_rubric_for_topic(topic)
     
@@ -70,25 +71,26 @@ def classify_sentiment_with_distilroberta(
             predicted_class_idx = torch.argmax(probabilities, dim=-1).item()
         
         # Get sentiment label and confidence
-        sentiment_label = LABEL_MAP.get(predicted_class_idx, "positive")
+        sentiment_label = LABEL_MAP.get(predicted_class_idx, "neutral")
         confidence = probabilities[0, predicted_class_idx].item()
         
-        # Map sentiment to score (1-5), handling mixed confidence
-        base_score = SENTIMENT_TO_SCORE.get(sentiment_label, 3)
+        # Map sentiment to score (1-5)
+        score = SENTIMENT_TO_SCORE.get(sentiment_label, 3)
         
-        # Adjust score based on confidence for more nuanced scoring (1-5 scale)
-        if confidence > 0.9:
-            # Very high confidence - extreme scores
-            score = 5 if sentiment_label == "positive" else 1
-        elif confidence > 0.7:
-            # High confidence
-            score = 4 if sentiment_label == "positive" else 2
-        elif confidence > 0.55:
-            # Moderate confidence
-            score = 3 if sentiment_label == "positive" else 3
-        else:
-            # Low confidence - neutral
+        # Adjust score based on confidence for more nuanced scoring
+        if confidence > 0.8:
+            # High confidence - use extreme scores
+            pass
+        elif confidence < 0.5:
+            # Low confidence - nudge toward neutral
             score = 3
+        else:
+            # Medium confidence - adjust score slightly
+            if sentiment_label == "positive" and score == 5:
+                score = 4
+            elif sentiment_label == "negative" and score == 1:
+                score = 2
+        
         # Generate detailed reasoning with rubric reference (like Llama)
         confidence_pct = confidence * 100
         
@@ -112,15 +114,15 @@ def classify_sentiment_with_distilroberta(
         
         # Generate reasoning that explains the rubric score like Llama does
         if score == 5:
-            reasoning = f"Feedback explicitly praises {topic} with very strong positive language ({phrases_str}). Confidence: {confidence_pct:.1f}%. Score 5/5 represents the highest rubric level."
+            reasoning = f"Feedback explicitly praises {topic} with strong positive language ({phrases_str}). This matches the highest rubric level (Score 5/5)."
         elif score == 4:
-            reasoning = f"Feedback contains positive language about {topic} ({phrases_str}), indicating good performance. Confidence: {confidence_pct:.1f}%. Score 4/5 reflects strong positive sentiment."
-        elif score == 3:
-            reasoning = f"Feedback shows mixed or neutral sentiment regarding {topic}. Confidence: {confidence_pct:.1f}%. Score 3/5 reflects unclear or balanced sentiment."
+            reasoning = f"Feedback contains positive language about {topic} ({phrases_str}), indicating good performance. Confidence: {confidence_pct:.1f}%. Score 4/5 reflects moderate-to-strong positive sentiment."
         elif score == 2:
-            reasoning = f"Feedback contains negative language about {topic} ({phrases_str}), indicating issues. Confidence: {confidence_pct:.1f}%. Score 2/5 reflects negative sentiment."
-        else:  # score == 1
-            reasoning = f"Feedback strongly criticizes {topic} with clear negative language ({phrases_str}). Confidence: {confidence_pct:.1f}%. Score 1/5 represents the lowest rubric level."
+            reasoning = f"Feedback contains negative language about {topic} ({phrases_str}), indicating room for improvement. Confidence: {confidence_pct:.1f}%. Score 2/5 reflects mild-to-moderate negative sentiment."
+        elif score == 1:
+            reasoning = f"Feedback strongly criticizes {topic} with clear negative language ({phrases_str}). This matches the lowest rubric level (Score 1/5)."
+        else:  # score == 3 (neutral)
+            reasoning = f"Feedback is neutral regarding {topic}. Confidence: {confidence_pct:.1f}%. Score 3/5 reflects neutral or mixed sentiment."
         
         return {
             "sentiment": sentiment_label,
@@ -132,7 +134,7 @@ def classify_sentiment_with_distilroberta(
         print(f"  ERROR: {e}")
         return {
             "sentiment": "neutral",
-            "score": 3,
+            "score": 2,
             "reasoning": f"Failed to classify: {str(e)}"
         }
 
@@ -141,7 +143,7 @@ def main() -> None:
     import time as time_module
     start_time = time_module.time()
     
-    # Load classification results from LLama3 output
+    # Load classification results from Llama3 output (same input as Llama sentiment model)
     json_path = BASE_DIR / "results" / "Llama3" / "LLAMA_OUTPUT.json"
     
     if not json_path.exists():
@@ -150,13 +152,13 @@ def main() -> None:
         return
     
     with open(json_path, "r") as f:
-        distilroberta_output = json.load(f)
+        llama_output = json.load(f)
 
     # Output structure
     sentiment_results = {
         "topics": [],
         "metadata": {
-            "model": "DistilroBERTa",
+            "model": "roBERTa",
             "start_time": start_time,
             "end_time": None,
             "total_time": None,
@@ -167,7 +169,7 @@ def main() -> None:
     total_feedbacks = 0
 
     # Process each topic
-    for topic_item in distilroberta_output.get("topics", []):
+    for topic_item in llama_output.get("topics", []):
         current_topic = topic_item.get("topic", "N/A")
         feedbacks = topic_item.get("feedback", [])
         total_feedbacks += len(feedbacks)
@@ -186,7 +188,7 @@ def main() -> None:
             item_start = time_module.time()
             print(f"\n[{idx}/{len(feedbacks)}] {current_feedback[:70]}...")
             
-            sentiment = classify_sentiment_with_distilroberta(current_feedback, current_topic)
+            sentiment = classify_sentiment_with_roberta(current_feedback, current_topic)
             item_time = time_module.time() - item_start
             
             # Safe access with defaults
@@ -217,7 +219,7 @@ def main() -> None:
     sentiment_results["metadata"]["avg_time_per_feedback"] = total_time / total_feedbacks if total_feedbacks > 0 else 0
 
     # Save results
-    json_output_path = BASE_DIR / "results" / "DistilroBERTa" / "DISTILROBERTA_SENTIMENT.json"
+    json_output_path = BASE_DIR / "results" / "roBERTa" / "ROBERTA_SENTIMENT.json"
     json_output_path.parent.mkdir(parents=True, exist_ok=True)
     
     with open(json_output_path, "w", encoding="utf-8") as f:
@@ -228,7 +230,7 @@ def main() -> None:
     print(f"Total time: {total_time:.2f}s | Avg per feedback: {sentiment_results['metadata']['avg_time_per_feedback']:.2f}s")
 
     # Convert to CSV
-    csv_output_path = BASE_DIR / "results" / "DistilroBERTa" / "DISTILROBERTA_SENTIMENT.csv"
+    csv_output_path = BASE_DIR / "results" / "roBERTa" / "ROBERTA_SENTIMENT.csv"
     sentiment_json_to_dataframe(json_output_path, csv_output_path)
     print(f"CSV export complete. Saved to {csv_output_path}.")
 

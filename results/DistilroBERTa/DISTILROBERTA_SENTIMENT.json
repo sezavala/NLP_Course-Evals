@@ -1,0 +1,1442 @@
+{
+  "topics": [
+    {
+      "topic": "Course organization and structure",
+      "feedback_with_sentiment": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress\u2013free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (appreciate, good, success). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.056318044662475586
+        },
+        {
+          "text": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (thorough, structured). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.016487836837768555
+        },
+        {
+          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (appreciate, good, clear). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.018080949783325195
+        },
+        {
+          "text": "Dr. Wu's knowledge of chemistry is evident in his teaching. Every lecture was well prepared and provided information in a clear and organized way. It is also obvious that Dr. Wu truly cares about helping students learn. He provides a lot of helpful resources before every exam and also holds review sessions. Overall, he is a great teacher.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (great, helpful, clear). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.017449140548706055
+        },
+        {
+          "text": "One of Wu's greatest strengths is his lecture\u2013filled notes. If we are already familiar with the course material, we can just follow the lecture with the notes without having to write down anything. It is also a great tool for reviewing before, say, a midterm or the final exam. Another great strength of his is his coffee hours that he has with students after class. It's nice to get to know your teacher personally and establish a great connection. His final strength is the review sessions he has before midterms. They are well\u2013organized and go over a good chunk of the material. The only weakness I can think of with Wu is how fast he goes during his lectures.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (great, good, well). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.015664100646972656
+        },
+        {
+          "text": "Professor Wu was very organized with his lecture notes and always posted materials online, which were very helpful. His review sessions prior to midterms were also very helpful and definitely contributed to my success in the class.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (helpful, organized, success). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.015531063079833984
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair \u2013 not too challenging, but also not too easy.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (clear, well, easy). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.014135122299194336
+        },
+        {
+          "text": "Professor Wu is very organized and teaches in a way that was digestible. I hope my future teachers are like him because even though this class was tough, I was able to thrive due to his teaching techniques.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (organized). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004414081573486328
+        },
+        {
+          "text": "Excellent communicator and very organized. Only weakness of this course is that it seems to do a lot of hand\u2013waving over more complex concepts.",
+          "sentiment": "negative",
+          "score": 2,
+          "reasoning": "Feedback contains negative language about Course organization and structure (sentiment language), indicating issues. Confidence: 89.7%. Score 2/5 reflects negative sentiment.",
+          "processing_time": 0.015054941177368164
+        },
+        {
+          "text": "He's awesome, does lecture in a clear and concise way, explains what we need to know before exams, class is organized.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (clear, organized). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013215065002441406
+        },
+        {
+          "text": "Professor Wu led an organized, well structured class with a lot of helpful resources.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (helpful, well, organized). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013898849487304688
+        },
+        {
+          "text": "Dr. Wu is very organized and his lectures reflect his test and quizzes.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (organized). Confidence: 99.4%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0037069320678710938
+        },
+        {
+          "text": "Eric is an excellent professor. From his lectures to his homework to his tests he is very organized and very communicative.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (excellent, organized). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.015634775161743164
+        },
+        {
+          "text": "Professor Wu is extremely organized and explains concepts very clearly. He truly wants to help students succeed.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (clear, organized). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.01378631591796875
+        },
+        {
+          "text": "Excellent course. Only criticism is lectures move very quickly.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (excellent). Confidence: 99.7%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013187170028686523
+        },
+        {
+          "text": "Professor Wu understands how to teach an undergraduate course. Workloads are manageable and the class is well\u2013taught.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (well). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.01262211799621582
+        },
+        {
+          "text": "Dr. Wu was amazing! Great lecturer who is very well organized and clearly cares about his students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (great, clear, well). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013221979141235352
+        },
+        {
+          "text": "Chemistry is difficult and a lot to digest, but Professor Wu made it extremely manageable.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (sentiment language). Confidence: 99.7%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013543844223022461
+        },
+        {
+          "text": "Very organized, clear and concise.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (clear, organized). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013966083526611328
+        },
+        {
+          "text": "Professor Wu is extremely organized and adapts based on feedback.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (organized). Confidence: 99.8%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013595819473266602
+        },
+        {
+          "text": "Very organized and great communication.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (great, organized). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013054847717285156
+        },
+        {
+          "text": "Some strengths include organization and being welcoming.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004175901412963867
+        },
+        {
+          "text": "Professor Wu is extremely organized and clear as a lecturer.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (clear, organized). Confidence: 99.5%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003882169723510742
+        },
+        {
+          "text": "Very organized, and the class material is easy to understand.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (easy, organized). Confidence: 99.7%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0036737918853759766
+        },
+        {
+          "text": "This instructor is fantastic and very organized.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Course organization and structure with very strong positive language (organized). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003545999526977539
+        }
+      ]
+    },
+    {
+      "topic": "Pace",
+      "feedback_with_sentiment": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress\u2013free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Pace with very strong positive language (appreciate, good, success). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.015019893646240234
+        },
+        {
+          "text": "Great professor, the only thing was that the lectures were very fast. Sometimes it made it hard to follow along. I think a good solution would be to do less examples, and spend more times on the ones that we do in lecture.",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes Pace with clear negative language (hard). Confidence: 99.7%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.01335597038269043
+        },
+        {
+          "text": "One of Wu's greatest strengths is his lecture\u2013filled notes. If we are already familiar with the course material, we can just follow the lecture with the notes without having to write down anything. It is also a great tool for reviewing before, say, a midterm or the final exam. Another great strength of his is his coffee hours that he has with students after class. It's nice to get to know your teacher personally and establish a great connection. His final strength is the review sessions he has before midterms. They are well\u2013organized and go over a good chunk of the material. The only weakness I can think of with Wu is how fast he goes during his lectures.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Pace with very strong positive language (great, good, well). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.014150857925415039
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair \u2013 not too challenging, but also not too easy.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Pace with very strong positive language (clear, well, easy). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013820171356201172
+        },
+        {
+          "text": "All the info needed for exams were on his slides and given to us. I think the exams tested our knowledge adequately. I think the pace of his class was quick which made me overwhelmed at times.",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes Pace with clear negative language (sentiment language). Confidence: 99.3%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.012566089630126953
+        },
+        {
+          "text": "He was the best professor I have had so far. He takes the time to really help us grasp the topic while still keeping us at a good pace to finish the class.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Pace with very strong positive language (good). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.012970924377441406
+        },
+        {
+          "text": "Wu is very explanatory and in depth with the material. However, material is very advanced for those without a background in chemistry.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Pace with very strong positive language (sentiment language). Confidence: 99.8%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.012710094451904297
+        },
+        {
+          "text": "Great lecturer and note taker, though tends to talk too quickly.",
+          "sentiment": "positive",
+          "score": 3,
+          "reasoning": "Feedback shows mixed or neutral sentiment regarding Pace. Confidence: 53.8%. Score 3/5 reflects unclear or balanced sentiment.",
+          "processing_time": 0.0036468505859375
+        },
+        {
+          "text": "Excellent course. Only criticism is lectures move very quickly.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Pace with very strong positive language (excellent). Confidence: 99.8%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013614177703857422
+        },
+        {
+          "text": "Strengths: simplifying course material. Weakness: fast pacing.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Pace with very strong positive language (sentiment language). Confidence: 94.7%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0036191940307617188
+        },
+        {
+          "text": "He is a great lecturer but his midterms are too long for 50 minutes.",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes Pace with clear negative language (sentiment language). Confidence: 98.8%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.012265920639038086
+        }
+      ]
+    },
+    {
+      "topic": "Workload",
+      "feedback_with_sentiment": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress\u2013free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Workload with very strong positive language (appreciate, good, success). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004488945007324219
+        },
+        {
+          "text": "Wu is very explanatory and in depth with the material. However, material is very advanced for those without a background in chemistry.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Workload with very strong positive language (sentiment language). Confidence: 99.7%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0035309791564941406
+        },
+        {
+          "text": "Professor Wu understands how to teach an undergraduate course. Workloads are manageable and the class is well\u2013taught.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Workload with very strong positive language (well). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013499021530151367
+        }
+      ]
+    },
+    {
+      "topic": "Student engagement and participation",
+      "feedback_with_sentiment": [
+        {
+          "text": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Student engagement and participation with very strong positive language (thorough, structured). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013633012771606445
+        },
+        {
+          "text": "Dr. Wu's knowledge of chemistry is evident in his teaching. Every lecture was well prepared and provided information in a clear and organized way. It is also obvious that Dr. Wu truly cares about helping students learn. He provides a lot of helpful resources before every exam and also holds review sessions. Overall, he is a great teacher.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Student engagement and participation with very strong positive language (great, helpful, clear). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013339042663574219
+        },
+        {
+          "text": "Eric explains concepts very clearly with an emphasis on intuition and he encourages students to understand the material rather than rely solely on rote memory. His enthusiasm for chemistry is contagious. He is extremely welcoming, knowledgeable, approachable, and responsive to questions, and he takes the time to make sure students understand what is going on.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Student engagement and participation with very strong positive language (clear). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013340950012207031
+        },
+        {
+          "text": "His ability to explain concepts in a way that keeps students engaged.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Student engagement and participation with very strong positive language (sentiment language). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004672050476074219
+        },
+        {
+          "text": "Dr. Wu hosts helpful review sessions and makes lectures entertaining.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Student engagement and participation with very strong positive language (helpful). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003490924835205078
+        },
+        {
+          "text": "Eric helped to make Chemistry approachable.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Student engagement and participation with very strong positive language (sentiment language). Confidence: 99.7%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004559040069580078
+        },
+        {
+          "text": "Good communicator and always engaged with students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Student engagement and participation with very strong positive language (good). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013337135314941406
+        },
+        {
+          "text": "Some strengths include organization and being welcoming.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Student engagement and participation with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003577709197998047
+        }
+      ]
+    },
+    {
+      "topic": "Clarity of explanations",
+      "feedback_with_sentiment": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress\u2013free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (appreciate, good, success). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005541801452636719
+        },
+        {
+          "text": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (thorough, structured). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005239963531494141
+        },
+        {
+          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (appreciate, good, clear). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004904031753540039
+        },
+        {
+          "text": "Dr. Wu's knowledge of chemistry is evident in his teaching. Every lecture was well prepared and provided information in a clear and organized way. It is also obvious that Dr. Wu truly cares about helping students learn. He provides a lot of helpful resources before every exam and also holds review sessions. Overall, he is a great teacher.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (great, helpful, clear). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004355907440185547
+        },
+        {
+          "text": "One of Wu's greatest strengths is his lecture\u2013filled notes. If we are already familiar with the course material, we can just follow the lecture with the notes without having to write down anything. It is also a great tool for reviewing before, say, a midterm or the final exam. Another great strength of his is his coffee hours that he has with students after class. It's nice to get to know your teacher personally and establish a great connection. His final strength is the review sessions he has before midterms. They are well\u2013organized and go over a good chunk of the material. The only weakness I can think of with Wu is how fast he goes during his lectures.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (great, good, well). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005583047866821289
+        },
+        {
+          "text": "Eric explains concepts very clearly with an emphasis on intuition and he encourages students to understand the material rather than rely solely on rote memory. His enthusiasm for chemistry is contagious. He is extremely welcoming, knowledgeable, approachable, and responsive to questions, and he takes the time to make sure students understand what is going on.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (clear). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013248205184936523
+        },
+        {
+          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (good, learned). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013059139251708984
+        },
+        {
+          "text": "Professor Wu is extremely understanding and caring about his students needs. During the fires he was the only professor of mine to offer accommodations to those struggling. Not only is he extremely kind but he is a very good lecturer as well.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (good, well). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.012626886367797852
+        },
+        {
+          "text": "Professor Wu is very good at explaining math concepts, but he doesn't always explain the conceptual side of things very well. I think that he could focus a bit more on explaining the conceptual aspects of the class.",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes Clarity of explanations with clear negative language (sentiment language). Confidence: 92.6%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.0038449764251708984
+        },
+        {
+          "text": "Great lecture style and posts notes and recordings which is very useful. Test prep is provided which I like. No complaints!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (great). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004830837249755859
+        },
+        {
+          "text": "Fair with his exams and an excellent lecturer",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (excellent). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004416942596435547
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair \u2013 not too challenging, but also not too easy.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (clear, well, easy). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004335165023803711
+        },
+        {
+          "text": "Professor Wu is very organized and teaches in a way that was digestible. I hope my future teachers are like him because even though this class was tough, I was able to thrive due to his teaching techniques.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (organized). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004538059234619141
+        },
+        {
+          "text": "He was the best professor I have had so far. He takes the time to really help us grasp the topic while still keeping us at a good pace to finish the class.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (good). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.012428045272827148
+        },
+        {
+          "text": "I really enjoyed being in Professor Wu's class this quarter! I would highly recommend anyone to take him in the future. He gives clear explanations for topics and provides lots of examples.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (clear). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013267040252685547
+        },
+        {
+          "text": "Professor Wu is a fantastic professor all around. He accounts for different learning styles and is very thorough in his lectures.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (thorough). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.012330055236816406
+        },
+        {
+          "text": "Great at teaching the content and makes the learning very straightforward. Gives wonderful examples to help his students learn.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (great). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013251066207885742
+        },
+        {
+          "text": "He's awesome, does lecture in a clear and concise way, explains what we need to know before exams, class is organized.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (clear, organized). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004766941070556641
+        },
+        {
+          "text": "Dr. Wu is very organized and his lectures reflect his test and quizzes.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (organized). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0046253204345703125
+        },
+        {
+          "text": "Wu is very explanatory and in depth with the material. However, material is very advanced for those without a background in chemistry.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003821134567260742
+        },
+        {
+          "text": "Great lecturer and note taker, though tends to talk too quickly.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (great). Confidence: 97.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004857778549194336
+        },
+        {
+          "text": "Eric is an excellent professor. From his lectures to his homework to his tests he is very organized and very communicative.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (excellent, organized). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004701137542724609
+        },
+        {
+          "text": "Professor Wu is extremely organized and explains concepts very clearly. He truly wants to help students succeed.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (clear, organized). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0047419071197509766
+        },
+        {
+          "text": "He has no weaknesses, his main strength is the way he can teach.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004972219467163086
+        },
+        {
+          "text": "Phenomenal professor, explains everything thoroughly in lectures and prepares perfect practice and review sessions.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (thorough). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013090133666992188
+        },
+        {
+          "text": "Professor Eric was always prepared with clear lectures and notes, and provided us with various resources.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (clear). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.00522613525390625
+        },
+        {
+          "text": "I like his teaching and the problem set problems are effective in teaching me the material.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (effective). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005085945129394531
+        },
+        {
+          "text": "Professor Wu was an excellent teacher. He explained topics well, and I really appreciate that he recorded the lectures.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (appreciate, excellent, well). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0051038265228271484
+        },
+        {
+          "text": "Dr. Wu was amazing! Great lecturer who is very well organized and clearly cares about his students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (great, clear, well). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0046999454498291016
+        },
+        {
+          "text": "Chemistry is difficult and a lot to digest, but Professor Wu made it extremely manageable.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0036847591400146484
+        },
+        {
+          "text": "I think Dr. Wu is always very helpful. He is really good at explaining topics in a way that is easy to understand.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (good, helpful, easy). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.00487518310546875
+        },
+        {
+          "text": "He is one of the best professors I've had so far, his explanations are so clear.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (clear). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003832101821899414
+        },
+        {
+          "text": "Very organized, clear and concise.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (clear, organized). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005105257034301758
+        },
+        {
+          "text": "The professor clearly cares about student learning and provides plenty of helpful material.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (helpful, clear). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003609895706176758
+        },
+        {
+          "text": "His ability to explain concepts in a way that keeps students engaged.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (sentiment language). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013789176940917969
+        },
+        {
+          "text": "Eric Wu does a very good job of lecturing and making sure we understand the concepts.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (good). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0036208629608154297
+        },
+        {
+          "text": "Strengths: simplifying course material. Weakness: fast pacing.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (sentiment language). Confidence: 98.8%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0036847591400146484
+        },
+        {
+          "text": "Dr. Wu hosts helpful review sessions and makes lectures entertaining.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (helpful). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004988908767700195
+        },
+        {
+          "text": "Professor Wu knows what he's teaching and can be understood by many.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003385782241821289
+        },
+        {
+          "text": "Eric helped to make Chemistry approachable.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0043888092041015625
+        },
+        {
+          "text": "Professor Wu is extremely organized and clear as a lecturer.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (clear, organized). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005359172821044922
+        },
+        {
+          "text": "Very organized, and the class material is easy to understand.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Clarity of explanations with very strong positive language (easy, organized). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0042171478271484375
+        }
+      ]
+    },
+    {
+      "topic": "Effectiveness of assignments",
+      "feedback_with_sentiment": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress\u2013free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Effectiveness of assignments with very strong positive language (appreciate, good, success). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.02919793128967285
+        },
+        {
+          "text": "Great at teaching the content and makes the learning very straightforward. Gives wonderful examples to help his students learn.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Effectiveness of assignments with very strong positive language (great). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.008933067321777344
+        },
+        {
+          "text": "I like his teaching and the problem set problems are effective in teaching me the material.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Effectiveness of assignments with very strong positive language (effective). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.008404970169067383
+        },
+        {
+          "text": "He is a great lecturer but his midterms are too long for 50 minutes.",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes Effectiveness of assignments with clear negative language (sentiment language). Confidence: 90.7%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.01114797592163086
+        }
+      ]
+    },
+    {
+      "topic": "Classroom atmosphere",
+      "feedback_with_sentiment": [
+        {
+          "text": "One of Wu's greatest strengths is his lecture\u2013filled notes. If we are already familiar with the course material, we can just follow the lecture with the notes without having to write down anything. It is also a great tool for reviewing before, say, a midterm or the final exam. Another great strength of his is his coffee hours that he has with students after class. It's nice to get to know your teacher personally and establish a great connection. His final strength is the review sessions he has before midterms. They are well\u2013organized and go over a good chunk of the material. The only weakness I can think of with Wu is how fast he goes during his lectures.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Classroom atmosphere with very strong positive language (great, good, well). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.028778076171875
+        },
+        {
+          "text": "Eric explains concepts very clearly with an emphasis on intuition and he encourages students to understand the material rather than rely solely on rote memory. His enthusiasm for chemistry is contagious. He is extremely welcoming, knowledgeable, approachable, and responsive to questions, and he takes the time to make sure students understand what is going on.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Classroom atmosphere with very strong positive language (clear). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.022206783294677734
+        },
+        {
+          "text": "Very excellent professor and lecturer. The environment he fosters for his students is impeccable, and his dedication towards his students shines.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Classroom atmosphere with very strong positive language (excellent). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.01819920539855957
+        }
+      ]
+    },
+    {
+      "topic": "Instructor's communication and availability",
+      "feedback_with_sentiment": [
+        {
+          "text": "Exactly as the class should have been. Professor Wu obviously cares about his students success and I feel as though he did everything possible to set us up for success. I don't know if this will come across the way I intend it to but I really appreciate how normal this class was. What I mean is that it didn't consume too much of my time or attention but I still came out having learned everything I needed to; it was a very seamless experience. I feel as though I got exactly what I wanted out of this class (a stress\u2013free experience learning the basics of chemistry) and had I wanted something else (say, an introduction to the marvels of chemistry) Wu could have provided that too. Thank you professor Wu and keep up the good work <3",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (appreciate, good, success). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.016453027725219727
+        },
+        {
+          "text": "Excellent Professor. Such a shame he isn't teaching OChem next quarter",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes Instructor's communication and availability with clear negative language (sentiment language). Confidence: 99.6%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.004573822021484375
+        },
+        {
+          "text": "Great professor, the only thing was that the lectures were very fast. Sometimes it made it hard to follow along. I think a good solution would be to do less examples, and spend more times on the ones that we do in lecture.",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes Instructor's communication and availability with clear negative language (hard). Confidence: 99.7%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.014757871627807617
+        },
+        {
+          "text": "Dr. Wu's knowledge of chemistry is evident in his teaching. Every lecture was well prepared and provided information in a clear and organized way. It is also obvious that Dr. Wu truly cares about helping students learn. He provides a lot of helpful resources before every exam and also holds review sessions. Overall, he is a great teacher.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (great, helpful, clear). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.007351875305175781
+        },
+        {
+          "text": "One of Wu's greatest strengths is his lecture\u2013filled notes. If we are already familiar with the course material, we can just follow the lecture with the notes without having to write down anything. It is also a great tool for reviewing before, say, a midterm or the final exam. Another great strength of his is his coffee hours that he has with students after class. It's nice to get to know your teacher personally and establish a great connection. His final strength is the review sessions he has before midterms. They are well\u2013organized and go over a good chunk of the material. The only weakness I can think of with Wu is how fast he goes during his lectures.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (great, good, well). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.016974925994873047
+        },
+        {
+          "text": "Eric explains concepts very clearly with an emphasis on intuition and he encourages students to understand the material rather than rely solely on rote memory. His enthusiasm for chemistry is contagious. He is extremely welcoming, knowledgeable, approachable, and responsive to questions, and he takes the time to make sure students understand what is going on.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (clear). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.006005048751831055
+        },
+        {
+          "text": "Very excellent professor and lecturer. The environment he fosters for his students is impeccable, and his dedication towards his students shines.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (excellent). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0064640045166015625
+        },
+        {
+          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (good, learned). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.00763392448425293
+        },
+        {
+          "text": "Professor Wu is extremely understanding and caring about his students needs. During the fires he was the only professor of mine to offer accommodations to those struggling. Not only is he extremely kind but he is a very good lecturer as well.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (good, well). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.022202253341674805
+        },
+        {
+          "text": "Professor Wu was very organized with his lecture notes and always posted materials online, which were very helpful. His review sessions prior to midterms were also very helpful and definitely contributed to my success in the class.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (helpful, organized, success). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.006170988082885742
+        },
+        {
+          "text": "Professor Wu is very good at explaining math concepts, but he doesn't always explain the conceptual side of things very well. I think that he could focus a bit more on explaining the conceptual aspects of the class.",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes Instructor's communication and availability with clear negative language (sentiment language). Confidence: 99.5%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.004378795623779297
+        },
+        {
+          "text": "Fair with his exams and an excellent lecturer",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (excellent). Confidence: 99.8%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0037910938262939453
+        },
+        {
+          "text": "Excellent communicator and very organized. Only weakness of this course is that it seems to do a lot of hand\u2013waving over more complex concepts.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "Feedback contains positive language about Instructor's communication and availability (excellent, organized), indicating good performance. Confidence: 86.5%. Score 4/5 reflects strong positive sentiment.",
+          "processing_time": 0.015633344650268555
+        },
+        {
+          "text": "Instructor E.C. Wu demonstrates several strengths in his teaching, including kindness, understanding, and a genuine care for his students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (sentiment language). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.015462160110473633
+        },
+        {
+          "text": "Professor Wu is a fantastic professor all around. He accounts for different learning styles and is very thorough in his lectures.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (thorough). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.00529170036315918
+        },
+        {
+          "text": "Professor Wu was very good about making students feel welcome and he made himself very approachable.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (good). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0059049129486083984
+        },
+        {
+          "text": "He was an amazing professor who provided us with so much resources and truly wanted us to succeed.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005534172058105469
+        },
+        {
+          "text": "Eric is an excellent professor. From his lectures to his homework to his tests he is very organized and very communicative.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (excellent, organized). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005880832672119141
+        },
+        {
+          "text": "Chemistry 20B can be challenging at times but Professor Wu was probably the best person for the job.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.00586700439453125
+        },
+        {
+          "text": "Phenomenal professor, explains everything thoroughly in lectures and prepares perfect practice and review sessions.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (thorough). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.006051778793334961
+        },
+        {
+          "text": "Professor Wu was an excellent teacher. He explained topics well, and I really appreciate that he recorded the lectures.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (appreciate, excellent, well). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005551815032958984
+        },
+        {
+          "text": "Dr. Wu was amazing! Great lecturer who is very well organized and clearly cares about his students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (great, clear, well). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004575252532958984
+        },
+        {
+          "text": "Professor Wu is very approachable and seems to care about his students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (sentiment language). Confidence: 99.8%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005838871002197266
+        },
+        {
+          "text": "I think Dr. Wu is always very helpful. He is really good at explaining topics in a way that is easy to understand.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (good, helpful, easy). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0048410892486572266
+        },
+        {
+          "text": "Dr. Wu showed a lot of concern for the students and was always making sure to answer any confusion.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (sentiment language). Confidence: 99.7%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.006547212600708008
+        },
+        {
+          "text": "He is one of the best professors I've had so far, his explanations are so clear.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (clear). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003961801528930664
+        },
+        {
+          "text": "Eric Wu cares about his students and provides ample support and resources.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (sentiment language). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005457878112792969
+        },
+        {
+          "text": "The professor clearly cares about student learning and provides plenty of helpful material.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (helpful, clear). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004243135452270508
+        },
+        {
+          "text": "Eric Wu does a very good job of lecturing and making sure we understand the concepts.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (good). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004628419876098633
+        },
+        {
+          "text": "Instructor was communicative, approachable, and very concerned with student success.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (success). Confidence: 99.7%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005342960357666016
+        },
+        {
+          "text": "This instructor was very caring and knowledgeable.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005776882171630859
+        },
+        {
+          "text": "Very organized and great communication.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (great, organized). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0053179264068603516
+        },
+        {
+          "text": "Good communicator and always engaged with students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (good). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005203962326049805
+        },
+        {
+          "text": "Eric is such a nice and empathetic person.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003831148147583008
+        },
+        {
+          "text": "Dr. Wu genuinely cares about students' learning.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Instructor's communication and availability with very strong positive language (sentiment language). Confidence: 99.2%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0054509639739990234
+        }
+      ]
+    },
+    {
+      "topic": "Inclusivity and sense of belonging",
+      "feedback_with_sentiment": [
+        {
+          "text": "Instructor E.C. Wu demonstrates several strengths in his teaching, including kindness, understanding, and a genuine care for his students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Inclusivity and sense of belonging with very strong positive language (sentiment language). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.016112804412841797
+        },
+        {
+          "text": "Professor Wu was very good about making students feel welcome and he made himself very approachable.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Inclusivity and sense of belonging with very strong positive language (good). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004370927810668945
+        },
+        {
+          "text": "Professor Wu is very approachable and seems to care about his students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Inclusivity and sense of belonging with very strong positive language (sentiment language). Confidence: 99.8%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0044078826904296875
+        },
+        {
+          "text": "Dr. Wu genuinely cares for his students and wants us to succeed.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Inclusivity and sense of belonging with very strong positive language (sentiment language). Confidence: 99.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004126310348510742
+        },
+        {
+          "text": "Dr. Wu showed a lot of concern for the students and was always making sure to answer any confusion.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Inclusivity and sense of belonging with very strong positive language (sentiment language). Confidence: 99.6%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.016180992126464844
+        },
+        {
+          "text": "Eric Wu cares about his students and provides ample support and resources.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Inclusivity and sense of belonging with very strong positive language (sentiment language). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004567861557006836
+        },
+        {
+          "text": "Instructor was communicative, approachable, and very concerned with student success.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Inclusivity and sense of belonging with very strong positive language (success). Confidence: 99.4%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003976106643676758
+        },
+        {
+          "text": "This instructor was very caring and knowledgeable.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Inclusivity and sense of belonging with very strong positive language (sentiment language). Confidence: 99.8%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005405902862548828
+        },
+        {
+          "text": "Eric is such a nice and empathetic person.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Inclusivity and sense of belonging with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004038095474243164
+        },
+        {
+          "text": "Dr. Wu genuinely cares about students' learning.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Inclusivity and sense of belonging with very strong positive language (sentiment language). Confidence: 99.5%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004514932632446289
+        }
+      ]
+    },
+    {
+      "topic": "Assessment",
+      "feedback_with_sentiment": [
+        {
+          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Assessment with very strong positive language (appreciate, good, clear). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.006539106369018555
+        },
+        {
+          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Assessment with very strong positive language (good, learned). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005496025085449219
+        },
+        {
+          "text": "Professor Wu was very organized with his lecture notes and always posted materials online, which were very helpful. His review sessions prior to midterms were also very helpful and definitely contributed to my success in the class.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Assessment with very strong positive language (helpful, organized, success). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.006678104400634766
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair \u2013 not too challenging, but also not too easy.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Assessment with very strong positive language (clear, well, easy). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005330085754394531
+        },
+        {
+          "text": "All the info needed for exams were on his slides and given to us. I think the exams tested our knowledge adequately. I think the pace of his class was quick which made me overwhelmed at times.",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes Assessment with clear negative language (sentiment language). Confidence: 99.2%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.014991044998168945
+        }
+      ]
+    },
+    {
+      "topic": "Grading and feedback",
+      "feedback_with_sentiment": [
+        {
+          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Grading and feedback with very strong positive language (appreciate, good, clear). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.016400814056396484
+        },
+        {
+          "text": "Very good at lecturing and very good at giving extra materials to study. Tests and homework were very fair and tested what we learned in class. One of the best professors I have had at UCLA in 5 quarters.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Grading and feedback with very strong positive language (good, learned). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.00559687614440918
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had since coming to UCLA. I really like his teaching style and how much he cares for his students. His lectures are consistently clear and paced well. His exams are fair \u2013 not too challenging, but also not too easy.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Grading and feedback with very strong positive language (clear, well, easy). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.014982938766479492
+        }
+      ]
+    },
+    {
+      "topic": "Learning resources and materials",
+      "feedback_with_sentiment": [
+        {
+          "text": "Professor Wu is a wonderful teacher and is very organized and clear with his teaching. I appreciate that he provided a myriad of resources and practice material along with lecture notes and midterm review sessions. He explains well the content of the class and makes frequent pauses throughout his lectures for answering questions. I appreciate that he is a fair grader and provides opportunities for students to achieve the best grade possible in the class. The pace of the class did seem a bit fast and rushed at times, but overall, Professor Wu did a good job of covering the material well in the ten weeks of the quarter.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Learning resources and materials with very strong positive language (appreciate, good, clear). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.006075859069824219
+        },
+        {
+          "text": "Professor Wu was very organized with his lecture notes and always posted materials online, which were very helpful. His review sessions prior to midterms were also very helpful and definitely contributed to my success in the class.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Learning resources and materials with very strong positive language (helpful, organized, success). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.015259981155395508
+        },
+        {
+          "text": "Great lecture style and posts notes and recordings which is very useful. Test prep is provided which I like. No complaints!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Learning resources and materials with very strong positive language (great). Confidence: 99.6%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.005419015884399414
+        },
+        {
+          "text": "Professor Wu led an organized, well structured class with a lot of helpful resources.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Learning resources and materials with very strong positive language (helpful, well, organized). Confidence: 98.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0073130130767822266
+        },
+        {
+          "text": "He was an amazing professor who provided us with so much resources and truly wanted us to succeed.",
+          "sentiment": "negative",
+          "score": 2,
+          "reasoning": "Feedback contains negative language about Learning resources and materials (sentiment language), indicating issues. Confidence: 88.6%. Score 2/5 reflects negative sentiment.",
+          "processing_time": 0.005629777908325195
+        },
+        {
+          "text": "Professor Eric was always prepared with clear lectures and notes, and provided us with various resources.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "Feedback contains positive language about Learning resources and materials (clear), indicating good performance. Confidence: 82.3%. Score 4/5 reflects strong positive sentiment.",
+          "processing_time": 0.00556492805480957
+        },
+        {
+          "text": "The professor clearly cares about student learning and provides plenty of helpful material.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Learning resources and materials with very strong positive language (helpful, clear). Confidence: 99.5%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.00519108772277832
+        },
+        {
+          "text": "I really like the notes for this course.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises Learning resources and materials with very strong positive language (sentiment language). Confidence: 90.3%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0055370330810546875
+        }
+      ]
+    },
+    {
+      "topic": "None of the above / Other",
+      "feedback_with_sentiment": [
+        {
+          "text": "Excellent Professor. Such a shame he isn't teaching OChem next quarter",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes None of the above / Other with clear negative language (sentiment language). Confidence: 99.7%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.005192995071411133
+        },
+        {
+          "text": "Incredible teacher that was fair and taught me a lot!",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "Feedback contains positive language about None of the above / Other (sentiment language), indicating good performance. Confidence: 75.3%. Score 4/5 reflects strong positive sentiment.",
+          "processing_time": 0.014669179916381836
+        },
+        {
+          "text": "Very excellent professor and lecturer. The environment he fosters for his students is impeccable, and his dedication towards his students shines.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (excellent). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004601955413818359
+        },
+        {
+          "text": "Best professor ever",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.015583992004394531
+        },
+        {
+          "text": "Very organized, very manageable workload and difficulty, extremely helpful resources and practice problems for studying, lectures moved a little fast at times but not too bad, very conducive to learning overall",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (helpful, organized). Confidence: 97.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.014316797256469727
+        },
+        {
+          "text": "Professor Wu is great!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (great). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.014382123947143555
+        },
+        {
+          "text": "I was already quite knowledgeable about the course material before taking this course, but I still found professor Wu to be an incredibly dedicated and knowledgeable professor.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0055999755859375
+        },
+        {
+          "text": "Chemistry 20B can be challenging at times but Professor Wu was probably the best person for the job.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.00524592399597168
+        },
+        {
+          "text": "I think that Dr. Wu was an excellent professor and one of the best professors I have had so far.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (excellent). Confidence: 99.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.00548100471496582
+        },
+        {
+          "text": "Eric Wu is the best professor I have had so far at UCLA.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.7%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013641119003295898
+        },
+        {
+          "text": "He has no weaknesses, his main strength is the way he can teach.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 98.4%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003512144088745117
+        },
+        {
+          "text": "Eric Wu is my goat.",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes None of the above / Other with clear negative language (sentiment language). Confidence: 99.6%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.013318061828613281
+        },
+        {
+          "text": "Professor Wu is an amazing professor! His lectures are super organized and he gives students notetakers as a guide.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (organized). Confidence: 99.8%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003732919692993164
+        },
+        {
+          "text": "Professor Wu was very organized in his lecture notes and very good at breaking down complicated concepts.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (good, organized). Confidence: 99.1%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0036988258361816406
+        },
+        {
+          "text": "Professor Wu is thorough and complete in his teaching.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (thorough). Confidence: 98.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004654884338378906
+        },
+        {
+          "text": "Everything helped me learn, and no time was wasted.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.7%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0035140514373779297
+        },
+        {
+          "text": "Professor Wu is an amazing professor who cares deeply about his students.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.5%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004372119903564453
+        },
+        {
+          "text": "Great job, I love this class!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (great). Confidence: 100.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013454675674438477
+        },
+        {
+          "text": "Professor Wu knows what he's teaching and can be understood by many.",
+          "sentiment": "negative",
+          "score": 2,
+          "reasoning": "Feedback contains negative language about None of the above / Other (sentiment language), indicating issues. Confidence: 83.1%. Score 2/5 reflects negative sentiment.",
+          "processing_time": 0.003638744354248047
+        },
+        {
+          "text": "Prof Wu is the GOAT.",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes None of the above / Other with clear negative language (sentiment language). Confidence: 99.9%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.0033330917358398438
+        },
+        {
+          "text": "Eric Wu is one of the nicest professors I have ever had.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.7%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0034139156341552734
+        },
+        {
+          "text": "Very good professor and very interesting.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (good). Confidence: 99.7%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.013437986373901367
+        },
+        {
+          "text": "Professor Wu is energetic and capable.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.8%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0033957958221435547
+        },
+        {
+          "text": "Professor Wu was so helpful and passionate.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (helpful). Confidence: 99.6%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0036432743072509766
+        },
+        {
+          "text": "Keep doing what you're doing, cause everyone loves it!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.8%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0033469200134277344
+        },
+        {
+          "text": "I loved Eric Wu. He is such an enthusiastic professor.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.6%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0045986175537109375
+        },
+        {
+          "text": "Professor Wu is truly an outstanding educator!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0035910606384277344
+        },
+        {
+          "text": "Professor Wu goes above and beyond for students.",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes None of the above / Other with clear negative language (sentiment language). Confidence: 98.5%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.013395071029663086
+        },
+        {
+          "text": "Overall, Professor Wu was an amazing instructor.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.2%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003407001495361328
+        },
+        {
+          "text": "Professor Wu is an amazing chemistry teacher!",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.5%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003637075424194336
+        },
+        {
+          "text": "Super great lecturer!",
+          "sentiment": "negative",
+          "score": 1,
+          "reasoning": "Feedback strongly criticizes None of the above / Other with clear negative language (sentiment language). Confidence: 97.8%. Score 1/5 represents the lowest rubric level.",
+          "processing_time": 0.012552976608276367
+        },
+        {
+          "text": "Eric Wu is the best lecturer I have ever had.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004614353179931641
+        },
+        {
+          "text": "Prof Wu is an excellent lecturer and instructor.",
+          "sentiment": "positive",
+          "score": 4,
+          "reasoning": "Feedback contains positive language about None of the above / Other (excellent), indicating good performance. Confidence: 87.9%. Score 4/5 reflects strong positive sentiment.",
+          "processing_time": 0.003681182861328125
+        },
+        {
+          "text": "This instructor is fantastic and very organized.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (organized). Confidence: 99.9%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003526926040649414
+        },
+        {
+          "text": "Eric is a very knowledgeable professor.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 94.0%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.0035440921783447266
+        },
+        {
+          "text": "Professor Wu is a talented professor.",
+          "sentiment": "negative",
+          "score": 3,
+          "reasoning": "Feedback shows mixed or neutral sentiment regarding None of the above / Other. Confidence: 58.9%. Score 3/5 reflects unclear or balanced sentiment.",
+          "processing_time": 0.0034477710723876953
+        },
+        {
+          "text": "Professor Wu is one of the best professors I've had at UCLA.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.7%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.004405975341796875
+        },
+        {
+          "text": "Eric is the most wonderful professor I have had at UCLA so far.",
+          "sentiment": "positive",
+          "score": 5,
+          "reasoning": "Feedback explicitly praises None of the above / Other with very strong positive language (sentiment language). Confidence: 99.8%. Score 5/5 represents the highest rubric level.",
+          "processing_time": 0.003370046615600586
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "model": "DistilroBERTa",
+    "start_time": 1777529106.007007,
+    "end_time": 1777529107.6770802,
+    "total_time": 1.6700732707977295,
+    "num_feedbacks": 195,
+    "avg_time_per_feedback": 0.008564478311783228
+  }
+}

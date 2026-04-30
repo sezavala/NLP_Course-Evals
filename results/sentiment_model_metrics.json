@@ -1,0 +1,135 @@
+{
+  "performance": [
+    {
+      "Model": "Llama3",
+      "Total Feedbacks": 195,
+      "Total Time (s)": "337.38",
+      "Avg Time/Feedback (s)": "1.7301",
+      "Speed (items/sec)": "0.58"
+    },
+    {
+      "Model": "Gemma",
+      "Total Feedbacks": 195,
+      "Total Time (s)": "250.58",
+      "Avg Time/Feedback (s)": "1.2850",
+      "Speed (items/sec)": "0.78"
+    },
+    {
+      "Model": "roBERTa",
+      "Total Feedbacks": 195,
+      "Total Time (s)": "3.91",
+      "Avg Time/Feedback (s)": "0.0200",
+      "Speed (items/sec)": "49.91"
+    },
+    {
+      "Model": "DistilroBERTa",
+      "Total Feedbacks": 195,
+      "Total Time (s)": "1.67",
+      "Avg Time/Feedback (s)": "0.0086",
+      "Speed (items/sec)": "116.76"
+    }
+  ],
+  "accuracy_vs_baseline": [
+    {
+      "Model": "Llama3",
+      "Exact Match %": "63.6%",
+      "Close Match (\u00b11) %": "91.8%",
+      "Common Items": 195
+    },
+    {
+      "Model": "Gemma",
+      "Exact Match %": "53.3%",
+      "Close Match (\u00b11) %": "88.7%",
+      "Common Items": 195
+    },
+    {
+      "Model": "roBERTa",
+      "Exact Match %": "51.3%",
+      "Close Match (\u00b11) %": "86.7%",
+      "Common Items": 195
+    },
+    {
+      "Model": "DistilroBERTa",
+      "Exact Match %": "59.0%",
+      "Close Match (\u00b11) %": "87.7%",
+      "Common Items": 195
+    }
+  ],
+  "pairwise_agreement": [
+    {
+      "Model 1": "Llama3",
+      "Model 2": "Gemma",
+      "Common Items": 195,
+      "Exact Match %": "66.7%",
+      "Close Match (\u00b11) %": "91.3%"
+    },
+    {
+      "Model 1": "Llama3",
+      "Model 2": "roBERTa",
+      "Common Items": 195,
+      "Exact Match %": "47.2%",
+      "Close Match (\u00b11) %": "77.9%"
+    },
+    {
+      "Model 1": "Llama3",
+      "Model 2": "DistilroBERTa",
+      "Common Items": 195,
+      "Exact Match %": "58.5%",
+      "Close Match (\u00b11) %": "73.3%"
+    },
+    {
+      "Model 1": "Gemma",
+      "Model 2": "roBERTa",
+      "Common Items": 195,
+      "Exact Match %": "41.5%",
+      "Close Match (\u00b11) %": "77.4%"
+    },
+    {
+      "Model 1": "Gemma",
+      "Model 2": "DistilroBERTa",
+      "Common Items": 195,
+      "Exact Match %": "43.1%",
+      "Close Match (\u00b11) %": "69.7%"
+    },
+    {
+      "Model 1": "roBERTa",
+      "Model 2": "DistilroBERTa",
+      "Common Items": 195,
+      "Exact Match %": "53.3%",
+      "Close Match (\u00b11) %": "80.5%"
+    }
+  ],
+  "model_scores": {
+    "Llama3": {
+      "accuracy": 91.8,
+      "speed": 0.5779859503306765,
+      "norm_speed": 0.0,
+      "norm_accuracy": 100.0,
+      "balanced_score": 60.0
+    },
+    "Gemma": {
+      "accuracy": 88.7,
+      "speed": 0.7782003922969205,
+      "norm_speed": 0.17232626513271956,
+      "norm_accuracy": 39.21568627450985,
+      "balanced_score": 23.598342270758998
+    },
+    "roBERTa": {
+      "accuracy": 86.7,
+      "speed": 49.906012670276986,
+      "norm_speed": 42.45705018846004,
+      "norm_accuracy": 0.0,
+      "balanced_score": 16.982820075384016
+    },
+    "DistilroBERTa": {
+      "accuracy": 87.7,
+      "speed": 116.76134419351315,
+      "norm_speed": 100.0,
+      "norm_accuracy": 19.607843137254925,
+      "balanced_score": 51.764705882352956
+    }
+  },
+  "best_model": "Llama3",
+  "baseline_size": 195,
+  "timestamp": "2026-04-29T23:13:57.362587"
+}

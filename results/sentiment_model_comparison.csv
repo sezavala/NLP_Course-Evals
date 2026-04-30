@@ -1,0 +1,5 @@
+Model,Total Feedbacks,Total Time (s),Avg Time/Feedback (s),Speed (items/sec)
+Llama3,195,337.38,1.7301,0.58
+Gemma,195,250.58,1.2850,0.78
+roBERTa,195,3.91,0.0200,49.91
+DistilroBERTa,195,1.67,0.0086,116.76

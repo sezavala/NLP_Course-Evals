@@ -1,100 +1,85 @@
-"""
-Sentiment Model Comparison Visualization for Poster
-Creates a comprehensive visualization comparing models
-"""
+"""Poster-friendly sentiment model comparison visualization."""
 
 from pathlib import Path
 import json
-import pandas as pd
+
 import matplotlib.pyplot as plt
 import numpy as np
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 
+
 def load_metrics():
-    """Load metrics from JSON file."""
     metrics_path = BASE_DIR / "results" / "sentiment_model_metrics.json"
     if not metrics_path.exists():
-        print(f"Error: Metrics file not found at {metrics_path}")
-        print("Please run compare_sentiment_models.py first")
+        print(f"Error: metrics file not found at {metrics_path}")
+        print("Run comparison/compare_sentiment_models.py first.")
         return None
-    
-    with open(metrics_path, "r") as f:
+
+    with open(metrics_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def create_poster_visualization():
-    """Create a clean, minimal poster visualization."""
-    
     metrics = load_metrics()
     if not metrics:
         return
-    
-    # Extract data
-    model_scores = metrics.get("model_scores", {})
-    best_model = metrics.get("best_model", "")
-    accuracy_vs_baseline = metrics.get("accuracy_vs_baseline", [])
-    
-    if not model_scores:
-        print("No model scores found in metrics")
+
+    model_rows = metrics.get("model_metrics", [])
+    baseline_rows = metrics.get("trivial_baselines", [])
+    best_model = metrics.get("best_model_by_mae", "")
+
+    if not model_rows:
+        print("No model metrics found.")
         return
-    
-    models = list(model_scores.keys())
-    
-    # Extract accuracies from accuracy_vs_baseline data
-    accuracies = []
-    for acc_item in accuracy_vs_baseline:
-        if acc_item["Model"] in models:
-            close_acc = float(acc_item["Close Match (±1) %"].rstrip("%"))
-            accuracies.append(close_acc)
-    
-    if len(accuracies) != len(models):
-        accuracies = [model_scores[m].get("accuracy", 0) for m in models]
-    
-    speeds = [model_scores[m]["speed"] for m in models]
-    
-    # Simple color scheme
-    colors = ['#808080', '#A9A9A9', '#D3D3D3', '#404040']
-    best_color = '#1f77b4'
-    
-    # Single clean plot
-    fig, ax = plt.subplots(figsize=(10, 8))
-    
-    for i, model in enumerate(models):
-        if model == best_model:
-            color = best_color
-            size = 300
-            marker = 'D'
-            zorder = 5
-            alpha = 1.0
-        else:
-            color = colors[i]
-            size = 150
-            marker = 'o'
-            zorder = 3
-            alpha = 0.7
-        
-        ax.scatter(speeds[i], accuracies[i], s=size, c=color, marker=marker, 
-                  edgecolors='black', linewidth=1.5, alpha=alpha, zorder=zorder)
-        ax.text(speeds[i], accuracies[i] + 1.5, model, ha='center', fontsize=11, fontweight='bold')
-    
-    # Clean styling
-    ax.set_xlabel('Speed (items/sec)', fontsize=13, fontweight='bold')
-    ax.set_ylabel('Accuracy vs Human Baseline (%)', fontsize=13, fontweight='bold')
-    ax.set_title('Sentiment Model Performance', fontsize=16, fontweight='bold', pad=20)
-    ax.grid(True, alpha=0.2, linestyle='-', linewidth=0.5)
-    ax.set_axisbelow(True)
-    ax.set_xlim(-5, max(speeds) + 10)
-    ax.set_ylim(80, 95)
-    ax.tick_params(labelsize=11)
-    
-    # Save figure
+
+    models = [row["Model"] for row in model_rows]
+    mae = [row["MAE"] for row in model_rows]
+    speeds = [row.get("Speed (items/sec)", 0.0) for row in model_rows]
+
+    best_baseline = min(baseline_rows, key=lambda row: row["MAE"]) if baseline_rows else None
+    best_baseline_mae = best_baseline["MAE"] if best_baseline else None
+
+    colors = ["#4c78a8" if model == best_model else "#bab0ac" for model in models]
+
+    fig, ax = plt.subplots(figsize=(11, 6), constrained_layout=True)
+    scatter_sizes = [260 if model == best_model else 170 for model in models]
+    ax.scatter(speeds, mae, s=scatter_sizes, c=colors, edgecolors="#333333", linewidth=1.2)
+    max_error = max(mae)
+    min_error = min(mae)
+    for model, speed, error in zip(models, speeds, mae):
+        offset = (7, -18) if error > max_error - 0.015 else (7, 7)
+        ax.annotate(
+            f"{model}\nMAE {error:.2f}",
+            (speed, error),
+            textcoords="offset points",
+            xytext=offset,
+            fontsize=10,
+            fontweight="bold",
+            annotation_clip=False,
+        )
+    if best_baseline_mae is not None:
+        ax.axhline(
+            best_baseline_mae,
+            color="#e45756",
+            linestyle="--",
+            linewidth=2,
+            label=f"{best_baseline['Model']} baseline: MAE {best_baseline_mae:.2f}",
+        )
+    ax.set_xscale("log")
+    ax.set_title("Sentiment Model Comparison: Speed vs Error", fontsize=18, fontweight="bold", pad=15)
+    ax.set_xlabel("Speed (items/sec, log scale)")
+    ax.set_ylabel("Mean Absolute Error on 1-5 Score")
+    ax.set_xlim(min(speeds) * 0.75, max(speeds) * 1.75)
+    ax.set_ylim(max(0, min_error - 0.04), max_error + 0.08)
+    ax.grid(True, alpha=0.25)
+    ax.legend(frameon=False, loc="upper left")
+
     output_path = BASE_DIR / "results" / "visualizations" / "sentiment_model_comparison_poster.png"
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
-    print(f"✓ Poster visualization saved to {output_path}")
-    
+    plt.savefig(output_path, dpi=300, bbox_inches="tight", facecolor="white")
     plt.close()
+    print(f"Saved sentiment visualization to {output_path}")
 
 
 if __name__ == "__main__":

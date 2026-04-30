@@ -231,19 +231,19 @@ SCORING_RUBRIC = {
     },
 
     "Pace": {
-        1: "The course pace was far too slow and made it hard to stay engaged.",
-        2: "The course pace was somewhat slow at times.",
-        3: "The course pace was reasonable overall.",
-        4: "The course pace moves somewhat fast.",
-        5: "The course pace moves way too fast, making it hard to keep up."
+        1: "The course pace moves way too fast, making it hard to keep up.",
+        2: "The course pace was far too slow and made it hard to stay engaged.",
+        3: "The course pace moves somewhat fast.",
+        4: "The course pace was somewhat slow at times.",
+        5: "The course pace was reasonable overall."
     },
 
     "Workload": {
-        1: "The workload was extremely light and did not feel meaningful.",
-        2: "The course workload was a bit light and could have been more challenging.",
-        3: "The course workload was manageable.",
-        4: "The course workload feels a bit too much.",
-        5: "The course workload is too much; it is a struggle to keep up."
+        1: "The course workload is too much; it is a struggle to keep up.",
+        2: "The workload was extremely light and did not feel meaningful.",
+        3: "The course workload feels a bit too much.",
+        4: "The course workload was a bit light and could have been more challenging.",
+        5: "The course workload was manageable."
     },
 
     "Student engagement and participation": {

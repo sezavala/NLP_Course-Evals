@@ -1,58 +1,157 @@
 {
-  "performance": [
+  "model_metrics": [
     {
       "Model": "Llama3",
-      "Total Feedbacks": 195,
-      "Total Time (s)": "337.38",
-      "Avg Time/Feedback (s)": "1.7301",
-      "Speed (items/sec)": "0.58"
+      "Type": "model",
+      "Common Items": 195,
+      "Missing Baseline Items": 0,
+      "Extra Prediction Items": 0,
+      "Exact Score %": 63.59,
+      "Within 1 Score %": 91.79,
+      "MAE": 0.4564,
+      "RMSE": 0.8134,
+      "Score Balanced Accuracy %": 52.63,
+      "Within 1 Balanced Accuracy %": 86.42,
+      "Sentiment Label Accuracy %": 80.51,
+      "Sentiment Macro F1 %": 62.58,
+      "Score/Label Inconsistencies": 15,
+      "Speed (items/sec)": 0.578,
+      "Total Time (s)": 337.3784,
+      "Avg Time/Item (s)": 1.7301
     },
     {
       "Model": "Gemma",
-      "Total Feedbacks": 195,
-      "Total Time (s)": "250.58",
-      "Avg Time/Feedback (s)": "1.2850",
-      "Speed (items/sec)": "0.78"
+      "Type": "model",
+      "Common Items": 195,
+      "Missing Baseline Items": 0,
+      "Extra Prediction Items": 0,
+      "Exact Score %": 53.33,
+      "Within 1 Score %": 88.72,
+      "MAE": 0.5897,
+      "RMSE": 0.9254,
+      "Score Balanced Accuracy %": 49.83,
+      "Within 1 Balanced Accuracy %": 86.66,
+      "Sentiment Label Accuracy %": 91.28,
+      "Sentiment Macro F1 %": 65.67,
+      "Score/Label Inconsistencies": 45,
+      "Speed (items/sec)": 0.7782,
+      "Total Time (s)": 250.5781,
+      "Avg Time/Item (s)": 1.285
     },
     {
       "Model": "roBERTa",
-      "Total Feedbacks": 195,
-      "Total Time (s)": "3.91",
-      "Avg Time/Feedback (s)": "0.0200",
-      "Speed (items/sec)": "49.91"
+      "Type": "model",
+      "Common Items": 195,
+      "Missing Baseline Items": 0,
+      "Extra Prediction Items": 0,
+      "Exact Score %": 51.28,
+      "Within 1 Score %": 86.67,
+      "MAE": 0.6308,
+      "RMSE": 0.9687,
+      "Score Balanced Accuracy %": 33.69,
+      "Within 1 Balanced Accuracy %": 69.9,
+      "Sentiment Label Accuracy %": 80.0,
+      "Sentiment Macro F1 %": 36.56,
+      "Score/Label Inconsistencies": 0,
+      "Speed (items/sec)": 49.906,
+      "Total Time (s)": 3.9073,
+      "Avg Time/Item (s)": 0.02
     },
     {
       "Model": "DistilroBERTa",
-      "Total Feedbacks": 195,
-      "Total Time (s)": "1.67",
-      "Avg Time/Feedback (s)": "0.0086",
-      "Speed (items/sec)": "116.76"
+      "Type": "model",
+      "Common Items": 195,
+      "Missing Baseline Items": 0,
+      "Extra Prediction Items": 0,
+      "Exact Score %": 58.97,
+      "Within 1 Score %": 87.69,
+      "MAE": 0.6205,
+      "RMSE": 1.1255,
+      "Score Balanced Accuracy %": 23.49,
+      "Within 1 Balanced Accuracy %": 63.48,
+      "Sentiment Label Accuracy %": 86.67,
+      "Sentiment Macro F1 %": 44.84,
+      "Score/Label Inconsistencies": 2,
+      "Speed (items/sec)": 116.7613,
+      "Total Time (s)": 1.6701,
+      "Avg Time/Item (s)": 0.0086
     }
   ],
-  "accuracy_vs_baseline": [
+  "trivial_baselines": [
     {
-      "Model": "Llama3",
-      "Exact Match %": "63.6%",
-      "Close Match (\u00b11) %": "91.8%",
-      "Common Items": 195
+      "Model": "Constant 1",
+      "Type": "baseline",
+      "Common Items": 195,
+      "Missing Baseline Items": 0,
+      "Extra Prediction Items": 0,
+      "Exact Score %": 0.0,
+      "Within 1 Score %": 5.64,
+      "MAE": 3.4667,
+      "RMSE": 3.5662,
+      "Score Balanced Accuracy %": 0.0,
+      "Within 1 Balanced Accuracy %": 25.0,
+      "Sentiment Label Accuracy %": 5.64,
+      "Sentiment Macro F1 %": 3.56
     },
     {
-      "Model": "Gemma",
-      "Exact Match %": "53.3%",
-      "Close Match (\u00b11) %": "88.7%",
-      "Common Items": 195
+      "Model": "Constant 2",
+      "Type": "baseline",
+      "Common Items": 195,
+      "Missing Baseline Items": 0,
+      "Extra Prediction Items": 0,
+      "Exact Score %": 5.64,
+      "Within 1 Score %": 11.28,
+      "MAE": 2.4667,
+      "RMSE": 2.6047,
+      "Score Balanced Accuracy %": 25.0,
+      "Within 1 Balanced Accuracy %": 50.0,
+      "Sentiment Label Accuracy %": 5.64,
+      "Sentiment Macro F1 %": 3.56
     },
     {
-      "Model": "roBERTa",
-      "Exact Match %": "51.3%",
-      "Close Match (\u00b11) %": "86.7%",
-      "Common Items": 195
+      "Model": "Constant 3",
+      "Type": "baseline",
+      "Common Items": 195,
+      "Missing Baseline Items": 0,
+      "Extra Prediction Items": 0,
+      "Exact Score %": 5.64,
+      "Within 1 Score %": 36.41,
+      "MAE": 1.5795,
+      "RMSE": 1.6886,
+      "Score Balanced Accuracy %": 25.0,
+      "Within 1 Balanced Accuracy %": 75.0,
+      "Sentiment Label Accuracy %": 5.64,
+      "Sentiment Macro F1 %": 3.56
     },
     {
-      "Model": "DistilroBERTa",
-      "Exact Match %": "59.0%",
-      "Close Match (\u00b11) %": "87.7%",
-      "Common Items": 195
+      "Model": "Constant 4",
+      "Type": "baseline",
+      "Common Items": 195,
+      "Missing Baseline Items": 0,
+      "Extra Prediction Items": 0,
+      "Exact Score %": 25.13,
+      "Within 1 Score %": 94.36,
+      "MAE": 0.8051,
+      "RMSE": 0.9581,
+      "Score Balanced Accuracy %": 25.0,
+      "Within 1 Balanced Accuracy %": 75.0,
+      "Sentiment Label Accuracy %": 88.72,
+      "Sentiment Macro F1 %": 31.34
+    },
+    {
+      "Model": "Constant 5",
+      "Type": "baseline",
+      "Common Items": 195,
+      "Missing Baseline Items": 0,
+      "Extra Prediction Items": 0,
+      "Exact Score %": 63.59,
+      "Within 1 Score %": 88.72,
+      "MAE": 0.5333,
+      "RMSE": 0.9923,
+      "Score Balanced Accuracy %": 25.0,
+      "Within 1 Balanced Accuracy %": 50.0,
+      "Sentiment Label Accuracy %": 88.72,
+      "Sentiment Macro F1 %": 31.34
     }
   ],
   "pairwise_agreement": [
@@ -60,76 +159,108 @@
       "Model 1": "Llama3",
       "Model 2": "Gemma",
       "Common Items": 195,
-      "Exact Match %": "66.7%",
-      "Close Match (\u00b11) %": "91.3%"
+      "Exact Match %": 66.67,
+      "Within 1 Match %": 91.28,
+      "Mean Absolute Difference": 0.4205
     },
     {
       "Model 1": "Llama3",
       "Model 2": "roBERTa",
       "Common Items": 195,
-      "Exact Match %": "47.2%",
-      "Close Match (\u00b11) %": "77.9%"
+      "Exact Match %": 47.18,
+      "Within 1 Match %": 77.95,
+      "Mean Absolute Difference": 0.759
     },
     {
       "Model 1": "Llama3",
       "Model 2": "DistilroBERTa",
       "Common Items": 195,
-      "Exact Match %": "58.5%",
-      "Close Match (\u00b11) %": "73.3%"
+      "Exact Match %": 58.46,
+      "Within 1 Match %": 73.33,
+      "Mean Absolute Difference": 0.7795
     },
     {
       "Model 1": "Gemma",
       "Model 2": "roBERTa",
       "Common Items": 195,
-      "Exact Match %": "41.5%",
-      "Close Match (\u00b11) %": "77.4%"
+      "Exact Match %": 41.54,
+      "Within 1 Match %": 77.44,
+      "Mean Absolute Difference": 0.8205
     },
     {
       "Model 1": "Gemma",
       "Model 2": "DistilroBERTa",
       "Common Items": 195,
-      "Exact Match %": "43.1%",
-      "Close Match (\u00b11) %": "69.7%"
+      "Exact Match %": 43.08,
+      "Within 1 Match %": 69.74,
+      "Mean Absolute Difference": 0.9333
     },
     {
       "Model 1": "roBERTa",
       "Model 2": "DistilroBERTa",
       "Common Items": 195,
-      "Exact Match %": "53.3%",
-      "Close Match (\u00b11) %": "80.5%"
+      "Exact Match %": 53.33,
+      "Within 1 Match %": 80.51,
+      "Mean Absolute Difference": 0.7179
     }
   ],
+  "best_model_by_mae": "Llama3",
+  "best_speed_model": "DistilroBERTa",
+  "best_trivial_baseline_by_mae": "Constant 5",
+  "best_model_beats_trivial_baseline_mae": true,
+  "baseline_size": 195,
+  "baseline_score_distribution": {
+    "1": 0,
+    "2": 11,
+    "3": 11,
+    "4": 49,
+    "5": 124
+  },
   "model_scores": {
     "Llama3": {
-      "accuracy": 91.8,
-      "speed": 0.5779859503306765,
-      "norm_speed": 0.0,
-      "norm_accuracy": 100.0,
-      "balanced_score": 60.0
+      "mae": 0.4564,
+      "rmse": 0.8134,
+      "exact_score_accuracy": 63.59,
+      "within_one_accuracy": 91.79,
+      "balanced_score_accuracy": 52.63,
+      "within_one_balanced_accuracy": 86.42,
+      "sentiment_label_accuracy": 80.51,
+      "sentiment_macro_f1": 62.58,
+      "speed": 0.578
     },
     "Gemma": {
-      "accuracy": 88.7,
-      "speed": 0.7782003922969205,
-      "norm_speed": 0.17232626513271956,
-      "norm_accuracy": 39.21568627450985,
-      "balanced_score": 23.598342270758998
+      "mae": 0.5897,
+      "rmse": 0.9254,
+      "exact_score_accuracy": 53.33,
+      "within_one_accuracy": 88.72,
+      "balanced_score_accuracy": 49.83,
+      "within_one_balanced_accuracy": 86.66,
+      "sentiment_label_accuracy": 91.28,
+      "sentiment_macro_f1": 65.67,
+      "speed": 0.7782
     },
     "roBERTa": {
-      "accuracy": 86.7,
-      "speed": 49.906012670276986,
-      "norm_speed": 42.45705018846004,
-      "norm_accuracy": 0.0,
-      "balanced_score": 16.982820075384016
+      "mae": 0.6308,
+      "rmse": 0.9687,
+      "exact_score_accuracy": 51.28,
+      "within_one_accuracy": 86.67,
+      "balanced_score_accuracy": 33.69,
+      "within_one_balanced_accuracy": 69.9,
+      "sentiment_label_accuracy": 80.0,
+      "sentiment_macro_f1": 36.56,
+      "speed": 49.906
     },
     "DistilroBERTa": {
-      "accuracy": 87.7,
-      "speed": 116.76134419351315,
-      "norm_speed": 100.0,
-      "norm_accuracy": 19.607843137254925,
-      "balanced_score": 51.764705882352956
+      "mae": 0.6205,
+      "rmse": 1.1255,
+      "exact_score_accuracy": 58.97,
+      "within_one_accuracy": 87.69,
+      "balanced_score_accuracy": 23.49,
+      "within_one_balanced_accuracy": 63.48,
+      "sentiment_label_accuracy": 86.67,
+      "sentiment_macro_f1": 44.84,
+      "speed": 116.7613
     }
   },
-  "best_model": "Llama3",
-  "baseline_size": 195,
-  "timestamp": "2026-04-29T23:13:57.362587"
+  "timestamp": "2026-04-30T00:00:06.903499"
 }

@@ -143,7 +143,7 @@ def main() -> None:
     import time as time_module
     start_time = time_module.time()
     
-    # Load classification results from Llama3 output (same input as Llama sentiment model)
+    # Controlled sentiment benchmark: use the same best topic output for every sentiment model.
     json_path = BASE_DIR / "results" / "Llama3" / "LLAMA_OUTPUT.json"
     
     if not json_path.exists():

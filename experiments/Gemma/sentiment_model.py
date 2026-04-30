@@ -127,7 +127,7 @@ def main() -> None:
     import time as time_module
     start_time = time_module.time()
     
-    # Load classification results
+    # Controlled sentiment benchmark: use the same best topic output for every sentiment model.
     json_path = BASE_DIR / "results" / "Llama3" / "LLAMA_OUTPUT.json"
     
     with open(json_path, "r") as f:
@@ -215,10 +215,6 @@ def main() -> None:
     sentiment_json_to_dataframe(json_output_path, csv_output_path)
     print(f"CSV export complete. Saved to {csv_output_path}.")
 
-    # Convert to CSV
-    csv_output_path = BASE_DIR / "results" / "Gemma" / "GEMMA_SENTIMENT.csv"
-    sentiment_json_to_dataframe(json_output_path, csv_output_path)
-    print(f"CSV export complete. Saved to {csv_output_path}.")
 
 
 if __name__ == "__main__":

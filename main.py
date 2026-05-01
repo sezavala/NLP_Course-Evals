@@ -4,6 +4,8 @@ import csv
 import json
 import re
 import time
+import unicodedata
+from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
 
@@ -51,11 +53,18 @@ TOPIC_EVIDENCE_PATTERNS = {
     ],
     "Student engagement and participation": [
         r"\bengag(?:e|ed|ing|ement)\b",
+        r"\bengaging lecturer\b",
+        r"\bengaging lectures?\b",
         r"\bparticipat(?:e|ed|ion)\b",
         r"\bdiscussion\b",
+        r"\bencourag(?:e|ed|es|ing) discussion\b",
         r"\bask(?:ing)? questions\b",
+        r"\bgo over any question\b",
+        r"\bquestions? .* lecture\b",
+        r"\bfeel free to ask\b",
         r"\binteractive\b",
         r"\bclicker questions?\b",
+        r"\bclickers?\b",
         r"\bworksheets?\b",
         r"\boffice hours\b",
     ],
@@ -63,10 +72,16 @@ TOPIC_EVIDENCE_PATTERNS = {
         r"\bclear(?:ly)?\b",
         r"\bexplain(?:s|ed|ing|ation|ations)?\b",
         r"\bunderstand(?:able|ing)?\b",
+        r"\bunderstood\b",
+        r"\bfollow along\b",
         r"\bmanageable\b",
         r"\bdigestible\b",
         r"\bstraightforward\b",
         r"\bbreak(?:ing)? down\b",
+        r"\beasy to understand\b",
+        r"\bmade .* understandable\b",
+        r"\bmade .* doable\b",
+        r"\btaught really well\b",
     ],
     "Effectiveness of assignments": [
         r"\bassignments?\b",
@@ -76,6 +91,8 @@ TOPIC_EVIDENCE_PATTERNS = {
         r"\bexample problems?\b",
         r"\bworksheets?\b",
         r"\bclicker questions?\b",
+        r"\bclickers? were helpful\b",
+        r"\bgave me an idea of what exam questions\b",
     ],
     "Classroom atmosphere": [
         r"\batmosphere\b",
@@ -96,6 +113,9 @@ TOPIC_EVIDENCE_PATTERNS = {
         r"\bapproachable\b",
         r"\bset aside time\b",
         r"\bmeet with\b",
+        r"\btakes? the time\b",
+        r"\bgo over any question\b",
+        r"\bup to date\b",
         r"\breminders?\b",
         r"\baccommodations?\b",
     ],
@@ -144,20 +164,36 @@ def normalize_comment(comment: str) -> str:
     return re.sub(r"\s+", " ", comment).strip()
 
 
+def canonical_comment_key(comment: str) -> str:
+    text = unicodedata.normalize("NFKD", comment).encode("ascii", "ignore").decode("ascii")
+    text = text.casefold()
+    text = re.sub(r"\bpower\s+points?\b", "powerpoint", text)
+    text = re.sub(r"\bbruin\s+cast\b", "bruincast", text)
+    return " ".join(re.findall(r"[a-z0-9]+", text))
+
+
+def is_near_duplicate_comment(candidate_key: str, existing_key: str) -> bool:
+    if candidate_key == existing_key:
+        return True
+    if min(len(candidate_key), len(existing_key)) < 80:
+        return False
+    return SequenceMatcher(None, candidate_key, existing_key).ratio() >= 0.92
+
+
 def dedupe_comments(raw_comments: list[str]) -> tuple[list[str], int]:
-    """Remove exact duplicate comments after whitespace normalization."""
-    seen = set()
+    """Remove duplicate and near-duplicate comments after normalization."""
+    seen_keys = []
     unique_comments = []
     duplicate_count = 0
     for comment in raw_comments:
         normalized = normalize_comment(comment)
         if not normalized:
             continue
-        key = normalized.casefold()
-        if key in seen:
+        key = canonical_comment_key(normalized)
+        if any(is_near_duplicate_comment(key, seen_key) for seen_key in seen_keys):
             duplicate_count += 1
             continue
-        seen.add(key)
+        seen_keys.append(key)
         unique_comments.append(normalized)
     return unique_comments, duplicate_count
 
@@ -226,8 +262,9 @@ def classify_with_llama(comment: str) -> list[str]:
     """Classify a course-evaluation comment into explicit instructional topics."""
     prompt = f"""You are a careful course-evaluation coder.
 
-Assign ONLY topics that are explicitly supported by exact words in the feedback text.
-Do not infer a topic from general praise, student success, caring, or broad support.
+Assign ONLY topics that are explicitly supported by words or close paraphrases in the feedback text.
+Do not infer a topic from general praise, student success, caring, or broad support alone.
+If broad praise also contains a concrete topic clue, assign that topic.
 Prefer fewer labels when evidence is weak. If in doubt, use "{OTHER}".
 
     ALLOWED TOPICS:
@@ -250,6 +287,10 @@ Prefer fewer labels when evidence is weak. If in doubt, use "{OTHER}".
 - Do not use "Pace" for scheduling confusion unless speed, rushing, keeping up, or lack of time is also explicit.
 - Do not use "Learning resources and materials" for generic "support" unless a resource/material is named.
 - Do not use "Instructor's communication and availability" for general caring unless communication, availability, office hours, emails, responsiveness, or meetings are explicit.
+- "Engaging lecturer" is Student engagement and participation.
+- "Understood", "easy to understand", or "follow along" is Clarity of explanations.
+- Helpful clicker questions can be Student engagement and participation and/or Effectiveness of assignments.
+- Going over questions in lecture can be Student engagement and participation and/or Clarity of explanations.
 - If the comment is only generic praise, choose only "{OTHER}".
 - If "{OTHER}" is selected, it must be the only topic.
 
@@ -343,6 +384,8 @@ For Pace and Workload, score 5 means the condition supports learning well; score
 def summarize_topic_with_llama(topic: str, comments: list[dict[str, Any]], average_score: float | None) -> str:
     if not comments:
         return f"Summary of {topic}: No comments were assigned to this topic."
+    if len(comments) == 1:
+        return summarize_single_comment(topic, comments[0])
 
     sentiment_counts = {
         sentiment: sum(1 for item in comments if item.get("sentiment") == sentiment)
@@ -374,8 +417,10 @@ def summarize_topic_with_llama(topic: str, comments: list[dict[str, Any]], avera
 
     Rules:
     - Use COMMENT COUNT and SENTIMENT COUNTS exactly; do not invent counts or percentages.
+    - Refer to assigned comments, not students/respondents.
     - Do not mention a concern unless at least one listed comment states it.
     - Do not say "majority" unless the sentiment counts support it.
+    - Do not repeat rubric dimensions unless the comments explicitly mention them.
     - Do not include meta-notes about following instructions.
     - Do not mention the absence of concerns as a concern.
     """
@@ -389,6 +434,16 @@ def summarize_topic_with_llama(topic: str, comments: list[dict[str, Any]], avera
     if not summary.startswith(f"Summary of {topic}:"):
         summary = f"Summary of {topic}: {summary}"
     return clean_topic_summary(topic, summary)
+
+
+def summarize_single_comment(topic: str, comment: dict[str, Any]) -> str:
+    feedback = normalize_comment(str(comment.get("feedback", "")))
+    if len(feedback) > 180:
+        feedback = feedback[:177].rstrip() + "..."
+    score = comment.get("score")
+    sentiment = comment.get("sentiment") or "neutral"
+    score_text = f" with a score of {score}/5" if isinstance(score, int) else ""
+    return f'Summary of {topic}: One assigned comment was {sentiment}{score_text}, citing: "{feedback}"'
 
 
 def clean_topic_summary(topic: str, summary: str) -> str:
@@ -483,6 +538,12 @@ def analysis_pipeline(
     duplicate_comments_removed = 0
     if dedupe_exact_comments:
         raw_comments, duplicate_comments_removed = dedupe_comments(raw_comments)
+        if duplicate_comments_removed:
+            print(
+                "Removed "
+                f"{duplicate_comments_removed} duplicate or near-duplicate feedback items; "
+                f"processing {len(raw_comments)} unique feedback items."
+            )
 
     topic_comments: dict[str, list[dict[str, Any]]] = {topic: [] for topic in TOPICS}
     all_scores = []
@@ -558,6 +619,7 @@ def analysis_pipeline(
             "num_comments": len(raw_comments),
             "num_input_comments": input_comment_count,
             "num_duplicate_comments_removed": duplicate_comments_removed,
+            "dedupe_mode": "exact_and_near_duplicate",
             "num_scored_topic_comments": len(all_scores),
             "total_time_seconds": round(time.time() - start_time, 2),
         },

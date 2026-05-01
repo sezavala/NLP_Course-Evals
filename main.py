@@ -344,7 +344,114 @@ def analysis_pipeline(
     return output
 
 
+def load_feedback_from_json(json_data: dict[str, Any]) -> tuple[str, list[str]]:
+    """Load course_id and feedback from JSON input."""
+    course_id = json_data.get("course_id", "UNKNOWN")
+    raw_comments = json_data.get("raw_comments", [])
+    
+    if not isinstance(raw_comments, list):
+        raise ValueError("raw_comments must be a list")
+    
+    print(f"Loaded course_id: {course_id}")
+    print(f"Loaded {len(raw_comments)} feedback items")
+    
+    return course_id, raw_comments
+
+
 if __name__ == "__main__":
-    output = analysis_pipeline("CHEM_14A", FEEDBACK_LIST)
+    # Exact JSON input
+    json_input = {
+        "course_id": "CHEM_14A_Fall2025",
+        "raw_comments": [
+            "Presentations and lectures were very clear.",
+            "I felt like Ramachandran really cared about the students doing well and provided all of us ample opportunity to supplement when we were struggling.",
+            "Overall the lectures for this class were really good I understood most of the lectures and was able to follow along easily.",
+            "Professor Ramachandran is an engaging lecturer and very obviously cares about students understanding the material.",
+            "I know that many of us struggle with such dense course but I believe that Professor Ramachandran has made is extremely doable and under- standable for everyone.",
+            "The strengths of this course is that we got through all the material so it was excellent on time management.",
+            "I think it was confusing at times when assignments and quizzes would be thrown at us at times different than originally specified at the beginning of the quarter.",
+            "I believe Dr.Ramachandran has a very organized course and truly cares about the success of her students.",
+            "However, I believe that the course could be improved in terms of the course resources that are posted online on CCLE.",
+            "Overall, I love this professor, and I can't wait to have her again in the Fall for 14C!",
+            "Ramachandran really cares about us students, and makes lots of efforts to let us learn real knowledge.",
+            "Ramachandran genuinely cares for the well being of her students and is constantly trying to improve her teaching methods.",
+            "The instructor really cares about her students and what she teaches, which is apparent through her lectures and the resources she provides for her students.",
+            "She made the hardest concepts seem very manageable and did a very good job at organizing her course.",
+            "The strengths that this professor has performed was teaching skills, knowledge of the material, communication, and concern of the students.",
+            "The instructor takes the time togo over any question that is asked during lecture, does her best to make sure that students are understanding the material in case there is any confusion.",
+            "Professor's teaching is always clear.",
+            "I love her lectures, and I can always understand the concepts after her explanation.",
+            "This was the first time I felt welcomed and interested in such material.",
+            "I really believe that a lot of that has to do with Professor Rama chandra n's teaching style and I appreciate that very much.",
+            "Professor Ramachandran is an engaging lecturer and very obviously cares about students understanding the material.",
+            "I think her exams and grading system are fair but it would be very helpful if there could be a timer on the screen during exams instead of just a minute warning.",
+            "I got a B+ in 14A which is supposed to be the 'weeder' class, which means I passed my midterms and my final.",
+            "I also do not think partial credit was fair.",
+            "The professor very clearly represents a concern for student learning and Is always very welcoming of students to attend office hours or set time aside to meet with her as she did, which was a huge time commitment on her part.",
+            "The material on the exams was always fair, my only problem was the time constraint as it resulted in a very stressful environment that made it very likely for students to blank out during the exam, more time should be allotted for exams.",
+            "I think weekly graded homeworks should be included for a small portion of the grade.",
+            "The strengths of the professor are in her way of teaching.",
+            "The only weakness of her class in general is that once one grade is low, it is incredibly difficult to raise your grade.",
+            "Rama chandra n made it clear from day one that she is very concerned with helping students succeed as much as possible.",
+            "I learned a lot and worked very hard but my grade doesn't reflect it.",
+            "Her grading scale is a bit harsh and she does not give too much partial credit.",
+            "Just please— consider this.",
+            "The strengths of this course is that we got through all the material so it was excellent on time management.",
+            "I think weekly graded homeworks should be included for a small portion of the grade.",
+            "I feel like organic chemistry is just being thrown into the class material and we do not have much time to go over it before the final.",
+            "I thought she taught really well.",
+            "I think the implementation of clicker questions really gave me an idea of what exam questions would be like, so clickers were very helpful and they should be used more often!",
+            "I found the formatting of the power points to be inconsistent and lacking in explanation which made it difficult to review them before quizzes and tests without rewatching the entire bruin cast.",
+            "Overall, I really enjoyed Ramachandran as a professor and felt confident in a subject I did not think I would be.",
+            "Ramachandran actually cares that we do well and that we understand the course inside and out.",
+            "I have no complaints, I am extremely happy with this course and the professor.",
+            "I think in general Dr.",
+            "Ramachandran is a very intelligent woman and is always prepared to teach and help those who do not understand any concepts.",
+            "Tends to get ex- tremely anxious during exams (weakness).",
+            "Professor Rama chandra nisa professor who deserves her high Bruin Walk ratings, as she has shown more concern about her students than any professor I've had at UCLA.",
+            "She is very good at communication and makes chemistry very easy to understand.",
+            "Strength is the amount of care Dr.",
+            "Ramachandran puts into her course and making sure students feel free to ask questions and ask for explana- tion when they don't understand.",
+            "Ramachandran really cares about student learning and clearly makes an effort to provide resources and support to students.",
+            "She is very understanding and very approachable.",
+            "You can tell that she cares about her students and tries her best for us to be successful.",
+            "The professor is great at explaining conceptual topics which is relevant to many students as the MCAT composes mainly of conceptual questions.",
+            "I would request is that she give reminders for graded clicker question in an email before lecture like she did the first time.",
+            "I thinkthe formatting of the power points to be inconsistent andlacking in explanation which made it difficult to review them before quizzes and tests without rewatching the entire bruin cast.",
+            "It would be nice if she could adopt a policy where students had higher chances for redemption.",
+            "Overall, I had a fantastic time in class.",
+            "She encourages discussion, ask- ing questions and provide incentives such as worksheets for people to go to her office hours.",
+            "Professor Ramachandran genuinely care about student learning and im- provement, and she made chemistry more bearable.",
+            "She is open and welcoming, and always responds super quickly to discussion posts and emails.",
+            "She really was invested in student learning which I appreciated a lot as my last chemistry class was not as student-focused and I felt behind all the time.",
+            "I think Professor Rama chandra n really cares about her students learning and it shows.",
+            "She doesn't just go through the lecture and hope you understand.",
+            "Ramachandran really cares about student learning and clearly makes an effort to provide resources and support to students.",
+            "The professor really cares about her students and wants them to succeed.",
+            "She is very kind and understanding and does what she can to ensure her students are engaging in the class and doing well.",
+            "I appreciate how hard she works and how much she cares.",
+            "I wanted to go to her office hours but I was always intimidated by the number of people there, but I will definitely start trying when I take her class in the fall.",
+            "I think everything about Dr.",
+            "she makes sure we are always up to date with our grades and what we are learning in class by posting everything on CCLE.",
+            "Overall, she provides a lot of practice and opportunities for students to learn and grow.",
+            "I think in general Dr.",
+            "Ramachandran is a very intelligent woman and is always prepared to teach and help those who do not understand any concepts.",
+            "Professor Ramachandran completely changed Chemistry for me and I am so thankful I came across this class.",
+            "Professor Rama chandra n expressed genuine efforts in catering the course to her students needs, she set aside time to meet with us and often asked for our feedback throughout the quarter.",
+            "Ramachandran really cares about us students, and makes lots of efforts to let us learn real knowledge.",
+            "Professor Ramachandran completely changed Chemistry for me and I am so thankful I came across this class.",
+            "Ramachandran really cares about student learning and clearly makes an effort to provide resources and support to students.",
+            "Strengths of this professor include her real concern for how the class was doing and providing resources to students who needed the help.",
+            "I think more example problems and clicker questions would help.",
+            "I would say however that the level of questions on the tests seem to exceed what is taught in class and at times I felt unprepared for the midterms because lack of adequate resources and uncertainty about what I would actually be expected to do on an exam.",
+            "However, I found the formatting of the power points to be inconsistent and lacking in explanation which made it difficult to review them before quizzes and tests without rewatching the entire bruin cast."
+        ]
+    }
+    
+    course_id, raw_comments = load_feedback_from_json(json_input)
+    output = analysis_pipeline(course_id, raw_comments)
     print("\n" + "=" * 80)
-    print(json.dumps(output, indent=2))
+    output_path = BASE_DIR / "results" / "ML_OUTPUT.json"
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(output, f, indent=2)
+    print(f"Combined analysis complete. Saved to {output_path}.")

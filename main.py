@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 import time
 from pathlib import Path
 from typing import Any
@@ -201,14 +202,52 @@ Mention the main pattern and any recurring concern. Do not invent evidence.
 
     if not summary.startswith(f"Summary of {topic}:"):
         summary = f"Summary of {topic}: {summary}"
-    return summary
+    return clean_topic_summary(topic, summary)
+
+
+def clean_topic_summary(topic: str, summary: str) -> str:
+    """Keep exactly one topic-summary heading and remove model preambles."""
+    marker = f"Summary of {topic}:"
+    text = summary.replace("\r\n", "\n").replace("\r", "\n").strip()
+    marker_pattern = re.compile(rf"Summary\s+of\s+{re.escape(topic)}\s*:", re.IGNORECASE)
+    marker_matches = list(marker_pattern.finditer(text))
+    if marker_matches:
+        text = text[marker_matches[-1].end():].strip()
+
+    text = re.sub(r"[ \t]+", " ", text)
+    text = re.sub(r"\s*\n\s*", " ", text).strip()
+    return f"{marker} {text}" if text else marker
 
 
 def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
     rows = []
+    summary_by_topic = {
+        item["topic"]: item["summary"]
+        for item in output.get("topic_summaries", [])
+        if "topic" in item and "summary" in item
+    }
     for topic_item in output["categories"]:
         topic = topic_item["topic"]
-        for comment in topic_item["comments"]:
+        topic_summary = summary_by_topic.get(topic, topic_item.get("summary", ""))
+        comments = topic_item["comments"]
+        if not comments:
+            rows.append(
+                {
+                    "Course ID": output["course_id"],
+                    "Overall Score": output["overall_score"],
+                    "Topic": topic,
+                    "Topic Average Score": topic_item["average_score"],
+                    "Feedback": "",
+                    "Sentiment": "",
+                    "Score": "",
+                    "Confidence": "",
+                    "Reasoning": "",
+                    "Topic Summary": topic_summary,
+                }
+            )
+            continue
+
+        for comment_idx, comment in enumerate(comments):
             rows.append(
                 {
                     "Course ID": output["course_id"],
@@ -220,7 +259,7 @@ def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
                     "Score": comment.get("score", ""),
                     "Confidence": comment.get("confidence", ""),
                     "Reasoning": comment.get("reasoning", ""),
-                    "Topic Summary": topic_item["summary"],
+                    "Topic Summary": topic_summary if comment_idx == 0 else "",
                 }
             )
 
@@ -291,7 +330,6 @@ def analysis_pipeline(
                 "topic": topic,
                 "average_score": average_score,
                 "comment_count": len(comments),
-                "summary": summary,
                 "comments": comments,
             }
         )
@@ -310,7 +348,6 @@ def analysis_pipeline(
             "topic": OTHER,
             "average_score": None,
             "comment_count": len(topic_comments[OTHER]),
-            "summary": other_summary,
             "comments": topic_comments[OTHER],
         }
     )

@@ -18,6 +18,149 @@ TOPICS = list(TOPIC_KEYS) + [OTHER]
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL = "llama3"
 
+TOPIC_EVIDENCE_PATTERNS = {
+    "Course organization and structure": [
+        r"\borganiz(?:e|ed|ation|ing)\b",
+        r"\bstructure(?:d)?\b",
+        r"\bschedul(?:e|ed|ing)\b",
+        r"\bsequenc(?:e|ed|ing)\b",
+        r"\bnavigation\b",
+        r"\btime management\b",
+        r"\boriginally specified\b",
+    ],
+    "Pace": [
+        r"\bpace(?:d)?\b",
+        r"\bfast\b",
+        r"\bslow\b",
+        r"\brushed?\b",
+        r"\btoo quickly\b",
+        r"\bkeep up\b",
+        r"\btime constraint\b",
+        r"\bnot enough time\b",
+        r"\bmore time\b",
+        r"\bdo not have much time\b",
+        r"\bbefore the final\b",
+    ],
+    "Workload": [
+        r"\bworkload\b",
+        r"\bamount of work\b",
+        r"\btoo much work\b",
+        r"\bmanageable workload\b",
+        r"\btime burden\b",
+        r"\bconsume(?:d)? too much\b",
+    ],
+    "Student engagement and participation": [
+        r"\bengag(?:e|ed|ing|ement)\b",
+        r"\bparticipat(?:e|ed|ion)\b",
+        r"\bdiscussion\b",
+        r"\bask(?:ing)? questions\b",
+        r"\binteractive\b",
+        r"\bclicker questions?\b",
+        r"\bworksheets?\b",
+        r"\boffice hours\b",
+    ],
+    "Clarity of explanations": [
+        r"\bclear(?:ly)?\b",
+        r"\bexplain(?:s|ed|ing|ation|ations)?\b",
+        r"\bunderstand(?:able|ing)?\b",
+        r"\bmanageable\b",
+        r"\bdigestible\b",
+        r"\bstraightforward\b",
+        r"\bbreak(?:ing)? down\b",
+    ],
+    "Effectiveness of assignments": [
+        r"\bassignments?\b",
+        r"\bhomeworks?\b",
+        r"\bproblem sets?\b",
+        r"\bpractice problems?\b",
+        r"\bexample problems?\b",
+        r"\bworksheets?\b",
+        r"\bclicker questions?\b",
+    ],
+    "Classroom atmosphere": [
+        r"\batmosphere\b",
+        r"\benvironment\b",
+        r"\bwelcom(?:e|ing)\b",
+        r"\bsupportive\b",
+        r"\bcomfortable\b",
+        r"\bdemotivating\b",
+        r"\bstressful environment\b",
+    ],
+    "Instructor's communication and availability": [
+        r"\bcommunicat(?:e|ed|ion|ive)\b",
+        r"\brespond(?:s|ed|ing)?\b",
+        r"\bemails?\b",
+        r"\bdiscussion posts?\b",
+        r"\boffice hours\b",
+        r"\bavailable\b",
+        r"\bapproachable\b",
+        r"\bset aside time\b",
+        r"\bmeet with\b",
+        r"\breminders?\b",
+        r"\baccommodations?\b",
+    ],
+    "Inclusivity and sense of belonging": [
+        r"\binclus(?:ive|ion|ivity)\b",
+        r"\bbelonging\b",
+        r"\bwelcom(?:e|ed|ing)\b",
+        r"\baccessible\b",
+        r"\blearning styles?\b",
+        r"\brespect(?:ful|ed)?\b",
+        r"\bcatering\b",
+    ],
+    "Assessment": [
+        r"\bassessments?\b",
+        r"\bexams?\b",
+        r"\btests?\b",
+        r"\bquizzes?\b",
+        r"\bmidterms?\b",
+        r"\bfinal\b",
+        r"\bexam questions?\b",
+    ],
+    "Grading and feedback": [
+        r"\bgrad(?:e|ed|es|ing)\b",
+        r"\bgrading system\b",
+        r"\bpartial credit\b",
+        r"\bfeedback\b",
+        r"\bredemption\b",
+        r"\bgrade policy\b",
+    ],
+    "Learning resources and materials": [
+        r"\bresources?\b",
+        r"\bmaterials?\b",
+        r"\bnotes?\b",
+        r"\bslides?\b",
+        r"\bpower\s*points?\b",
+        r"\bbruin\s*cast\b",
+        r"\brecordings?\b",
+        r"\breview sessions?\b",
+        r"\bposted online\b",
+        r"\bccle\b",
+    ],
+}
+
+
+def normalize_comment(comment: str) -> str:
+    return re.sub(r"\s+", " ", comment).strip()
+
+
+def dedupe_comments(raw_comments: list[str]) -> tuple[list[str], int]:
+    """Remove exact duplicate comments after whitespace normalization."""
+    seen = set()
+    unique_comments = []
+    duplicate_count = 0
+    for comment in raw_comments:
+        normalized = normalize_comment(comment)
+        if not normalized:
+            continue
+        key = normalized.casefold()
+        if key in seen:
+            duplicate_count += 1
+            continue
+        seen.add(key)
+        unique_comments.append(normalized)
+    return unique_comments, duplicate_count
+
 
 def extract_json_object(text: str) -> dict[str, Any]:
     """Extract the first JSON object from an LLM response."""
@@ -54,39 +197,68 @@ def format_rubric(topic: str) -> str:
     return "\n".join(f"{score}: {description}" for score, description in sorted(rubric.items()))
 
 
+def has_topic_evidence(comment: str, topic: str) -> bool:
+    if topic == OTHER:
+        return True
+    patterns = TOPIC_EVIDENCE_PATTERNS.get(topic, [])
+    text = comment.casefold()
+    return any(re.search(pattern, text) for pattern in patterns)
+
+
+def filter_topics_by_evidence(comment: str, topics: list[str]) -> list[str]:
+    filtered_topics = [topic for topic in topics if has_topic_evidence(comment, topic)]
+    if not filtered_topics:
+        return [OTHER]
+    if OTHER in filtered_topics:
+        return [OTHER]
+    return filtered_topics
+
+
+def sentiment_from_score(score: int) -> str:
+    if score <= 2:
+        return "negative"
+    if score >= 4:
+        return "positive"
+    return "neutral"
+
+
 def classify_with_llama(comment: str) -> list[str]:
     """Classify a course-evaluation comment into explicit instructional topics."""
     prompt = f"""You are a careful course-evaluation coder.
 
-Assign ONLY the topics that are explicitly supported by the feedback text.
-Do not infer a topic from general praise. Prefer fewer labels when evidence is weak.
+Assign ONLY topics that are explicitly supported by exact words in the feedback text.
+Do not infer a topic from general praise, student success, caring, or broad support.
+Prefer fewer labels when evidence is weak. If in doubt, use "{OTHER}".
 
-ALLOWED TOPICS:
-{format_topics()}
-- {OTHER}: Generic praise, broad approval, or comments with no specific instructional detail.
+    ALLOWED TOPICS:
+    {format_topics()}
+    - {OTHER}: Generic praise, broad approval, or comments with no specific instructional detail.
 
-BOUNDARY RULES:
-- Use "Course organization and structure" only for organization, structure, navigation, sequencing, or course design.
-- Use "Pace" only when speed, rushing, slowing down, keeping up, or pacing is explicitly mentioned.
-- Use "Workload" only when workload, time burden, difficulty load, or amount of work is explicitly mentioned.
-- Use "Student engagement and participation" only for participation, engagement activities, entertainment, discussion, questions, or interactive opportunities.
-- Use "Clarity of explanations" only for explaining, lecturing clearly, making concepts understandable, or examples that clarify content.
-- Use "Effectiveness of assignments" only for homework, problem sets, assignments, practice tasks, or their learning value.
-- Use "Classroom atmosphere" only for the emotional class environment, welcoming climate, motivation, or supportiveness.
-- Use "Instructor's communication and availability" only for responsiveness, office hours, availability, accommodations, announcements, or communication.
-- Use "Inclusivity and sense of belonging" only for inclusion, belonging, accessibility, different learning styles, feeling welcome, or respect.
-- Use "Assessment" only for exams, tests, quizzes, assessment fairness, assessment difficulty, or alignment with material.
-- Use "Grading and feedback" only for grading, partial credit, grade policy, or feedback on performance.
+    BOUNDARY RULES:
+    - Use "Course organization and structure" only for organization, structure, navigation, sequencing, or course design.
+    - Use "Pace" only when speed, rushing, slowing down, keeping up, or pacing is explicitly mentioned.
+    - Use "Workload" only when workload, time burden, difficulty load, or amount of work is explicitly mentioned.
+    - Use "Student engagement and participation" only for participation, engagement activities, entertainment, discussion, questions, or interactive opportunities.
+    - Use "Clarity of explanations" only for explaining, lecturing clearly, making concepts understandable, or examples that clarify content.
+    - Use "Effectiveness of assignments" only for homework, problem sets, assignments, practice tasks, or their learning value.
+    - Use "Classroom atmosphere" only for the emotional class environment, welcoming climate, motivation, or supportiveness.
+    - Use "Instructor's communication and availability" only for responsiveness, office hours, availability, accommodations, announcements, or communication.
+    - Use "Inclusivity and sense of belonging" only for inclusion, belonging, accessibility, different learning styles, feeling welcome, or respect.
+    - Use "Assessment" only for exams, tests, quizzes, assessment fairness, assessment difficulty, or alignment with material.
+    - Use "Grading and feedback" only for grading, partial credit, grade policy, or feedback on performance.
 - Use "Learning resources and materials" only for notes, slides, recordings, review sessions, study resources, or posted materials.
+- Do not use "Pace" for scheduling confusion unless speed, rushing, keeping up, or lack of time is also explicit.
+- Do not use "Learning resources and materials" for generic "support" unless a resource/material is named.
+- Do not use "Instructor's communication and availability" for general caring unless communication, availability, office hours, emails, responsiveness, or meetings are explicit.
 - If the comment is only generic praise, choose only "{OTHER}".
 - If "{OTHER}" is selected, it must be the only topic.
 
-Return ONLY valid JSON with exact topic names:
-{{"topics": ["Topic name"]}}
+    Return ONLY valid JSON with exact topic names:
+    {{"topics": ["Topic name"]}}
 
-FEEDBACK:
-\"\"\"{comment}\"\"\"
-"""
+    FEEDBACK:
+    \"\"\"{comment}\"\"\"
+    """
 
     try:
         parsed = extract_json_object(call_ollama(prompt))
@@ -107,7 +279,7 @@ FEEDBACK:
         return [OTHER]
     if OTHER in valid_topics:
         return [OTHER]
-    return valid_topics
+    return filter_topics_by_evidence(comment, valid_topics)
 
 
 def sentiment_with_llama(comment: str, topic: str) -> dict[str, Any]:
@@ -115,31 +287,32 @@ def sentiment_with_llama(comment: str, topic: str) -> dict[str, Any]:
     prompt = f"""You are scoring one course-evaluation comment for one topic.
 
 Use the rubric exactly. The numeric score is rubric-specific, not generic sentiment.
+Score only the evidence that is relevant to the given TOPIC. Ignore praise or criticism about other topics.
 For Pace and Workload, score 5 means the condition supports learning well; score 1 means the condition makes learning difficult.
 
-TOPIC: {topic}
-TOPIC DEFINITION: {TOPIC_DEFS.get(topic, topic)}
+    TOPIC: {topic}
+    TOPIC DEFINITION: {TOPIC_DEFS.get(topic, topic)}
 
-RUBRIC:
-{format_rubric(topic)}
+    RUBRIC:
+    {format_rubric(topic)}
 
-FEEDBACK:
-\"\"\"{comment}\"\"\"
+    FEEDBACK:
+    \"\"\"{comment}\"\"\"
 
-TASK:
-1. Decide whether the feedback is positive, neutral, or negative relative to this topic.
-2. Assign the best matching integer rubric score from 1 to 5.
-3. Give one brief reason grounded in the comment text.
-4. Provide confidence from 0.0 to 1.0.
+    TASK:
+    1. Decide whether the feedback is positive, neutral, or negative relative to this topic.
+    2. Assign the best matching integer rubric score from 1 to 5.
+    3. Give one brief reason grounded in exact text from the comment.
+    4. Provide confidence from 0.0 to 1.0.
 
-Return ONLY valid JSON:
-{{
-  "sentiment": "positive|negative|neutral",
-  "score": 1,
-  "confidence": 0.0,
-  "reasoning": "brief explanation"
-}}
-"""
+    Return ONLY valid JSON:
+    {{
+    "sentiment": "positive|negative|neutral",
+    "score": 1,
+    "confidence": 0.0,
+    "reasoning": "brief explanation"
+    }}
+    """
 
     try:
         parsed = extract_json_object(call_ollama(prompt))
@@ -147,6 +320,7 @@ Return ONLY valid JSON:
         sentiment = str(parsed.get("sentiment", "neutral")).strip().lower()
         if sentiment not in {"positive", "negative", "neutral"}:
             sentiment = "neutral"
+        sentiment = sentiment_from_score(score)
         confidence = max(0.0, min(1.0, float(parsed.get("confidence", 0.0))))
         reasoning = str(parsed.get("reasoning", "")).strip()
     except Exception as exc:
@@ -170,6 +344,10 @@ def summarize_topic_with_llama(topic: str, comments: list[dict[str, Any]], avera
     if not comments:
         return f"Summary of {topic}: No comments were assigned to this topic."
 
+    sentiment_counts = {
+        sentiment: sum(1 for item in comments if item.get("sentiment") == sentiment)
+        for sentiment in ("positive", "neutral", "negative")
+    }
     scored_comments = [
         {
             "score": item.get("score"),
@@ -180,19 +358,27 @@ def summarize_topic_with_llama(topic: str, comments: list[dict[str, Any]], avera
     ]
     prompt = f"""Summarize the course evaluation evidence for one topic.
 
-TOPIC: {topic}
-AVERAGE SCORE: {average_score if average_score is not None else "N/A"}
-RUBRIC:
-{format_rubric(topic) if topic != OTHER else "No rubric score for generic comments."}
+    TOPIC: {topic}
+    COMMENT COUNT: {len(comments)}
+    AVERAGE SCORE: {average_score if average_score is not None else "N/A"}
+    SENTIMENT COUNTS:
+    {json.dumps(sentiment_counts, indent=2)}
+    RUBRIC:
+    {format_rubric(topic) if topic != OTHER else "No rubric score for generic comments."}
 
-COMMENTS WITH SCORES:
-{json.dumps(scored_comments, indent=2)}
+    COMMENTS WITH SCORES:
+    {json.dumps(scored_comments, indent=2)}
 
-Write 1-2 concise sentences beginning exactly with:
-Summary of {topic}:
+    Write 1-2 concise sentences beginning exactly with:
+    Summary of {topic}:
 
-Mention the main pattern and any recurring concern. Do not invent evidence.
-"""
+    Rules:
+    - Use COMMENT COUNT and SENTIMENT COUNTS exactly; do not invent counts or percentages.
+    - Do not mention a concern unless at least one listed comment states it.
+    - Do not say "majority" unless the sentiment counts support it.
+    - Do not include meta-notes about following instructions.
+    - Do not mention the absence of concerns as a concern.
+    """
 
     try:
         summary = call_ollama(prompt, temperature=0.2, timeout=120).strip()
@@ -216,6 +402,7 @@ def clean_topic_summary(topic: str, summary: str) -> str:
 
     text = re.sub(r"[ \t]+", " ", text)
     text = re.sub(r"\s*\n\s*", " ", text).strip()
+    text = re.sub(r"(?i)\bNote:\s*.*$", "", text).strip()
     return f"{marker} {text}" if text else marker
 
 
@@ -287,10 +474,16 @@ def analysis_pipeline(
     raw_comments: list[str],
     output_dir: Path | None = None,
     write_files: bool = True,
+    dedupe_exact_comments: bool = True,
 ) -> dict[str, Any]:
     """Produce a combined classification, sentiment, score, and summary report."""
     output_dir = output_dir or BASE_DIR / "results" / "combined"
     start_time = time.time()
+    input_comment_count = len(raw_comments)
+    duplicate_comments_removed = 0
+    if dedupe_exact_comments:
+        raw_comments, duplicate_comments_removed = dedupe_comments(raw_comments)
+
     topic_comments: dict[str, list[dict[str, Any]]] = {topic: [] for topic in TOPICS}
     all_scores = []
 
@@ -363,6 +556,8 @@ def analysis_pipeline(
         "categories": categories,
         "metadata": {
             "num_comments": len(raw_comments),
+            "num_input_comments": input_comment_count,
+            "num_duplicate_comments_removed": duplicate_comments_removed,
             "num_scored_topic_comments": len(all_scores),
             "total_time_seconds": round(time.time() - start_time, 2),
         },

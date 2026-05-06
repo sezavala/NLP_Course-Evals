@@ -20,6 +20,57 @@ TOPICS = list(TOPIC_KEYS) + [OTHER]
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL = "llama3"
 
+CLASSIFICATION_BASELINE_PATH = BASE_DIR / "HUMAN_CATEGORIZED_OUTPUT.csv"
+SENTIMENT_BASELINE_PATH = BASE_DIR / "HUMAN_SENTIMENT_BASELINE.csv"
+RAG_CLASSIFICATION_EXAMPLE_COUNT = 4
+RAG_SENTIMENT_EXAMPLE_COUNT = 3
+RAG_MIN_SIMILARITY = 0.06
+
+RETRIEVAL_STOPWORDS = {
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "but",
+    "by",
+    "class",
+    "course",
+    "did",
+    "do",
+    "for",
+    "from",
+    "had",
+    "has",
+    "have",
+    "he",
+    "her",
+    "his",
+    "i",
+    "in",
+    "instructor",
+    "is",
+    "it",
+    "me",
+    "my",
+    "of",
+    "on",
+    "or",
+    "professor",
+    "she",
+    "students",
+    "that",
+    "the",
+    "this",
+    "to",
+    "very",
+    "was",
+    "were",
+    "with",
+}
+
 TOPIC_EVIDENCE_PATTERNS = {
     "Course organization and structure": [
         r"\borganiz(?:e|ed|ation|ing)\b",
@@ -198,6 +249,186 @@ def dedupe_comments(raw_comments: list[str]) -> tuple[list[str], int]:
     return unique_comments, duplicate_count
 
 
+def retrieval_tokens(text: str) -> set[str]:
+    """Tokenize comments for lightweight example retrieval."""
+    return {
+        token
+        for token in canonical_comment_key(text).split()
+        if len(token) > 2 and token not in RETRIEVAL_STOPWORDS
+    }
+
+
+def retrieval_similarity(left: str, right: str) -> float:
+    """Score comment similarity using token overlap plus fuzzy full-text matching."""
+    left_key = canonical_comment_key(left)
+    right_key = canonical_comment_key(right)
+    if not left_key or not right_key:
+        return 0.0
+    if left_key == right_key:
+        return 1.0
+
+    left_tokens = retrieval_tokens(left)
+    right_tokens = retrieval_tokens(right)
+    if left_tokens and right_tokens:
+        overlap = left_tokens & right_tokens
+        containment = len(overlap) / min(len(left_tokens), len(right_tokens))
+        jaccard = len(overlap) / len(left_tokens | right_tokens)
+    else:
+        containment = 0.0
+        jaccard = 0.0
+
+    fuzzy_ratio = SequenceMatcher(None, left_key, right_key).ratio()
+    return (0.55 * containment) + (0.25 * jaccard) + (0.20 * fuzzy_ratio)
+
+
+def is_truthy_label(value: Any) -> bool:
+    text = str(value or "").strip().casefold()
+    return bool(text) and text not in {"0", "false", "n", "nan", "no", "none"}
+
+
+def truncate_example_text(text: str, max_chars: int = 420) -> str:
+    text = normalize_comment(text)
+    if len(text) <= max_chars:
+        return text
+    return text[: max_chars - 3].rstrip() + "..."
+
+
+def load_classification_examples(
+    path: Path = CLASSIFICATION_BASELINE_PATH,
+) -> list[dict[str, Any]]:
+    """Load human topic labels used as retrieval examples for classification."""
+    if not path.exists():
+        print(f"RAG classification baseline not found: {path}")
+        return []
+
+    examples = []
+    with open(path, "r", encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            feedback = normalize_comment(row.get("Feedback", ""))
+            if not feedback:
+                continue
+
+            topics = [topic for topic in TOPICS if is_truthy_label(row.get(topic))]
+            if not topics:
+                topics = [OTHER]
+            if OTHER in topics and len(topics) > 1:
+                topics = [topic for topic in topics if topic != OTHER] or [OTHER]
+
+            examples.append({"feedback": feedback, "topics": topics})
+
+    return examples
+
+
+def load_sentiment_examples(
+    path: Path = SENTIMENT_BASELINE_PATH,
+) -> list[dict[str, Any]]:
+    """Load human topic-specific sentiment scores used as retrieval examples."""
+    if not path.exists():
+        print(f"RAG sentiment baseline not found: {path}")
+        return []
+
+    examples = []
+    with open(path, "r", encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            feedback = normalize_comment(row.get("Feedback", ""))
+            topic = str(row.get("Topic", "")).strip()
+            sentiment = str(row.get("Sentiment", "neutral")).strip().lower()
+            reasoning = normalize_comment(row.get("Reasoning", ""))
+            if not feedback or topic not in TOPIC_KEYS:
+                continue
+            if sentiment not in {"positive", "negative", "neutral"}:
+                sentiment = "neutral"
+            try:
+                score = max(1, min(5, int(row.get("Score", 3))))
+            except (TypeError, ValueError):
+                score = 3
+
+            examples.append(
+                {
+                    "feedback": feedback,
+                    "topic": topic,
+                    "sentiment": sentiment,
+                    "score": score,
+                    "reasoning": reasoning,
+                }
+            )
+
+    return examples
+
+
+def retrieve_similar_examples(
+    comment: str,
+    examples: list[dict[str, Any]],
+    limit: int,
+    topic: str | None = None,
+    exclude_exact_match: bool = True,
+) -> list[dict[str, Any]]:
+    """Return the most similar human-labeled examples for a target comment."""
+    if not examples or limit <= 0:
+        return []
+
+    comment_key = canonical_comment_key(comment)
+    scored_examples = []
+    for example in examples:
+        if topic is not None and example.get("topic") != topic:
+            continue
+
+        example_feedback = str(example.get("feedback", ""))
+        example_key = canonical_comment_key(example_feedback)
+        if exclude_exact_match and (
+            comment_key == example_key or is_near_duplicate_comment(comment_key, example_key)
+        ):
+            continue
+
+        similarity = retrieval_similarity(comment, example_feedback)
+        if similarity < RAG_MIN_SIMILARITY:
+            continue
+
+        scored_examples.append((similarity, example))
+
+    scored_examples.sort(key=lambda item: item[0], reverse=True)
+    retrieved = []
+    for similarity, example in scored_examples[:limit]:
+        retrieved_example = dict(example)
+        retrieved_example["similarity"] = round(similarity, 3)
+        retrieved.append(retrieved_example)
+    return retrieved
+
+
+def format_classification_examples(examples: list[dict[str, Any]]) -> str:
+    if not examples:
+        return "[]"
+
+    compact_examples = [
+        {
+            "similarity": example.get("similarity", 0.0),
+            "feedback": truncate_example_text(str(example.get("feedback", ""))),
+            "human_topics": example.get("topics", []),
+        }
+        for example in examples
+    ]
+    return json.dumps(compact_examples, indent=2)
+
+
+def format_sentiment_examples(examples: list[dict[str, Any]]) -> str:
+    if not examples:
+        return "[]"
+
+    compact_examples = [
+        {
+            "similarity": example.get("similarity", 0.0),
+            "feedback": truncate_example_text(str(example.get("feedback", ""))),
+            "human_sentiment": example.get("sentiment", "neutral"),
+            "human_score": example.get("score", 3),
+            "human_reasoning": truncate_example_text(str(example.get("reasoning", "")), 180),
+        }
+        for example in examples
+    ]
+    return json.dumps(compact_examples, indent=2)
+
+
 def extract_json_object(text: str) -> dict[str, Any]:
     """Extract the first JSON object from an LLM response."""
     json_start = text.find("{")
@@ -241,13 +472,53 @@ def has_topic_evidence(comment: str, topic: str) -> bool:
     return any(re.search(pattern, text) for pattern in patterns)
 
 
-def filter_topics_by_evidence(comment: str, topics: list[str]) -> list[str]:
-    filtered_topics = [topic for topic in topics if has_topic_evidence(comment, topic)]
-    if not filtered_topics:
+def looks_like_generic_only_comment(comment: str) -> bool:
+    """Catch very short generic praise before it gets forced into a real topic."""
+    if any(has_topic_evidence(comment, topic) for topic in TOPIC_KEYS):
+        return False
+
+    tokens = retrieval_tokens(comment)
+    if len(tokens) > 12:
+        return False
+
+    text = comment.casefold()
+    generic_patterns = [
+        r"\b(best|great|excellent|amazing|incredible|fantastic|good|wonderful|outstanding|awesome)\b.*\b(professor|instructor|teacher|lecturer)\b",
+        r"\b(professor|instructor|teacher|lecturer)\b.*\b(best|great|excellent|amazing|incredible|fantastic|good|wonderful|outstanding|awesome)\b",
+        r"\b(no complaints|love this class|goat)\b",
+    ]
+    return any(re.search(pattern, text) for pattern in generic_patterns)
+
+
+def filter_topics_by_evidence(
+    comment: str,
+    topics: list[str],
+    mode: str = "soft",
+) -> list[str]:
+    valid_topics = []
+    for topic in topics:
+        if topic in TOPICS and topic not in valid_topics:
+            valid_topics.append(topic)
+
+    if not valid_topics:
         return [OTHER]
-    if OTHER in filtered_topics:
+    if valid_topics == [OTHER]:
         return [OTHER]
-    return filtered_topics
+
+    non_other_topics = [topic for topic in valid_topics if topic != OTHER]
+    if not non_other_topics:
+        return [OTHER]
+
+    if mode == "strict":
+        filtered_topics = [
+            topic for topic in non_other_topics if has_topic_evidence(comment, topic)
+        ]
+        return filtered_topics or [OTHER]
+
+    if looks_like_generic_only_comment(comment):
+        return [OTHER]
+
+    return non_other_topics
 
 
 def sentiment_from_score(score: int) -> str:
@@ -258,18 +529,35 @@ def sentiment_from_score(score: int) -> str:
     return "neutral"
 
 
-def classify_with_llama(comment: str) -> list[str]:
+def classify_with_llama(
+    comment: str,
+    classification_examples: list[dict[str, Any]] | None = None,
+    evidence_filter_mode: str = "soft",
+) -> list[str]:
     """Classify a course-evaluation comment into explicit instructional topics."""
+    retrieved_examples = retrieve_similar_examples(
+        comment,
+        classification_examples or [],
+        limit=RAG_CLASSIFICATION_EXAMPLE_COUNT,
+    )
     prompt = f"""You are a careful course-evaluation coder.
 
-Assign ONLY topics that are explicitly supported by words or close paraphrases in the feedback text.
+Assign topics that are supported by words, close paraphrases, or concrete teaching/course details in the feedback text.
 Do not infer a topic from general praise, student success, caring, or broad support alone.
 If broad praise also contains a concrete topic clue, assign that topic.
-Prefer fewer labels when evidence is weak. If in doubt, use "{OTHER}".
+Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has no instructional detail.
 
     ALLOWED TOPICS:
     {format_topics()}
     - {OTHER}: Generic praise, broad approval, or comments with no specific instructional detail.
+
+    RETRIEVED HUMAN-CODED REFERENCE EXAMPLES:
+    {format_classification_examples(retrieved_examples)}
+
+    HOW TO USE THE REFERENCE EXAMPLES:
+    - Use them as calibration for boundary cases and similar wording.
+    - Do not copy labels unless the target feedback contains similar evidence.
+    - Similar examples can help you recognize concrete topic clues even when wording differs.
 
     BOUNDARY RULES:
     - Use "Course organization and structure" only for organization, structure, navigation, sequencing, or course design.
@@ -291,11 +579,12 @@ Prefer fewer labels when evidence is weak. If in doubt, use "{OTHER}".
 - "Understood", "easy to understand", or "follow along" is Clarity of explanations.
 - Helpful clicker questions can be Student engagement and participation and/or Effectiveness of assignments.
 - Going over questions in lecture can be Student engagement and participation and/or Clarity of explanations.
+- Brief but concrete wording like "clear teaching", "fair exams", "organized", "helpful resources", or "fast lectures" is enough to assign the matching topic.
 - If the comment is only generic praise, choose only "{OTHER}".
 - If "{OTHER}" is selected, it must be the only topic.
 
     Return ONLY valid JSON with exact topic names:
-    {{"topics": ["Topic name"]}}
+    {{"topics": ["Topic name"], "evidence": {{"Topic name": "short phrase from feedback"}}}}
 
     FEEDBACK:
     \"\"\"{comment}\"\"\"
@@ -313,18 +602,31 @@ Prefer fewer labels when evidence is weak. If in doubt, use "{OTHER}".
 
     valid_topics = []
     for topic in topics:
+        if isinstance(topic, dict):
+            topic = topic.get("topic") or topic.get("name")
+        topic = str(topic).strip()
         if topic in TOPICS and topic not in valid_topics:
             valid_topics.append(topic)
 
     if not valid_topics:
         return [OTHER]
-    if OTHER in valid_topics:
+    if valid_topics == [OTHER]:
         return [OTHER]
-    return filter_topics_by_evidence(comment, valid_topics)
+    return filter_topics_by_evidence(comment, valid_topics, mode=evidence_filter_mode)
 
 
-def sentiment_with_llama(comment: str, topic: str) -> dict[str, Any]:
+def sentiment_with_llama(
+    comment: str,
+    topic: str,
+    sentiment_examples: list[dict[str, Any]] | None = None,
+) -> dict[str, Any]:
     """Score a comment for one topic using the topic-specific rubric."""
+    retrieved_examples = retrieve_similar_examples(
+        comment,
+        sentiment_examples or [],
+        limit=RAG_SENTIMENT_EXAMPLE_COUNT,
+        topic=topic,
+    )
     prompt = f"""You are scoring one course-evaluation comment for one topic.
 
 Use the rubric exactly. The numeric score is rubric-specific, not generic sentiment.
@@ -336,6 +638,14 @@ For Pace and Workload, score 5 means the condition supports learning well; score
 
     RUBRIC:
     {format_rubric(topic)}
+
+    RETRIEVED HUMAN-SCORED EXAMPLES FOR THIS SAME TOPIC:
+    {format_sentiment_examples(retrieved_examples)}
+
+    HOW TO USE THE REFERENCE EXAMPLES:
+    - Use them as calibration for the rubric scale.
+    - Do not copy a score unless the target feedback gives similar topic-specific evidence.
+    - If the target feedback is brief or indirect, avoid extreme scores unless the wording is clearly extreme.
 
     FEEDBACK:
     \"\"\"{comment}\"\"\"
@@ -530,6 +840,8 @@ def analysis_pipeline(
     output_dir: Path | None = None,
     write_files: bool = True,
     dedupe_exact_comments: bool = True,
+    use_rag: bool = True,
+    evidence_filter_mode: str = "soft",
 ) -> dict[str, Any]:
     """Produce a combined classification, sentiment, score, and summary report."""
     output_dir = output_dir or BASE_DIR / "results" / "combined"
@@ -545,12 +857,25 @@ def analysis_pipeline(
                 f"processing {len(raw_comments)} unique feedback items."
             )
 
+    classification_examples = load_classification_examples() if use_rag else []
+    sentiment_examples = load_sentiment_examples() if use_rag else []
+    if use_rag:
+        print(
+            "Loaded RAG examples: "
+            f"{len(classification_examples)} classification, "
+            f"{len(sentiment_examples)} sentiment."
+        )
+
     topic_comments: dict[str, list[dict[str, Any]]] = {topic: [] for topic in TOPICS}
     all_scores = []
 
     for idx, feedback in enumerate(raw_comments, 1):
         print(f"\n[{idx}/{len(raw_comments)}] Processing feedback...")
-        topics = classify_with_llama(feedback)
+        topics = classify_with_llama(
+            feedback,
+            classification_examples=classification_examples,
+            evidence_filter_mode=evidence_filter_mode,
+        )
         print(f"  Topics: {topics}")
 
         for topic in topics:
@@ -566,7 +891,11 @@ def analysis_pipeline(
                 )
                 continue
 
-            scored = sentiment_with_llama(feedback, topic)
+            scored = sentiment_with_llama(
+                feedback,
+                topic,
+                sentiment_examples=sentiment_examples,
+            )
             all_scores.append(scored["score"])
             topic_comments[topic].append({"feedback": feedback, **scored})
             print(f"    {topic}: {scored['sentiment']} ({scored['score']}/5)")
@@ -621,6 +950,12 @@ def analysis_pipeline(
             "num_duplicate_comments_removed": duplicate_comments_removed,
             "dedupe_mode": "exact_and_near_duplicate",
             "num_scored_topic_comments": len(all_scores),
+            "rag_enabled": use_rag,
+            "classification_examples_loaded": len(classification_examples),
+            "sentiment_examples_loaded": len(sentiment_examples),
+            "classification_examples_per_prompt": RAG_CLASSIFICATION_EXAMPLE_COUNT if use_rag else 0,
+            "sentiment_examples_per_prompt": RAG_SENTIMENT_EXAMPLE_COUNT if use_rag else 0,
+            "evidence_filter_mode": evidence_filter_mode,
             "total_time_seconds": round(time.time() - start_time, 2),
         },
     }

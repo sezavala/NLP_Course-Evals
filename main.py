@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import argparse
 import csv
 import json
 import re
@@ -12,7 +11,7 @@ from typing import Any
 
 import requests
 
-from data import FEEDBACK_LIST, SCORING_RUBRIC, TOPIC_DEFS, TOPIC_KEYS
+from data import SCORING_RUBRIC, TOPIC_DEFS, TOPIC_KEYS
 
 BASE_DIR = Path(__file__).resolve().parents[0]
 OTHER = "None of the above / Other"
@@ -271,7 +270,10 @@ def dedupe_comments(raw_comments: list[str]) -> tuple[list[str], int]:
         if not normalized:
             continue
         key = canonical_comment_key(normalized)
-        if key in seen_keys or any(is_near_duplicate_comment(key, existing) for existing in seen_key_list):
+        is_duplicate = key in seen_keys or any(
+            is_near_duplicate_comment(key, existing) for existing in seen_key_list
+        )
+        if is_duplicate:
             duplicate_count += 1
             continue
         seen_keys.add(key)
@@ -560,21 +562,32 @@ def looks_like_generic_only_comment(comment: str) -> bool:
         return False
 
     tokens = retrieval_tokens(comment)
-    if len(tokens) > 15:  # Increased threshold for better detection
+    if len(tokens) > 15:
         return False
 
     text = comment.casefold()
-    
-    # Check for lack of concrete teaching detail
     concrete_keywords = [
-        "assign", "exam", "lecture", "class", "material", "discussion",
-        "grade", "feedback", "office", "resource", "resource", "classroom",
-        "pace", "workload", "assessment", "quiz", "test"
+        "assign",
+        "exam",
+        "lecture",
+        "class",
+        "material",
+        "discussion",
+        "grade",
+        "feedback",
+        "office",
+        "resource",
+        "classroom",
+        "pace",
+        "workload",
+        "assessment",
+        "quiz",
+        "test",
     ]
     has_concrete = any(kw in text for kw in concrete_keywords)
     if not has_concrete and len(tokens) < 8:
-        return True  # Too generic, too short, no concrete detail
-    
+        return True
+
     generic_patterns = [
         r"\b(best|great|excellent|amazing|incredible|fantastic|good|wonderful|outstanding|awesome)\b.*\b(professor|instructor|teacher|lecturer)\b",
         r"\b(professor|instructor|teacher|lecturer)\b.*\b(best|great|excellent|amazing|incredible|fantastic|good|wonderful|outstanding|awesome)\b",
@@ -627,8 +640,7 @@ def classify_with_llama(
     comment: str,
     classification_examples: list[dict[str, Any]] | None = None,
     evidence_filter_mode: str = "soft",
-    return_status: bool = False,
-) -> list[str] | dict[str, Any]:
+) -> dict[str, Any]:
     """Classify a course-evaluation comment into explicit instructional topics."""
     retrieved_examples = retrieve_similar_examples(
         comment,
@@ -688,12 +700,11 @@ Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has
         parsed = extract_json_object(call_ollama(prompt))
     except Exception as exc:
         print(f"  Classification error: {exc}")
-        error_result = {
+        return {
             "topics": [OTHER],
             "classification_status": "model_error",
             "classification_reasoning": "Failed to classify with model; excluded from rubric scoring.",
         }
-        return error_result if return_status else error_result["topics"]
 
     topics = parsed.get("topics", [OTHER])
     if not isinstance(topics, list):
@@ -708,19 +719,15 @@ Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has
             valid_topics.append(topic)
 
     if not valid_topics:
-        result = {"topics": [OTHER], "classification_status": "classified"}
-        return result if return_status else result["topics"]
+        return {"topics": [OTHER], "classification_status": "classified"}
     if valid_topics == [OTHER]:
-        result = {"topics": [OTHER], "classification_status": "classified"}
-        return result if return_status else result["topics"]
-    
-    # DEBUG: Show what LLM assigned before filtering
+        return {"topics": [OTHER], "classification_status": "classified"}
+
     filtered = filter_topics_by_evidence(comment, valid_topics, mode=evidence_filter_mode)
     if valid_topics != filtered:
-        print(f"    [DEBUG] LLM assigned: {valid_topics}, filtered to: {filtered}")
-    
-    result = {"topics": filtered, "classification_status": "classified"}
-    return result if return_status else filtered
+        print(f"    LLM assigned {valid_topics}; evidence filter kept {filtered}.")
+
+    return {"topics": filtered, "classification_status": "classified"}
 
 
 def sentiment_with_llama(
@@ -853,7 +860,11 @@ def check_topic_mismatch(reasoning: str, topic: str) -> bool:
     return False
 
 
-def summarize_topic_with_llama(topic: str, comments: list[dict[str, Any]], average_score: float | None) -> str:
+def summarize_topic_with_llama(
+    topic: str,
+    comments: list[dict[str, Any]],
+    average_score: float | None,
+) -> str:
     if not comments:
         return f"Summary of {topic}: No comments were assigned to this topic."
     if len(comments) == 1:
@@ -910,7 +921,11 @@ def summarize_topic_with_llama(topic: str, comments: list[dict[str, Any]], avera
     """
 
     try:
-        summary = call_ollama(prompt, temperature=0.2, timeout=120).strip()
+        summary = call_ollama(
+            prompt,
+            temperature=0.2,
+            timeout=120,
+        ).strip()
     except Exception as exc:
         print(f"  Summary error for {topic}: {exc}")
         return f"{exact_prefix} Themes unavailable due to model error."
@@ -1192,16 +1207,10 @@ def analysis_pipeline(
             feedback,
             classification_examples=classification_examples,
             evidence_filter_mode=evidence_filter_mode,
-            return_status=True,
         )
-        if isinstance(classification, dict):
-            topics = classification.get("topics", [OTHER])
-            classification_status = classification.get("classification_status", "classified")
-            classification_reasoning = classification.get("classification_reasoning", "")
-        else:
-            topics = classification
-            classification_status = "classified"
-            classification_reasoning = ""
+        topics = classification.get("topics", [OTHER])
+        classification_status = classification.get("classification_status", "classified")
+        classification_reasoning = classification.get("classification_reasoning", "")
         if classification_status == "model_error":
             classification_error_count += 1
         print(f"  Topics: {topics}")
@@ -1241,7 +1250,10 @@ def analysis_pipeline(
             is_mismatched = scored.pop("is_mismatched", False)
             threshold = CONFIDENCE_THRESHOLDS.get(topic, CONFIDENCE_THRESHOLDS["default"])
             if is_mismatched and scored.get("confidence", 0) > threshold:
-                print(f"    {topic}: FILTERED (mismatch in sentiment validation, conf {scored.get('confidence', 0):.2f} > {threshold})")
+                print(
+                    f"    {topic}: FILTERED (mismatch in sentiment validation, "
+                    f"conf {scored.get('confidence', 0):.2f} > {threshold})"
+                )
                 filtered_mismatch_count += 1
                 continue
             
@@ -1275,7 +1287,11 @@ def analysis_pipeline(
             and isinstance(item.get("confidence"), (int, float))
             and item.get("confidence", 0.0) < LOW_CONFIDENCE_THRESHOLD
         )
-        summary = summarize_topic_with_llama(topic, comments, average_score)
+        summary = summarize_topic_with_llama(
+            topic,
+            comments,
+            average_score,
+        )
         categories.append(
             {
                 "topic": topic,
@@ -1301,7 +1317,11 @@ def analysis_pipeline(
         )
         topic_summaries.append({"topic": topic, "summary": summary})
 
-    other_summary = summarize_topic_with_llama(OTHER, topic_comments[OTHER], None)
+    other_summary = summarize_topic_with_llama(
+        OTHER,
+        topic_comments[OTHER],
+        None,
+    )
     categories.append(
         {
             "topic": OTHER,
@@ -1393,53 +1413,7 @@ def load_feedback_from_json(json_data: dict[str, Any]) -> tuple[str, list[str]]:
     return course_id, raw_comments
 
 
-def load_feedback_from_file(input_path: Path) -> tuple[str, list[str]]:
-    with open(input_path, "r", encoding="utf-8") as f:
-        json_data = json.load(f)
-    if not isinstance(json_data, dict):
-        raise ValueError("Input JSON must be an object with course_id and raw_comments")
-    return load_feedback_from_json(json_data)
-
-
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Run the Llama course-evaluation analysis pipeline."
-    )
-    parser.add_argument(
-        "--input",
-        type=Path,
-        help="Path to JSON input containing course_id and raw_comments.",
-    )
-    parser.add_argument(
-        "--output-dir",
-        type=Path,
-        default=BASE_DIR / "results" / "combined",
-        help="Directory for the combined JSON and CSV report.",
-    )
-    parser.add_argument(
-        "--output-file",
-        type=Path,
-        default=BASE_DIR / "results" / "ML_OUTPUT.json",
-        help="Path for the main JSON output copy.",
-    )
-    parser.add_argument("--model", default=MODEL, help="Ollama model name.")
-    parser.add_argument("--ollama-url", default=OLLAMA_URL, help="Ollama generate API URL.")
-    parser.add_argument("--no-rag", action="store_true", help="Disable retrieval examples.")
-    parser.add_argument("--no-dedupe", action="store_true", help="Disable duplicate filtering.")
-    parser.add_argument(
-        "--evidence-filter-mode",
-        choices=("soft", "strict"),
-        default="soft",
-        help="How aggressively topic labels are filtered by lexical evidence.",
-    )
-    return parser.parse_args()
-
-
 if __name__ == "__main__":
-    args = parse_args()
-    MODEL = args.model
-    OLLAMA_URL = args.ollama_url
-
     # Exact JSON input
     json_input = {
         "course_id": "CHEM_14A_Fall2025",
@@ -1529,22 +1503,10 @@ if __name__ == "__main__":
         ]
     }
     
-    if args.input:
-        course_id, raw_comments = load_feedback_from_file(args.input)
-    else:
-        print("No --input provided; using embedded sample feedback.")
-        course_id, raw_comments = load_feedback_from_json(json_input)
-
-    output = analysis_pipeline(
-        course_id,
-        raw_comments,
-        output_dir=args.output_dir,
-        dedupe_exact_comments=not args.no_dedupe,
-        use_rag=not args.no_rag,
-        evidence_filter_mode=args.evidence_filter_mode,
-    )
+    course_id, raw_comments = load_feedback_from_json(json_input)
+    output = analysis_pipeline(course_id, raw_comments)
     print("\n" + "=" * 80)
-    output_path = args.output_file
+    output_path = BASE_DIR / "results" / "ML_OUTPUT.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2)

@@ -251,70 +251,21 @@ def canonical_comment_key(comment: str) -> str:
     return " ".join(re.findall(r"[a-z0-9]+", text))
 
 
-def is_near_duplicate_comment(candidate_key: str, existing_key: str) -> bool:
-    if candidate_key == existing_key:
-        return True
-    if min(len(candidate_key), len(existing_key)) < 80:
-        return False
-    return SequenceMatcher(None, candidate_key, existing_key).ratio() >= 0.92
-
-
 def dedupe_comments(raw_comments: list[str]) -> tuple[list[str], int]:
-    """Remove exact and near-duplicate comments after normalization."""
+    """Remove only exact duplicate comments after whitespace normalization."""
     seen_keys = set()
-    seen_key_list = []
     unique_comments = []
     duplicate_count = 0
     for comment in raw_comments:
         normalized = normalize_comment(comment)
         if not normalized:
             continue
-        key = canonical_comment_key(normalized)
-        is_duplicate = key in seen_keys or any(
-            is_near_duplicate_comment(key, existing) for existing in seen_key_list
-        )
-        if is_duplicate:
+        if normalized in seen_keys:
             duplicate_count += 1
             continue
-        seen_keys.add(key)
-        seen_key_list.append(key)
+        seen_keys.add(normalized)
         unique_comments.append(normalized)
     return unique_comments, duplicate_count
-
-
-def looks_like_malformed_fragment(comment: str) -> bool:
-    """Identify OCR/PDF split fragments that are too incomplete to analyze safely."""
-    normalized = normalize_comment(comment)
-    if not normalized:
-        return True
-
-    text = normalized.casefold()
-    word_count = len(re.findall(r"[a-z0-9']+", text))
-    if word_count <= 1:
-        return True
-
-    dangling_title = r"\b(?:dr|mr|mrs|ms)\.?\s*$"
-    if word_count <= 6 and re.search(dangling_title, text):
-        return True
-
-    incomplete_patterns = [
-        r"^i\s+think\s+in\s+general\s+(?:dr|professor|prof)\.?\s*$",
-        r"^strengths?\s+(?:is|are|include)\s+.*\b(?:dr|professor|prof)\.?\s*$",
-        r"^the\s+strengths?\s+of\s+.*\b(?:dr|professor|prof)\.?\s*$",
-    ]
-    return any(re.search(pattern, text) for pattern in incomplete_patterns)
-
-
-def filter_malformed_comments(raw_comments: list[str]) -> tuple[list[str], int]:
-    """Drop malformed fragments before classification and report the count."""
-    usable_comments = []
-    removed_count = 0
-    for comment in raw_comments:
-        if looks_like_malformed_fragment(comment):
-            removed_count += 1
-            continue
-        usable_comments.append(comment)
-    return usable_comments, removed_count
 
 
 def retrieval_tokens(text: str) -> set[str]:
@@ -445,9 +396,7 @@ def retrieve_similar_examples(
 
         example_feedback = str(example.get("feedback", ""))
         example_key = canonical_comment_key(example_feedback)
-        if exclude_exact_match and (
-            comment_key == example_key or is_near_duplicate_comment(comment_key, example_key)
-        ):
+        if exclude_exact_match and comment_key == example_key:
             continue
 
         similarity = retrieval_similarity(comment, example_feedback)
@@ -1052,7 +1001,6 @@ def pluralize(count: int, singular: str, plural: str | None = None) -> str:
 
 def build_output_warnings(
     categories: list[dict[str, Any]],
-    malformed_comments_removed: int,
     classification_error_count: int,
     failed_score_count: int,
     other_comment_count: int,
@@ -1086,12 +1034,6 @@ def build_output_warnings(
         warnings.append(
             f"{pluralize(other_comment_count, 'generic or uncategorized comment')} "
             f"{verb} summarized but excluded from rubric averages."
-        )
-    if malformed_comments_removed:
-        verb = "was" if malformed_comments_removed == 1 else "were"
-        warnings.append(
-            f"{pluralize(malformed_comments_removed, 'malformed feedback fragment')} "
-            f"{verb} removed before analysis."
         )
     return warnings
 
@@ -1187,20 +1129,13 @@ def analysis_pipeline(
     output_dir = output_dir or BASE_DIR / "results" / "combined"
     start_time = time.time()
     input_comment_count = len(raw_comments)
-    raw_comments, malformed_comments_removed = filter_malformed_comments(raw_comments)
-    if malformed_comments_removed:
-        print(
-            "Removed "
-            f"{malformed_comments_removed} malformed feedback fragments before analysis; "
-            f"processing {len(raw_comments)} usable feedback items."
-        )
     duplicate_comments_removed = 0
     if dedupe_exact_comments:
         raw_comments, duplicate_comments_removed = dedupe_comments(raw_comments)
         if duplicate_comments_removed:
             print(
                 "Removed "
-                f"{duplicate_comments_removed} duplicate or near-duplicate feedback items; "
+                f"{duplicate_comments_removed} exact duplicate feedback items; "
                 f"processing {len(raw_comments)} unique feedback items."
             )
 
@@ -1367,7 +1302,6 @@ def analysis_pipeline(
     topic_assignment_overall_score = mean_score(assignment_scores)
     warnings = build_output_warnings(
         categories,
-        malformed_comments_removed=malformed_comments_removed,
         classification_error_count=classification_error_count,
         failed_score_count=failed_score_count,
         other_comment_count=len(topic_comments[OTHER]),
@@ -1385,9 +1319,8 @@ def analysis_pipeline(
         "metadata": {
             "num_comments": len(raw_comments),
             "num_input_comments": input_comment_count,
-            "num_malformed_comments_removed": malformed_comments_removed,
             "num_duplicate_comments_removed": duplicate_comments_removed,
-            "dedupe_mode": "exact_and_near_duplicate",
+            "dedupe_mode": "exact",
             "num_topic_assignments": sum(len(topic_comments[topic]) for topic in TOPIC_KEYS),
             "num_scored_topic_comments": len(assignment_scores),
             "num_comments_with_scores": len(per_comment_score_means),

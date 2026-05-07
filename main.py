@@ -261,6 +261,7 @@ def dedupe_comments(raw_comments: list[str]) -> tuple[list[str], int]:
         if not normalized:
             continue
         if normalized in seen_keys:
+            print(normalized)
             duplicate_count += 1
             continue
         seen_keys.add(normalized)

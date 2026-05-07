@@ -1,238 +1,246 @@
 {
   "course_id": "CHEM_14A_Fall2025",
   "model": "llama3",
-  "overall_score": 3.66,
+  "overall_score": 3.81,
   "category_scores": [
     {
       "category": "Course organization and structure",
-      "average_score": 3.75,
+      "average_score": 4.0,
       "comment_count": 4
     },
     {
       "category": "Pace",
+      "average_score": 2.67,
+      "comment_count": 3
+    },
+    {
+      "category": "Workload",
       "average_score": 1.0,
       "comment_count": 1
     },
     {
-      "category": "Workload",
-      "average_score": null,
-      "comment_count": 0
-    },
-    {
       "category": "Student engagement and participation",
-      "average_score": 4.67,
-      "comment_count": 6
+      "average_score": 5.0,
+      "comment_count": 4
     },
     {
       "category": "Clarity of explanations",
-      "average_score": 4.9,
-      "comment_count": 10
+      "average_score": 3.71,
+      "comment_count": 17
     },
     {
       "category": "Effectiveness of assignments",
-      "average_score": 3.33,
+      "average_score": 3.67,
       "comment_count": 3
     },
     {
       "category": "Classroom atmosphere",
-      "average_score": null,
-      "comment_count": 0
-    },
-    {
-      "category": "Instructor's communication and availability",
-      "average_score": 4.25,
-      "comment_count": 8
-    },
-    {
-      "category": "Inclusivity and sense of belonging",
       "average_score": 5.0,
       "comment_count": 1
     },
     {
+      "category": "Instructor's communication and availability",
+      "average_score": 4.31,
+      "comment_count": 13
+    },
+    {
+      "category": "Inclusivity and sense of belonging",
+      "average_score": 5.0,
+      "comment_count": 8
+    },
+    {
       "category": "Assessment",
-      "average_score": 3.0,
-      "comment_count": 2
+      "average_score": 2.0,
+      "comment_count": 3
     },
     {
       "category": "Grading and feedback",
-      "average_score": 1.67,
-      "comment_count": 6
+      "average_score": 2.0,
+      "comment_count": 3
     },
     {
       "category": "Learning resources and materials",
-      "average_score": 1.0,
-      "comment_count": 3
+      "average_score": 3.0,
+      "comment_count": 4
     }
   ],
   "topic_summaries": [
     {
       "topic": "Course organization and structure",
-      "summary": "Summary of Course organization and structure: Overall, students had mixed opinions on the course's organization and structure. While some found it clear and well-organized, with one student praising Dr.Ramachandran's efforts to make complex concepts manageable (4 comments out of 4), another student experienced confusion due to changes in assignment and quiz schedules (1 negative comment)."
+      "summary": "Summary of Course organization and structure: The course received an average score of 4.0 out of 5, with three positive comments praising Dr. Ramachandran's organized approach and effective structuring of the material. One negative comment noted inconsistent formatting in power points, making it difficult to review for quizzes and tests."
     },
     {
       "topic": "Pace",
-      "summary": "Summary of Pace: One assigned comment was negative with a score of 1/5, citing: \"I feel like organic chemistry is just being thrown into the class material and we do not have much time to go over it before the final.\""
+      "summary": "Summary of Pace: The course pace received an average score of 2.67 out of 5, with one positive comment praising its time management and two negative comments expressing concerns about the speed and pressure it imposed on students."
     },
     {
       "topic": "Workload",
-      "summary": "Summary of Workload: No comments were assigned to this topic."
+      "summary": "Summary of Workload: One assigned comment was negative with a score of 1/5, citing: \"I think it was confusing at times when assignments and quizzes would be thrown at us at times different than originally specified at the beginning of the quarter.\""
     },
     {
       "topic": "Student engagement and participation",
-      "summary": "Summary of Student engagement and participation: The course had highly engaging opportunities, with 5 out of 6 students commenting positively on Professor Ramachandran's teaching style, encouraging discussion, and using innovative tools like clicker questions. One student suggested additional examples to improve engagement further."
+      "summary": "Summary of Student engagement and participation: Students felt highly engaged throughout the course, with all 4 respondents giving an average score of 5.0 out of 5. The positive sentiment counts also support this conclusion, with no negative or neutral comments recorded."
     },
     {
       "topic": "Clarity of explanations",
-      "summary": "Summary of Clarity of explanations: All 10 respondents commented positively on the clarity of explanations, with an average score of 4.9 out of 5. The comments praise the instructor's ability to make complex concepts easy to understand and their willingness to clarify any questions or concerns."
+      "summary": "Summary of Clarity of explanations: The course instructor's explanations were generally clear, with 9 out of 17 comments expressing positive sentiment and indicating that students easily understood the material. Only 3 comments had neutral or negative sentiments, suggesting some issues with formatting and explanation in power point slides."
     },
     {
       "topic": "Effectiveness of assignments",
-      "summary": "Summary of Effectiveness of assignments: The average score for effectiveness of assignments is 3.33, with one comment expressing a positive sentiment, one neutral sentiment, and one negative sentiment."
+      "summary": "Summary of Effectiveness of assignments: Overall, students found assignments to be somewhat helpful and supportive of understanding, with an average score of 3.67 out of 5 (based on 3 comments). While one student felt that more example problems and clicker questions would help, two other students thought the assignments were very effective in improving their understanding and practice."
     },
     {
       "topic": "Classroom atmosphere",
-      "summary": "Summary of Classroom atmosphere: No comments were assigned to this topic."
+      "summary": "Summary of Classroom atmosphere: One assigned comment was positive with a score of 5/5, citing: \"This was the first time I felt welcomed and interested in such material.\""
     },
     {
       "topic": "Instructor's communication and availability",
-      "summary": "Summary of Instructor's communication and availability: The instructor received an average score of 4.25, with 5 positive comments praising their clear communication, prompt responses, and willingness to meet with students. There were no negative comments or concerns expressed about the instructor's availability."
+      "summary": "Summary of Instructor's communication and availability: The instructor received an overwhelmingly positive evaluation (13 comments, average score 4.31), with students praising her timely and clear responses to questions and emails, as well as her willingness to meet with them and provide individualized support."
     },
     {
       "topic": "Inclusivity and sense of belonging",
-      "summary": "Summary of Inclusivity and sense of belonging: One assigned comment was positive with a score of 5/5, citing: \"This was the first time I felt welcomed and interested in such material.\""
+      "summary": "Summary of Inclusivity and sense of belonging: The course environment felt highly inclusive and welcoming to all students, with 8 comments praising Professor Ramachandran's genuine care for student well-being and success."
     },
     {
       "topic": "Assessment",
-      "summary": "Summary of Assessment: One student praised the fairness and clarity of exams, suggesting that a timer on the screen during exams would be helpful. However, another student felt that time constraints led to a stressful environment and recommended allowing more time for exams."
+      "summary": "Summary of Assessment: The majority of students found assessments to be unclear, unfair, or not reflecting course content, with 2 negative and 1 neutral comment out of 3 total comments. Students expressed concerns about inadequate preparation time for organic chemistry material and feeling unprepared for midterms due to lack of resources."
     },
     {
       "topic": "Grading and feedback",
-      "summary": "Summary of Grading and feedback: The majority of respondents (5) expressed negative sentiments regarding grading and feedback, citing issues with consistency, partial credit, and harsh grading scales. Only 1 respondent had a neutral sentiment, suggesting that feedback was limited but fair."
+      "summary": "Summary of Grading and feedback: Feedback was seen as unhelpful, with all three comments expressing dissatisfaction. The sentiment is entirely negative, indicating that students felt grades were inconsistent, partial credit was unfair, and grading scales were harsh."
     },
     {
       "topic": "Learning resources and materials",
-      "summary": "Summary of Learning resources and materials: The course received overwhelmingly negative feedback regarding learning resources and materials, with all three comments scoring 1 out of 5. Students felt that resources were missing, unclear, or lacking in explanation, making it difficult to review them before quizzes and tests."
+      "summary": "Summary of Learning resources and materials: There were 4 course evaluations for this topic, with an average score of 3.0 out of 5. The sentiment counts indicate that 2 comments were positive and 2 were negative. Comments praised instructors' efforts to provide ample resources and support, but also noted inconsistencies in formatting and a perceived lack of adequate resources, which made it difficult to prepare for assessments."
     },
     {
       "topic": "None of the above / Other",
-      "summary": "Summary of None of the above / Other: The 32 comments in this category overwhelmingly praise Professor Ramachandran's dedication to student learning and well-being, with many students expressing gratitude for her supportive teaching style and commitment to helping students succeed."
+      "summary": "Summary of None of the above / Other: The 17 respondents praised Dr. Ramachandran's exceptional teaching, emphasizing her care and concern for students' learning and growth."
     }
   ],
   "categories": [
     {
       "topic": "Course organization and structure",
-      "average_score": 3.75,
+      "average_score": 4.0,
       "comment_count": 4,
       "comments": [
-        {
-          "feedback": "The strengths of this course is that we got through all the material so it was excellent on time management.",
-          "sentiment": "neutral",
-          "score": 3,
-          "confidence": 0.8,
-          "reasoning": "The feedback does not explicitly mention course organization and structure, but mentions strengths in terms of time management which is unrelated to the topic."
-        },
-        {
-          "feedback": "I think it was confusing at times when assignments and quizzes would be thrown at us at times different than originally specified at the beginning of the quarter.",
-          "sentiment": "negative",
-          "score": 2,
-          "confidence": 0.8,
-          "reasoning": "The comment mentions that assignments and quizzes were 'thrown at us' in a confusing way, which suggests some issues with course organization and structure."
-        },
         {
           "feedback": "I believe Dr.Ramachandran has a very organized course and truly cares about the success of her students.",
           "sentiment": "positive",
           "score": 5,
-          "confidence": 1.0,
-          "reasoning": "The feedback states that Dr.Ramachandran has a 'very organized course', which suggests that the course organization and structure makes learning easy, aligning with rubric score 5."
+          "confidence": 0.8,
+          "reasoning": "Dr.Ramachandran has a very organized course, indicating excellent structure and organization."
         },
         {
           "feedback": "She made the hardest concepts seem very manageable and did a very good job at organizing her course.",
           "sentiment": "positive",
           "score": 5,
-          "confidence": 1.0,
+          "confidence": 0.9,
           "reasoning": "She made the hardest concepts seem very manageable and did a very good job at organizing her course."
+        },
+        {
+          "feedback": "I found the formatting of the power points to be inconsistent and lacking in explanation which made it difficult to review them before quizzes and tests without rewatching the entire bruin cast.",
+          "sentiment": "negative",
+          "score": 1,
+          "confidence": 0.9,
+          "reasoning": "The formatting of the power points was 'lacking in explanation' which made it difficult to review them, indicating that the course organization and structure makes learning challenging."
+        },
+        {
+          "feedback": "Professor Ramachandran completely changed Chemistry for me and I am so thankful I came across this class.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 1.0,
+          "reasoning": "The feedback explicitly states that Professor Ramachandran 'completely changed Chemistry for me', implying that the course organization and structure were excellent and made the material easy to understand."
         }
       ]
     },
     {
       "topic": "Pace",
-      "average_score": 1.0,
-      "comment_count": 1,
+      "average_score": 2.67,
+      "comment_count": 3,
       "comments": [
+        {
+          "feedback": "The strengths of this course is that we got through all the material so it was excellent on time management.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.9,
+          "reasoning": "The feedback explicitly mentions that they 'got through all the material so it was excellent on time management', indicating a reasonable pace."
+        },
+        {
+          "feedback": "The material on the exams was always fair, my only problem was the time constraint as it resulted in a very stressful environment that made it very likely for students to blank out during the exam, more time should be allotted for exams.",
+          "sentiment": "negative",
+          "score": 2,
+          "confidence": 0.8,
+          "reasoning": "The feedback mentions 'time constraint' and 'stressed environment', indicating that the pace of the course was a problem for students."
+        },
         {
           "feedback": "I feel like organic chemistry is just being thrown into the class material and we do not have much time to go over it before the final.",
           "sentiment": "negative",
           "score": 1,
           "confidence": 0.9,
-          "reasoning": "The comment mentions the course pace is 'way too fast' as it feels like material is being rushed through, making it hard to keep up."
+          "reasoning": "I feel like organic chemistry is just being thrown into the class material and we do not have much time to go over it before the final."
         }
       ]
     },
     {
       "topic": "Workload",
-      "average_score": null,
-      "comment_count": 0,
-      "comments": []
+      "average_score": 1.0,
+      "comment_count": 1,
+      "comments": [
+        {
+          "feedback": "I think it was confusing at times when assignments and quizzes would be thrown at us at times different than originally specified at the beginning of the quarter.",
+          "sentiment": "negative",
+          "score": 1,
+          "confidence": 0.8,
+          "reasoning": "The feedback mentions that assignments and quizzes were 'thrown at us' at times different than originally specified, indicating a feeling of being overwhelmed."
+        }
+      ]
     },
     {
       "topic": "Student engagement and participation",
-      "average_score": 4.67,
-      "comment_count": 6,
+      "average_score": 5.0,
+      "comment_count": 4,
       "comments": [
-        {
-          "feedback": "Professor Ramachandran is an engaging lecturer and very obviously cares about students understanding the material.",
-          "sentiment": "positive",
-          "score": 5,
-          "confidence": 0.8,
-          "reasoning": "The feedback explicitly states that Professor Ramachandran is an engaging lecturer, indicating that students were highly engaged in the course."
-        },
         {
           "feedback": "The instructor takes the time togo over any question that is asked during lecture, does her best to make sure that students are understanding the material in case there is any confusion.",
           "sentiment": "positive",
           "score": 5,
-          "confidence": 1.0,
-          "reasoning": "The instructor takes the time to go over any question that is asked during lecture, which indicates a high level of engagement and interaction."
+          "confidence": 0.8,
+          "reasoning": "The instructor 'takes the time to go over any question that is asked during lecture', showing a willingness to engage with students and ensure understanding, which supports this topic."
         },
         {
           "feedback": "I think the implementation of clicker questions really gave me an idea of what exam questions would be like, so clickers were very helpful and they should be used more often!",
           "sentiment": "positive",
           "score": 5,
-          "confidence": 0.8,
-          "reasoning": "The comment explicitly states that the clicker questions were 'very helpful' and that they should be used more often, indicating high engagement."
-        },
-        {
-          "feedback": "Ramachandran puts into her course and making sure students feel free to ask questions and ask for explana- tion when they don\u2019t understand.",
-          "sentiment": "positive",
-          "score": 5,
-          "confidence": 1.0,
-          "reasoning": "The feedback explicitly states that Ramachandran 'makes sure students feel free to ask questions and ask for explanation when they don\u2019t understand', which suggests a high level of engagement and participation among students."
+          "confidence": 0.9,
+          "reasoning": "The feedback explicitly mentions clicker questions being 'very helpful', which indicates high engagement and participation."
         },
         {
           "feedback": "She encourages discussion, ask- ing questions and provide incentives such as worksheets for people to go to her office hours.",
           "sentiment": "positive",
           "score": 5,
-          "confidence": 1.0,
-          "reasoning": "The instructor encourages discussion and provides incentives, which are strong examples of opportunities for student engagement and participation."
+          "confidence": 0.8,
+          "reasoning": "She encourages discussion, providing incentives such as worksheets for people to go to her office hours."
         },
         {
-          "feedback": "I think more example problems and clicker questions would help.",
-          "sentiment": "neutral",
-          "score": 3,
-          "confidence": 0.8,
-          "reasoning": "The feedback does not explicitly state that the course lacked engagement, but rather suggests ways to improve it."
+          "feedback": "She is very kind and understanding and does what she can to ensure her students are engaging in the class and doing well.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.9,
+          "reasoning": "She is very kind and understanding and does what she can to ensure her students are engaging in the class..."
         }
       ]
     },
     {
       "topic": "Clarity of explanations",
-      "average_score": 4.9,
-      "comment_count": 10,
+      "average_score": 3.71,
+      "comment_count": 17,
       "comments": [
         {
           "feedback": "Presentations and lectures were very clear.",
           "sentiment": "positive",
           "score": 5,
-          "confidence": 1.0,
+          "confidence": 0.9,
           "reasoning": "Presentations and lectures were very clear."
         },
         {
@@ -240,21 +248,21 @@
           "sentiment": "positive",
           "score": 5,
           "confidence": 0.9,
-          "reasoning": "The comment mentions that the lectures were 'really good' and that the student was able to 'follow along easily', indicating that the explanations were clear."
+          "reasoning": "The feedback explicitly states that 'I understood most of the lectures and was able to follow along easily', indicating clear explanations."
         },
         {
           "feedback": "Professor Ramachandran is an engaging lecturer and very obviously cares about students understanding the material.",
           "sentiment": "positive",
-          "score": 4,
-          "confidence": 1.0,
-          "reasoning": "The feedback does not explicitly state how Professor Ramachandran explained concepts, but it suggests that he is an engaging lecturer and cares about students' understanding."
+          "score": 5,
+          "confidence": 0.9,
+          "reasoning": "The feedback explicitly states that Professor Ramachandran is an engaging lecturer and very obviously cares about students understanding the material, indicating clear explanations."
         },
         {
-          "feedback": "I know that many of us struggle with such dense course but I believe that Professor Ramachandran has made is extremely doable and under- standable for everyone.",
-          "sentiment": "positive",
-          "score": 5,
+          "feedback": "The strengths that this professor has performed was teaching skills, knowledge of the material, communication, and concern of the students.",
+          "sentiment": "neutral",
+          "score": 3,
           "confidence": 0.8,
-          "reasoning": "The feedback explicitly states that Professor Ramachandran's explanations made the course 'extremely doable and understandable for everyone', indicating very clear explanations."
+          "reasoning": "The feedback does not explicitly state how the instructor explained concepts, but it mentions 'teaching skills' which implies some level of clarity, making explanations somewhat clear and helping with basic understanding."
         },
         {
           "feedback": "The instructor takes the time togo over any question that is asked during lecture, does her best to make sure that students are understanding the material in case there is any confusion.",
@@ -267,138 +275,118 @@
           "feedback": "Professor\u2019s teaching is always clear.",
           "sentiment": "positive",
           "score": 5,
-          "confidence": 0.9,
-          "reasoning": "The feedback states that the professor's teaching is 'always clear', which suggests that explanations were very clear and no additional time was needed to understand."
+          "confidence": 0.8,
+          "reasoning": "The feedback explicitly states that the Professor\u2019s teaching is always clear, which aligns with a score of 5 on the rubric."
         },
         {
           "feedback": "I love her lectures, and I can always understand the concepts after her explanation.",
+          "sentiment": "neutral",
+          "score": 3,
+          "confidence": 0.0,
+          "reasoning": "Failed to score with model."
+        },
+        {
+          "feedback": "I really believe that a lot of that has to do with Professor Rama chandra n\u2019s teaching style and I appreciate that very much.",
+          "sentiment": "neutral",
+          "score": 3,
+          "confidence": 0.0,
+          "reasoning": "Failed to score with model."
+        },
+        {
+          "feedback": "I think her exams and grading system are fair but it would be very helpful if there could be a timer on the screen during exams instead of just a minute warning.",
+          "sentiment": "neutral",
+          "score": 3,
+          "confidence": 0.0,
+          "reasoning": "Failed to score with model."
+        },
+        {
+          "feedback": "The material on the exams was always fair, my only problem was the time constraint as it resulted in a very stressful environment that made it very likely for students to blank out during the exam, more time should be allotted for exams.",
+          "sentiment": "neutral",
+          "score": 3,
+          "confidence": 0.8,
+          "reasoning": "The feedback states that explanations were fair, but the time constraint was a major issue."
+        },
+        {
+          "feedback": "I found the formatting of the power points to be inconsistent and lacking in explanation which made it difficult to review them before quizzes and tests without rewatching the entire bruin cast.",
+          "sentiment": "negative",
+          "score": 1,
+          "confidence": 0.9,
+          "reasoning": "Explanations did not make sense, were vague, and made it difficult to understand."
+        },
+        {
+          "feedback": "Overall, I really enjoyed Ramachandran as a professor and felt confident in a subject I did not think I would be.",
           "sentiment": "positive",
           "score": 5,
-          "confidence": 1.0,
-          "reasoning": "She mentions 'after her explanation' which suggests that the explanations were clear and easy to understand, hence a score of 5."
+          "confidence": 0.9,
+          "reasoning": "felt confident in a subject I did not think I would be."
         },
         {
           "feedback": "She is very good at communication and makes chemistry very easy to understand.",
           "sentiment": "positive",
           "score": 5,
-          "confidence": 1.0,
-          "reasoning": "She makes chemistry very easy to understand."
+          "confidence": 0.9,
+          "reasoning": "She is very good at communication and makes chemistry very easy to understand."
         },
         {
           "feedback": "The professor is great at explaining conceptual topics which is relevant to many students as the MCAT composes mainly of conceptual questions.",
           "sentiment": "positive",
           "score": 5,
           "confidence": 0.8,
-          "reasoning": "The feedback explicitly states that the professor is 'great at explaining conceptual topics', indicating that their explanations are very clear."
+          "reasoning": "The professor is great at explaining conceptual topics, which indicates that the explanations were very clear and easy to understand."
+        },
+        {
+          "feedback": "I thinkthe formatting of the power points to be inconsistent andlacking in explanation which made it difficult to review them before quizzes and tests without rewatching the entire bruin cast.",
+          "sentiment": "negative",
+          "score": 1,
+          "confidence": 0.8,
+          "reasoning": "Explanations did not make sense, were vague, and made it difficult to understand."
         },
         {
           "feedback": "She doesn\u2019t just go through the lecture and hope you understand.",
           "sentiment": "positive",
           "score": 5,
+          "confidence": 0.8,
+          "reasoning": "She doesn\u2019t just go through the lecture and hope you understand, implying that explanations are deliberate and effective."
+        },
+        {
+          "feedback": "However, I found the formatting of the power points to be inconsistent and lacking in explanation which made it difficult to review them before quizzes and tests without rewatching the entire bruin cast.",
+          "sentiment": "negative",
+          "score": 1,
           "confidence": 0.9,
-          "reasoning": "The instructor doesn't just go through the lecture, implying that they take an active approach to explaining concepts in a way that is easy to understand."
+          "reasoning": "Explanations were lacking, making it difficult to understand."
         }
       ]
     },
     {
       "topic": "Effectiveness of assignments",
-      "average_score": 3.33,
+      "average_score": 3.67,
       "comment_count": 3,
       "comments": [
         {
           "feedback": "I think weekly graded homeworks should be included for a small portion of the grade.",
-          "sentiment": "neutral",
-          "score": 3,
+          "sentiment": "positive",
+          "score": 4,
           "confidence": 0.8,
-          "reasoning": "The feedback mentions that weekly graded homeworks should be included, implying that assignments are somewhat helpful."
+          "reasoning": "The feedback suggests that including weekly graded homeworks would be effective, implying that assignments (in this case, homeworks) have been helpful and supported understanding of the material."
         },
         {
           "feedback": "I think the implementation of clicker questions really gave me an idea of what exam questions would be like, so clickers were very helpful and they should be used more often!",
           "sentiment": "positive",
           "score": 5,
           "confidence": 0.8,
-          "reasoning": "The comment explicitly states that clicker questions were 'very helpful' and had a positive impact on understanding, which aligns with rubric score 5."
+          "reasoning": "The comment explicitly states that clickers were very helpful, which suggests a high level of effectiveness."
         },
         {
           "feedback": "I think more example problems and clicker questions would help.",
           "sentiment": "negative",
           "score": 2,
           "confidence": 0.8,
-          "reasoning": "The feedback suggests that the assignments did not have an impact or were barely helpful, which corresponds to a score of 2."
+          "reasoning": "The feedback does not directly praise or criticize the effectiveness of assignments, but rather suggests alternative types of questions to help learning."
         }
       ]
     },
     {
       "topic": "Classroom atmosphere",
-      "average_score": null,
-      "comment_count": 0,
-      "comments": []
-    },
-    {
-      "topic": "Instructor's communication and availability",
-      "average_score": 4.25,
-      "comment_count": 8,
-      "comments": [
-        {
-          "feedback": "The strengths that this professor has performed was teaching skills, knowledge of the material, communication, and concern of the students.",
-          "sentiment": "positive",
-          "score": 5,
-          "confidence": 1.0,
-          "reasoning": "The comment explicitly mentions 'communication' as one of the professor's strengths, indicating that they are highly available and responsive."
-        },
-        {
-          "feedback": "The professor very clearly represents a concern for student learning and Is always very welcoming of students to attend office hours or set time aside to meet with her as she did, which was a huge time commitment on her part.",
-          "sentiment": "positive",
-          "score": 5,
-          "confidence": 0.9,
-          "reasoning": "The professor 'very clearly represents a concern for student learning' and is 'always very welcoming of students to attend office hours or set time aside to meet with her', indicating high availability and prompt communication."
-        },
-        {
-          "feedback": "She is very understanding and very approachable.",
-          "sentiment": "neutral",
-          "score": 3,
-          "confidence": 0.8,
-          "reasoning": "The feedback mentions the instructor being 'understanding' and 'approachable', but it doesn't specifically mention communication or availability, which is the focus of this topic."
-        },
-        {
-          "feedback": "I would request is that she give reminders for graded clicker question in an email before lecture like she did the first time.",
-          "sentiment": "neutral",
-          "score": 3,
-          "confidence": 0.8,
-          "reasoning": "The comment mentions that the instructor did give a reminder via email, which suggests some level of availability and communication."
-        },
-        {
-          "feedback": "She is open and welcoming, and always responds super quickly to discussion posts and emails.",
-          "sentiment": "positive",
-          "score": 5,
-          "confidence": 1.0,
-          "reasoning": "She always responds super quickly to discussion posts and emails, which indicates timely and consistent communication."
-        },
-        {
-          "feedback": "I wanted to go to her office hours but I was always intimidated by the number of people there, but I will definitely start trying when I take her class in the fall.",
-          "sentiment": "neutral",
-          "score": 3,
-          "confidence": 0.8,
-          "reasoning": "The student mentions that they were intimidated by the number of people at office hours, but does not express dissatisfaction or frustration with the instructor's communication and availability."
-        },
-        {
-          "feedback": "she makes sure we are always up to date with our grades and what we are learning in class by posting everything on CCLE.",
-          "sentiment": "positive",
-          "score": 5,
-          "confidence": 0.9,
-          "reasoning": "she consistently keeps the class updated by posting everything on CCLE, indicating timely and clear communication."
-        },
-        {
-          "feedback": "Professor Rama chandra n expressed genuine efforts in catering the course to her students needs, she set aside time to meet with us and often asked for our feedback throughout the quarter.",
-          "sentiment": "positive",
-          "score": 5,
-          "confidence": 1.0,
-          "reasoning": "The instructor set aside time to meet with students and asked for their feedback, indicating a high level of availability and communication."
-        }
-      ]
-    },
-    {
-      "topic": "Inclusivity and sense of belonging",
       "average_score": 5.0,
       "comment_count": 1,
       "comments": [
@@ -407,136 +395,269 @@
           "sentiment": "positive",
           "score": 5,
           "confidence": 0.9,
-          "reasoning": "The phrase 'felt welcomed' explicitly indicates that the student felt included and valued by the instructor, which aligns with a highly inclusive environment."
+          "reasoning": "This feedback explicitly mentions feeling 'welcomed and interested', which indicates a very welcoming and supportive class atmosphere."
+        }
+      ]
+    },
+    {
+      "topic": "Instructor's communication and availability",
+      "average_score": 4.31,
+      "comment_count": 13,
+      "comments": [
+        {
+          "feedback": "Ramachandran really cares about us students, and makes lots of efforts to let us learn real knowledge.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 1.0,
+          "reasoning": "Ramachandran makes lots of efforts to let us learn real knowledge, indicating he is highly available and communicative."
+        },
+        {
+          "feedback": "The strengths that this professor has performed was teaching skills, knowledge of the material, communication, and concern of the students.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.9,
+          "reasoning": "The feedback explicitly mentions 'communication' and 'concern of the students', indicating that the professor was available and responsive."
+        },
+        {
+          "feedback": "I really believe that a lot of that has to do with Professor Rama chandra n\u2019s teaching style and I appreciate that very much.",
+          "sentiment": "neutral",
+          "score": 3,
+          "confidence": 0.0,
+          "reasoning": "Failed to score with model."
+        },
+        {
+          "feedback": "The professor very clearly represents a concern for student learning and Is always very welcoming of students to attend office hours or set time aside to meet with her as she did, which was a huge time commitment on her part.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.9,
+          "reasoning": "The professor is 'always very welcoming of students to attend office hours or set time aside to meet with her', indicating clear availability and commitment."
+        },
+        {
+          "feedback": "Rama chandra n made it clear from day one that she is very concerned with helping students succeed as much as possible.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.8,
+          "reasoning": "Rama chandra n made it clear from day one that she is very concerned with helping students succeed as much possible."
+        },
+        {
+          "feedback": "Ramachandran puts into her course and making sure students feel free to ask questions and ask for explana- tion when they don\u2019t understand.",
+          "sentiment": "positive",
+          "score": 4,
+          "confidence": 0.7,
+          "reasoning": "Ramachandran makes sure students feel free to ask questions, indicating that she is available and accessible."
+        },
+        {
+          "feedback": "Ramachandran really cares about student learning and clearly makes an effort to provide resources and support to students.",
+          "sentiment": "positive",
+          "score": 4,
+          "confidence": 0.9,
+          "reasoning": "Ramachandran really cares about student learning and clearly makes an effort to provide resources and support to students, which indicates clear communication and availability."
+        },
+        {
+          "feedback": "I would request is that she give reminders for graded clicker question in an email before lecture like she did the first time.",
+          "sentiment": "positive",
+          "score": 4,
+          "confidence": 0.5,
+          "reasoning": "The feedback specifically requests reminders for graded clicker questions, indicating that the instructor's communication was lacking in this area."
+        },
+        {
+          "feedback": "She is open and welcoming, and always responds super quickly to discussion posts and emails.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.8,
+          "reasoning": "She always responds super quickly to discussion posts and emails, which shows the instructor is available and communicates effectively."
+        },
+        {
+          "feedback": "She really was invested in student learning which I appreciated a lot as my last chemistry class was not as student-focused and I felt behind all the time.",
+          "sentiment": "positive",
+          "score": 4,
+          "confidence": 0.9,
+          "reasoning": "She really was invested in student learning, which indicates that the instructor was available and communicated effectively."
+        },
+        {
+          "feedback": "I wanted to go to her office hours but I was always intimidated by the number of people there, but I will definitely start trying when I take her class in the fall.",
+          "sentiment": "neutral",
+          "score": 3,
+          "confidence": 0.8,
+          "reasoning": "Although there's no direct criticism, the student expresses intimidation and didn't feel comfortable attending office hours, indicating that the instructor's availability might not have been optimal."
+        },
+        {
+          "feedback": "Professor Rama chandra n expressed genuine efforts in catering the course to her students needs, she set aside time to meet with us and often asked for our feedback throughout the quarter.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 1.0,
+          "reasoning": "The feedback explicitly mentions that Professor Rama chandra n set aside time to meet with students and asked for their feedback, indicating her availability and commitment to communication."
+        },
+        {
+          "feedback": "Strengths of this professor include her real concern for how the class was doing and providing resources to students who needed the help.",
+          "sentiment": "positive",
+          "score": 4,
+          "confidence": 0.8,
+          "reasoning": "The professor's 'real concern for how the class was doing' and providing resources to students who needed help indicates that she communicated clearly and responded promptly."
+        }
+      ]
+    },
+    {
+      "topic": "Inclusivity and sense of belonging",
+      "average_score": 5.0,
+      "comment_count": 8,
+      "comments": [
+        {
+          "feedback": "I felt like Ramachandran really cared about the students doing well and provided all of us ample opportunity to supplement when we were struggling.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.9,
+          "reasoning": "The feedback explicitly mentions 'I felt like he really cared about the students doing well' and providing ample opportunity, which indicates a strong sense of inclusivity and belonging."
+        },
+        {
+          "feedback": "I know that many of us struggle with such dense course but I believe that Professor Ramachandran has made is extremely doable and under- standable for everyone.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.8,
+          "reasoning": "The feedback explicitly mentions that Professor Ramachandran has made the course 'extremely doable and understandable for everyone', which implies a strong sense of inclusivity."
+        },
+        {
+          "feedback": "Ramachandran genuinely cares for the well being of her students and is constantly trying to improve her teaching methods.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.9,
+          "reasoning": "Ramachandran genuinely cares for the well being of her students, which indicates a strong sense of inclusivity and respect for their needs."
+        },
+        {
+          "feedback": "This was the first time I felt welcomed and interested in such material.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 1.0,
+          "reasoning": "The feedback explicitly mentions feeling 'welcomed and interested', which suggests a strong sense of belonging."
+        },
+        {
+          "feedback": "Ramachandran actually cares that we do well and that we understand the course inside and out.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.8,
+          "reasoning": "The feedback explicitly states that Ramachandran 'actually cares' that students do well and understand the course, indicating a strong sense of inclusivity and support."
+        },
+        {
+          "feedback": "You can tell that she cares about her students and tries her best for us to be successful.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 1.0,
+          "reasoning": "You can tell that she cares about her students, which suggests that the instructor makes an effort to include and create a sense of belonging for them."
+        },
+        {
+          "feedback": "I think Professor Rama chandra n really cares about her students learning and it shows.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.8,
+          "reasoning": "The feedback explicitly mentions Professor Rama chandra n 'really cares about her students learning' which shows that she is making an effort to include and support them, indicating a highly inclusive environment."
+        },
+        {
+          "feedback": "She is very kind and understanding and does what she can to ensure her students are engaging in the class and doing well.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.8,
+          "reasoning": "She does what she can to ensure her students are engaging in the class and doing well, showing a genuine care for her students."
         }
       ]
     },
     {
       "topic": "Assessment",
-      "average_score": 3.0,
-      "comment_count": 2,
-      "comments": [
-        {
-          "feedback": "I think her exams and grading system are fair but it would be very helpful if there could be a timer on the screen during exams instead of just a minute warning.",
-          "sentiment": "positive",
-          "score": 4,
-          "confidence": 0.8,
-          "reasoning": "The feedback mentions that exams and grading system are fair, which suggests a good alignment with course material."
-        },
-        {
-          "feedback": "The material on the exams was always fair, my only problem was the time constraint as it resulted in a very stressful environment that made it very likely for students to blank out during the exam, more time should be allotted for exams.",
-          "sentiment": "negative",
-          "score": 2,
-          "confidence": 0.8,
-          "reasoning": "The feedback mentions that 'the material on the exams was always fair', which suggests some alignment with course content, but also notes issues with time constraint and stressful environment."
-        }
-      ]
-    },
-    {
-      "topic": "Grading and feedback",
-      "average_score": 1.67,
-      "comment_count": 6,
+      "average_score": 2.0,
+      "comment_count": 3,
       "comments": [
         {
           "feedback": "I think her exams and grading system are fair but it would be very helpful if there could be a timer on the screen during exams instead of just a minute warning.",
           "sentiment": "neutral",
           "score": 3,
-          "confidence": 1.0,
-          "reasoning": "The comment mentions that the exams and grading system are 'fair', which suggests a neutral sentiment. The score of 3 is assigned because the feedback does not provide much insight into the effectiveness of the feedback itself, but rather makes a suggestion for improvement."
+          "confidence": 0.8,
+          "reasoning": "Although the feedback mentions exams and grading system as 'fair', it also suggests that there could be improvement with a timer on the screen during exams, indicating some room for refinement."
         },
         {
-          "feedback": "I also do not think partial credit was fair.",
+          "feedback": "I feel like organic chemistry is just being thrown into the class material and we do not have much time to go over it before the final.",
           "sentiment": "negative",
           "score": 1,
           "confidence": 0.8,
-          "reasoning": "The comment states 'I also do not think partial credit was fair', which suggests that grading was inconsistent, or feedback was not provided or was not helpful."
+          "reasoning": "The feedback mentions that organic chemistry is 'just being thrown into the class material', implying a lack of clear and aligned assessments."
+        },
+        {
+          "feedback": "I would say however that the level of questions on the tests seem to exceed what is taught in class and at times I felt unprepared for the midterms because lack of adequate resources and uncertainty about what I would actually be expected to do on an exam.",
+          "sentiment": "negative",
+          "score": 2,
+          "confidence": 0.9,
+          "reasoning": "The level of questions on the tests exceed what is taught in class, and there's uncertainty about what to expect on an exam, indicating some issues with assessment alignment."
+        }
+      ]
+    },
+    {
+      "topic": "Grading and feedback",
+      "average_score": 2.0,
+      "comment_count": 3,
+      "comments": [
+        {
+          "feedback": "I also do not think partial credit was fair.",
+          "sentiment": "negative",
+          "score": 2,
+          "confidence": 1.0,
+          "reasoning": "Grading was not fair, according to the student."
         },
         {
           "feedback": "The only weakness of her class in general is that once one grade is low, it is incredibly difficult to raise your grade.",
           "sentiment": "negative",
-          "score": 1,
+          "score": 2,
           "confidence": 0.8,
-          "reasoning": "The feedback states that once one grade is low, it is 'incredibly difficult' to raise your grade, indicating inconsistent or unfair grading."
-        },
-        {
-          "feedback": "I learned a lot and worked very hard but my grade doesn\u2019t reflect it.",
-          "sentiment": "negative",
-          "score": 1,
-          "confidence": 0.8,
-          "reasoning": "The student explicitly states that their grade doesn't reflect their hard work, indicating inconsistency and a lack of helpful feedback."
+          "reasoning": "The feedback explicitly mentions that once one grade is low, it's 'incredibly difficult to raise your grade', indicating limited or unclear feedback on performance and assignments."
         },
         {
           "feedback": "Her grading scale is a bit harsh and she does not give too much partial credit.",
           "sentiment": "negative",
           "score": 2,
           "confidence": 0.8,
-          "reasoning": "The feedback explicitly states that the grading scale is 'a bit harsh' and does not give much partial credit, indicating inconsistent or limited feedback."
-        },
-        {
-          "feedback": "It would be nice if she could adopt a policy where students had higher chances for redemption.",
-          "sentiment": "negative",
-          "score": 2,
-          "confidence": 0.9,
-          "reasoning": "The feedback mentions grading fairness and the desire for a policy allowing for redemption, implying that the current feedback process may not be sufficient."
+          "reasoning": "Her grading scale is a bit harsh, indicating that feedback received on performance and assignments may be limited or unclear."
         }
       ]
     },
     {
       "topic": "Learning resources and materials",
-      "average_score": 1.0,
-      "comment_count": 3,
+      "average_score": 3.0,
+      "comment_count": 4,
       "comments": [
         {
-          "feedback": "However, I believe that the course could be improved in terms of the course resources that are posted online on CCLE.",
-          "sentiment": "negative",
-          "score": 1,
+          "feedback": "I felt like Ramachandran really cared about the students doing well and provided all of us ample opportunity to supplement when we were struggling.",
+          "sentiment": "positive",
+          "score": 5,
           "confidence": 0.8,
-          "reasoning": "The feedback mentions the course resources could be improved, indicating a negative opinion about the current materials."
+          "reasoning": "The feedback explicitly mentions that Ramachandran provided ample opportunity to supplement when struggling, indicating a willingness to support students' learning with resources and materials."
         },
         {
-          "feedback": "I found the formatting of the power points to be inconsistent and lacking in explanation which made it difficult to review them before quizzes and tests without rewatching the entire bruin cast.",
+          "feedback": "Ramachandran really cares about student learning and clearly makes an effort to provide resources and support to students.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.9,
+          "reasoning": "The feedback explicitly mentions that Ramachandran 'clearly makes an effort to provide resources and support to students', which is similar to the reference example's direct praise for providing helpful material."
+        },
+        {
+          "feedback": "I thinkthe formatting of the power points to be inconsistent andlacking in explanation which made it difficult to review them before quizzes and tests without rewatching the entire bruin cast.",
           "sentiment": "negative",
           "score": 1,
-          "confidence": 0.8,
-          "reasoning": "The feedback explicitly mentions that the power points were 'lacking in explanation' and difficult to review without rewatching the entire content, indicating that learning resources were not useful."
+          "confidence": 0.9,
+          "reasoning": "The feedback mentions that the power points are 'inconsistent and lacking in explanation', which made it difficult to review them, indicating a lack of useful learning materials."
         },
         {
           "feedback": "I would say however that the level of questions on the tests seem to exceed what is taught in class and at times I felt unprepared for the midterms because lack of adequate resources and uncertainty about what I would actually be expected to do on an exam.",
           "sentiment": "negative",
           "score": 1,
-          "confidence": 0.5,
-          "reasoning": "The feedback mentions 'lack of adequate resources' which indicates that learning materials were missing, unclear or not useful."
+          "confidence": 0.8,
+          "reasoning": "The feedback states that there was a 'lack of adequate resources', which suggests that learning materials were missing or not useful."
         }
       ]
     },
     {
       "topic": "None of the above / Other",
       "average_score": null,
-      "comment_count": 32,
+      "comment_count": 17,
       "comments": [
         {
-          "feedback": "I felt like Ramachandran really cared about the students doing well and provided all of us ample opportunity to supplement when we were struggling.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
           "feedback": "Overall, I love this professor, and I can\u2019t wait to have her again in the Fall for 14C!",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
-          "feedback": "Ramachandran really cares about us students, and makes lots of efforts to let us learn real knowledge.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
-          "feedback": "Ramachandran genuinely cares for the well being of her students and is constantly trying to improve her teaching methods.",
           "sentiment": "",
           "score": "",
           "confidence": "",
@@ -550,28 +671,7 @@
           "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
         },
         {
-          "feedback": "I really believe that a lot of that has to do with Professor Rama chandra n\u2019s teaching style and I appreciate that very much.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
-          "feedback": "I got a B+ in 14A which is supposed to be the \u2019weeder\u2019 class, which means I passed my midterms and my final.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
           "feedback": "The strengths of the professor are in her way of teaching.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
-          "feedback": "Rama chandra n made it clear from day one that she is very concerned with helping students succeed as much as possible.",
           "sentiment": "",
           "score": "",
           "confidence": "",
@@ -592,20 +692,6 @@
           "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
         },
         {
-          "feedback": "Overall, I really enjoyed Ramachandran as a professor and felt confident in a subject I did not think I would be.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
-          "feedback": "Ramachandran actually cares that we do well and that we understand the course inside and out.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
           "feedback": "I have no complaints, I am extremely happy with this course and the professor.",
           "sentiment": "",
           "score": "",
@@ -614,13 +700,6 @@
         },
         {
           "feedback": "I think in general Dr.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
-          "feedback": "Ramachandran is a very intelligent woman and is always prepared to teach and help those who do not understand any concepts.",
           "sentiment": "",
           "score": "",
           "confidence": "",
@@ -648,14 +727,7 @@
           "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
         },
         {
-          "feedback": "Ramachandran really cares about student learning and clearly makes an effort to provide resources and support to students.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
-          "feedback": "You can tell that she cares about her students and tries her best for us to be successful.",
+          "feedback": "She is very understanding and very approachable.",
           "sentiment": "",
           "score": "",
           "confidence": "",
@@ -676,28 +748,7 @@
           "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
         },
         {
-          "feedback": "She really was invested in student learning which I appreciated a lot as my last chemistry class was not as student-focused and I felt behind all the time.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
-          "feedback": "I think Professor Rama chandra n really cares about her students learning and it shows.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
           "feedback": "The professor really cares about her students and wants them to succeed.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
-          "feedback": "She is very kind and understanding and does what she can to ensure her students are engaging in the class and doing well.",
           "sentiment": "",
           "score": "",
           "confidence": "",
@@ -723,30 +774,22 @@
           "score": "",
           "confidence": "",
           "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
-          "feedback": "Professor Ramachandran completely changed Chemistry for me and I am so thankful I came across this class.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
-        },
-        {
-          "feedback": "Strengths of this professor include her real concern for how the class was doing and providing resources to students who needed the help.",
-          "sentiment": "",
-          "score": "",
-          "confidence": "",
-          "reasoning": "Generic or non-actionable feedback; no rubric score assigned."
         }
       ]
     }
   ],
   "metadata": {
-    "num_comments": 71,
+    "num_comments": 73,
     "num_input_comments": 82,
-    "num_duplicate_comments_removed": 11,
+    "num_duplicate_comments_removed": 9,
     "dedupe_mode": "exact_and_near_duplicate",
-    "num_scored_topic_comments": 44,
-    "total_time_seconds": 113.91
+    "num_scored_topic_comments": 64,
+    "rag_enabled": true,
+    "classification_examples_loaded": 29,
+    "sentiment_examples_loaded": 157,
+    "classification_examples_per_prompt": 4,
+    "sentiment_examples_per_prompt": 3,
+    "evidence_filter_mode": "soft",
+    "total_time_seconds": 304.86
   }
 }

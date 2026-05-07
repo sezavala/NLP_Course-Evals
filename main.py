@@ -26,6 +26,17 @@ RAG_CLASSIFICATION_EXAMPLE_COUNT = 4
 RAG_SENTIMENT_EXAMPLE_COUNT = 3
 RAG_MIN_SIMILARITY = 0.06
 
+# Topic-specific confidence thresholds for mismatch filtering
+CONFIDENCE_THRESHOLDS = {
+    "Assessment": 0.6,
+    "Workload": 0.65,
+    "Pace": 0.55,
+    "Clarity of explanations": 0.5,
+    "Classroom atmosphere": 0.5,
+    "Course organization and structure": 0.55,
+    "default": 0.5,
+}
+
 RETRIEVAL_STOPWORDS = {
     "a",
     "an",
@@ -78,7 +89,6 @@ TOPIC_EVIDENCE_PATTERNS = {
         r"\bschedul(?:e|ed|ing)\b",
         r"\bsequenc(?:e|ed|ing)\b",
         r"\bnavigation\b",
-        r"\btime management\b",
         r"\boriginally specified\b",
     ],
     "Pace": [
@@ -101,6 +111,12 @@ TOPIC_EVIDENCE_PATTERNS = {
         r"\bmanageable workload\b",
         r"\btime burden\b",
         r"\bconsume(?:d)? too much\b",
+        r"\boverwhel(?:m|med|ming)\b",
+        r"\bpacked.*full\b",
+        r"\btoo many.*assignments\b",
+        r"\bcan't keep up\b",
+        r"\bburden\b",
+        r"\btoo much to handle\b",
     ],
     "Student engagement and participation": [
         r"\bengag(?:e|ed|ing|ement)\b",
@@ -153,6 +169,11 @@ TOPIC_EVIDENCE_PATTERNS = {
         r"\bcomfortable\b",
         r"\bdemotivating\b",
         r"\bstressful environment\b",
+        r"\benergy\b",
+        r"\bvibe\b",
+        r"\bintimidating\b",
+        r"\brelaxed\b",
+        r"\btone of the class\b",
     ],
     "Instructor's communication and availability": [
         r"\bcommunicat(?:e|ed|ion|ive)\b",
@@ -207,6 +228,10 @@ TOPIC_EVIDENCE_PATTERNS = {
         r"\breview sessions?\b",
         r"\bposted online\b",
         r"\bccle\b",
+        r"\blecture notes?\b",
+        r"\bstudy materials?\b",
+        r"\bflashcards?\b",
+        r"\bpractice exams?\b",
     ],
 }
 
@@ -232,8 +257,8 @@ def is_near_duplicate_comment(candidate_key: str, existing_key: str) -> bool:
 
 
 def dedupe_comments(raw_comments: list[str]) -> tuple[list[str], int]:
-    """Remove duplicate and near-duplicate comments after normalization."""
-    seen_keys = []
+    """Remove exact duplicate comments after normalization."""
+    seen_keys = set()
     unique_comments = []
     duplicate_count = 0
     for comment in raw_comments:
@@ -241,10 +266,10 @@ def dedupe_comments(raw_comments: list[str]) -> tuple[list[str], int]:
         if not normalized:
             continue
         key = canonical_comment_key(normalized)
-        if any(is_near_duplicate_comment(key, seen_key) for seen_key in seen_keys):
+        if key in seen_keys:
             duplicate_count += 1
             continue
-        seen_keys.append(key)
+        seen_keys.add(key)
         unique_comments.append(normalized)
     return unique_comments, duplicate_count
 
@@ -478,10 +503,21 @@ def looks_like_generic_only_comment(comment: str) -> bool:
         return False
 
     tokens = retrieval_tokens(comment)
-    if len(tokens) > 12:
+    if len(tokens) > 15:  # Increased threshold for better detection
         return False
 
     text = comment.casefold()
+    
+    # Check for lack of concrete teaching detail
+    concrete_keywords = [
+        "assign", "exam", "lecture", "class", "material", "discussion",
+        "grade", "feedback", "office", "resource", "resource", "classroom",
+        "pace", "workload", "assessment", "quiz", "test"
+    ]
+    has_concrete = any(kw in text for kw in concrete_keywords)
+    if not has_concrete and len(tokens) < 8:
+        return True  # Too generic, too short, no concrete detail
+    
     generic_patterns = [
         r"\b(best|great|excellent|amazing|incredible|fantastic|good|wonderful|outstanding|awesome)\b.*\b(professor|instructor|teacher|lecturer)\b",
         r"\b(professor|instructor|teacher|lecturer)\b.*\b(best|great|excellent|amazing|incredible|fantastic|good|wonderful|outstanding|awesome)\b",
@@ -515,6 +551,7 @@ def filter_topics_by_evidence(
         ]
         return filtered_topics or [OTHER]
 
+    # In soft mode: only filter obvious generic-only comments, trust LLM for real topics
     if looks_like_generic_only_comment(comment):
         return [OTHER]
 
@@ -542,9 +579,10 @@ def classify_with_llama(
     )
     prompt = f"""You are a careful course-evaluation coder.
 
-Assign topics that are supported by words, close paraphrases, or concrete teaching/course details in the feedback text.
+Assign ALL topics that are supported by words, close paraphrases, or concrete teaching/course details in the feedback text.
+A comment may discuss multiple topics—assign each one that is explicitly mentioned or clearly referenced.
 Do not infer a topic from general praise, student success, caring, or broad support alone.
-If broad praise also contains a concrete topic clue, assign that topic.
+If broad praise also contains concrete topic clues, assign those topics.
 Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has no instructional detail.
 
     ALLOWED TOPICS:
@@ -561,7 +599,7 @@ Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has
 
     BOUNDARY RULES:
     - Use "Course organization and structure" only for organization, structure, navigation, sequencing, or course design.
-    - Use "Pace" only when speed, rushing, slowing down, keeping up, or pacing is explicitly mentioned.
+    - Use "Pace" only when speed, rushing, slowing down, keeping up, pacing, or insufficient time for material coverage is explicitly mentioned.
     - Use "Workload" only when workload, time burden, difficulty load, or amount of work is explicitly mentioned.
     - Use "Student engagement and participation" only for participation, engagement activities, entertainment, discussion, questions, or interactive opportunities.
     - Use "Clarity of explanations" only for explaining, lecturing clearly, making concepts understandable, or examples that clarify content.
@@ -571,20 +609,18 @@ Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has
     - Use "Inclusivity and sense of belonging" only for inclusion, belonging, accessibility, different learning styles, feeling welcome, or respect.
     - Use "Assessment" only for exams, tests, quizzes, assessment fairness, assessment difficulty, or alignment with material.
     - Use "Grading and feedback" only for grading, partial credit, grade policy, or feedback on performance.
-- Use "Learning resources and materials" only for notes, slides, recordings, review sessions, study resources, or posted materials.
-- Do not use "Pace" for scheduling confusion unless speed, rushing, keeping up, or lack of time is also explicit.
-- Do not use "Learning resources and materials" for generic "support" unless a resource/material is named.
-- Do not use "Instructor's communication and availability" for general caring unless communication, availability, office hours, emails, responsiveness, or meetings are explicit.
-- "Engaging lecturer" is Student engagement and participation.
-- "Understood", "easy to understand", or "follow along" is Clarity of explanations.
-- Helpful clicker questions can be Student engagement and participation and/or Effectiveness of assignments.
-- Going over questions in lecture can be Student engagement and participation and/or Clarity of explanations.
-- Brief but concrete wording like "clear teaching", "fair exams", "organized", "helpful resources", or "fast lectures" is enough to assign the matching topic.
-- If the comment is only generic praise, choose only "{OTHER}".
-- If "{OTHER}" is selected, it must be the only topic.
+    - Use "Learning resources and materials" only for notes, slides, recordings, review sessions, study resources, or posted materials.
+    - "Engaging lecturer" is Student engagement and participation.
+    - "Understood", "easy to understand", or "follow along" is Clarity of explanations.
+    - Helpful clicker questions can be both Student engagement and participation AND Effectiveness of assignments.
+    - Going over questions in lecture can be both Student engagement and participation AND Clarity of explanations.
+    - Brief but concrete wording like "clear teaching", "fair exams", "organized", "helpful resources", or "fast lectures" is enough.
+    - If the comment mentions multiple distinct instructional topics, assign all of them.
+    - If the comment is only generic praise, choose only "{OTHER}".
+    - If "{OTHER}" is selected, it must be the only topic.
 
     Return ONLY valid JSON with exact topic names:
-    {{"topics": ["Topic name"], "evidence": {{"Topic name": "short phrase from feedback"}}}}
+    {{"topics": ["Topic 1", "Topic 2"], "evidence": {{"Topic 1": "phrase from feedback", "Topic 2": "phrase from feedback"}}}}
 
     FEEDBACK:
     \"\"\"{comment}\"\"\"
@@ -612,7 +648,13 @@ Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has
         return [OTHER]
     if valid_topics == [OTHER]:
         return [OTHER]
-    return filter_topics_by_evidence(comment, valid_topics, mode=evidence_filter_mode)
+    
+    # DEBUG: Show what LLM assigned before filtering
+    filtered = filter_topics_by_evidence(comment, valid_topics, mode=evidence_filter_mode)
+    if valid_topics != filtered:
+        print(f"    [DEBUG] LLM assigned: {valid_topics}, filtered to: {filtered}")
+    
+    return filtered
 
 
 def sentiment_with_llama(
@@ -674,6 +716,10 @@ For Pace and Workload, score 5 means the condition supports learning well; score
         sentiment = sentiment_from_score(score)
         confidence = max(0.0, min(1.0, float(parsed.get("confidence", 0.0))))
         reasoning = str(parsed.get("reasoning", "")).strip()
+        
+        # Check if reasoning indicates topic mismatch
+        is_mismatched = check_topic_mismatch(reasoning, topic)
+        
     except Exception as exc:
         print(f"  Sentiment error for {topic}: {exc}")
         return {
@@ -681,14 +727,62 @@ For Pace and Workload, score 5 means the condition supports learning well; score
             "score": 3,
             "confidence": 0.0,
             "reasoning": "Failed to score with model.",
+            "is_mismatched": False,
         }
 
-    return {
+    result = {
         "sentiment": sentiment,
         "score": score,
         "confidence": confidence,
         "reasoning": reasoning,
+        "is_mismatched": is_mismatched,
     }
+    
+    # Debug: flag potential mismatches
+    if is_mismatched and confidence > 0.5:
+        print(f"    [MISMATCH] Topic {topic} confidence {confidence}: {reasoning[:60]}...")
+    
+    return result
+
+
+def check_topic_mismatch(reasoning: str, topic: str) -> bool:
+    """Check if sentiment reasoning indicates the comment doesn't actually relate to the assigned topic."""
+    text = reasoning.lower()
+    
+    # Critical patterns: "but no explicit" or "implies but doesn't"
+    critical_patterns = [
+        r"but\s+there\s+is\s+no\s+(?:explicit\s+)?",
+        r"but\s+no\s+(?:explicit\s+)?",
+        r"(?:only\s+)?mentions?\s+.*(?:not|but\s+not)\s+",
+        r"(?:doesn't|does\s+not)\s+(?:explicitly\s+)?mention",
+        r"(?:doesn't|does\s+not)\s+(?:explicitly\s+)?discuss",
+        r"(?:doesn't|does\s+not)\s+(?:explicitly\s+)?address",
+        r"implies\s+.*but\s+(?:doesn't|does\s+not)",
+        r"mentions\s+.*but\s+(?:doesn't|does\s+not|isn't)",
+    ]
+    
+    # Standard patterns: Handle "does not" form
+    standard_patterns = [
+        r"does not\s+(?:explicitly\s+)?praise",
+        r"does not\s+(?:explicitly\s+)?criticize",
+        r"does not\s+(?:explicitly\s+)?relate",
+        r"no\s+(?:explicit\s+)?evidence",
+        r"not\s+(?:explicitly\s+)?specific",
+        r"unrelated",
+        r"cannot determine",
+        r"not\s+(?:directly\s+)?relevant",
+        r"tangential\s+to",
+        r"no\s+evidence\s+(?:about|of)",
+        r"comment\s+(?:doesn't|does not|couldn't|could not)\s+address",
+    ]
+    
+    all_patterns = critical_patterns + standard_patterns
+    
+    for pattern in all_patterns:
+        if re.search(pattern, text):
+            return True
+    
+    return False
 
 
 def summarize_topic_with_llama(topic: str, comments: list[dict[str, Any]], average_score: float | None) -> str:
@@ -896,6 +990,14 @@ def analysis_pipeline(
                 topic,
                 sentiment_examples=sentiment_examples,
             )
+            
+            # Validation: Skip if sentiment model indicates topic mismatch (using topic-specific threshold)
+            is_mismatched = scored.pop("is_mismatched", False)
+            threshold = CONFIDENCE_THRESHOLDS.get(topic, CONFIDENCE_THRESHOLDS["default"])
+            if is_mismatched and scored.get("confidence", 0) > threshold:
+                print(f"    {topic}: FILTERED (mismatch in sentiment validation, conf {scored.get('confidence', 0):.2f} > {threshold})")
+                continue
+            
             all_scores.append(scored["score"])
             topic_comments[topic].append({"feedback": feedback, **scored})
             print(f"    {topic}: {scored['sentiment']} ({scored['score']}/5)")

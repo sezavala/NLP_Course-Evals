@@ -621,7 +621,6 @@ def filter_topics_by_evidence(
         ]
         return filtered_topics or [OTHER]
 
-    # In soft mode: only filter obvious generic-only comments, trust LLM for real topics
     if looks_like_generic_only_comment(comment):
         return [OTHER]
 
@@ -641,16 +640,17 @@ def classify_with_llama(
     classification_examples: list[dict[str, Any]] | None = None,
     evidence_filter_mode: str = "soft",
 ) -> dict[str, Any]:
-    """Classify a course-evaluation comment into explicit instructional topics."""
+    """Classify a course-evaluation comment into plausible instructional topics."""
     retrieved_examples = retrieve_similar_examples(
         comment,
         classification_examples or [],
         limit=RAG_CLASSIFICATION_EXAMPLE_COUNT,
     )
-    prompt = f"""You are a careful course-evaluation coder.
+    prompt = f"""You are a high-recall course-evaluation topic coder.
 
-Assign ALL topics that are supported by words, close paraphrases, or concrete teaching/course details in the feedback text.
-A comment may discuss multiple topics—assign each one that is explicitly mentioned or clearly referenced.
+Assign ALL topics that are plausibly supported by words, close paraphrases, or concrete teaching/course details in the feedback text.
+A comment may discuss multiple topics—include each topic with plausible evidence, even if the evidence is brief.
+Prefer recall over precision at this stage. A later validation step will remove weak or incorrect topic assignments.
 Do not infer a topic from general praise, student success, caring, or broad support alone.
 If broad praise also contains concrete topic clues, assign those topics.
 Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has no instructional detail.
@@ -668,9 +668,9 @@ Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has
     - Similar examples can help you recognize concrete topic clues even when wording differs.
 
     BOUNDARY RULES:
-    - Use "Course organization and structure" only for organization, structure, navigation, sequencing, or course design.
-    - Use "Pace" only when speed, rushing, slowing down, keeping up, pacing, or insufficient time for material coverage is explicitly mentioned.
-    - Use "Workload" only when workload, time burden, difficulty load, or amount of work is explicitly mentioned.
+    - Use "Course organization and structure" for organization, structure, navigation, sequencing, course design, scheduling, or unclear logistics.
+    - Use "Pace" for speed, rushing, slowing down, keeping up, pacing, or insufficient time for material/exams.
+    - Use "Workload" for workload, time burden, difficulty load, amount of work, or feeling overwhelmed by assignments/quizzes.
     - Use "Student engagement and participation" only for participation, engagement activities, entertainment, discussion, questions, or interactive opportunities.
     - Use "Clarity of explanations" only for explaining, lecturing clearly, making concepts understandable, or examples that clarify content.
     - Use "Effectiveness of assignments" only for homework, problem sets, assignments, practice tasks, or their learning value.
@@ -766,36 +766,50 @@ For Pace and Workload, score 5 means the condition supports learning well; score
     \"\"\"{comment}\"\"\"
 
     TASK:
-    1. Decide whether the feedback is positive, neutral, or negative relative to this topic.
-    2. Assign the best matching integer rubric score from 1 to 5.
-    3. Give one brief reason grounded in exact text from the comment.
-    4. Provide confidence from 0.0 to 1.0.
+    1. Decide whether the feedback contains concrete evidence for this exact topic.
+    2. If the topic is not supported, set topic_supported to false, score to null, sentiment to null, and explain briefly.
+    3. If the topic is supported, decide whether the feedback is positive, neutral, or negative relative to this topic.
+    4. Assign the best matching integer rubric score from 1 to 5.
+    5. Give one brief reason grounded in exact text from the comment.
+    6. Provide confidence from 0.0 to 1.0.
 
     Return ONLY valid JSON:
     {{
+    "topic_supported": true,
     "sentiment": "positive|negative|neutral",
     "score": 1,
     "confidence": 0.0,
     "reasoning": "brief explanation"
     }}
+    If topic_supported is false, use JSON null for sentiment and score.
     """
 
     try:
         parsed = extract_json_object(call_ollama(prompt))
-        score = max(1, min(5, int(parsed.get("score", 3))))
-        sentiment = str(parsed.get("sentiment", "neutral")).strip().lower()
+        raw_supported = parsed.get("topic_supported", True)
+        if isinstance(raw_supported, bool):
+            topic_supported = raw_supported
+        else:
+            topic_supported = str(raw_supported).strip().lower() not in {"false", "0", "no"}
+        raw_score = parsed.get("score")
+        score = None if raw_score is None else max(1, min(5, int(raw_score)))
+        sentiment = str(parsed.get("sentiment", "")).strip().lower()
         if sentiment not in {"positive", "negative", "neutral"}:
-            sentiment = "neutral"
-        sentiment = sentiment_from_score(score)
+            sentiment = None
+        if topic_supported and isinstance(score, int):
+            sentiment = sentiment_from_score(score)
+        else:
+            topic_supported = False
+            score = None
+            sentiment = None
         confidence = max(0.0, min(1.0, float(parsed.get("confidence", 0.0))))
         reasoning = str(parsed.get("reasoning", "")).strip()
-        
-        # Check if reasoning indicates topic mismatch
-        is_mismatched = check_topic_mismatch(reasoning, topic)
+        is_mismatched = not topic_supported or check_topic_mismatch(reasoning, topic)
         
     except Exception as exc:
         print(f"  Sentiment error for {topic}: {exc}")
         return {
+            "topic_supported": None,
             "sentiment": None,
             "score": None,
             "confidence": 0.0,
@@ -805,6 +819,7 @@ For Pace and Workload, score 5 means the condition supports learning well; score
         }
 
     result = {
+        "topic_supported": topic_supported,
         "sentiment": sentiment,
         "score": score,
         "confidence": confidence,
@@ -880,6 +895,7 @@ def summarize_topic_with_llama(
         {
             "score": item.get("score"),
             "sentiment": item.get("sentiment"),
+            "topic_supported": item.get("topic_supported"),
             "scoring_status": item.get("scoring_status", "unscored"),
             "text": item.get("feedback", ""),
         }
@@ -1102,6 +1118,7 @@ def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
                     "Reliability": topic_item.get("reliability", ""),
                     "Feedback": "",
                     "Classification Status": "",
+                    "Topic Supported": "",
                     "Sentiment": "",
                     "Score": "",
                     "Confidence": "",
@@ -1123,6 +1140,7 @@ def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
                     "Reliability": topic_item.get("reliability", ""),
                     "Feedback": comment["feedback"],
                     "Classification Status": comment.get("classification_status", ""),
+                    "Topic Supported": comment.get("topic_supported", ""),
                     "Sentiment": comment.get("sentiment", ""),
                     "Score": comment.get("score", ""),
                     "Confidence": comment.get("confidence", ""),
@@ -1141,6 +1159,7 @@ def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
         "Reliability",
         "Feedback",
         "Classification Status",
+        "Topic Supported",
         "Sentiment",
         "Score",
         "Confidence",
@@ -1234,6 +1253,7 @@ def analysis_pipeline(
                         "score": None,
                         "confidence": None,
                         "classification_status": classification_status,
+                        "topic_supported": None,
                         "scoring_status": scoring_status,
                         "reasoning": reasoning,
                     }
@@ -1249,10 +1269,11 @@ def analysis_pipeline(
             # Validation: Skip if sentiment model indicates topic mismatch (using topic-specific threshold)
             is_mismatched = scored.pop("is_mismatched", False)
             threshold = CONFIDENCE_THRESHOLDS.get(topic, CONFIDENCE_THRESHOLDS["default"])
-            if is_mismatched and scored.get("confidence", 0) > threshold:
+            unsupported_topic = scored.get("topic_supported") is False
+            if unsupported_topic or (is_mismatched and scored.get("confidence", 0) > threshold):
                 print(
-                    f"    {topic}: FILTERED (mismatch in sentiment validation, "
-                    f"conf {scored.get('confidence', 0):.2f} > {threshold})"
+                    f"    {topic}: FILTERED (unsupported topic in validation, "
+                    f"conf {scored.get('confidence', 0):.2f})"
                 )
                 filtered_mismatch_count += 1
                 continue

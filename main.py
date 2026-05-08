@@ -26,6 +26,7 @@ RAG_CLASSIFICATION_EXAMPLE_COUNT = 4
 RAG_SENTIMENT_EXAMPLE_COUNT = 3
 RAG_MIN_SIMILARITY = 0.06
 OLLAMA_MAX_RETRIES = 2
+MODEL_TASK_MAX_RETRIES = 3
 MIN_RELIABLE_CATEGORY_COMMENTS = 5
 LOW_CONFIDENCE_THRESHOLD = 0.55
 
@@ -695,14 +696,24 @@ Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has
     \"\"\"{comment}\"\"\"
     """
 
-    try:
-        parsed = extract_json_object(call_ollama(prompt))
-    except Exception as exc:
-        print(f"  Classification error: {exc}")
+    last_error: Exception | None = None
+    parsed = None
+    for attempt in range(1, MODEL_TASK_MAX_RETRIES + 1):
+        try:
+            parsed = extract_json_object(call_ollama(prompt))
+            break
+        except Exception as exc:
+            last_error = exc
+            print(f"  Classification attempt {attempt}/{MODEL_TASK_MAX_RETRIES} failed: {exc}")
+
+    if parsed is None:
         return {
             "topics": [OTHER],
             "classification_status": "model_error",
-            "classification_reasoning": "Failed to classify with model; excluded from rubric scoring.",
+            "classification_reasoning": (
+                "Failed to classify with model after retries; "
+                f"last error: {last_error}"
+            ),
         }
 
     topics = parsed.get("topics", [OTHER])
@@ -785,8 +796,28 @@ For Pace and Workload, score 5 means the condition supports learning well; score
     If topic_supported is false, use JSON null for sentiment, score, and evidence_quote.
     """
 
+    last_error: Exception | None = None
+    for attempt in range(1, MODEL_TASK_MAX_RETRIES + 1):
+        try:
+            parsed = extract_json_object(call_ollama(prompt))
+            break
+        except Exception as exc:
+            last_error = exc
+            print(f"  Sentiment attempt {attempt}/{MODEL_TASK_MAX_RETRIES} for {topic} failed: {exc}")
+    else:
+        print(f"  Sentiment error for {topic}: {last_error}")
+        return {
+            "topic_supported": None,
+            "sentiment": None,
+            "score": None,
+            "confidence": 0.0,
+            "evidence_quote": None,
+            "reasoning": "Failed to score with model after retries; excluded from averages.",
+            "scoring_status": "model_error",
+            "is_mismatched": False,
+        }
+
     try:
-        parsed = extract_json_object(call_ollama(prompt))
         raw_supported = parsed.get("topic_supported", True)
         if isinstance(raw_supported, bool):
             topic_supported = raw_supported
@@ -815,7 +846,7 @@ For Pace and Workload, score 5 means the condition supports learning well; score
         is_mismatched = not topic_supported or check_topic_mismatch(reasoning, topic)
         
     except Exception as exc:
-        print(f"  Sentiment error for {topic}: {exc}")
+        print(f"  Sentiment parse error for {topic}: {exc}")
         return {
             "topic_supported": None,
             "sentiment": None,

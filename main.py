@@ -506,6 +506,15 @@ def has_topic_evidence(comment: str, topic: str) -> bool:
     return any(re.search(pattern, text) for pattern in patterns)
 
 
+def quote_supports_topic(evidence_quote: str | None, topic: str) -> bool:
+    """Validate that the model's evidence quote contains topic-specific evidence."""
+    if topic == OTHER:
+        return True
+    if not evidence_quote:
+        return False
+    return has_topic_evidence(evidence_quote, topic)
+
+
 def looks_like_generic_only_comment(comment: str) -> bool:
     """Catch very short generic praise before it gets forced into a real topic."""
     if any(has_topic_evidence(comment, topic) for topic in TOPIC_KEYS):
@@ -720,8 +729,9 @@ For Pace and Workload, score 5 means the condition supports learning well; score
     2. If the topic is not supported, set topic_supported to false, score to null, sentiment to null, and explain briefly.
     3. If the topic is supported, decide whether the feedback is positive, neutral, or negative relative to this topic.
     4. Assign the best matching integer rubric score from 1 to 5.
-    5. Give one brief reason grounded in exact text from the comment.
-    6. Provide confidence from 0.0 to 1.0.
+    5. Provide one short exact evidence quote from the feedback that names or clearly paraphrases this topic.
+    6. Give one brief reason grounded in that evidence quote.
+    7. Provide confidence from 0.0 to 1.0.
 
     Return ONLY valid JSON:
     {{
@@ -729,9 +739,10 @@ For Pace and Workload, score 5 means the condition supports learning well; score
     "sentiment": "positive|negative|neutral",
     "score": 1,
     "confidence": 0.0,
+    "evidence_quote": "short exact quote from feedback",
     "reasoning": "brief explanation"
     }}
-    If topic_supported is false, use JSON null for sentiment and score.
+    If topic_supported is false, use JSON null for sentiment, score, and evidence_quote.
     """
 
     try:
@@ -741,14 +752,22 @@ For Pace and Workload, score 5 means the condition supports learning well; score
             topic_supported = raw_supported
         else:
             topic_supported = str(raw_supported).strip().lower() not in {"false", "0", "no"}
+        evidence_quote = parsed.get("evidence_quote")
+        evidence_quote = normalize_comment(str(evidence_quote)) if evidence_quote else None
         raw_score = parsed.get("score")
         score = None if raw_score is None else max(1, min(5, int(raw_score)))
         sentiment = str(parsed.get("sentiment", "")).strip().lower()
         if sentiment not in {"positive", "negative", "neutral"}:
             sentiment = None
-        if topic_supported and isinstance(score, int):
+        quote_is_valid = quote_supports_topic(evidence_quote, topic)
+        if topic_supported and isinstance(score, int) and quote_is_valid:
             sentiment = sentiment_from_score(score)
         else:
+            if topic_supported and not quote_is_valid:
+                reasoning = (
+                    "Evidence quote did not contain topic-specific support; "
+                    f"original model reasoning: {reasoning}"
+                )
             topic_supported = False
             score = None
             sentiment = None
@@ -763,6 +782,7 @@ For Pace and Workload, score 5 means the condition supports learning well; score
             "sentiment": None,
             "score": None,
             "confidence": 0.0,
+            "evidence_quote": None,
             "reasoning": "Failed to score with model; excluded from averages.",
             "scoring_status": "model_error",
             "is_mismatched": False,
@@ -773,6 +793,7 @@ For Pace and Workload, score 5 means the condition supports learning well; score
         "sentiment": sentiment,
         "score": score,
         "confidence": confidence,
+        "evidence_quote": evidence_quote,
         "reasoning": reasoning,
         "scoring_status": "scored",
         "is_mismatched": is_mismatched,
@@ -846,6 +867,7 @@ def summarize_topic_with_llama(
             "score": item.get("score"),
             "sentiment": item.get("sentiment"),
             "topic_supported": item.get("topic_supported"),
+            "evidence_quote": item.get("evidence_quote"),
             "scoring_status": item.get("scoring_status", "unscored"),
             "text": item.get("feedback", ""),
         }
@@ -1062,6 +1084,7 @@ def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
                     "Feedback": "",
                     "Classification Status": "",
                     "Topic Supported": "",
+                    "Evidence Quote": "",
                     "Sentiment": "",
                     "Score": "",
                     "Confidence": "",
@@ -1084,6 +1107,7 @@ def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
                     "Feedback": comment["feedback"],
                     "Classification Status": comment.get("classification_status", ""),
                     "Topic Supported": comment.get("topic_supported", ""),
+                    "Evidence Quote": comment.get("evidence_quote", ""),
                     "Sentiment": comment.get("sentiment", ""),
                     "Score": comment.get("score", ""),
                     "Confidence": comment.get("confidence", ""),
@@ -1103,6 +1127,7 @@ def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
         "Feedback",
         "Classification Status",
         "Topic Supported",
+        "Evidence Quote",
         "Sentiment",
         "Score",
         "Confidence",
@@ -1190,6 +1215,7 @@ def analysis_pipeline(
                         "confidence": None,
                         "classification_status": classification_status,
                         "topic_supported": None,
+                        "evidence_quote": None,
                         "scoring_status": scoring_status,
                         "reasoning": reasoning,
                     }

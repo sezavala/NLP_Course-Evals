@@ -594,6 +594,14 @@ def sentiment_from_score(score: int) -> str:
     return "neutral"
 
 
+def parse_optional_score(value: Any) -> int | None:
+    if value is None:
+        return None
+    if isinstance(value, str) and value.strip().lower() in {"", "null", "none", "n/a", "na"}:
+        return None
+    return max(1, min(5, int(value)))
+
+
 def classify_with_llama(
     comment: str,
     classification_examples: list[dict[str, Any]] | None = None,
@@ -754,8 +762,7 @@ For Pace and Workload, score 5 means the condition supports learning well; score
             topic_supported = str(raw_supported).strip().lower() not in {"false", "0", "no"}
         evidence_quote = parsed.get("evidence_quote")
         evidence_quote = normalize_comment(str(evidence_quote)) if evidence_quote else None
-        raw_score = parsed.get("score")
-        score = None if raw_score is None else max(1, min(5, int(raw_score)))
+        score = parse_optional_score(parsed.get("score")) if topic_supported else None
         sentiment = str(parsed.get("sentiment", "")).strip().lower()
         if sentiment not in {"positive", "negative", "neutral"}:
             sentiment = None

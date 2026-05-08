@@ -1003,6 +1003,35 @@ def build_topic_summary_prefix(
     return prefix
 
 
+def public_comment(comment: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "feedback": comment.get("feedback") or "",
+        "sentiment": comment.get("sentiment") or "",
+        "score": comment.get("score") if comment.get("score") is not None else "",
+        "confidence": (
+            comment.get("confidence") if comment.get("confidence") is not None else ""
+        ),
+        "reasoning": comment.get("reasoning") or "",
+    }
+
+
+def public_category(category: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "topic": category["topic"],
+        "average_score": category["average_score"],
+        "comment_count": category["comment_count"],
+        "comments": [public_comment(comment) for comment in category["comments"]],
+    }
+
+
+def public_category_score(category: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "category": category["topic"],
+        "average_score": category["average_score"],
+        "comment_count": category["comment_count"],
+    }
+
+
 def clean_topic_summary(topic: str, summary: str) -> str:
     """Keep exactly one topic-summary heading and remove model preambles."""
     marker = f"Summary of {topic}:"
@@ -1216,6 +1245,7 @@ def analysis_pipeline(
     topic_comments: dict[str, list[dict[str, Any]]] = {topic: [] for topic in TOPICS}
     assignment_scores: list[int] = []
     per_feedback_scores: dict[str, list[int]] = {}
+    topic_assignment_count = 0
     classification_error_count = 0
     failed_score_count = 0
     filtered_mismatch_count = 0
@@ -1236,6 +1266,9 @@ def analysis_pipeline(
 
         for topic in topics:
             if topic == OTHER:
+                if classification_status == "model_error":
+                    print("    Other: SKIPPED (classification error)")
+                    continue
                 scoring_status = (
                     "classification_error"
                     if classification_status == "model_error"
@@ -1261,6 +1294,7 @@ def analysis_pipeline(
                 )
                 continue
 
+            topic_assignment_count += 1
             scored = sentiment_with_llama(
                 feedback,
                 topic,
@@ -1285,13 +1319,15 @@ def analysis_pipeline(
                 per_feedback_scores.setdefault(feedback, []).append(score)
             elif scored.get("scoring_status") == "model_error":
                 failed_score_count += 1
+                print(f"    {topic}: SKIPPED (model scoring error)")
+                continue
+            else:
+                print(f"    {topic}: SKIPPED (unscored)")
+                continue
             topic_comments[topic].append(
                 {"feedback": feedback, "classification_status": classification_status, **scored}
             )
-            if isinstance(score, int):
-                print(f"    {topic}: {scored['sentiment']} ({score}/5)")
-            else:
-                print(f"    {topic}: unscored ({scored.get('scoring_status', 'unknown')})")
+            print(f"    {topic}: {scored['sentiment']} ({score}/5)")
 
     categories = []
     category_scores = []
@@ -1328,14 +1364,7 @@ def analysis_pipeline(
             }
         )
         category_scores.append(
-            {
-                "category": topic,
-                "average_score": average_score,
-                "comment_count": len(comments),
-                "scored_comment_count": len(scores),
-                "reliability": reliability,
-                "reliability_notes": reliability_notes,
-            }
+            public_category_score(categories[-1])
         )
         topic_summaries.append({"topic": topic, "summary": summary})
 
@@ -1376,18 +1405,17 @@ def analysis_pipeline(
         "course_id": course_id,
         "model": MODEL,
         "overall_score": overall_score,
-        "topic_assignment_overall_score": topic_assignment_overall_score,
-        "overall_score_method": "mean_of_per_comment_topic_score_means",
         "category_scores": category_scores,
         "topic_summaries": topic_summaries,
-        "categories": categories,
-        "warnings": warnings,
+        "categories": [public_category(category) for category in categories],
         "metadata": {
             "num_comments": len(raw_comments),
             "num_input_comments": input_comment_count,
             "num_duplicate_comments_removed": duplicate_comments_removed,
             "dedupe_mode": "exact",
-            "num_topic_assignments": sum(len(topic_comments[topic]) for topic in TOPIC_KEYS),
+            "topic_assignment_overall_score": topic_assignment_overall_score,
+            "overall_score_method": "mean_of_per_comment_topic_score_means",
+            "num_topic_assignments": topic_assignment_count,
             "num_scored_topic_comments": len(assignment_scores),
             "num_comments_with_scores": len(per_comment_score_means),
             "num_classification_errors": classification_error_count,
@@ -1402,6 +1430,7 @@ def analysis_pipeline(
             "classification_examples_per_prompt": RAG_CLASSIFICATION_EXAMPLE_COUNT if use_rag else 0,
             "sentiment_examples_per_prompt": RAG_SENTIMENT_EXAMPLE_COUNT if use_rag else 0,
             "evidence_filter_mode": evidence_filter_mode,
+            "warnings": warnings,
             "total_time_seconds": round(time.time() - start_time, 2),
         },
     }

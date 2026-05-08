@@ -597,9 +597,41 @@ def sentiment_from_score(score: int) -> str:
 def parse_optional_score(value: Any) -> int | None:
     if value is None:
         return None
-    if isinstance(value, str) and value.strip().lower() in {"", "null", "none", "n/a", "na"}:
+    if isinstance(value, str):
+        text = value.strip().lower()
+        if text in {"", "null", "none", "n/a", "na"}:
+            return None
+        match = re.search(r"\b[1-5]\b", text)
+        if not match:
+            return None
+        value = match.group(0)
+    try:
+        return max(1, min(5, int(value)))
+    except (TypeError, ValueError):
         return None
-    return max(1, min(5, int(value)))
+
+
+def parse_confidence(value: Any) -> float:
+    if value is None:
+        return 0.0
+    if isinstance(value, str):
+        text = value.strip().lower()
+        if text in {"", "null", "none", "n/a", "na"}:
+            return 0.0
+        percent_match = re.search(r"(\d+(?:\.\d+)?)\s*%", text)
+        if percent_match:
+            return max(0.0, min(1.0, float(percent_match.group(1)) / 100))
+        number_match = re.search(r"\d+(?:\.\d+)?", text)
+        if not number_match:
+            return 0.0
+        value = number_match.group(0)
+    try:
+        confidence = float(value)
+    except (TypeError, ValueError):
+        return 0.0
+    if confidence > 1.0:
+        confidence = confidence / 100
+    return max(0.0, min(1.0, confidence))
 
 
 def classify_with_llama(
@@ -766,6 +798,8 @@ For Pace and Workload, score 5 means the condition supports learning well; score
         sentiment = str(parsed.get("sentiment", "")).strip().lower()
         if sentiment not in {"positive", "negative", "neutral"}:
             sentiment = None
+        confidence = parse_confidence(parsed.get("confidence", 0.0))
+        reasoning = str(parsed.get("reasoning", "")).strip()
         quote_is_valid = quote_supports_topic(evidence_quote, topic)
         if topic_supported and isinstance(score, int) and quote_is_valid:
             sentiment = sentiment_from_score(score)
@@ -778,8 +812,6 @@ For Pace and Workload, score 5 means the condition supports learning well; score
             topic_supported = False
             score = None
             sentiment = None
-        confidence = max(0.0, min(1.0, float(parsed.get("confidence", 0.0))))
-        reasoning = str(parsed.get("reasoning", "")).strip()
         is_mismatched = not topic_supported or check_topic_mismatch(reasoning, topic)
         
     except Exception as exc:

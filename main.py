@@ -379,6 +379,26 @@ def load_sentiment_examples(
     return examples
 
 
+def example_matches_topic(example: dict[str, Any], topic: str | None) -> bool:
+    """Allow topic-filtered retrieval to use multi-label examples."""
+    if topic is None:
+        return True
+
+    topics = example.get("topics")
+    if isinstance(topics, str):
+        topics = [item.strip() for item in re.split(r"[;|]", topics) if item.strip()]
+    if isinstance(topics, (list, tuple, set)) and topic in topics:
+        return True
+
+    example_topic = example.get("topic")
+    if isinstance(example_topic, str):
+        return example_topic.strip() == topic
+    if isinstance(example_topic, (list, tuple, set)):
+        return topic in example_topic
+
+    return False
+
+
 def retrieve_similar_examples(
     comment: str,
     examples: list[dict[str, Any]],
@@ -393,7 +413,7 @@ def retrieve_similar_examples(
     comment_key = canonical_comment_key(comment)
     scored_examples = []
     for example in examples:
-        if topic is not None and example.get("topic") != topic:
+        if not example_matches_topic(example, topic):
             continue
 
         example_feedback = str(example.get("feedback", ""))

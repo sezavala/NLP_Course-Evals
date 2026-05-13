@@ -1,0 +1,13 @@
+Model,benchmark_index,best_similarity,benchmark_feedback,best_model_feedback
+Gemma,5,0.6364,Eric that everything to ensure the learning of his students which is great!,Professor Wu is great!
+Gemma,17,0.4507,"Strengths: speaks at a very engaging pace; answer's students questions with ease and is willing to break things down to make material more digestible; has fill–in notes that help me stay engaged
+Weakness: first midterm I felt cramped for time; however, he listed to the class feedback and adjusted the second midterm to be more doable",Professor Wu is very approachable and seems to care about his students.
+Llama3,5,0.6364,Eric that everything to ensure the learning of his students which is great!,Professor Wu is great!
+Llama3,17,0.4507,"Strengths: speaks at a very engaging pace; answer's students questions with ease and is willing to break things down to make material more digestible; has fill–in notes that help me stay engaged
+Weakness: first midterm I felt cramped for time; however, he listed to the class feedback and adjusted the second midterm to be more doable",Professor Wu is very approachable and seems to care about his students.
+roBERTa,5,0.6364,Eric that everything to ensure the learning of his students which is great!,Professor Wu is great!
+roBERTa,17,0.4507,"Strengths: speaks at a very engaging pace; answer's students questions with ease and is willing to break things down to make material more digestible; has fill–in notes that help me stay engaged
+Weakness: first midterm I felt cramped for time; however, he listed to the class feedback and adjusted the second midterm to be more doable",Professor Wu is very approachable and seems to care about his students.
+DistilroBERTa,5,0.6364,Eric that everything to ensure the learning of his students which is great!,Professor Wu is great!
+DistilroBERTa,17,0.4507,"Strengths: speaks at a very engaging pace; answer's students questions with ease and is willing to break things down to make material more digestible; has fill–in notes that help me stay engaged
+Weakness: first midterm I felt cramped for time; however, he listed to the class feedback and adjusted the second midterm to be more doable",Professor Wu is very approachable and seems to care about his students.

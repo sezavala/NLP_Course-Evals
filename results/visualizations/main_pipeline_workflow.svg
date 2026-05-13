@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1450" viewBox="0 0 900 1450" role="img" aria-labelledby="title desc">
+  <title id="title">Course Evaluation NLP Pipeline Workflow</title>
+  <desc id="desc">Vertical poster workflow diagram showing RAG support, topic classification, evidence validation, sentiment safety filtering, aggregation, and dashboard JSON output.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f9fc; }
+      .title { font: 700 31px Arial, Helvetica, sans-serif; fill: #172033; }
+      .subtitle { font: 400 15.5px Arial, Helvetica, sans-serif; fill: #4d5a6d; }
+      .section { font: 700 13px Arial, Helvetica, sans-serif; fill: #5c6678; letter-spacing: 1.2px; }
+      .box-title { font: 700 18px Arial, Helvetica, sans-serif; fill: #162033; }
+      .box-text { font: 400 14.5px Arial, Helvetica, sans-serif; fill: #303b4f; }
+      .small-title { font: 700 16px Arial, Helvetica, sans-serif; fill: #162033; }
+      .small-text { font: 400 13px Arial, Helvetica, sans-serif; fill: #3b465a; }
+      .label { font: 700 12px Arial, Helvetica, sans-serif; fill: #596579; letter-spacing: 0.3px; }
+      .footer { font: 400 13.5px Arial, Helvetica, sans-serif; fill: #556173; }
+      .box { fill: #ffffff; stroke: #c8d2e1; stroke-width: 2; rx: 8; }
+      .input { fill: #eef6ff; stroke: #5b9cf3; }
+      .rag { fill: #edf9f4; stroke: #2d9a76; }
+      .model { fill: #fff7e5; stroke: #d99b20; }
+      .filter { fill: #fff0ef; stroke: #d35a52; }
+      .output { fill: #f2f4ff; stroke: #7475d6; }
+      .meta { fill: #f8fafc; stroke: #94a3b8; stroke-dasharray: 6 5; }
+      .arrow { stroke: #546176; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .support { stroke: #2d9a76; stroke-width: 2.2; fill: none; stroke-dasharray: 7 6; marker-end: url(#arrow-green); }
+      .drop { stroke: #d35a52; stroke-width: 2.2; fill: none; stroke-dasharray: 8 6; marker-end: url(#arrow-red); }
+      .diagnostic { stroke: #6b7280; stroke-width: 2.1; fill: none; stroke-dasharray: 7 6; marker-end: url(#arrow-gray); }
+      .badge { fill: #172033; rx: 8; }
+      .badge-text { font: 700 12px Arial, Helvetica, sans-serif; fill: #ffffff; letter-spacing: 0.8px; }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#546176"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#2d9a76"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#d35a52"/>
+    </marker>
+    <marker id="arrow-gray" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#6b7280"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="900" height="1450"/>
+
+  <text class="title" x="55" y="60">Course Evaluation NLP Pipeline</text>
+  <text class="subtitle" x="55" y="90">RAG-calibrated classification, evidence validation, sentiment safety checks, and website-ready JSON.</text>
+  <rect class="badge" x="655" y="36" width="190" height="34"/>
+  <text class="badge-text" x="681" y="58">LLAMA 3 + OLLAMA</text>
+
+  <!-- Support layer -->
+  <text class="section" x="55" y="135">CALIBRATION INPUTS</text>
+
+  <rect class="box rag" x="55" y="155" width="250" height="105"/>
+  <text class="small-title" x="78" y="188">Human-Graded Examples</text>
+  <text class="small-text" x="78" y="216">Instructor-labeled topics and</text>
+  <text class="small-text" x="78" y="237">rubric scores calibrate prompts.</text>
+
+  <rect class="box rag" x="325" y="155" width="250" height="105"/>
+  <text class="small-title" x="348" y="188">RAG Retrieval</text>
+  <text class="small-text" x="348" y="216">Similar examples are retrieved</text>
+  <text class="small-text" x="348" y="237">for few-shot model guidance.</text>
+
+  <rect class="box meta" x="595" y="155" width="250" height="105"/>
+  <text class="small-title" x="618" y="188">Rubric + Topic Rules</text>
+  <text class="small-text" x="618" y="216">Allowed categories and 1-5</text>
+  <text class="small-text" x="618" y="237">score anchors constrain output.</text>
+
+  <!-- Main vertical workflow -->
+  <text class="section" x="55" y="320">MAIN WORKFLOW</text>
+
+  <rect class="box input" x="250" y="345" width="400" height="95"/>
+  <text class="box-title" x="280" y="378">1. Course Feedback</text>
+  <text class="box-text" x="280" y="407">Load course ID and raw open-ended comments.</text>
+
+  <rect class="box input" x="250" y="485" width="400" height="95"/>
+  <text class="box-title" x="280" y="518">2. Preprocess</text>
+  <text class="box-text" x="280" y="547">Normalize whitespace and remove exact duplicates only.</text>
+
+  <rect class="box model" x="250" y="625" width="400" height="105"/>
+  <text class="box-title" x="280" y="658">3. Topic Classification</text>
+  <text class="box-text" x="280" y="687">High-recall Llama prompt assigns plausible topics.</text>
+  <text class="box-text" x="280" y="709">RAG examples help align labels to the rubric.</text>
+
+  <rect class="box filter" x="250" y="775" width="400" height="105"/>
+  <text class="box-title" x="280" y="808">4. Evidence Filter</text>
+  <text class="box-text" x="280" y="837">A topic is kept only when the comment contains</text>
+  <text class="box-text" x="280" y="859">topic-specific supporting evidence.</text>
+
+  <rect class="box filter" x="250" y="925" width="400" height="115"/>
+  <text class="box-title" x="280" y="958">5. Sentiment Safety Filter</text>
+  <text class="box-text" x="280" y="987">Scores are accepted only with topic_supported,</text>
+  <text class="box-text" x="280" y="1009">evidence_quote, valid sentiment, and a 1-5 score.</text>
+
+  <rect class="box output" x="250" y="1085" width="400" height="95"/>
+  <text class="box-title" x="280" y="1118">6. Validated Comments</text>
+  <text class="box-text" x="280" y="1147">Only supported, scored comments move forward.</text>
+
+  <rect class="box output" x="250" y="1225" width="400" height="95"/>
+  <text class="box-title" x="280" y="1258">7. Scores + Summaries</text>
+  <text class="box-text" x="280" y="1287">Compute category averages, overall score, and summaries.</text>
+
+  <rect class="box output" x="250" y="1360" width="400" height="70"/>
+  <text class="box-title" x="280" y="1392">8. Frontend JSON</text>
+  <text class="box-text" x="280" y="1417">Simple dashboard fields plus backend metadata.</text>
+
+  <!-- Side safety and metadata path -->
+  <rect class="box filter" x="55" y="930" width="165" height="125"/>
+  <text class="small-title" x="78" y="963">Skipped Items</text>
+  <text class="small-text" x="78" y="991">Misclassified or</text>
+  <text class="small-text" x="78" y="1012">unsupported items</text>
+  <text class="small-text" x="78" y="1033">are not sent to</text>
+  <text class="small-text" x="78" y="1054">the frontend.</text>
+
+  <rect class="box meta" x="680" y="930" width="165" height="125"/>
+  <text class="small-title" x="703" y="963">Metadata</text>
+  <text class="small-text" x="703" y="991">Retries, warnings,</text>
+  <text class="small-text" x="703" y="1012">duplicates, skipped</text>
+  <text class="small-text" x="703" y="1033">counts, and runtime</text>
+  <text class="small-text" x="703" y="1054">are preserved.</text>
+
+  <!-- Main arrows -->
+  <path class="arrow" d="M450 440 L450 485"/>
+  <path class="arrow" d="M450 580 L450 625"/>
+  <path class="arrow" d="M450 730 L450 775"/>
+  <path class="arrow" d="M450 880 L450 925"/>
+  <path class="arrow" d="M450 1040 L450 1085"/>
+  <path class="arrow" d="M450 1180 L450 1225"/>
+  <path class="arrow" d="M450 1320 L450 1360"/>
+
+  <!-- Support arrows -->
+  <path class="support" d="M305 208 L325 208"/>
+  <path class="support" d="M450 260 C450 420 450 505 450 625"/>
+  <path class="support" d="M575 208 C660 295 660 500 650 650"/>
+  <path class="diagnostic" d="M720 260 C720 450 650 685 650 775"/>
+  <path class="diagnostic" d="M720 260 C755 510 650 790 650 925"/>
+
+  <!-- Filter and metadata arrows -->
+  <path class="drop" d="M250 827 C205 835 162 875 138 930"/>
+  <path class="drop" d="M250 982 C205 982 170 992 138 992"/>
+  <path class="diagnostic" d="M650 982 L680 982"/>
+  <path class="diagnostic" d="M762 1055 C762 1195 650 1265 650 1390"/>
+
+  <!-- Labels -->
+  <text class="label" x="468" y="464">clean comments</text>
+  <text class="label" x="468" y="604">candidate topics</text>
+  <text class="label" x="468" y="754">evidence-backed labels</text>
+  <text class="label" x="468" y="905">validated scoring</text>
+  <text class="label" x="468" y="1065">good comments only</text>
+  <text class="label" x="146" y="904">filtered out</text>
+  <text class="label" x="690" y="904">audit trail</text>
+
+  <!-- Footer -->
+  <rect class="box" x="55" y="1328" width="165" height="95"/>
+  <text class="footer" x="75" y="1361">Recall first:</text>
+  <text class="footer" x="75" y="1384">classify broadly,</text>
+  <text class="footer" x="75" y="1407">then validate.</text>
+</svg>

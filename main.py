@@ -1409,11 +1409,10 @@ def analysis_pipeline(
 
     # Dictionary to store comments for each topic
     topic_comments: dict[str, list[dict[str, Any]]] = {topic: [] for topic in TOPICS}
-    # List of assignment scores
+    # List of all scores assigned to comments
     assignment_scores: list[int] = []
-    # 
+    # Dict of all feedback comments and their scores.
     per_feedback_scores: dict[str, list[int]] = {}
-    #
     # Counters used for metadata and warnings in the final output
     topic_assignment_count = 0
     classification_error_count = 0
@@ -1435,14 +1434,12 @@ def analysis_pipeline(
         # Count classification failures so they can appear in metadata
         if classification_status == "model_error":
             classification_error_count += 1
-        print(f"  Topics: {topics}")
 
         # Score each topic assigned to this feedback
         for topic in topics:
             # Other comments are not scored with a rubric
             if topic == OTHER:
                 if classification_status == "model_error":
-                    print("    Other: SKIPPED (classification error)")
                     continue
                 # Store generic feedback separately so it can be summarized but not averaged
                 scoring_status = (
@@ -1480,14 +1477,15 @@ def analysis_pipeline(
             )
             
             # Validation: Skip if sentiment model indicates topic mismatch (using topic-specific threshold)
+
+            # Check if model references a mismatch in reasoning
             is_mismatched = scored.pop("is_mismatched", False)
+            # Extract confidence threshold for current topic
             threshold = CONFIDENCE_THRESHOLDS.get(topic, CONFIDENCE_THRESHOLDS["default"])
+            # Check if model returned that the comment does not match the topic.
             unsupported_topic = scored.get("topic_supported") is False
+            # Use the following factors to determine whether or not to remove topic classification
             if unsupported_topic or (is_mismatched and scored.get("confidence", 0) > threshold):
-                print(
-                    f"    {topic}: FILTERED (unsupported topic in validation, "
-                    f"conf {scored.get('confidence', 0):.2f})"
-                )
                 filtered_mismatch_count += 1
                 continue
             

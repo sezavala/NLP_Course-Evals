@@ -1409,15 +1409,11 @@ def analysis_pipeline(
 
     # Dictionary to store comments for each topic
     topic_comments: dict[str, list[dict[str, Any]]] = {topic: [] for topic in TOPICS}
-    # List of all scores assigned to comments
-    assignment_scores: list[int] = []
     # Dict of all feedback comments and their scores.
     per_feedback_scores: dict[str, list[int]] = {}
-    # Counters used for metadata and warnings in the final output
-    topic_assignment_count = 0
+    # Counters used for warnings in the final output
     classification_error_count = 0
     failed_score_count = 0
-    filtered_mismatch_count = 0
 
     # Start iterating comments for evaluation
     for idx, feedback in enumerate(raw_comments, 1):
@@ -1431,7 +1427,7 @@ def analysis_pipeline(
         topics = classification.get("topics", [OTHER])
         classification_status = classification.get("classification_status", "classified")
         classification_reasoning = classification.get("classification_reasoning", "")
-        # Count classification failures so they can appear in metadata
+        # Count classification failures so they can appear in warnings
         if classification_status == "model_error":
             classification_error_count += 1
 
@@ -1467,8 +1463,6 @@ def analysis_pipeline(
                 )
                 continue
 
-            # Track how many non-Other topic assignments were attempted
-            topic_assignment_count += 1
             # Score this feedback for the current topic
             scored = sentiment_with_llama(
                 feedback,
@@ -1486,27 +1480,22 @@ def analysis_pipeline(
             unsupported_topic = scored.get("topic_supported") is False
             # Use the following factors to determine whether or not to remove topic classification
             if unsupported_topic or (is_mismatched and scored.get("confidence", 0) > threshold):
-                filtered_mismatch_count += 1
                 continue
             
             # Store valid numeric scores for topic and overall averages
             score = scored.get("score")
             if isinstance(score, int):
-                assignment_scores.append(score)
                 per_feedback_scores.setdefault(feedback, []).append(score)
             # Skip model errors so they do not distort averages
             elif scored.get("scoring_status") == "model_error":
                 failed_score_count += 1
-                print(f"    {topic}: SKIPPED (model scoring error)")
                 continue
             else:
-                print(f"    {topic}: SKIPPED (unscored)")
                 continue
             # Save the scored comment under its topic
             topic_comments[topic].append(
                 {"feedback": feedback, "classification_status": classification_status, **scored}
             )
-            print(f"    {topic}: {scored['sentiment']} ({score}/5)")
 
     # Build final topic-level objects after all comments have been processed
     categories = []
@@ -1518,15 +1507,7 @@ def analysis_pipeline(
         scores = [item["score"] for item in comments if isinstance(item.get("score"), int)]
         average_score = mean_score(scores)
         # Determine how trustworthy this topic score is
-        reliability, reliability_notes = reliability_for_topic(comments)
-        model_error_count = sum(1 for item in comments if item.get("scoring_status") == "model_error")
-        low_confidence_count = sum(
-            1
-            for item in comments
-            if isinstance(item.get("score"), int)
-            and isinstance(item.get("confidence"), (int, float))
-            and item.get("confidence", 0.0) < LOW_CONFIDENCE_THRESHOLD
-        )
+        reliability, _ = reliability_for_topic(comments)
         # Generate a topic summary using the scored comments
         summary = summarize_topic_with_llama(
             topic,
@@ -1540,10 +1521,7 @@ def analysis_pipeline(
                 "average_score": average_score,
                 "comment_count": len(comments),
                 "scored_comment_count": len(scores),
-                "model_error_count": model_error_count,
-                "low_confidence_count": low_confidence_count,
                 "reliability": reliability,
-                "reliability_notes": reliability_notes,
                 "comments": comments,
             }
         )
@@ -1566,12 +1544,7 @@ def analysis_pipeline(
             "average_score": None,
             "comment_count": len(topic_comments[OTHER]),
             "scored_comment_count": 0,
-            "model_error_count": 0,
-            "low_confidence_count": 0,
             "reliability": "not_scored",
-            "reliability_notes": [
-                "Generic or uncategorized feedback is summarized but excluded from rubric averages."
-            ],
             "comments": topic_comments[OTHER],
         }
     )
@@ -1582,8 +1555,6 @@ def analysis_pipeline(
         sum(scores) / len(scores) for scores in per_feedback_scores.values() if scores
     ]
     overall_score = mean_score(per_comment_score_means)
-    # Keep a separate average across all topic assignments for audit/debugging
-    topic_assignment_overall_score = mean_score(assignment_scores)
     # Build warnings that explain low sample sizes or skipped records
     warnings = build_output_warnings(
         categories,
@@ -1600,29 +1571,15 @@ def analysis_pipeline(
         "topic_summaries": topic_summaries,
         "categories": [public_category(category) for category in categories],
         "metadata": {
-            "num_comments": len(raw_comments),
-            "num_input_comments": input_comment_count,
-            "num_duplicate_comments_removed": duplicate_comments_removed,
-            "dedupe_mode": "exact",
-            "topic_assignment_overall_score": topic_assignment_overall_score,
-            "overall_score_method": "mean_of_per_comment_topic_score_means",
-            "num_topic_assignments": topic_assignment_count,
-            "num_scored_topic_comments": len(assignment_scores),
-            "num_comments_with_scores": len(per_comment_score_means),
-            "num_classification_errors": classification_error_count,
-            "num_failed_topic_scores": failed_score_count,
-            "num_filtered_topic_mismatches": filtered_mismatch_count,
-            "num_unscored_other_comments": len(topic_comments[OTHER]),
-            "min_reliable_category_comments": MIN_RELIABLE_CATEGORY_COMMENTS,
-            "low_confidence_threshold": LOW_CONFIDENCE_THRESHOLD,
+            "input_comments": input_comment_count,
+            "processed_comments": len(raw_comments),
+            "duplicates_removed": duplicate_comments_removed,
+            "scored_comments": len(per_comment_score_means),
+            "generic_comments": len(topic_comments[OTHER]),
             "rag_enabled": use_rag,
-            "classification_examples_loaded": len(classification_examples),
-            "sentiment_examples_loaded": len(sentiment_examples),
-            "classification_examples_per_prompt": RAG_CLASSIFICATION_EXAMPLE_COUNT if use_rag else 0,
-            "sentiment_examples_per_prompt": RAG_SENTIMENT_EXAMPLE_COUNT if use_rag else 0,
             "evidence_filter_mode": evidence_filter_mode,
             "warnings": warnings,
-            "total_time_seconds": round(time.time() - start_time, 2),
+            "runtime_seconds": round(time.time() - start_time, 2),
         },
     }
 

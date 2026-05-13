@@ -245,10 +245,11 @@ def normalize_comment(comment: str) -> str:
 
 
 def canonical_comment_key(comment: str) -> str:
+    # Remove accents and any special type of characters (Normalization)
     text = unicodedata.normalize("NFKD", comment).encode("ascii", "ignore").decode("ascii")
+    # Convert to lowercase
     text = text.casefold()
-    text = re.sub(r"\bpower\s+points?\b", "powerpoint", text)
-    text = re.sub(r"\bbruin\s+cast\b", "bruincast", text)
+    # Extract only alphanumeric tokens and rejoin
     return " ".join(re.findall(r"[a-z0-9]+", text))
 
 
@@ -275,30 +276,42 @@ def retrieval_tokens(text: str) -> set[str]:
     return {
         token
         for token in canonical_comment_key(text).split()
+        # Normalize text and split into individual words
         if len(token) > 2 and token not in RETRIEVAL_STOPWORDS
+        # Only keep tokens that are greater than 2 chars and are not stop words
     }
 
 
 def retrieval_similarity(left: str, right: str) -> float:
     """Score comment similarity using token overlap plus fuzzy full-text matching."""
+    # Normalize current evaluation comment
     left_key = canonical_comment_key(left)
+    # Normalize RAG comment
     right_key = canonical_comment_key(right)
+    # Ensure neither or is empty
     if not left_key or not right_key:
         return 0.0
+    # If they match, 100% similarity
     if left_key == right_key:
         return 1.0
 
+    # Tokenize current comment and RAG comment
     left_tokens = retrieval_tokens(left)
     right_tokens = retrieval_tokens(right)
     if left_tokens and right_tokens:
+        # Extract tokens that are the same in both tokenizations
         overlap = left_tokens & right_tokens
+        # What fraction of the shorter comment appears in the overlap
         containment = len(overlap) / min(len(left_tokens), len(right_tokens))
+        # What fraction of all unique tokens are in the overlap
         jaccard = len(overlap) / len(left_tokens | right_tokens)
     else:
         containment = 0.0
         jaccard = 0.0
 
+    # Compare both comments character by character for similarity
     fuzzy_ratio = SequenceMatcher(None, left_key, right_key).ratio()
+    # Result is a combined score of containment, jaccard, and fuzzy ratio
     return (0.55 * containment) + (0.25 * jaccard) + (0.20 * fuzzy_ratio)
 
 
@@ -323,19 +336,23 @@ def load_classification_examples(
         return []
 
     examples = []
+    # Loop through our HUMAN_CATEGORIZED_OUTPUT.csv file
     with open(path, "r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
+            # Extract the feedback comment
             feedback = normalize_comment(row.get("Feedback", ""))
             if not feedback:
                 continue
 
+            # For every possible topic, check if it has a "✓" or is empty
             topics = [topic for topic in TOPICS if is_truthy_label(row.get(topic))]
             if not topics:
                 topics = [OTHER]
             if OTHER in topics and len(topics) > 1:
                 topics = [topic for topic in topics if topic != OTHER] or [OTHER]
 
+            # Add feedback comment and its topics to examples list
             examples.append({"feedback": feedback, "topics": topics})
 
     return examples
@@ -350,9 +367,11 @@ def load_sentiment_examples(
         return []
 
     examples = []
+    # Loop through the HUMAN_SENTIMENT_BASELINE.csv file
     with open(path, "r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
+            # Extract comment, topic to focus on, sentiment, and reasoning for sentiment
             feedback = normalize_comment(row.get("Feedback", ""))
             topic = str(row.get("Topic", "")).strip()
             sentiment = str(row.get("Sentiment", "neutral")).strip().lower()
@@ -366,6 +385,7 @@ def load_sentiment_examples(
             except (TypeError, ValueError):
                 score = 3
 
+            # Store extracted information into examples list
             examples.append(
                 {
                     "feedback": feedback,
@@ -381,21 +401,25 @@ def load_sentiment_examples(
 
 def example_matches_topic(example: dict[str, Any], topic: str | None) -> bool:
     """Allow topic-filtered retrieval to use multi-label examples."""
+    # If no topic filter is provided, allow any example to be considered
     if topic is None:
         return True
 
+    # Classification examples can store multiple human topics in a topics list
     topics = example.get("topics")
     if isinstance(topics, str):
         topics = [item.strip() for item in re.split(r"[;|]", topics) if item.strip()]
     if isinstance(topics, (list, tuple, set)) and topic in topics:
         return True
 
+    # Sentiment examples usually store one topic in a topic field
     example_topic = example.get("topic")
     if isinstance(example_topic, str):
         return example_topic.strip() == topic
     if isinstance(example_topic, (list, tuple, set)):
         return topic in example_topic
 
+    # If neither format contains the topic, skip this example
     return False
 
 
@@ -410,25 +434,34 @@ def retrieve_similar_examples(
     if not examples or limit <= 0:
         return []
 
+    # Normalize the current comment
     comment_key = canonical_comment_key(comment)
     scored_examples = []
+    # Loop through all RAG examples (baseline)
     for example in examples:
+        # Only choose examples that contain our current comments topic or if topic is None
         if not example_matches_topic(example, topic):
             continue
 
         example_feedback = str(example.get("feedback", ""))
+        # Normalize feedback comment from baseline
         example_key = canonical_comment_key(example_feedback)
+        # If the comments are exact matches, do not retrieve this comment
         if exclude_exact_match and comment_key == example_key:
             continue
 
+        # Calculate a similarity score on RAG comment and current evaluation comment
         similarity = retrieval_similarity(comment, example_feedback)
+        # If they aren't similar enough, don't include
         if similarity < RAG_MIN_SIMILARITY:
             continue
 
         scored_examples.append((similarity, example))
 
+    # Sort scored examples from highest score to lowest
     scored_examples.sort(key=lambda item: item[0], reverse=True)
     retrieved = []
+    # Store n amount of RAG examples only (4 in our case)
     for similarity, example in scored_examples[:limit]:
         retrieved_example = dict(example)
         retrieved_example["similarity"] = round(similarity, 3)
@@ -440,6 +473,7 @@ def format_classification_examples(examples: list[dict[str, Any]]) -> str:
     if not examples:
         return "[]"
 
+    # Keep only the fields the classification prompt needs
     compact_examples = [
         {
             "similarity": example.get("similarity", 0.0),
@@ -448,6 +482,7 @@ def format_classification_examples(examples: list[dict[str, Any]]) -> str:
         }
         for example in examples
     ]
+    # Convert examples into formatted JSON so the model sees a clear structure
     return json.dumps(compact_examples, indent=2)
 
 
@@ -455,6 +490,7 @@ def format_sentiment_examples(examples: list[dict[str, Any]]) -> str:
     if not examples:
         return "[]"
 
+    # Keep only topic-specific sentiment information for the scoring prompt
     compact_examples = [
         {
             "similarity": example.get("similarity", 0.0),
@@ -465,15 +501,18 @@ def format_sentiment_examples(examples: list[dict[str, Any]]) -> str:
         }
         for example in examples
     ]
+    # Convert examples into formatted JSON so the model can compare rubric scores
     return json.dumps(compact_examples, indent=2)
 
 
 def extract_json_object(text: str) -> dict[str, Any]:
     """Extract the first JSON object from an LLM response."""
+    # Find the outermost JSON braces in the model response
     json_start = text.find("{")
     json_end = text.rfind("}") + 1
     if json_start == -1 or json_end <= json_start:
         raise ValueError("No JSON object found")
+    # Parse only the JSON substring, ignoring any extra model text
     return json.loads(text[json_start:json_end])
 
 
@@ -484,8 +523,10 @@ def call_ollama(
     max_retries: int = OLLAMA_MAX_RETRIES,
 ) -> str:
     last_error: Exception | None = None
+    # Retry Ollama requests because local model calls can occasionally fail
     for attempt in range(max_retries + 1):
         try:
+            # Send one non-streaming prompt to the local Ollama server
             response = requests.post(
                 OLLAMA_URL,
                 json={
@@ -500,6 +541,7 @@ def call_ollama(
             return response.json().get("response", "")
         except requests.RequestException as exc:
             last_error = exc
+            # Wait slightly longer after each failed attempt before retrying
             if attempt < max_retries:
                 time.sleep(1.5 * (attempt + 1))
                 continue
@@ -509,21 +551,26 @@ def call_ollama(
 
 
 def format_topics() -> str:
+    # Format topic definitions as bullet points for the classification prompt
     return "\n".join(f"- {topic}: {TOPIC_DEFS[topic]}" for topic in TOPIC_KEYS)
 
 
 def format_rubric(topic: str) -> str:
+    # Pull the 1-5 scoring rubric for one topic
     rubric = SCORING_RUBRIC.get(topic, {})
     if not isinstance(rubric, dict):
         return ""
+    # Format rubric levels in score order for the sentiment prompt
     return "\n".join(f"{score}: {description}" for score, description in sorted(rubric.items()))
 
 
 def has_topic_evidence(comment: str, topic: str) -> bool:
+    # Other does not need concrete topic evidence
     if topic == OTHER:
         return True
     patterns = TOPIC_EVIDENCE_PATTERNS.get(topic, [])
     text = comment.casefold()
+    # Check whether any topic-specific evidence pattern appears in the text
     return any(re.search(pattern, text) for pattern in patterns)
 
 
@@ -538,13 +585,16 @@ def quote_supports_topic(evidence_quote: str | None, topic: str) -> bool:
 
 def looks_like_generic_only_comment(comment: str) -> bool:
     """Catch very short generic praise before it gets forced into a real topic."""
+    # If any topic evidence exists, do not treat the comment as generic only
     if any(has_topic_evidence(comment, topic) for topic in TOPIC_KEYS):
         return False
 
+    # Longer comments are less likely to be only generic praise
     tokens = retrieval_tokens(comment)
     if len(tokens) > 15:
         return False
 
+    # Look for concrete course words before calling the comment generic
     text = comment.casefold()
     concrete_keywords = [
         "assign",
@@ -568,6 +618,7 @@ def looks_like_generic_only_comment(comment: str) -> bool:
     if not has_concrete and len(tokens) < 8:
         return True
 
+    # Catch short praise like "best professor" that has no instructional detail
     generic_patterns = [
         r"\b(best|great|excellent|amazing|incredible|fantastic|good|wonderful|outstanding|awesome)\b.*\b(professor|instructor|teacher|lecturer)\b",
         r"\b(professor|instructor|teacher|lecturer)\b.*\b(best|great|excellent|amazing|incredible|fantastic|good|wonderful|outstanding|awesome)\b",
@@ -582,25 +633,30 @@ def filter_topics_by_evidence(
     mode: str = "soft",
 ) -> list[str]:
     valid_topics = []
+    # Keep only allowed topics and remove duplicates while preserving order
     for topic in topics:
         if topic in TOPICS and topic not in valid_topics:
             valid_topics.append(topic)
 
+    # Fall back to Other when the model gives no valid topics
     if not valid_topics:
         return [OTHER]
     if valid_topics == [OTHER]:
         return [OTHER]
 
+    # Other cannot be mixed with real instructional topics
     non_other_topics = [topic for topic in valid_topics if topic != OTHER]
     if not non_other_topics:
         return [OTHER]
 
+    # Strict mode keeps only topics with regex evidence in the comment
     if mode == "strict":
         filtered_topics = [
             topic for topic in non_other_topics if has_topic_evidence(comment, topic)
         ]
         return filtered_topics or [OTHER]
 
+    # Soft mode only removes topics when the entire comment looks generic
     if looks_like_generic_only_comment(comment):
         return [OTHER]
 
@@ -608,6 +664,7 @@ def filter_topics_by_evidence(
 
 
 def sentiment_from_score(score: int) -> str:
+    # Map the rubric score back into a sentiment label
     if score <= 2:
         return "negative"
     if score >= 4:
@@ -616,6 +673,7 @@ def sentiment_from_score(score: int) -> str:
 
 
 def parse_optional_score(value: Any) -> int | None:
+    # Convert model output into an optional integer score from 1 to 5
     if value is None:
         return None
     if isinstance(value, str):
@@ -627,12 +685,14 @@ def parse_optional_score(value: Any) -> int | None:
             return None
         value = match.group(0)
     try:
+        # Clamp scores into the valid rubric range
         return max(1, min(5, int(value)))
     except (TypeError, ValueError):
         return None
 
 
 def parse_confidence(value: Any) -> float:
+    # Convert model confidence into a float between 0.0 and 1.0
     if value is None:
         return 0.0
     if isinstance(value, str):
@@ -641,6 +701,7 @@ def parse_confidence(value: Any) -> float:
             return 0.0
         percent_match = re.search(r"(\d+(?:\.\d+)?)\s*%", text)
         if percent_match:
+            # Convert percent confidence like "85%" into 0.85
             return max(0.0, min(1.0, float(percent_match.group(1)) / 100))
         number_match = re.search(r"\d+(?:\.\d+)?", text)
         if not number_match:
@@ -651,6 +712,7 @@ def parse_confidence(value: Any) -> float:
     except (TypeError, ValueError):
         return 0.0
     if confidence > 1.0:
+        # Convert whole-number confidence like 85 into 0.85
         confidence = confidence / 100
     return max(0.0, min(1.0, confidence))
 
@@ -661,11 +723,15 @@ def classify_with_llama(
     evidence_filter_mode: str = "soft",
 ) -> dict[str, Any]:
     """Classify a course-evaluation comment into plausible instructional topics."""
+
+    # Retrieve examples from our baseline that are similar to our current comment
     retrieved_examples = retrieve_similar_examples(
         comment,
         classification_examples or [],
         limit=RAG_CLASSIFICATION_EXAMPLE_COUNT,
     )
+
+    # Prompt including RAG examples to reduce hallucinations
     prompt = f"""You are a high-recall course-evaluation topic coder.
 
 Assign ALL topics that are plausibly supported by words, close paraphrases, or concrete teaching/course details in the feedback text.
@@ -718,14 +784,17 @@ Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has
 
     last_error: Exception | None = None
     parsed = None
+    # Allow for retries since the model can sometimes return incorrect formats.
     for attempt in range(1, MODEL_TASK_MAX_RETRIES + 1):
         try:
+            # Call model and ensure result is a JSON object
             parsed = extract_json_object(call_ollama(prompt))
             break
         except Exception as exc:
             last_error = exc
             print(f"  Classification attempt {attempt}/{MODEL_TASK_MAX_RETRIES} failed: {exc}")
 
+    # Return with added flags for diagnosis if model failed to provide output
     if parsed is None:
         return {
             "topics": [OTHER],
@@ -736,11 +805,13 @@ Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has
             ),
         }
 
+    # Pull topics out of the model response and normalize to a list
     topics = parsed.get("topics", [OTHER])
     if not isinstance(topics, list):
         topics = [topics]
 
     valid_topics = []
+    # Keep only known topic names returned by the model
     for topic in topics:
         if isinstance(topic, dict):
             topic = topic.get("topic") or topic.get("name")
@@ -753,9 +824,8 @@ Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has
     if valid_topics == [OTHER]:
         return {"topics": [OTHER], "classification_status": "classified"}
 
+    # Run the evidence filter after the model gives candidate topics
     filtered = filter_topics_by_evidence(comment, valid_topics, mode=evidence_filter_mode)
-    if valid_topics != filtered:
-        print(f"    LLM assigned {valid_topics}; evidence filter kept {filtered}.")
 
     return {"topics": filtered, "classification_status": "classified"}
 
@@ -766,12 +836,14 @@ def sentiment_with_llama(
     sentiment_examples: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Score a comment for one topic using the topic-specific rubric."""
+    # Retrieve sentiment examples only for the topic currently being scored
     retrieved_examples = retrieve_similar_examples(
         comment,
         sentiment_examples or [],
         limit=RAG_SENTIMENT_EXAMPLE_COUNT,
         topic=topic,
     )
+    # Prompt the model to score this one topic instead of the whole comment
     prompt = f"""You are scoring one course-evaluation comment for one topic.
 
 Use the rubric exactly. The numeric score is rubric-specific, not generic sentiment.
@@ -817,8 +889,10 @@ For Pace and Workload, score 5 means the condition supports learning well; score
     """
 
     last_error: Exception | None = None
+    # Retry because the model may fail to return parseable JSON on the first try
     for attempt in range(1, MODEL_TASK_MAX_RETRIES + 1):
         try:
+            # Call model and parse the JSON response for this topic score
             parsed = extract_json_object(call_ollama(prompt))
             break
         except Exception as exc:
@@ -826,6 +900,7 @@ For Pace and Workload, score 5 means the condition supports learning well; score
             print(f"  Sentiment attempt {attempt}/{MODEL_TASK_MAX_RETRIES} for {topic} failed: {exc}")
     else:
         print(f"  Sentiment error for {topic}: {last_error}")
+        # Mark failed scoring so it can be excluded from score averages later
         return {
             "topic_supported": None,
             "sentiment": None,
@@ -838,11 +913,13 @@ For Pace and Workload, score 5 means the condition supports learning well; score
         }
 
     try:
+        # Normalize whether the model thinks this topic is actually supported
         raw_supported = parsed.get("topic_supported", True)
         if isinstance(raw_supported, bool):
             topic_supported = raw_supported
         else:
             topic_supported = str(raw_supported).strip().lower() not in {"false", "0", "no"}
+        # Normalize evidence quote, score, sentiment, confidence, and reasoning
         evidence_quote = parsed.get("evidence_quote")
         evidence_quote = normalize_comment(str(evidence_quote)) if evidence_quote else None
         score = parse_optional_score(parsed.get("score")) if topic_supported else None
@@ -852,6 +929,7 @@ For Pace and Workload, score 5 means the condition supports learning well; score
         confidence = parse_confidence(parsed.get("confidence", 0.0))
         reasoning = str(parsed.get("reasoning", "")).strip()
         quote_is_valid = quote_supports_topic(evidence_quote, topic)
+        # Accept the score only when the model provided valid topic evidence
         if topic_supported and isinstance(score, int) and quote_is_valid:
             sentiment = sentiment_from_score(score)
         else:
@@ -863,10 +941,12 @@ For Pace and Workload, score 5 means the condition supports learning well; score
             topic_supported = False
             score = None
             sentiment = None
+        # Track likely topic mismatches so the main pipeline can filter them
         is_mismatched = not topic_supported or check_topic_mismatch(reasoning, topic)
         
     except Exception as exc:
         print(f"  Sentiment parse error for {topic}: {exc}")
+        # Parse errors are treated as model errors and excluded from averages
         return {
             "topic_supported": None,
             "sentiment": None,
@@ -878,6 +958,7 @@ For Pace and Workload, score 5 means the condition supports learning well; score
             "is_mismatched": False,
         }
 
+    # Return a normalized scoring record for this comment-topic pair
     result = {
         "topic_supported": topic_supported,
         "sentiment": sentiment,
@@ -941,17 +1022,21 @@ def summarize_topic_with_llama(
     comments: list[dict[str, Any]],
     average_score: float | None,
 ) -> str:
+    # Return a simple summary when no comments landed in this topic
     if not comments:
         return f"Summary of {topic}: No comments were assigned to this topic."
+    # Avoid an unnecessary model call for a single comment
     if len(comments) == 1:
         return summarize_single_comment(topic, comments[0])
 
+    # Count scored comments, model errors, and sentiment labels for the summary prompt
     scored_count = sum(1 for item in comments if isinstance(item.get("score"), int))
     model_error_count = sum(1 for item in comments if item.get("scoring_status") == "model_error")
     sentiment_counts = {
         sentiment: sum(1 for item in comments if item.get("sentiment") == sentiment)
         for sentiment in ("positive", "neutral", "negative")
     }
+    # Keep the summary prompt focused on evidence and scores only
     scored_comments = [
         {
             "score": item.get("score"),
@@ -963,6 +1048,7 @@ def summarize_topic_with_llama(
         }
         for item in comments
     ]
+    # Build a deterministic prefix so the final summary always includes counts
     exact_prefix = build_topic_summary_prefix(
         topic,
         len(comments),
@@ -971,6 +1057,7 @@ def summarize_topic_with_llama(
         sentiment_counts,
         model_error_count,
     )
+    # Ask the model for only the qualitative theme sentence
     prompt = f"""Summarize the course evaluation evidence for one topic.
 
     TOPIC: {topic}
@@ -999,6 +1086,7 @@ def summarize_topic_with_llama(
     """
 
     try:
+        # Generate the qualitative topic summary
         summary = call_ollama(
             prompt,
             temperature=0.2,
@@ -1008,14 +1096,17 @@ def summarize_topic_with_llama(
         print(f"  Summary error for {topic}: {exc}")
         return f"{exact_prefix} Themes unavailable due to model error."
 
+    # Ensure all summaries use the same heading format
     if not summary.startswith(f"Summary of {topic}:"):
         summary = f"Summary of {topic}: {summary}"
     cleaned = clean_topic_summary(topic, summary)
     body = cleaned.removeprefix(f"Summary of {topic}:").strip()
+    # Combine deterministic counts with model-written qualitative themes
     return f"{exact_prefix} {body}" if body else exact_prefix
 
 
 def summarize_single_comment(topic: str, comment: dict[str, Any]) -> str:
+    # Build a short summary directly from the one available comment
     feedback = normalize_comment(str(comment.get("feedback", "")))
     if len(feedback) > 180:
         feedback = feedback[:177].rstrip() + "..."
@@ -1035,12 +1126,14 @@ def build_topic_summary_prefix(
     sentiment_counts: dict[str, int],
     model_error_count: int = 0,
 ) -> str:
+    # Other comments are not scored with the rubric
     if topic == OTHER:
         return (
             f"Summary of {topic}: {comment_count} generic or uncategorized comments; "
             "excluded from rubric averages."
         )
 
+    # Build the numeric part of the summary in code for consistency
     score_text = f"average {average_score}/5" if average_score is not None else "no rubric average"
     prefix = (
         f"Summary of {topic}: {comment_count} assigned comments; "
@@ -1055,27 +1148,38 @@ def build_topic_summary_prefix(
 
 
 def public_comment(comment: dict[str, Any]) -> dict[str, Any]:
+    # Keep only the fields that should appear in the public report output
     return {
         "feedback": comment.get("feedback") or "",
+        "classification_status": comment.get("classification_status") or "",
+        "topic_supported": (
+            comment.get("topic_supported") if comment.get("topic_supported") is not None else ""
+        ),
+        "evidence_quote": comment.get("evidence_quote") or "",
         "sentiment": comment.get("sentiment") or "",
         "score": comment.get("score") if comment.get("score") is not None else "",
         "confidence": (
             comment.get("confidence") if comment.get("confidence") is not None else ""
         ),
+        "scoring_status": comment.get("scoring_status") or "",
         "reasoning": comment.get("reasoning") or "",
     }
 
 
 def public_category(category: dict[str, Any]) -> dict[str, Any]:
+    # Convert internal category data into the report-friendly category shape
     return {
         "topic": category["topic"],
         "average_score": category["average_score"],
         "comment_count": category["comment_count"],
+        "scored_comment_count": category.get("scored_comment_count", 0),
+        "reliability": category.get("reliability", ""),
         "comments": [public_comment(comment) for comment in category["comments"]],
     }
 
 
 def public_category_score(category: dict[str, Any]) -> dict[str, Any]:
+    # Store compact category-level scores for quick summary views
     return {
         "category": category["topic"],
         "average_score": category["average_score"],
@@ -1086,12 +1190,15 @@ def public_category_score(category: dict[str, Any]) -> dict[str, Any]:
 def clean_topic_summary(topic: str, summary: str) -> str:
     """Keep exactly one topic-summary heading and remove model preambles."""
     marker = f"Summary of {topic}:"
+    # Normalize whitespace before cleaning the model summary
     text = summary.replace("\r\n", "\n").replace("\r", "\n").strip()
+    # If the model repeated the heading, keep only the final body text
     marker_pattern = re.compile(rf"Summary\s+of\s+{re.escape(topic)}\s*:", re.IGNORECASE)
     marker_matches = list(marker_pattern.finditer(text))
     if marker_matches:
         text = text[marker_matches[-1].end():].strip()
 
+    # Remove extra whitespace and trailing model notes
     text = re.sub(r"[ \t]+", " ", text)
     text = re.sub(r"\s*\n\s*", " ", text).strip()
     text = re.sub(r"(?i)\bNote:\s*.*$", "", text).strip()
@@ -1099,10 +1206,12 @@ def clean_topic_summary(topic: str, summary: str) -> str:
 
 
 def mean_score(scores: list[int | float]) -> float | None:
+    # Return a rounded mean when scores exist, otherwise leave it blank
     return round(sum(scores) / len(scores), 2) if scores else None
 
 
 def reliability_for_topic(comments: list[dict[str, Any]]) -> tuple[str, list[str]]:
+    # Count the signals used to decide whether a category score is reliable
     scored_count = sum(1 for item in comments if isinstance(item.get("score"), int))
     model_error_count = sum(1 for item in comments if item.get("scoring_status") == "model_error")
     low_confidence_count = sum(
@@ -1113,6 +1222,7 @@ def reliability_for_topic(comments: list[dict[str, Any]]) -> tuple[str, list[str
         and item.get("confidence", 0.0) < LOW_CONFIDENCE_THRESHOLD
     )
 
+    # Build human-readable notes that explain any reliability concern
     notes = []
     if scored_count == 0:
         notes.append("No scored rubric comments.")
@@ -1125,6 +1235,7 @@ def reliability_for_topic(comments: list[dict[str, Any]]) -> tuple[str, list[str
     if low_confidence_count:
         notes.append(f"{low_confidence_count} low-confidence scored comments.")
 
+    # Return the strongest reliability status that applies
     if scored_count == 0:
         return "unscored", notes
     if model_error_count:
@@ -1148,6 +1259,7 @@ def build_output_warnings(
     other_comment_count: int,
 ) -> list[str]:
     warnings = []
+    # Warn when topic scores are based on very few comments
     low_sample_topics = [
         item["topic"]
         for item in categories
@@ -1160,17 +1272,20 @@ def build_output_warnings(
             "Low-sample category scores should not be treated as stable professor metrics: "
             + ", ".join(low_sample_topics)
         )
+    # Warn when comments could not be classified
     if classification_error_count:
         verb = "was" if classification_error_count == 1 else "were"
         warnings.append(
             f"{pluralize(classification_error_count, 'feedback item')} failed classification "
             f"and {verb} excluded from rubric scoring."
         )
+    # Warn when assigned topics could not be scored
     if failed_score_count:
         verb = "was" if failed_score_count == 1 else "were"
         warnings.append(
             f"{pluralize(failed_score_count, 'topic assignment')} failed scoring and {verb} excluded."
         )
+    # Warn when generic comments were excluded from rubric averages
     if other_comment_count:
         verb = "is" if other_comment_count == 1 else "are"
         warnings.append(
@@ -1182,15 +1297,18 @@ def build_output_warnings(
 
 def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
     rows = []
+    # Look up each topic summary so it can be attached to CSV rows
     summary_by_topic = {
         item["topic"]: item["summary"]
         for item in output.get("topic_summaries", [])
         if "topic" in item and "summary" in item
     }
+    # Flatten nested categories and comments into one CSV row per comment
     for topic_item in output["categories"]:
         topic = topic_item["topic"]
         topic_summary = summary_by_topic.get(topic, topic_item.get("summary", ""))
         comments = topic_item["comments"]
+        # Keep a topic row even when there are no comments for that topic
         if not comments:
             rows.append(
                 {
@@ -1214,6 +1332,7 @@ def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
             )
             continue
 
+        # Write every comment assigned to this topic as its own row
         for comment_idx, comment in enumerate(comments):
             rows.append(
                 {
@@ -1236,6 +1355,7 @@ def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
                 }
             )
 
+    # Define column order explicitly so CSV exports stay stable
     fieldnames = [
         "Course ID",
         "Overall Score",
@@ -1254,6 +1374,7 @@ def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
         "Reasoning",
         "Topic Summary",
     ]
+    # Create the output folder and write the CSV file
     csv_path.parent.mkdir(parents=True, exist_ok=True)
     with open(csv_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -1275,51 +1396,55 @@ def analysis_pipeline(
     start_time = time.time()
     input_comment_count = len(raw_comments)
     duplicate_comments_removed = 0
+
+    # Remove comments that are exact duplicates
     if dedupe_exact_comments:
         raw_comments, duplicate_comments_removed = dedupe_comments(raw_comments)
-        if duplicate_comments_removed:
-            print(
-                "Removed "
-                f"{duplicate_comments_removed} exact duplicate feedback items; "
-                f"processing {len(raw_comments)} unique feedback items."
-            )
 
+    # Load baseline examples for RAG approach
     classification_examples = load_classification_examples() if use_rag else []
     sentiment_examples = load_sentiment_examples() if use_rag else []
-    if use_rag:
-        print(
-            "Loaded RAG examples: "
-            f"{len(classification_examples)} classification, "
-            f"{len(sentiment_examples)} sentiment."
-        )
 
+    # ------ Initialize Result Variables ------
+
+    # Dictionary to store comments for each topic
     topic_comments: dict[str, list[dict[str, Any]]] = {topic: [] for topic in TOPICS}
+    # List of assignment scores
     assignment_scores: list[int] = []
+    # 
     per_feedback_scores: dict[str, list[int]] = {}
+    #
+    # Counters used for metadata and warnings in the final output
     topic_assignment_count = 0
     classification_error_count = 0
     failed_score_count = 0
     filtered_mismatch_count = 0
 
+    # Start iterating comments for evaluation
     for idx, feedback in enumerate(raw_comments, 1):
-        print(f"\n[{idx}/{len(raw_comments)}] Processing feedback...")
+        # Classify the current feedback into one or more candidate topics
         classification = classify_with_llama(
             feedback,
             classification_examples=classification_examples,
             evidence_filter_mode=evidence_filter_mode,
         )
+        # Pull classification result fields with safe defaults
         topics = classification.get("topics", [OTHER])
         classification_status = classification.get("classification_status", "classified")
         classification_reasoning = classification.get("classification_reasoning", "")
+        # Count classification failures so they can appear in metadata
         if classification_status == "model_error":
             classification_error_count += 1
         print(f"  Topics: {topics}")
 
+        # Score each topic assigned to this feedback
         for topic in topics:
+            # Other comments are not scored with a rubric
             if topic == OTHER:
                 if classification_status == "model_error":
                     print("    Other: SKIPPED (classification error)")
                     continue
+                # Store generic feedback separately so it can be summarized but not averaged
                 scoring_status = (
                     "classification_error"
                     if classification_status == "model_error"
@@ -1345,7 +1470,9 @@ def analysis_pipeline(
                 )
                 continue
 
+            # Track how many non-Other topic assignments were attempted
             topic_assignment_count += 1
+            # Score this feedback for the current topic
             scored = sentiment_with_llama(
                 feedback,
                 topic,
@@ -1364,10 +1491,12 @@ def analysis_pipeline(
                 filtered_mismatch_count += 1
                 continue
             
+            # Store valid numeric scores for topic and overall averages
             score = scored.get("score")
             if isinstance(score, int):
                 assignment_scores.append(score)
                 per_feedback_scores.setdefault(feedback, []).append(score)
+            # Skip model errors so they do not distort averages
             elif scored.get("scoring_status") == "model_error":
                 failed_score_count += 1
                 print(f"    {topic}: SKIPPED (model scoring error)")
@@ -1375,18 +1504,22 @@ def analysis_pipeline(
             else:
                 print(f"    {topic}: SKIPPED (unscored)")
                 continue
+            # Save the scored comment under its topic
             topic_comments[topic].append(
                 {"feedback": feedback, "classification_status": classification_status, **scored}
             )
             print(f"    {topic}: {scored['sentiment']} ({score}/5)")
 
+    # Build final topic-level objects after all comments have been processed
     categories = []
     category_scores = []
     topic_summaries = []
     for topic in TOPIC_KEYS:
+        # Gather scored records for one topic
         comments = topic_comments[topic]
         scores = [item["score"] for item in comments if isinstance(item.get("score"), int)]
         average_score = mean_score(scores)
+        # Determine how trustworthy this topic score is
         reliability, reliability_notes = reliability_for_topic(comments)
         model_error_count = sum(1 for item in comments if item.get("scoring_status") == "model_error")
         low_confidence_count = sum(
@@ -1396,11 +1529,13 @@ def analysis_pipeline(
             and isinstance(item.get("confidence"), (int, float))
             and item.get("confidence", 0.0) < LOW_CONFIDENCE_THRESHOLD
         )
+        # Generate a topic summary using the scored comments
         summary = summarize_topic_with_llama(
             topic,
             comments,
             average_score,
         )
+        # Store full internal category data before converting to public output
         categories.append(
             {
                 "topic": topic,
@@ -1414,16 +1549,19 @@ def analysis_pipeline(
                 "comments": comments,
             }
         )
+        # Store compact score view and summary view separately for easy access
         category_scores.append(
             public_category_score(categories[-1])
         )
         topic_summaries.append({"topic": topic, "summary": summary})
 
+    # Summarize generic or uncategorized comments outside the scored topic loop
     other_summary = summarize_topic_with_llama(
         OTHER,
         topic_comments[OTHER],
         None,
     )
+    # Add Other as a final category, but exclude it from score averages
     categories.append(
         {
             "topic": OTHER,
@@ -1441,17 +1579,21 @@ def analysis_pipeline(
     )
     topic_summaries.append({"topic": OTHER, "summary": other_summary})
 
+    # Average each feedback's topic scores first, then average across feedback comments
     per_comment_score_means = [
         sum(scores) / len(scores) for scores in per_feedback_scores.values() if scores
     ]
     overall_score = mean_score(per_comment_score_means)
+    # Keep a separate average across all topic assignments for audit/debugging
     topic_assignment_overall_score = mean_score(assignment_scores)
+    # Build warnings that explain low sample sizes or skipped records
     warnings = build_output_warnings(
         categories,
         classification_error_count=classification_error_count,
         failed_score_count=failed_score_count,
         other_comment_count=len(topic_comments[OTHER]),
     )
+    # Build the final JSON-compatible output object
     output = {
         "course_id": course_id,
         "model": MODEL,
@@ -1486,6 +1628,7 @@ def analysis_pipeline(
         },
     }
 
+    # Write JSON and CSV reports when file output is enabled
     if write_files:
         output_dir.mkdir(parents=True, exist_ok=True)
         json_path = output_dir / f"{course_id}_COMBINED_REPORT.json"
@@ -1501,12 +1644,16 @@ def analysis_pipeline(
 
 def load_feedback_from_json(json_data: dict[str, Any]) -> tuple[str, list[str]]:
     """Load course_id and feedback from JSON input."""
+    # Pull the course id, using UNKNOWN if no id is provided
     course_id = json_data.get("course_id", "UNKNOWN")
+    # Pull the raw comment list from the input JSON
     raw_comments = json_data.get("raw_comments", [])
     
+    # The pipeline expects comments to be provided as a list of strings
     if not isinstance(raw_comments, list):
         raise ValueError("raw_comments must be a list")
     
+    # Print a quick confirmation before the expensive model calls begin
     print(f"Loaded course_id: {course_id}")
     print(f"Loaded {len(raw_comments)} feedback items")
     
@@ -1603,9 +1750,12 @@ if __name__ == "__main__":
         ]
     }
     
+    # Extract course_id and comments from JSON
     course_id, raw_comments = load_feedback_from_json(json_input)
+    # Main pipeline for classification, sentiment, and summary.
     output = analysis_pipeline(course_id, raw_comments)
     print("\n" + "=" * 80)
+    # Save a copy of the full output to the project-level results file
     output_path = BASE_DIR / "results" / "ML_OUTPUT.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:

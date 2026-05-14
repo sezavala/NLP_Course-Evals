@@ -95,8 +95,6 @@ Important constants are defined near the top of `main.py`:
 - `RAG_SENTIMENT_EXAMPLE_COUNT`: number of retrieved sentiment examples per scoring prompt.
 - `OLLAMA_MAX_RETRIES`: HTTP retry count for Ollama requests.
 - `MODEL_TASK_MAX_RETRIES`: retry count for classification and scoring parse failures.
-- `MIN_RELIABLE_CATEGORY_COMMENTS`: minimum scored comments before a topic score is treated as reliable.
-- `LOW_CONFIDENCE_THRESHOLD`: confidence cutoff used in reliability notes.
 - `CONFIDENCE_THRESHOLDS`: topic-specific thresholds for filtering likely mismatches.
 - `TOPIC_EVIDENCE_PATTERNS`: regex evidence checks used to keep topic assignments grounded in the comment text.
 
@@ -144,7 +142,7 @@ Scores are integers from 1 to 5 and are converted into sentiment labels with `se
 
 ### Validation and Reporting
 
-The pipeline filters unsupported or mismatched topic assignments, computes topic averages, generates reliability notes, summarizes each topic, and returns a dictionary with:
+The pipeline filters unsupported or mismatched topic assignments, computes topic averages, summarizes each topic, and returns a compact dashboard-friendly dictionary with:
 
 - `course_id`
 - `model`
@@ -154,6 +152,18 @@ The pipeline filters unsupported or mismatched topic assignments, computes topic
 - `categories`
 - `metadata`
 
+Each category comment in the public JSON keeps only:
+
+- `feedback`
+- `sentiment`
+- `score`
+- `confidence`
+- `reasoning`
+
+The internal model evidence fields are used for validation, but they are not included in the final JSON.
+
+`metadata` includes only the processed comment count, original input count, duplicate count, dedupe mode, scored topic-comment count, and runtime.
+
 When `write_files=True`, reports are saved to:
 
 - `results/combined/<COURSE_ID>_COMBINED_REPORT.json`
@@ -161,7 +171,7 @@ When `write_files=True`, reports are saved to:
 
 The script entry point also writes:
 
-- `results/TEST_ONE.json`
+- `results/<COURSE_ID>.json`
 
 ## How to Run
 

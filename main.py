@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import json
 import re
+import sys
 import time
 import unicodedata
 from difflib import SequenceMatcher
@@ -717,117 +718,113 @@ def parse_confidence(value: Any) -> float:
     return max(0.0, min(1.0, confidence))
 
 
+def classify_topic_confirmed(
+    comment: str,
+    topic: str,
+    classification_examples: list[dict[str, Any]] | None = None,
+) -> tuple[bool, str]:
+    """Ask LLM: Does this comment specifically discuss this one topic? 
+    
+    Returns: (is_confirmed, evidence_phrase)
+    """
+    if topic == OTHER:
+        return False, ""  # OTHER is handled separately
+    
+    # Topic-specific guidance for the LLM
+    topic_guidance = {
+        "Course organization and structure": 
+            "Look for: structure, organization, design, sequencing, layout, navigation, flow, well-organized, clearly laid out",
+        "Pace": 
+            "Look for: pace, speed of course, rushing, slow, keeping up, time for material, fast, slow-paced",
+        "Workload": 
+            "Look for: workload, burden, volume, overwhelming, demanding, amount of assignments, too much, manageable",
+        "Student engagement and participation": 
+            "Look for: participation, engagement, discussion, questions, interactive, activities, clicker, discussion board, group work",
+        "Clarity of explanations": 
+            "Look for: explains, clear, easy to understand, comprehensible, logical, made sense, transparent, well-explained",
+        "Effectiveness of assignments": 
+            "Look for: homework, assignments, problem sets, practice, exams being well-designed/structured/helpful (about quality, not just mentioning)",
+        "Classroom atmosphere": 
+            "Look for: atmosphere, climate, environment, welcoming, supportive, motivating, TONE/VIBE/ENERGY/COMFORT (not structure or organization)",
+        "Instructor's communication and availability": 
+            "Look for: office hours, available, responsive, announces, communicates, accessible, quick to respond",
+        "Inclusivity and sense of belonging": 
+            "Look for: inclusive, welcoming, belonging, accessible, accommodating, different backgrounds, different learners",
+        "Assessment": 
+            "Look for: exams/tests being FAIR/ALIGNED with material/APPROPRIATE DIFFICULTY (assessment QUALITY, not just mentioning exams exist)",
+        "Grading and feedback": 
+            "Look for: grading, grades, feedback, partial credit, rubric, grade policy, comments on work",
+        "Learning resources and materials": 
+            "Look for: notes, lecture notes, slides, recordings, textbook, study materials, resources, posted materials",
+    }
+    
+    guidance = topic_guidance.get(topic, "")
+    
+    prompt = f"""Is this course evaluation comment about: {topic}?
+
+TOPIC: {topic}
+DEFINITION: {TOPIC_DEFS.get(topic, topic)}
+
+{guidance}
+
+FEEDBACK:
+\"\"\"{comment}\"\"\"
+
+Answer format: YES <exact phrase from feedback> OR NO
+- If YES: provide the SHORT EXACT PHRASE from feedback that proves this topic
+- If NO: just answer NO
+
+Examples:
+- For comment "Lectures are clear": If topic is "Clarity of explanations", answer: YES Lectures are clear
+- For comment "Great class": If topic is "Clarity": answer: NO (generic, not specific)
+
+Answer ONLY on ONE line:"""
+    
+    response = call_ollama(prompt).strip()
+    is_yes = response.upper().startswith("YES")
+    
+    # Extract evidence phrase if YES
+    evidence = ""
+    if is_yes:
+        parts = response.split(maxsplit=1)  # Split on first space
+        if len(parts) > 1:
+            evidence = parts[1]
+    
+    return is_yes, evidence
+
+
 def classify_with_llama(
     comment: str,
     classification_examples: list[dict[str, Any]] | None = None,
     evidence_filter_mode: str = "soft",
 ) -> dict[str, Any]:
-    """Classify a course-evaluation comment into plausible instructional topics."""
-
-    # Retrieve examples from our baseline that are similar to our current comment
-    retrieved_examples = retrieve_similar_examples(
-        comment,
-        classification_examples or [],
-        limit=RAG_CLASSIFICATION_EXAMPLE_COUNT,
-    )
-
-    # Prompt including RAG examples to reduce hallucinations
-    prompt = f"""You are a high-recall course-evaluation topic coder.
-
-Assign ALL topics that are plausibly supported by words, close paraphrases, or concrete teaching/course details in the feedback text.
-A comment may discuss multiple topics—include each topic with plausible evidence, even if the evidence is brief.
-Prefer recall over precision at this stage. A later validation step will remove weak or incorrect topic assignments.
-Do not infer a topic from general praise, student success, caring, or broad support alone.
-If broad praise also contains concrete topic clues, assign those topics.
-Do not overuse "{OTHER}". Use it only when the feedback is generic praise or has no instructional detail.
-
-    ALLOWED TOPICS:
-    {format_topics()}
-    - {OTHER}: Generic praise, broad approval, or comments with no specific instructional detail.
-
-    RETRIEVED HUMAN-CODED REFERENCE EXAMPLES:
-    {format_classification_examples(retrieved_examples)}
-
-    HOW TO USE THE REFERENCE EXAMPLES:
-    - Use them as calibration for boundary cases and similar wording.
-    - Do not copy labels unless the target feedback contains similar evidence.
-    - Similar examples can help you recognize concrete topic clues even when wording differs.
-
-    BOUNDARY RULES:
-    - Use "Course organization and structure" for organization, structure, navigation, sequencing, course design, scheduling, or unclear logistics.
-    - Use "Pace" for speed, rushing, slowing down, keeping up, pacing, or insufficient time for material/exams.
-    - Use "Workload" for workload, time burden, difficulty load, amount of work, or feeling overwhelmed by assignments/quizzes.
-    - Use "Student engagement and participation" only for participation, engagement activities, entertainment, discussion, questions, or interactive opportunities.
-    - Use "Clarity of explanations" only for explaining, lecturing clearly, making concepts understandable, or examples that clarify content.
-    - Use "Effectiveness of assignments" only for homework, problem sets, assignments, practice tasks, or their learning value.
-    - Use "Classroom atmosphere" only for the emotional class environment, welcoming climate, motivation, or supportiveness.
-    - Use "Instructor's communication and availability" only for responsiveness, office hours, availability, accommodations, announcements, or communication.
-    - Use "Inclusivity and sense of belonging" only for inclusion, belonging, accessibility, different learning styles, feeling welcome, or respect.
-    - Use "Assessment" only for exams, tests, quizzes, assessment fairness, assessment difficulty, or alignment with material.
-    - Use "Grading and feedback" only for grading, partial credit, grade policy, or feedback on performance.
-    - Use "Learning resources and materials" only for notes, slides, recordings, review sessions, study resources, or posted materials.
-    - "Engaging lecturer" is Student engagement and participation.
-    - "Understood", "easy to understand", or "follow along" is Clarity of explanations.
-    - Helpful clicker questions can be both Student engagement and participation AND Effectiveness of assignments.
-    - Going over questions in lecture can be both Student engagement and participation AND Clarity of explanations.
-    - Brief but concrete wording like "clear teaching", "fair exams", "organized", "helpful resources", or "fast lectures" is enough.
-    - If the comment mentions multiple distinct instructional topics, assign all of them.
-    - If the comment is only generic praise, choose only "{OTHER}".
-    - If "{OTHER}" is selected, it must be the only topic.
-
-    Return ONLY valid JSON with exact topic names:
-    {{"topics": ["Topic 1", "Topic 2"], "evidence": {{"Topic 1": "phrase from feedback", "Topic 2": "phrase from feedback"}}}}
-
-    FEEDBACK:
-    \"\"\"{comment}\"\"\"
+    """Classify a course-evaluation comment into plausible instructional topics.
+    
+    NEW APPROACH: Loop through each topic and ask per-topic yes/no questions.
+    This prevents hallucination by making focused decisions for each topic.
+    The sentiment validation layer will later filter any topics with false evidence.
     """
-
-    last_error: Exception | None = None
-    parsed = None
-    # Allow for retries since the model can sometimes return incorrect formats.
-    for attempt in range(1, MODEL_TASK_MAX_RETRIES + 1):
-        try:
-            # Call model and ensure result is a JSON object
-            parsed = extract_json_object(call_ollama(prompt))
-            break
-        except Exception as exc:
-            last_error = exc
-            print(f"  Classification attempt {attempt}/{MODEL_TASK_MAX_RETRIES} failed: {exc}")
-
-    # Return with added flags for diagnosis if model failed to provide output
-    if parsed is None:
-        return {
-            "topics": [OTHER],
-            "classification_status": "model_error",
-            "classification_reasoning": (
-                "Failed to classify with model after retries; "
-                f"last error: {last_error}"
-            ),
-        }
-
-    # Pull topics out of the model response and normalize to a list
-    topics = parsed.get("topics", [OTHER])
-    if not isinstance(topics, list):
-        topics = [topics]
-
-    valid_topics = []
-    # Keep only known topic names returned by the model
-    for topic in topics:
-        if isinstance(topic, dict):
-            topic = topic.get("topic") or topic.get("name")
-        topic = str(topic).strip()
-        if topic in TOPICS and topic not in valid_topics:
-            valid_topics.append(topic)
-
-    if not valid_topics:
-        return {"topics": [OTHER], "classification_status": "classified"}
-    if valid_topics == [OTHER]:
-        return {"topics": [OTHER], "classification_status": "classified"}
-
-    # Run the evidence filter after the model gives candidate topics
-    filtered = filter_topics_by_evidence(comment, valid_topics, mode=evidence_filter_mode)
-
-    return {"topics": filtered, "classification_status": "classified"}
+    
+    confirmed_topics = []
+    
+    # Ask about each real topic (not OTHER)
+    for topic in TOPIC_KEYS:
+        is_confirmed, evidence = classify_topic_confirmed(comment, topic, classification_examples)
+        if is_confirmed:
+            confirmed_topics.append(topic)
+    
+    # If no topics confirmed, check if comment is purely generic, else OTHER
+    if not confirmed_topics:
+        if looks_like_generic_only_comment(comment):
+            return {"topics": [OTHER], "classification_status": "classified"}
+        else:
+            # Has some detail but no specific topics - still OTHER
+            return {"topics": [OTHER], "classification_status": "classified"}
+    
+    # Remove duplicates while preserving order
+    confirmed_topics = list(dict.fromkeys(confirmed_topics))
+    
+    return {"topics": confirmed_topics, "classification_status": "classified"}
 
 
 def sentiment_with_llama(
@@ -930,12 +927,23 @@ For Pace and Workload, score 5 means the condition supports learning well; score
         reasoning = str(parsed.get("reasoning", "")).strip()
         quote_is_valid = quote_supports_topic(evidence_quote, topic)
         # Accept the score only when the model provided valid topic evidence
-        if topic_supported and isinstance(score, int) and quote_is_valid:
+        # Most critically: verify the evidence quote actually appears in the comment
+        quote_in_comment = (
+            evidence_quote and (evidence_quote in normalize_comment(comment) or 
+            any(word in normalize_comment(comment).split() for word in evidence_quote.split() if len(word) > 4))
+        )
+        
+        if topic_supported and isinstance(score, int) and quote_is_valid and quote_in_comment:
             sentiment = sentiment_from_score(score)
         else:
             if topic_supported and not quote_is_valid:
                 reasoning = (
                     "Evidence quote did not contain topic-specific support; "
+                    f"original model reasoning: {reasoning}"
+                )
+            elif topic_supported and not quote_in_comment:
+                reasoning = (
+                    f"Evidence quote not found in comment (quote: '{evidence_quote[:50]}...'); "
                     f"original model reasoning: {reasoning}"
                 )
             topic_supported = False
@@ -1618,91 +1626,10 @@ def load_feedback_from_json(json_data: dict[str, Any]) -> tuple[str, list[str]]:
 if __name__ == "__main__":
     # Exact JSON input
     json_input = {
-        "course_id": "CHEM_14A_Fall2025",
+        "course_id": "CHEM_20B_TEST_ONE",
         "raw_comments": [
-            "Presentations and lectures were very clear.",
-            "I felt like Ramachandran really cared about the students doing well and provided all of us ample opportunity to supplement when we were struggling.",
-            "Overall the lectures for this class were really good I understood most of the lectures and was able to follow along easily.",
-            "Professor Ramachandran is an engaging lecturer and very obviously cares about students understanding the material.",
-            "I know that many of us struggle with such dense course but I believe that Professor Ramachandran has made is extremely doable and under- standable for everyone.",
-            "The strengths of this course is that we got through all the material so it was excellent on time management.",
-            "I think it was confusing at times when assignments and quizzes would be thrown at us at times different than originally specified at the beginning of the quarter.",
-            "I believe Dr.Ramachandran has a very organized course and truly cares about the success of her students.",
-            "However, I believe that the course could be improved in terms of the course resources that are posted online on CCLE.",
-            "Overall, I love this professor, and I can’t wait to have her again in the Fall for 14C!",
-            "Ramachandran really cares about us students, and makes lots of efforts to let us learn real knowledge.",
-            "Ramachandran genuinely cares for the well being of her students and is constantly trying to improve her teaching methods.",
-            "The instructor really cares about her students and what she teaches, which is apparent through her lectures and the resources she provides for her students.",
-            "She made the hardest concepts seem very manageable and did a very good job at organizing her course.",
-            "The strengths that this professor has performed was teaching skills, knowledge of the material, communication, and concern of the students.",
-            "The instructor takes the time togo over any question that is asked during lecture, does her best to make sure that students are understanding the material in case there is any confusion.",
-            "Professor’s teaching is always clear.",
-            "I love her lectures, and I can always understand the concepts after her explanation.",
-            "This was the first time I felt welcomed and interested in such material.",
-            "I really believe that a lot of that has to do with Professor Rama chandra n’s teaching style and I appreciate that very much.",
-            "Professor Ramachandran is an engaging lecturer and very obviously cares about students understanding the material.",
-            "I think her exams and grading system are fair but it would be very helpful if there could be a timer on the screen during exams instead of just a minute warning.",
-            "I got a B+ in 14A which is supposed to be the ’weeder’ class, which means I passed my midterms and my final.",
-            "I also do not think partial credit was fair.",
-            "The professor very clearly represents a concern for student learning and Is always very welcoming of students to attend office hours or set time aside to meet with her as she did, which was a huge time commitment on her part.",
-            "The material on the exams was always fair, my only problem was the time constraint as it resulted in a very stressful environment that made it very likely for students to blank out during the exam, more time should be allotted for exams.",
-            "I think weekly graded homeworks should be included for a small portion of the grade.",
-            "The strengths of the professor are in her way of teaching.",
-            "The only weakness of her class in general is that once one grade is low, it is incredibly difficult to raise your grade.",
-            "Rama chandra n made it clear from day one that she is very concerned with helping students succeed as much as possible.",
-            "I learned a lot and worked very hard but my grade doesn’t reflect it.",
-            "Her grading scale is a bit harsh and she does not give too much partial credit.",
-            "Just please— consider this.",
-            "The strengths of this course is that we got through all the material so it was excellent on time management.",
-            "I think weekly graded homeworks should be included for a small portion of the grade.",
-            "I feel like organic chemistry is just being thrown into the class material and we do not have much time to go over it before the final.",
-            "I thought she taught really well.",
-            "I think the implementation of clicker questions really gave me an idea of what exam questions would be like, so clickers were very helpful and they should be used more often!",
-            "I found the formatting of the power points to be inconsistent and lacking in explanation which made it difficult to review them before quizzes and tests without rewatching the entire bruin cast.",
-            "Overall, I really enjoyed Ramachandran as a professor and felt confident in a subject I did not think I would be.",
-            "Ramachandran actually cares that we do well and that we understand the course inside and out.",
-            "I have no complaints, I am extremely happy with this course and the professor.",
-            "I think in general Dr.",
-            "Ramachandran is a very intelligent woman and is always prepared to teach and help those who do not understand any concepts.",
-            "Tends to get ex- tremely anxious during exams (weakness).",
-            "Professor Rama chandra nisa professor who deserves her high Bruin Walk ratings, as she has shown more concern about her students than any professor I’ve had at UCLA.",
-            "She is very good at communication and makes chemistry very easy to understand.",
-            "Strength is the amount of care Dr.",
-            "Ramachandran puts into her course and making sure students feel free to ask questions and ask for explana- tion when they don’t understand.",
-            "Ramachandran really cares about student learning and clearly makes an effort to provide resources and support to students.",
-            "She is very understanding and very approachable.",
-            "You can tell that she cares about her students and tries her best for us to be successful.",
-            "The professor is great at explaining conceptual topics which is relevant to many students as the MCAT composes mainly of conceptual questions.",
-            "I would request is that she give reminders for graded clicker question in an email before lecture like she did the first time.",
-            "I thinkthe formatting of the power points to be inconsistent andlacking in explanation which made it difficult to review them before quizzes and tests without rewatching the entire bruin cast.",
-            "It would be nice if she could adopt a policy where students had higher chances for redemption.",
-            "Overall, I had a fantastic time in class.",
-            "She encourages discussion, ask- ing questions and provide incentives such as worksheets for people to go to her office hours.",
-            "Professor Ramachandran genuinely care about student learning and im- provement, and she made chemistry more bearable.",
-            "She is open and welcoming, and always responds super quickly to discussion posts and emails.",
-            "She really was invested in student learning which I appreciated a lot as my last chemistry class was not as student-focused and I felt behind all the time.",
-            "I think Professor Rama chandra n really cares about her students learning and it shows.",
-            "She doesn’t just go through the lecture and hope you understand.",
-            "Ramachandran really cares about student learning and clearly makes an effort to provide resources and support to students.",
-            "The professor really cares about her students and wants them to succeed.",
-            "She is very kind and understanding and does what she can to ensure her students are engaging in the class and doing well.",
-            "I appreciate how hard she works and how much she cares.",
-            "I wanted to go to her office hours but I was always intimidated by the number of people there, but I will definitely start trying when I take her class in the fall.",
-            "I think everything about Dr.",
-            "she makes sure we are always up to date with our grades and what we are learning in class by posting everything on CCLE.",
-            "Overall, she provides a lot of practice and opportunities for students to learn and grow.",
-            "I think in general Dr.",
-            "Ramachandran is a very intelligent woman and is always prepared to teach and help those who do not understand any concepts.",
-            "Professor Ramachandran completely changed Chemistry for me and I am so thankful I came across this class.",
-            "Professor Rama chandra n expressed genuine efforts in catering the course to her students needs, she set aside time to meet with us and often asked for our feedback throughout the quarter.",
-            "Ramachandran really cares about us students, and makes lots of efforts to let us learn real knowledge.",
-            "Professor Ramachandran completely changed Chemistry for me and I am so thankful I came across this class.",
-            "Ramachandran really cares about student learning and clearly makes an effort to provide resources and support to students.",
-            "Strengths of this professor include her real concern for how the class was doing and providing resources to students who needed the help.",
-            "I think more example problems and clicker questions would help.",
-            "I would say however that the level of questions on the tests seem to exceed what is taught in class and at times I felt unprepared for the midterms because lack of adequate resources and uncertainty about what I would actually be expected to do on an exam.",
-            "However, I found the formatting of the power points to be inconsistent and lacking in explanation which made it difficult to review them before quizzes and tests without rewatching the entire bruin cast."
-        ]
+            "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+            ]
     }
     
     # Extract course_id and comments from JSON
@@ -1711,7 +1638,7 @@ if __name__ == "__main__":
     output = analysis_pipeline(course_id, raw_comments)
     print("\n" + "=" * 80)
     # Save a copy of the full output to the project-level results file
-    output_path = BASE_DIR / "results" / "ML_OUTPUT.json"
+    output_path = BASE_DIR / "results" / "TEST_ONE.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2)

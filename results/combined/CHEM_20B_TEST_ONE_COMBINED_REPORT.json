@@ -1,0 +1,276 @@
+{
+  "course_id": "CHEM_20B_TEST_ONE",
+  "model": "llama3",
+  "overall_score": 5.0,
+  "category_scores": [
+    {
+      "category": "Course organization and structure",
+      "average_score": null,
+      "comment_count": 0
+    },
+    {
+      "category": "Pace",
+      "average_score": null,
+      "comment_count": 0
+    },
+    {
+      "category": "Workload",
+      "average_score": null,
+      "comment_count": 0
+    },
+    {
+      "category": "Student engagement and participation",
+      "average_score": null,
+      "comment_count": 0
+    },
+    {
+      "category": "Clarity of explanations",
+      "average_score": 5.0,
+      "comment_count": 1
+    },
+    {
+      "category": "Effectiveness of assignments",
+      "average_score": 5.0,
+      "comment_count": 1
+    },
+    {
+      "category": "Classroom atmosphere",
+      "average_score": null,
+      "comment_count": 0
+    },
+    {
+      "category": "Instructor's communication and availability",
+      "average_score": null,
+      "comment_count": 0
+    },
+    {
+      "category": "Inclusivity and sense of belonging",
+      "average_score": null,
+      "comment_count": 0
+    },
+    {
+      "category": "Assessment",
+      "average_score": 5.0,
+      "comment_count": 1
+    },
+    {
+      "category": "Grading and feedback",
+      "average_score": null,
+      "comment_count": 0
+    },
+    {
+      "category": "Learning resources and materials",
+      "average_score": null,
+      "comment_count": 0
+    }
+  ],
+  "topic_summaries": [
+    {
+      "topic": "Course organization and structure",
+      "summary": "Summary of Course organization and structure: No comments were assigned to this topic."
+    },
+    {
+      "topic": "Pace",
+      "summary": "Summary of Pace: No comments were assigned to this topic."
+    },
+    {
+      "topic": "Workload",
+      "summary": "Summary of Workload: No comments were assigned to this topic."
+    },
+    {
+      "topic": "Student engagement and participation",
+      "summary": "Summary of Student engagement and participation: No comments were assigned to this topic."
+    },
+    {
+      "topic": "Clarity of explanations",
+      "summary": "Summary of Clarity of explanations: One assigned comment was positive with a score of 5/5, citing: \"Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Takin...\""
+    },
+    {
+      "topic": "Effectiveness of assignments",
+      "summary": "Summary of Effectiveness of assignments: One assigned comment was positive with a score of 5/5, citing: \"Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Takin...\""
+    },
+    {
+      "topic": "Classroom atmosphere",
+      "summary": "Summary of Classroom atmosphere: No comments were assigned to this topic."
+    },
+    {
+      "topic": "Instructor's communication and availability",
+      "summary": "Summary of Instructor's communication and availability: No comments were assigned to this topic."
+    },
+    {
+      "topic": "Inclusivity and sense of belonging",
+      "summary": "Summary of Inclusivity and sense of belonging: No comments were assigned to this topic."
+    },
+    {
+      "topic": "Assessment",
+      "summary": "Summary of Assessment: One assigned comment was positive with a score of 5/5, citing: \"Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Takin...\""
+    },
+    {
+      "topic": "Grading and feedback",
+      "summary": "Summary of Grading and feedback: No comments were assigned to this topic."
+    },
+    {
+      "topic": "Learning resources and materials",
+      "summary": "Summary of Learning resources and materials: No comments were assigned to this topic."
+    },
+    {
+      "topic": "None of the above / Other",
+      "summary": "Summary of None of the above / Other: No comments were assigned to this topic."
+    }
+  ],
+  "categories": [
+    {
+      "topic": "Course organization and structure",
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
+    },
+    {
+      "topic": "Pace",
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
+    },
+    {
+      "topic": "Workload",
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
+    },
+    {
+      "topic": "Student engagement and participation",
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
+    },
+    {
+      "topic": "Clarity of explanations",
+      "average_score": 5.0,
+      "comment_count": 1,
+      "scored_comment_count": 1,
+      "reliability": "low_sample",
+      "comments": [
+        {
+          "feedback": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "classification_status": "classified",
+          "topic_supported": true,
+          "evidence_quote": "The lectures themselves explains thoroughly through the steps of each step, calculations, or concept.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.9,
+          "scoring_status": "scored",
+          "reasoning": "This quote explicitly states that Eric Wu's lectures explain concepts thoroughly, which is clear evidence for this topic."
+        }
+      ]
+    },
+    {
+      "topic": "Effectiveness of assignments",
+      "average_score": 5.0,
+      "comment_count": 1,
+      "scored_comment_count": 1,
+      "reliability": "low_sample",
+      "comments": [
+        {
+          "feedback": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "classification_status": "classified",
+          "topic_supported": true,
+          "evidence_quote": "Assignments are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 1.0,
+          "scoring_status": "scored",
+          "reasoning": "The feedback explicitly mentions that assignments are well-structured and engaging, which suggests they are effective in teaching students."
+        }
+      ]
+    },
+    {
+      "topic": "Classroom atmosphere",
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
+    },
+    {
+      "topic": "Instructor's communication and availability",
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
+    },
+    {
+      "topic": "Inclusivity and sense of belonging",
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
+    },
+    {
+      "topic": "Assessment",
+      "average_score": 5.0,
+      "comment_count": 1,
+      "scored_comment_count": 1,
+      "reliability": "low_sample",
+      "comments": [
+        {
+          "feedback": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "classification_status": "classified",
+          "topic_supported": true,
+          "evidence_quote": "Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 1.0,
+          "scoring_status": "scored",
+          "reasoning": "The feedback explicitly mentions the alignment of assessments with course material, stating that they are 'structured' to solve problems through deconstruction and reconstruction."
+        }
+      ]
+    },
+    {
+      "topic": "Grading and feedback",
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
+    },
+    {
+      "topic": "Learning resources and materials",
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
+    },
+    {
+      "topic": "None of the above / Other",
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "not_scored",
+      "comments": []
+    }
+  ],
+  "metadata": {
+    "input_comments": 1,
+    "processed_comments": 1,
+    "duplicates_removed": 0,
+    "scored_comments": 1,
+    "generic_comments": 0,
+    "rag_enabled": true,
+    "evidence_filter_mode": "soft",
+    "warnings": [
+      "Low-sample category scores should not be treated as stable professor metrics: Clarity of explanations, Effectiveness of assignments, Assessment"
+    ],
+    "runtime_seconds": 20.5
+  }
+}

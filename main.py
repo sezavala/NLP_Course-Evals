@@ -36,7 +36,7 @@ CONFIDENCE_THRESHOLDS = {
     "Workload": 0.65,
     "Pace": 0.55,
     "Clarity of explanations": 0.5,
-    "Classroom atmosphere": 0.5,
+    "Classroom atmosphere": 0.45,
     "Course organization and structure": 0.55,
     "default": 0.5,
 }
@@ -841,7 +841,7 @@ BOUNDARY RULES:
 - Engagement: participation, discussion, questions, interactive work, activities.
 - Clarity: explanations, lectures, examples, understanding concepts.
 - Assignments: homework, practice tasks, worksheets, problem sets, usefulness of assigned work.
-- Atmosphere: emotional class climate, comfort, motivation, stress, supportiveness.
+- Atmosphere: sense of welcoming, belonging, comfort, motivation, stress, support.
 - Communication/availability: office hours, responsiveness, announcements, access to instructor.
 - Inclusivity/belonging: inclusion, accessibility, respect, feeling welcome across learners.
 - Assessment: exams, tests, quizzes, alignment, difficulty, fairness of assessment design.
@@ -1712,9 +1712,11 @@ def load_feedback_from_json(json_data: dict[str, Any]) -> tuple[str, list[str]]:
 if __name__ == "__main__":
     # Exact JSON input
     json_input = {
-        "course_id": "CHEM_20B_TEST_ONE",
+        "course_id": "TEST_THREE",
         "raw_comments": [
-            "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+            """Professor Wu is one of the best professors I've had since coming to UCLA – I really like his teaching style and how much he cares for his students. I like how the lecture notes are structured, and that he offers both a blank and a filled–in version of the notes so that we can adjust our own learning. His lectures are consistently clear and paced well. I also feel that the course material makes sense in the way that it is taught. During lecture, Professor Wu also answers questions in a very clear way. His exams are also fair – not too challenging, but also not too easy, and also perfectly timed.
+I also appreciate how he adjusted the class during the L.A. fires period. It was really nice of him!
+Professor Wu is super nice and funny. It is really refreshing to be in his class – I learn a lot without feeling overwhelming pressure. If I could take a class again with him, I 1000% would."""
             ]
     }
     
@@ -1724,7 +1726,7 @@ if __name__ == "__main__":
     output = analysis_pipeline(course_id, raw_comments)
     print("\n" + "=" * 80)
     # Save a copy of the full output to the project-level results file
-    output_path = BASE_DIR / "results" / "TEST_ONE.json"
+    output_path = BASE_DIR / "results" / "TEST_THREE.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2)

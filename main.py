@@ -27,8 +27,6 @@ RAG_SENTIMENT_EXAMPLE_COUNT = 3
 RAG_MIN_SIMILARITY = 0.06
 OLLAMA_MAX_RETRIES = 2
 MODEL_TASK_MAX_RETRIES = 3
-MIN_RELIABLE_CATEGORY_COMMENTS = 5
-LOW_CONFIDENCE_THRESHOLD = 0.55
 
 # Topic-specific confidence thresholds for mismatch filtering
 CONFIDENCE_THRESHOLDS = {
@@ -263,7 +261,6 @@ def dedupe_comments(raw_comments: list[str]) -> tuple[list[str], int]:
         if not normalized:
             continue
         if normalized in seen_keys:
-            print(normalized)
             duplicate_count += 1
             continue
         seen_keys.add(normalized)
@@ -861,7 +858,6 @@ FEEDBACK:
 \"\"\"{comment}\"\"\"
 """
 
-    last_error: Exception | None = None
     parsed = None
     # Allow for retries since the model can sometimes return incorrect formats.
     for attempt in range(1, MODEL_TASK_MAX_RETRIES + 1):
@@ -870,18 +866,13 @@ FEEDBACK:
             parsed = extract_json_object(call_ollama(prompt))
             break
         except Exception as exc:
-            last_error = exc
             print(f"  Classification attempt {attempt}/{MODEL_TASK_MAX_RETRIES} failed: {exc}")
 
-    # Return with added flags for diagnosis if model failed to provide output
+    # If classification fails, keep the comment out of scored topic averages
     if parsed is None:
         return {
             "topics": [OTHER],
             "classification_status": "model_error",
-            "classification_reasoning": (
-                "Failed to classify with model after retries; "
-                f"last error: {last_error}"
-            ),
         }
 
     # Pull topics out of the model response and normalize to a list
@@ -1242,20 +1233,14 @@ def build_topic_summary_prefix(
 
 
 def public_comment(comment: dict[str, Any]) -> dict[str, Any]:
-    # Keep only the fields that should appear in the public report output
+    # Keep the report output small enough for dashboards and handoff.
     return {
         "feedback": comment.get("feedback") or "",
-        "classification_status": comment.get("classification_status") or "",
-        "topic_supported": (
-            comment.get("topic_supported") if comment.get("topic_supported") is not None else ""
-        ),
-        "evidence_quote": comment.get("evidence_quote") or "",
         "sentiment": comment.get("sentiment") or "",
         "score": comment.get("score") if comment.get("score") is not None else "",
         "confidence": (
             comment.get("confidence") if comment.get("confidence") is not None else ""
         ),
-        "scoring_status": comment.get("scoring_status") or "",
         "reasoning": comment.get("reasoning") or "",
     }
 
@@ -1266,8 +1251,6 @@ def public_category(category: dict[str, Any]) -> dict[str, Any]:
         "topic": category["topic"],
         "average_score": category["average_score"],
         "comment_count": category["comment_count"],
-        "scored_comment_count": category.get("scored_comment_count", 0),
-        "reliability": category.get("reliability", ""),
         "comments": [public_comment(comment) for comment in category["comments"]],
     }
 
@@ -1304,91 +1287,6 @@ def mean_score(scores: list[int | float]) -> float | None:
     return round(sum(scores) / len(scores), 2) if scores else None
 
 
-def reliability_for_topic(comments: list[dict[str, Any]]) -> tuple[str, list[str]]:
-    # Count the signals used to decide whether a category score is reliable
-    scored_count = sum(1 for item in comments if isinstance(item.get("score"), int))
-    model_error_count = sum(1 for item in comments if item.get("scoring_status") == "model_error")
-    low_confidence_count = sum(
-        1
-        for item in comments
-        if isinstance(item.get("score"), int)
-        and isinstance(item.get("confidence"), (int, float))
-        and item.get("confidence", 0.0) < LOW_CONFIDENCE_THRESHOLD
-    )
-
-    # Build human-readable notes that explain any reliability concern
-    notes = []
-    if scored_count == 0:
-        notes.append("No scored rubric comments.")
-    elif scored_count < MIN_RELIABLE_CATEGORY_COMMENTS:
-        notes.append(
-            f"Low sample: {scored_count} scored comments; use as directional evidence only."
-        )
-    if model_error_count:
-        notes.append(f"{model_error_count} model scoring errors excluded from averages.")
-    if low_confidence_count:
-        notes.append(f"{low_confidence_count} low-confidence scored comments.")
-
-    # Return the strongest reliability status that applies
-    if scored_count == 0:
-        return "unscored", notes
-    if model_error_count:
-        return "needs_review", notes
-    if scored_count < MIN_RELIABLE_CATEGORY_COMMENTS:
-        return "low_sample", notes
-    if low_confidence_count:
-        return "mixed_confidence", notes
-    return "reliable", notes
-
-
-def pluralize(count: int, singular: str, plural: str | None = None) -> str:
-    word = singular if count == 1 else (plural or f"{singular}s")
-    return f"{count} {word}"
-
-
-def build_output_warnings(
-    categories: list[dict[str, Any]],
-    classification_error_count: int,
-    failed_score_count: int,
-    other_comment_count: int,
-) -> list[str]:
-    warnings = []
-    # Warn when topic scores are based on very few comments
-    low_sample_topics = [
-        item["topic"]
-        for item in categories
-        if item["topic"] != OTHER
-        and item.get("comment_count", 0) > 0
-        and item.get("reliability") in {"low_sample", "unscored"}
-    ]
-    if low_sample_topics:
-        warnings.append(
-            "Low-sample category scores should not be treated as stable professor metrics: "
-            + ", ".join(low_sample_topics)
-        )
-    # Warn when comments could not be classified
-    if classification_error_count:
-        verb = "was" if classification_error_count == 1 else "were"
-        warnings.append(
-            f"{pluralize(classification_error_count, 'feedback item')} failed classification "
-            f"and {verb} excluded from rubric scoring."
-        )
-    # Warn when assigned topics could not be scored
-    if failed_score_count:
-        verb = "was" if failed_score_count == 1 else "were"
-        warnings.append(
-            f"{pluralize(failed_score_count, 'topic assignment')} failed scoring and {verb} excluded."
-        )
-    # Warn when generic comments were excluded from rubric averages
-    if other_comment_count:
-        verb = "is" if other_comment_count == 1 else "are"
-        warnings.append(
-            f"{pluralize(other_comment_count, 'generic or uncategorized comment')} "
-            f"{verb} summarized but excluded from rubric averages."
-        )
-    return warnings
-
-
 def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
     rows = []
     # Look up each topic summary so it can be attached to CSV rows
@@ -1410,16 +1308,10 @@ def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
                     "Overall Score": output["overall_score"],
                     "Topic": topic,
                     "Topic Average Score": topic_item["average_score"],
-                    "Scored Comment Count": topic_item.get("scored_comment_count", 0),
-                    "Reliability": topic_item.get("reliability", ""),
                     "Feedback": "",
-                    "Classification Status": "",
-                    "Topic Supported": "",
-                    "Evidence Quote": "",
                     "Sentiment": "",
                     "Score": "",
                     "Confidence": "",
-                    "Scoring Status": "",
                     "Reasoning": "",
                     "Topic Summary": topic_summary,
                 }
@@ -1434,16 +1326,10 @@ def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
                     "Overall Score": output["overall_score"],
                     "Topic": topic,
                     "Topic Average Score": topic_item["average_score"],
-                    "Scored Comment Count": topic_item.get("scored_comment_count", 0),
-                    "Reliability": topic_item.get("reliability", ""),
                     "Feedback": comment["feedback"],
-                    "Classification Status": comment.get("classification_status", ""),
-                    "Topic Supported": comment.get("topic_supported", ""),
-                    "Evidence Quote": comment.get("evidence_quote", ""),
                     "Sentiment": comment.get("sentiment", ""),
                     "Score": comment.get("score", ""),
                     "Confidence": comment.get("confidence", ""),
-                    "Scoring Status": comment.get("scoring_status", ""),
                     "Reasoning": comment.get("reasoning", ""),
                     "Topic Summary": topic_summary if comment_idx == 0 else "",
                 }
@@ -1455,16 +1341,10 @@ def write_combined_csv(output: dict[str, Any], csv_path: Path) -> None:
         "Overall Score",
         "Topic",
         "Topic Average Score",
-        "Scored Comment Count",
-        "Reliability",
         "Feedback",
-        "Classification Status",
-        "Topic Supported",
-        "Evidence Quote",
         "Sentiment",
         "Score",
         "Confidence",
-        "Scoring Status",
         "Reasoning",
         "Topic Summary",
     ]
@@ -1505,12 +1385,8 @@ def analysis_pipeline(
     topic_comments: dict[str, list[dict[str, Any]]] = {topic: [] for topic in TOPICS}
     # Dict of all feedback comments and their scores.
     per_feedback_scores: dict[str, list[int]] = {}
-    # Counters used for warnings in the final output
-    classification_error_count = 0
-    failed_score_count = 0
-
     # Start iterating comments for evaluation
-    for idx, feedback in enumerate(raw_comments, 1):
+    for feedback in raw_comments:
         # Classify the current feedback into one or more candidate topics
         classification = classify_with_llama(
             feedback,
@@ -1520,10 +1396,6 @@ def analysis_pipeline(
         # Pull classification result fields with safe defaults
         topics = classification.get("topics", [OTHER])
         classification_status = classification.get("classification_status", "classified")
-        classification_reasoning = classification.get("classification_reasoning", "")
-        # Count classification failures so they can appear in warnings
-        if classification_status == "model_error":
-            classification_error_count += 1
 
         # Score each topic assigned to this feedback
         for topic in topics:
@@ -1532,16 +1404,6 @@ def analysis_pipeline(
                 if classification_status == "model_error":
                     continue
                 # Store generic feedback separately so it can be summarized but not averaged
-                scoring_status = (
-                    "classification_error"
-                    if classification_status == "model_error"
-                    else "not_applicable"
-                )
-                reasoning = (
-                    classification_reasoning
-                    if classification_status == "model_error"
-                    else "Generic or non-actionable feedback; no rubric score assigned."
-                )
                 topic_comments[OTHER].append(
                     {
                         "feedback": feedback,
@@ -1551,8 +1413,8 @@ def analysis_pipeline(
                         "classification_status": classification_status,
                         "topic_supported": None,
                         "evidence_quote": None,
-                        "scoring_status": scoring_status,
-                        "reasoning": reasoning,
+                        "scoring_status": "not_applicable",
+                        "reasoning": "Generic or non-actionable feedback; no rubric score assigned.",
                     }
                 )
                 continue
@@ -1582,7 +1444,6 @@ def analysis_pipeline(
                 per_feedback_scores.setdefault(feedback, []).append(score)
             # Skip model errors so they do not distort averages
             elif scored.get("scoring_status") == "model_error":
-                failed_score_count += 1
                 continue
             else:
                 continue
@@ -1600,8 +1461,6 @@ def analysis_pipeline(
         comments = topic_comments[topic]
         scores = [item["score"] for item in comments if isinstance(item.get("score"), int)]
         average_score = mean_score(scores)
-        # Determine how trustworthy this topic score is
-        reliability, _ = reliability_for_topic(comments)
         # Generate a topic summary using the scored comments
         summary = summarize_topic_with_llama(
             topic,
@@ -1614,8 +1473,6 @@ def analysis_pipeline(
                 "topic": topic,
                 "average_score": average_score,
                 "comment_count": len(comments),
-                "scored_comment_count": len(scores),
-                "reliability": reliability,
                 "comments": comments,
             }
         )
@@ -1637,8 +1494,6 @@ def analysis_pipeline(
             "topic": OTHER,
             "average_score": None,
             "comment_count": len(topic_comments[OTHER]),
-            "scored_comment_count": 0,
-            "reliability": "not_scored",
             "comments": topic_comments[OTHER],
         }
     )
@@ -1649,13 +1504,7 @@ def analysis_pipeline(
         sum(scores) / len(scores) for scores in per_feedback_scores.values() if scores
     ]
     overall_score = mean_score(per_comment_score_means)
-    # Build warnings that explain low sample sizes or skipped records
-    warnings = build_output_warnings(
-        categories,
-        classification_error_count=classification_error_count,
-        failed_score_count=failed_score_count,
-        other_comment_count=len(topic_comments[OTHER]),
-    )
+    scored_topic_comment_count = sum(len(topic_comments[topic]) for topic in TOPIC_KEYS)
     # Build the final JSON-compatible output object
     output = {
         "course_id": course_id,
@@ -1665,15 +1514,12 @@ def analysis_pipeline(
         "topic_summaries": topic_summaries,
         "categories": [public_category(category) for category in categories],
         "metadata": {
-            "input_comments": input_comment_count,
-            "processed_comments": len(raw_comments),
-            "duplicates_removed": duplicate_comments_removed,
-            "scored_comments": len(per_comment_score_means),
-            "generic_comments": len(topic_comments[OTHER]),
-            "rag_enabled": use_rag,
-            "evidence_filter_mode": evidence_filter_mode,
-            "warnings": warnings,
-            "runtime_seconds": round(time.time() - start_time, 2),
+            "num_comments": len(raw_comments),
+            "num_input_comments": input_comment_count,
+            "num_duplicate_comments_removed": duplicate_comments_removed,
+            "dedupe_mode": "exact" if dedupe_exact_comments else "none",
+            "num_scored_topic_comments": scored_topic_comment_count,
+            "total_time_seconds": round(time.time() - start_time, 2),
         },
     }
 
@@ -1724,7 +1570,11 @@ if __name__ == "__main__":
     output = analysis_pipeline(course_id, raw_comments)
     print("\n" + "=" * 80)
     # Save a copy of the full output to the project-level results file
+<<<<<<< HEAD
     output_path = BASE_DIR / "results" / "TEST_ONE.json"
+=======
+    output_path = BASE_DIR / "results" / f"{course_id}.json"
+>>>>>>> 63827039a760daa67431bd8809a557aefce7278a
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2)

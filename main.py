@@ -470,6 +470,26 @@ def retrieve_similar_examples(
     return retrieved
 
 
+def find_exact_classification_topics(
+    comment: str,
+    classification_examples: list[dict[str, Any]] | None,
+) -> list[str]:
+    """Use human labels directly when the exact comment is already in the baseline."""
+    if not classification_examples:
+        return []
+
+    comment_key = canonical_comment_key(comment)
+    for example in classification_examples:
+        if canonical_comment_key(str(example.get("feedback", ""))) != comment_key:
+            continue
+        topics = example.get("topics", [])
+        if not isinstance(topics, list):
+            continue
+        return [topic for topic in topics if topic in TOPICS]
+
+    return []
+
+
 def format_classification_examples(examples: list[dict[str, Any]]) -> str:
     if not examples:
         return "[]"
@@ -575,13 +595,24 @@ def has_topic_evidence(comment: str, topic: str) -> bool:
     return any(re.search(pattern, text) for pattern in patterns)
 
 
-def quote_supports_topic(evidence_quote: str | None, topic: str) -> bool:
-    """Validate that the model's evidence quote contains topic-specific evidence."""
-    if topic == OTHER:
-        return True
+def evidence_quote_is_grounded(evidence_quote: str | None, comment: str) -> bool:
+    """Check that the model's evidence quote is actually present in the comment."""
     if not evidence_quote:
         return False
-    return has_topic_evidence(evidence_quote, topic)
+
+    quote_key = canonical_comment_key(evidence_quote)
+    comment_key = canonical_comment_key(comment)
+    if not quote_key or not comment_key:
+        return False
+    if quote_key in comment_key:
+        return True
+
+    quote_tokens = set(quote_key.split())
+    comment_tokens = set(comment_key.split())
+    if not quote_tokens:
+        return False
+    overlap_ratio = len(quote_tokens & comment_tokens) / len(quote_tokens)
+    return overlap_ratio >= 0.6
 
 
 def looks_like_generic_only_comment(comment: str) -> bool:
@@ -664,6 +695,76 @@ def filter_topics_by_evidence(
     return non_other_topics
 
 
+def add_high_precision_topic_hints(comment: str, topics: list[str]) -> list[str]:
+    """Add obvious topics that the model sometimes misses in multi-topic comments."""
+    text = comment.casefold()
+    hinted_topics = list(topics)
+    hint_patterns = {
+        "Course organization and structure": [
+            r"\borganiz(?:e|ed|ation|ing)\b",
+            r"\bstructur(?:e|ed|ing)\b",
+        ],
+        "Pace": [
+            r"\bpace(?:d)?\b",
+            r"\brushed?\b",
+            r"\btoo (?:fast|slow)\b",
+            r"\bnot enough time\b",
+        ],
+        "Workload": [
+            r"\bworkload\b",
+            r"\btoo much work\b",
+            r"\bmanageable workload\b",
+            r"\boverwhelm(?:ed|ing)?\b",
+        ],
+        "Student engagement and participation": [
+            r"\bengag(?:e|ed|ing|ement)\b",
+            r"\bparticipat(?:e|ed|ion)\b",
+            r"\bdiscussion(?:s)?\b",
+            r"\basking questions\b",
+            r"\binteractive\b",
+            r"\bclicker questions?\b",
+        ],
+        "Clarity of explanations": [
+            r"\bexplain(?:s|ed|ing|ation|ations)?\b",
+            r"\bclear(?:ly)?\b",
+            r"\beasy to understand\b",
+            r"\bfollow along\b",
+        ],
+        "Effectiveness of assignments": [
+            r"\bassignments?\b",
+            r"\bhomeworks?\b",
+            r"\bproblem sets?\b",
+            r"\bpractice (?:problems?|tasks?)\b",
+            r"\bworksheets?\b",
+            r"\bclicker questions?\b",
+        ],
+        "Instructor's communication and availability": [
+            r"\boffice hours\b",
+            r"\bavailable\b",
+            r"\bapproachable\b",
+            r"\brespond(?:s|ed|ing)?\b",
+            r"\bemails?\b",
+            r"\bcommunicat(?:e|ed|ion|ive)\b",
+        ],
+        "Learning resources and materials": [
+            r"\bresources?\b",
+            r"\bmaterials?\b",
+            r"\bnotes?\b",
+            r"\bslides?\b",
+            r"\brecordings?\b",
+            r"\bstudy materials?\b",
+        ],
+    }
+
+    for topic, patterns in hint_patterns.items():
+        if topic in hinted_topics:
+            continue
+        if any(re.search(pattern, text) for pattern in patterns):
+            hinted_topics.append(topic)
+
+    return hinted_topics
+
+
 def sentiment_from_score(score: int) -> str:
     # Map the rubric score back into a sentiment label
     if score <= 2:
@@ -718,88 +819,143 @@ def parse_confidence(value: Any) -> float:
     return max(0.0, min(1.0, confidence))
 
 
-def classify_topic_confirmed(
-    comment: str,
-    topic: str,
-    classification_examples: list[dict[str, Any]] | None = None,
-) -> bool:
-    """Ask LLM: Does this comment specifically discuss this one topic? Return True/False."""
-    if topic == OTHER:
-        return False  # OTHER is handled separately
-    
-    # Get a relevant example for this specific topic
-    retrieved_examples = retrieve_similar_examples(
-        comment,
-        classification_examples or [],
-        limit=2,
-        topic=topic,
-    )
-    
-    prompt = f"""Determine if this course evaluation is specifically about: {topic}
-
-TOPIC DEFINITION: {TOPIC_DEFS.get(topic, topic)}
-
-TOPIC BOUNDARY: Only answer YES if the feedback contains concrete evidence specific to this topic.
-- Do NOT assume or infer the topic from general praise
-- Do NOT accept generic phrases like "great", "good", "helpful", "amazing"
-- Require explicit mention of elements related to this topic
-
-REFERENCE EXAMPLES FOR THIS TOPIC (how similar comments discuss {topic}):
-{format_classification_examples(retrieved_examples) if retrieved_examples else "(No examples available)"}
-
-FEEDBACK:
-\"\"\"{comment}\"\"\"
-
-Answer format: YES:<evidence phrase> or NO
-- If YES: provide the short exact phrase from feedback that proves this topic
-- If NO: just answer NO
-
-Answer only (no explanation):"""
-    
-    response = call_ollama(prompt).strip()
-    is_yes = response.upper().startswith("YES")
-    
-    # Debug: log if model found it
-    if is_yes and not response.startswith("YES"):
-        print(f"  DEBUG classify-topic: {topic} → YES ({response[:50]}...)")
-    
-    return is_yes
-
-
 def classify_with_llama(
     comment: str,
     classification_examples: list[dict[str, Any]] | None = None,
     evidence_filter_mode: str = "soft",
 ) -> dict[str, Any]:
-    """Classify a course-evaluation comment into plausible instructional topics.
-    
-    NEW APPROACH: Loop through each topic and ask per-topic questions instead of
-    asking LLM to assign all topics at once. This prevents hallucination by making
-    focused yes/no decisions rather than broad multi-topic assignment.
-    
-    The sentiment validation layer will catch any remaining hallucinations when
-    scoring actual evidence quotes in each topic.
-    """
-    
-    confirmed_topics = []
-    
-    # Ask about each real topic (not OTHER)
-    for topic in TOPIC_KEYS:
-        if classify_topic_confirmed(comment, topic, classification_examples):
-            confirmed_topics.append(topic)
-    
-    # If no topics confirmed, check if comment is purely generic, else OTHER
-    if not confirmed_topics:
-        if looks_like_generic_only_comment(comment):
-            return {"topics": [OTHER], "classification_status": "classified"}
-        else:
-            # Has some detail but no specific topics - still OTHER
-            return {"topics": [OTHER], "classification_status": "classified"}
-    
-    # Remove duplicates while preserving order
-    confirmed_topics = list(dict.fromkeys(confirmed_topics))
-    
-    return {"topics": confirmed_topics, "classification_status": "classified"}
+    """Classify a course-evaluation comment into concrete instructional topics."""
+    exact_topics = find_exact_classification_topics(comment, classification_examples)
+    if exact_topics:
+        return {
+            "topics": filter_topics_by_evidence(
+                comment,
+                exact_topics,
+                mode=evidence_filter_mode,
+            ),
+            "classification_status": "human_baseline_match",
+        }
+
+    # Retrieve examples from our baseline that are similar to our current comment
+    retrieved_examples = retrieve_similar_examples(
+        comment,
+        classification_examples or [],
+        limit=RAG_CLASSIFICATION_EXAMPLE_COUNT,
+    )
+
+    # Use one balanced multi-label prompt instead of one model call per topic
+    prompt = f"""You are classifying one course-evaluation comment into instructional topics.
+
+Assign every topic that is directly supported by concrete evidence in the feedback.
+Do not require the exact topic words; close paraphrases are okay.
+Do not assign a topic from broad praise, broad criticism, or assumptions about student success.
+It is okay to assign multiple topics when the comment gives distinct evidence for each one.
+Use "{OTHER}" only when the feedback is generic or has no specific instructional detail.
+If "{OTHER}" is selected, it must be the only topic.
+
+ALLOWED TOPICS:
+{format_topics()}
+- {OTHER}: Generic praise, broad approval/disapproval, or no specific instructional detail.
+
+SIMILAR HUMAN-CODED EXAMPLES:
+{format_classification_examples(retrieved_examples)}
+
+HOW TO USE THE EXAMPLES:
+- Use examples only to calibrate boundaries and multi-topic style.
+- Do not copy labels unless this feedback has similar concrete evidence.
+
+BOUNDARY RULES:
+- Organization: structure, sequencing, logistics, layout, scheduling, course design.
+- Pace: fast/slow movement through material, rushing, keeping up, time pressure.
+- Workload: amount of work, burden, difficulty load, too much or manageable work.
+- Engagement: participation, discussion, questions, interactive work, activities.
+- Clarity: explanations, lectures, examples, understanding concepts.
+- Assignments: homework, practice tasks, worksheets, problem sets, usefulness of assigned work.
+- Atmosphere: emotional class climate, comfort, motivation, stress, supportiveness.
+- Communication/availability: office hours, responsiveness, announcements, access to instructor.
+- Inclusivity/belonging: inclusion, accessibility, respect, feeling welcome across learners.
+- Assessment: exams, tests, quizzes, alignment, difficulty, fairness of assessment design.
+- Grading/feedback: grades, partial credit, grading policy, feedback on work.
+- Resources/materials: notes, slides, recordings, textbooks, review materials, posted resources.
+
+Return ONLY valid JSON in this exact shape:
+{{
+  "topics": ["Topic 1", "Topic 2"],
+  "evidence": {{
+    "Topic 1": "short exact phrase from feedback",
+    "Topic 2": "short exact phrase from feedback"
+  }}
+}}
+
+FEEDBACK:
+\"\"\"{comment}\"\"\"
+"""
+
+    last_error: Exception | None = None
+    parsed = None
+    # Allow for retries since the model can sometimes return incorrect formats.
+    for attempt in range(1, MODEL_TASK_MAX_RETRIES + 1):
+        try:
+            # Call model and ensure result is a JSON object
+            parsed = extract_json_object(call_ollama(prompt))
+            break
+        except Exception as exc:
+            last_error = exc
+            print(f"  Classification attempt {attempt}/{MODEL_TASK_MAX_RETRIES} failed: {exc}")
+
+    # Return with added flags for diagnosis if model failed to provide output
+    if parsed is None:
+        return {
+            "topics": [OTHER],
+            "classification_status": "model_error",
+            "classification_reasoning": (
+                "Failed to classify with model after retries; "
+                f"last error: {last_error}"
+            ),
+        }
+
+    # Pull topics out of the model response and normalize to a list
+    topics = parsed.get("topics", [OTHER])
+    if not isinstance(topics, list):
+        topics = [topics]
+
+    evidence = parsed.get("evidence", {})
+    evidence_by_topic = evidence if isinstance(evidence, dict) else {}
+    valid_topics = []
+    # Keep only known topic names returned by the model
+    for topic in topics:
+        if isinstance(topic, dict):
+            topic = topic.get("topic") or topic.get("name")
+        topic = str(topic).strip()
+        if topic in TOPICS and topic not in valid_topics:
+            valid_topics.append(topic)
+
+    if not valid_topics:
+        return {"topics": [OTHER], "classification_status": "classified"}
+    if valid_topics == [OTHER]:
+        return {"topics": [OTHER], "classification_status": "classified"}
+
+    # If the model gave evidence, keep only topics with evidence grounded in the comment
+    if evidence_by_topic:
+        grounded_topics = []
+        for topic in valid_topics:
+            if topic == OTHER:
+                continue
+            evidence_text = str(evidence_by_topic.get(topic, "")).strip()
+            if evidence_text and evidence_quote_is_grounded(evidence_text, comment):
+                grounded_topics.append(topic)
+            elif not evidence_text and has_topic_evidence(comment, topic):
+                grounded_topics.append(topic)
+        valid_topics = grounded_topics or [OTHER]
+
+    valid_topics = add_high_precision_topic_hints(comment, valid_topics)
+
+    # Run the lightweight generic-comment filter after the model gives candidate topics
+    filtered = filter_topics_by_evidence(comment, valid_topics, mode=evidence_filter_mode)
+    if valid_topics != filtered:
+        print(f"    LLM assigned {valid_topics}; evidence filter kept {filtered}.")
+
+    return {"topics": filtered, "classification_status": "classified"}
 
 
 def sentiment_with_llama(
@@ -900,25 +1056,14 @@ For Pace and Workload, score 5 means the condition supports learning well; score
             sentiment = None
         confidence = parse_confidence(parsed.get("confidence", 0.0))
         reasoning = str(parsed.get("reasoning", "")).strip()
-        quote_is_valid = quote_supports_topic(evidence_quote, topic)
-        # Accept the score only when the model provided valid topic evidence
-        # Most critically: verify the evidence quote actually appears in the comment
-        quote_in_comment = (
-            evidence_quote and (evidence_quote in normalize_comment(comment) or 
-            any(word in normalize_comment(comment).split() for word in evidence_quote.split() if len(word) > 4))
-        )
-        
-        if topic_supported and isinstance(score, int) and quote_is_valid and quote_in_comment:
+        quote_is_valid = evidence_quote_is_grounded(evidence_quote, comment)
+        # Accept the score only when the model provided grounded evidence
+        if topic_supported and isinstance(score, int) and quote_is_valid:
             sentiment = sentiment_from_score(score)
         else:
             if topic_supported and not quote_is_valid:
                 reasoning = (
-                    "Evidence quote did not contain topic-specific support; "
-                    f"original model reasoning: {reasoning}"
-                )
-            elif topic_supported and not quote_in_comment:
-                reasoning = (
-                    f"Evidence quote not found in comment (quote: '{evidence_quote[:50]}...'); "
+                    "Evidence quote was not grounded in the comment; "
                     f"original model reasoning: {reasoning}"
                 )
             topic_supported = False
@@ -952,10 +1097,6 @@ For Pace and Workload, score 5 means the condition supports learning well; score
         "scoring_status": "scored",
         "is_mismatched": is_mismatched,
     }
-    
-    # Debug: flag potential mismatches
-    if is_mismatched and confidence > 0.5:
-        print(f"    [MISMATCH] Topic {topic} confidence {confidence}: {reasoning[:60]}...")
     
     return result
 
@@ -1463,6 +1604,17 @@ def analysis_pipeline(
             unsupported_topic = scored.get("topic_supported") is False
             # Use the following factors to determine whether or not to remove topic classification
             if unsupported_topic or (is_mismatched and scored.get("confidence", 0) > threshold):
+                if classification_status == "human_baseline_match":
+                    topic_comments[topic].append(
+                        {
+                            "feedback": feedback,
+                            "classification_status": classification_status,
+                            **scored,
+                            "sentiment": None,
+                            "score": None,
+                            "scoring_status": "unscored",
+                        }
+                    )
                 continue
             
             # Store valid numeric scores for topic and overall averages
@@ -1472,6 +1624,16 @@ def analysis_pipeline(
             # Skip model errors so they do not distort averages
             elif scored.get("scoring_status") == "model_error":
                 failed_score_count += 1
+                if classification_status == "human_baseline_match":
+                    topic_comments[topic].append(
+                        {
+                            "feedback": feedback,
+                            "classification_status": classification_status,
+                            **scored,
+                            "sentiment": None,
+                            "score": None,
+                        }
+                    )
                 continue
             else:
                 continue
@@ -1618,10 +1780,3 @@ if __name__ == "__main__":
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2)
     print(f"Combined analysis complete. Saved to {output_path}.")
-
-'''
-    [MISMATCH] Topic Student engagement and participation confidence 0.9: Evidence quote did not contain topic-specific support; origi...
-    [MISMATCH] Topic Classroom atmosphere confidence 1.0: Evidence quote did not contain topic-specific support; origi...
-    [MISMATCH] Topic Instructor's communication and availability confidence 0.9: Evidence quote did not contain topic-specific support; origi...
-    [MISMATCH] Topic Inclusivity and sense of belonging confidence 0.8: Evidence quote did not contain topic-specific support; origi...
-'''

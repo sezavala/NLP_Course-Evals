@@ -5,18 +5,18 @@
   "category_scores": [
     {
       "category": "Course organization and structure",
-      "average_score": 5.0,
-      "comment_count": 1
+      "average_score": null,
+      "comment_count": 0
     },
     {
       "category": "Pace",
-      "average_score": 5.0,
-      "comment_count": 1
+      "average_score": null,
+      "comment_count": 0
     },
     {
       "category": "Workload",
-      "average_score": 5.0,
-      "comment_count": 1
+      "average_score": null,
+      "comment_count": 0
     },
     {
       "category": "Student engagement and participation",
@@ -25,8 +25,8 @@
     },
     {
       "category": "Clarity of explanations",
-      "average_score": 5.0,
-      "comment_count": 1
+      "average_score": null,
+      "comment_count": 0
     },
     {
       "category": "Effectiveness of assignments",
@@ -35,13 +35,13 @@
     },
     {
       "category": "Classroom atmosphere",
-      "average_score": null,
-      "comment_count": 0
+      "average_score": 5.0,
+      "comment_count": 1
     },
     {
       "category": "Instructor's communication and availability",
-      "average_score": null,
-      "comment_count": 0
+      "average_score": 5.0,
+      "comment_count": 1
     },
     {
       "category": "Inclusivity and sense of belonging",
@@ -60,22 +60,22 @@
     },
     {
       "category": "Learning resources and materials",
-      "average_score": 5.0,
-      "comment_count": 1
+      "average_score": null,
+      "comment_count": 0
     }
   ],
   "topic_summaries": [
     {
       "topic": "Course organization and structure",
-      "summary": "Summary of Course organization and structure: One assigned comment was positive with a score of 5/5, citing: \"Professor Wu is one of the best professors I've had since coming to UCLA \u2013 I really like his teaching style and how much he cares for his students. I like how the lecture notes...\""
+      "summary": "Summary of Course organization and structure: No comments were assigned to this topic."
     },
     {
       "topic": "Pace",
-      "summary": "Summary of Pace: One assigned comment was positive with a score of 5/5, citing: \"Professor Wu is one of the best professors I've had since coming to UCLA \u2013 I really like his teaching style and how much he cares for his students. I like how the lecture notes...\""
+      "summary": "Summary of Pace: No comments were assigned to this topic."
     },
     {
       "topic": "Workload",
-      "summary": "Summary of Workload: One assigned comment was positive with a score of 5/5, citing: \"Professor Wu is one of the best professors I've had since coming to UCLA \u2013 I really like his teaching style and how much he cares for his students. I like how the lecture notes...\""
+      "summary": "Summary of Workload: No comments were assigned to this topic."
     },
     {
       "topic": "Student engagement and participation",
@@ -83,7 +83,7 @@
     },
     {
       "topic": "Clarity of explanations",
-      "summary": "Summary of Clarity of explanations: One assigned comment was positive with a score of 5/5, citing: \"Professor Wu is one of the best professors I've had since coming to UCLA \u2013 I really like his teaching style and how much he cares for his students. I like how the lecture notes...\""
+      "summary": "Summary of Clarity of explanations: No comments were assigned to this topic."
     },
     {
       "topic": "Effectiveness of assignments",
@@ -91,11 +91,11 @@
     },
     {
       "topic": "Classroom atmosphere",
-      "summary": "Summary of Classroom atmosphere: No comments were assigned to this topic."
+      "summary": "Summary of Classroom atmosphere: One assigned comment was positive with a score of 5/5, citing: \"\"I appreciate how open he is and how he makes so much time for us to communicate and talk to him. He hosts coffee hours which is a time where students can just converse with him...\""
     },
     {
       "topic": "Instructor's communication and availability",
-      "summary": "Summary of Instructor's communication and availability: No comments were assigned to this topic."
+      "summary": "Summary of Instructor's communication and availability: One assigned comment was positive with a score of 5/5, citing: \"\"I appreciate how open he is and how he makes so much time for us to communicate and talk to him. He hosts coffee hours which is a time where students can just converse with him...\""
     },
     {
       "topic": "Inclusivity and sense of belonging",
@@ -111,7 +111,7 @@
     },
     {
       "topic": "Learning resources and materials",
-      "summary": "Summary of Learning resources and materials: One assigned comment was positive with a score of 5/5, citing: \"Professor Wu is one of the best professors I've had since coming to UCLA \u2013 I really like his teaching style and how much he cares for his students. I like how the lecture notes...\""
+      "summary": "Summary of Learning resources and materials: No comments were assigned to this topic."
     },
     {
       "topic": "None of the above / Other",
@@ -121,63 +121,27 @@
   "categories": [
     {
       "topic": "Course organization and structure",
-      "average_score": 5.0,
-      "comment_count": 1,
-      "scored_comment_count": 1,
-      "reliability": "low_sample",
-      "comments": [
-        {
-          "feedback": "Professor Wu is one of the best professors I've had since coming to UCLA \u2013 I really like his teaching style and how much he cares for his students. I like how the lecture notes are structured, and that he offers both a blank and a filled\u2013in version of the notes so that we can adjust our own learning. His lectures are consistently clear and paced well. I also feel that the course material makes sense in the way that it is taught. During lecture, Professor Wu also answers questions in a very clear way. His exams are also fair \u2013 not too challenging, but also not too easy, and also perfectly timed. I also appreciate how he adjusted the class during the L.A. fires period. It was really nice of him! Professor Wu is super nice and funny. It is really refreshing to be in his class \u2013 I learn a lot without feeling overwhelming pressure. If I could take a class again with him, I 1000% would.",
-          "classification_status": "classified",
-          "topic_supported": true,
-          "evidence_quote": "I like how the lecture notes are structured, and that he offers both a blank and a filled\u2013in version of the notes so that we can adjust our own learning.",
-          "sentiment": "positive",
-          "score": 5,
-          "confidence": 0.8,
-          "scoring_status": "scored",
-          "reasoning": "The feedback explicitly mentions the course organization and structure as being well-structured and allowing for adjusted learning, indicating a positive sentiment."
-        }
-      ]
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
     },
     {
       "topic": "Pace",
-      "average_score": 5.0,
-      "comment_count": 1,
-      "scored_comment_count": 1,
-      "reliability": "low_sample",
-      "comments": [
-        {
-          "feedback": "Professor Wu is one of the best professors I've had since coming to UCLA \u2013 I really like his teaching style and how much he cares for his students. I like how the lecture notes are structured, and that he offers both a blank and a filled\u2013in version of the notes so that we can adjust our own learning. His lectures are consistently clear and paced well. I also feel that the course material makes sense in the way that it is taught. During lecture, Professor Wu also answers questions in a very clear way. His exams are also fair \u2013 not too challenging, but also not too easy, and also perfectly timed. I also appreciate how he adjusted the class during the L.A. fires period. It was really nice of him! Professor Wu is super nice and funny. It is really refreshing to be in his class \u2013 I learn a lot without feeling overwhelming pressure. If I could take a class again with him, I 1000% would.",
-          "classification_status": "classified",
-          "topic_supported": true,
-          "evidence_quote": "His lectures are consistently clear and paced well.",
-          "sentiment": "positive",
-          "score": 5,
-          "confidence": 0.9,
-          "scoring_status": "scored",
-          "reasoning": "The feedback explicitly mentions that Professor Wu's lectures are 'paced well', indicating a reasonable pace."
-        }
-      ]
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
     },
     {
       "topic": "Workload",
-      "average_score": 5.0,
-      "comment_count": 1,
-      "scored_comment_count": 1,
-      "reliability": "low_sample",
-      "comments": [
-        {
-          "feedback": "Professor Wu is one of the best professors I've had since coming to UCLA \u2013 I really like his teaching style and how much he cares for his students. I like how the lecture notes are structured, and that he offers both a blank and a filled\u2013in version of the notes so that we can adjust our own learning. His lectures are consistently clear and paced well. I also feel that the course material makes sense in the way that it is taught. During lecture, Professor Wu also answers questions in a very clear way. His exams are also fair \u2013 not too challenging, but also not too easy, and also perfectly timed. I also appreciate how he adjusted the class during the L.A. fires period. It was really nice of him! Professor Wu is super nice and funny. It is really refreshing to be in his class \u2013 I learn a lot without feeling overwhelming pressure. If I could take a class again with him, I 1000% would.",
-          "classification_status": "classified",
-          "topic_supported": true,
-          "evidence_quote": "His lectures are consistently clear and paced well.",
-          "sentiment": "positive",
-          "score": 5,
-          "confidence": 0.9,
-          "scoring_status": "scored",
-          "reasoning": "The feedback explicitly mentions that the course material is taught in a way that makes sense, and Professor Wu's lectures are described as 'paced well', indicating a manageable workload."
-        }
-      ]
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
     },
     {
       "topic": "Student engagement and participation",
@@ -189,23 +153,11 @@
     },
     {
       "topic": "Clarity of explanations",
-      "average_score": 5.0,
-      "comment_count": 1,
-      "scored_comment_count": 1,
-      "reliability": "low_sample",
-      "comments": [
-        {
-          "feedback": "Professor Wu is one of the best professors I've had since coming to UCLA \u2013 I really like his teaching style and how much he cares for his students. I like how the lecture notes are structured, and that he offers both a blank and a filled\u2013in version of the notes so that we can adjust our own learning. His lectures are consistently clear and paced well. I also feel that the course material makes sense in the way that it is taught. During lecture, Professor Wu also answers questions in a very clear way. His exams are also fair \u2013 not too challenging, but also not too easy, and also perfectly timed. I also appreciate how he adjusted the class during the L.A. fires period. It was really nice of him! Professor Wu is super nice and funny. It is really refreshing to be in his class \u2013 I learn a lot without feeling overwhelming pressure. If I could take a class again with him, I 1000% would.",
-          "classification_status": "classified",
-          "topic_supported": true,
-          "evidence_quote": "His lectures are consistently clear and paced well.",
-          "sentiment": "positive",
-          "score": 5,
-          "confidence": 0.8,
-          "scoring_status": "scored",
-          "reasoning": "The feedback explicitly states that Professor Wu's explanations are consistently clear, which supports the clarity of explanations topic."
-        }
-      ]
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
     },
     {
       "topic": "Effectiveness of assignments",
@@ -217,19 +169,43 @@
     },
     {
       "topic": "Classroom atmosphere",
-      "average_score": null,
-      "comment_count": 0,
-      "scored_comment_count": 0,
-      "reliability": "unscored",
-      "comments": []
+      "average_score": 5.0,
+      "comment_count": 1,
+      "scored_comment_count": 1,
+      "reliability": "low_sample",
+      "comments": [
+        {
+          "feedback": "\"I appreciate how open he is and how he makes so much time for us to communicate and talk to him. He hosts coffee hours which is a time where students can just converse with him and it was refreshing to see because it shows that he cares about his student's success and is curious about how they are doing. He is very down to earth and is very considerate about his students.",
+          "classification_status": "classified",
+          "topic_supported": true,
+          "evidence_quote": "He hosts coffee hours which is a time where students can just converse with him and it was refreshing to see because it shows that he cares about his student's success and is curious about how they are doing.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.9,
+          "scoring_status": "scored",
+          "reasoning": "The feedback explicitly mentions the professor hosting coffee hours, which creates a welcoming atmosphere for students."
+        }
+      ]
     },
     {
       "topic": "Instructor's communication and availability",
-      "average_score": null,
-      "comment_count": 0,
-      "scored_comment_count": 0,
-      "reliability": "unscored",
-      "comments": []
+      "average_score": 5.0,
+      "comment_count": 1,
+      "scored_comment_count": 1,
+      "reliability": "low_sample",
+      "comments": [
+        {
+          "feedback": "\"I appreciate how open he is and how he makes so much time for us to communicate and talk to him. He hosts coffee hours which is a time where students can just converse with him and it was refreshing to see because it shows that he cares about his student's success and is curious about how they are doing. He is very down to earth and is very considerate about his students.",
+          "classification_status": "classified",
+          "topic_supported": true,
+          "evidence_quote": "He hosts coffee hours which is a time where students can just converse with him and it was refreshing to see because it shows that he cares about his student's success and is curious about how they are doing.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.9,
+          "scoring_status": "scored",
+          "reasoning": "The instructor makes time for students to communicate, hosts coffee hours, and demonstrates concern for their success."
+        }
+      ]
     },
     {
       "topic": "Inclusivity and sense of belonging",
@@ -257,23 +233,11 @@
     },
     {
       "topic": "Learning resources and materials",
-      "average_score": 5.0,
-      "comment_count": 1,
-      "scored_comment_count": 1,
-      "reliability": "low_sample",
-      "comments": [
-        {
-          "feedback": "Professor Wu is one of the best professors I've had since coming to UCLA \u2013 I really like his teaching style and how much he cares for his students. I like how the lecture notes are structured, and that he offers both a blank and a filled\u2013in version of the notes so that we can adjust our own learning. His lectures are consistently clear and paced well. I also feel that the course material makes sense in the way that it is taught. During lecture, Professor Wu also answers questions in a very clear way. His exams are also fair \u2013 not too challenging, but also not too easy, and also perfectly timed. I also appreciate how he adjusted the class during the L.A. fires period. It was really nice of him! Professor Wu is super nice and funny. It is really refreshing to be in his class \u2013 I learn a lot without feeling overwhelming pressure. If I could take a class again with him, I 1000% would.",
-          "classification_status": "classified",
-          "topic_supported": true,
-          "evidence_quote": "I like how the lecture notes are structured, and that he offers both a blank and a filled\u2013in version of the notes so that we can adjust our own learning.",
-          "sentiment": "positive",
-          "score": 5,
-          "confidence": 0.9,
-          "scoring_status": "scored",
-          "reasoning": "The feedback explicitly mentions how useful the learning materials provided were, specifically praising the structure and availability of lecture notes."
-        }
-      ]
+      "average_score": null,
+      "comment_count": 0,
+      "scored_comment_count": 0,
+      "reliability": "unscored",
+      "comments": []
     },
     {
       "topic": "None of the above / Other",
@@ -293,8 +257,8 @@
     "rag_enabled": true,
     "evidence_filter_mode": "soft",
     "warnings": [
-      "Low-sample category scores should not be treated as stable professor metrics: Course organization and structure, Pace, Workload, Clarity of explanations, Learning resources and materials"
+      "Low-sample category scores should not be treated as stable professor metrics: Classroom atmosphere, Instructor's communication and availability"
     ],
-    "runtime_seconds": 15.88
+    "runtime_seconds": 8.62
   }
 }

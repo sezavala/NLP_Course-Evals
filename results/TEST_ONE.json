@@ -20,8 +20,8 @@
     },
     {
       "category": "Student engagement and participation",
-      "average_score": null,
-      "comment_count": 0
+      "average_score": 5.0,
+      "comment_count": 1
     },
     {
       "category": "Clarity of explanations",
@@ -30,8 +30,8 @@
     },
     {
       "category": "Effectiveness of assignments",
-      "average_score": null,
-      "comment_count": 0
+      "average_score": 5.0,
+      "comment_count": 1
     },
     {
       "category": "Classroom atmosphere",
@@ -40,8 +40,8 @@
     },
     {
       "category": "Instructor's communication and availability",
-      "average_score": null,
-      "comment_count": 0
+      "average_score": 5.0,
+      "comment_count": 1
     },
     {
       "category": "Inclusivity and sense of belonging",
@@ -79,7 +79,7 @@
     },
     {
       "topic": "Student engagement and participation",
-      "summary": "Summary of Student engagement and participation: No comments were assigned to this topic."
+      "summary": "Summary of Student engagement and participation: One assigned comment was positive with a score of 5/5, citing: \"Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Takin...\""
     },
     {
       "topic": "Clarity of explanations",
@@ -87,7 +87,7 @@
     },
     {
       "topic": "Effectiveness of assignments",
-      "summary": "Summary of Effectiveness of assignments: No comments were assigned to this topic."
+      "summary": "Summary of Effectiveness of assignments: One assigned comment was positive with a score of 5/5, citing: \"Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Takin...\""
     },
     {
       "topic": "Classroom atmosphere",
@@ -95,7 +95,7 @@
     },
     {
       "topic": "Instructor's communication and availability",
-      "summary": "Summary of Instructor's communication and availability: No comments were assigned to this topic."
+      "summary": "Summary of Instructor's communication and availability: One assigned comment was positive with a score of 5/5, citing: \"Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Takin...\""
     },
     {
       "topic": "Inclusivity and sense of belonging",
@@ -128,14 +128,14 @@
       "comments": [
         {
           "feedback": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
-          "classification_status": "classified",
+          "classification_status": "human_baseline_match",
           "topic_supported": true,
           "evidence_quote": "Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem.",
           "sentiment": "positive",
           "score": 5,
           "confidence": 1.0,
           "scoring_status": "scored",
-          "reasoning": "The feedback explicitly mentions that the course organization and structure allow students to fully immerse into thinking how chemistry works."
+          "reasoning": "The course organization and structure were clear and well-structured, allowing students to fully immerse into thinking about chemistry."
         }
       ]
     },
@@ -157,11 +157,23 @@
     },
     {
       "topic": "Student engagement and participation",
-      "average_score": null,
-      "comment_count": 0,
-      "scored_comment_count": 0,
-      "reliability": "unscored",
-      "comments": []
+      "average_score": 5.0,
+      "comment_count": 1,
+      "scored_comment_count": 1,
+      "reliability": "low_sample",
+      "comments": [
+        {
+          "feedback": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "classification_status": "human_baseline_match",
+          "topic_supported": true,
+          "evidence_quote": "Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 1.0,
+          "scoring_status": "scored",
+          "reasoning": "The feedback explicitly mentions multiple options for engagement, indicating high student engagement and participation."
+        }
+      ]
     },
     {
       "topic": "Clarity of explanations",
@@ -172,24 +184,36 @@
       "comments": [
         {
           "feedback": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
-          "classification_status": "classified",
+          "classification_status": "human_baseline_match",
           "topic_supported": true,
           "evidence_quote": "The lectures themselves explains thoroughly through the steps of each step, calculations, or concept.",
           "sentiment": "positive",
           "score": 5,
-          "confidence": 0.9,
+          "confidence": 0.8,
           "scoring_status": "scored",
-          "reasoning": "The feedback explicitly states how the instructor explained concepts (i.e., 'through the steps of each step, calculations, or concept'). This indicates that Eric Wu's explanations were very clear and easy to understand."
+          "reasoning": "The feedback explicitly states that Eric Wu's lectures are structured to explain concepts thoroughly, with multiple options for engagement such as asking questions during the lecture."
         }
       ]
     },
     {
       "topic": "Effectiveness of assignments",
-      "average_score": null,
-      "comment_count": 0,
-      "scored_comment_count": 0,
-      "reliability": "unscored",
-      "comments": []
+      "average_score": 5.0,
+      "comment_count": 1,
+      "scored_comment_count": 1,
+      "reliability": "low_sample",
+      "comments": [
+        {
+          "feedback": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "classification_status": "human_baseline_match",
+          "topic_supported": true,
+          "evidence_quote": "The exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 1.0,
+          "scoring_status": "scored",
+          "reasoning": "The feedback highlights that assignments (exams, homework, and discussions) are effective in teaching students how chemistry works."
+        }
+      ]
     },
     {
       "topic": "Classroom atmosphere",
@@ -201,11 +225,23 @@
     },
     {
       "topic": "Instructor's communication and availability",
-      "average_score": null,
-      "comment_count": 0,
-      "scored_comment_count": 0,
-      "reliability": "unscored",
-      "comments": []
+      "average_score": 5.0,
+      "comment_count": 1,
+      "scored_comment_count": 1,
+      "reliability": "low_sample",
+      "comments": [
+        {
+          "feedback": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
+          "classification_status": "human_baseline_match",
+          "topic_supported": true,
+          "evidence_quote": "The lectures themselves explains thoroughly through the steps of each step, calculations, or concept.",
+          "sentiment": "positive",
+          "score": 5,
+          "confidence": 0.8,
+          "scoring_status": "scored",
+          "reasoning": "The instructor is available and communicates clearly about their office hours and other engagement options, indicating high availability."
+        }
+      ]
     },
     {
       "topic": "Inclusivity and sense of belonging",
@@ -240,14 +276,14 @@
       "comments": [
         {
           "feedback": "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
-          "classification_status": "classified",
+          "classification_status": "human_baseline_match",
           "topic_supported": true,
-          "evidence_quote": "provided downloadable notes, office hours, and plenty more.",
+          "evidence_quote": "The lectures themselves explains thoroughly through the steps of each step, calculations, or concept.",
           "sentiment": "positive",
           "score": 5,
           "confidence": 1.0,
           "scoring_status": "scored",
-          "reasoning": "The feedback mentions that Eric Wu provides 'downloadable notes' which suggests that the learning resources and materials are available and useful."
+          "reasoning": "The feedback explicitly praises Eric Wu's teaching style and provides concrete examples of how his lectures and materials are helpful."
         }
       ]
     },
@@ -269,8 +305,8 @@
     "rag_enabled": true,
     "evidence_filter_mode": "soft",
     "warnings": [
-      "Low-sample category scores should not be treated as stable professor metrics: Course organization and structure, Clarity of explanations, Learning resources and materials"
+      "Low-sample category scores should not be treated as stable professor metrics: Course organization and structure, Student engagement and participation, Clarity of explanations, Effectiveness of assignments, Instructor's communication and availability, Learning resources and materials"
     ],
-    "runtime_seconds": 29.61
+    "runtime_seconds": 15.7
   }
 }

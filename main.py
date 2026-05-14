@@ -3,7 +3,6 @@ from __future__ import annotations
 import csv
 import json
 import re
-import sys
 import time
 import unicodedata
 from difflib import SequenceMatcher
@@ -228,11 +227,9 @@ TOPIC_EVIDENCE_PATTERNS = {
         r"\bnotes?\b",
         r"\bslides?\b",
         r"\bpower\s*points?\b",
-        r"\bbruin\s*cast\b",
         r"\brecordings?\b",
         r"\breview sessions?\b",
         r"\bposted online\b",
-        r"\bccle\b",
         r"\blecture notes?\b",
         r"\bstudy materials?\b",
         r"\bflashcards?\b",
@@ -575,13 +572,24 @@ def has_topic_evidence(comment: str, topic: str) -> bool:
     return any(re.search(pattern, text) for pattern in patterns)
 
 
-def quote_supports_topic(evidence_quote: str | None, topic: str) -> bool:
-    """Validate that the model's evidence quote contains topic-specific evidence."""
-    if topic == OTHER:
-        return True
+def evidence_quote_is_grounded(evidence_quote: str | None, comment: str) -> bool:
+    """Check that the model's evidence quote is actually present in the comment."""
     if not evidence_quote:
         return False
-    return has_topic_evidence(evidence_quote, topic)
+
+    quote_key = canonical_comment_key(evidence_quote)
+    comment_key = canonical_comment_key(comment)
+    if not quote_key or not comment_key:
+        return False
+    if quote_key in comment_key:
+        return True
+
+    quote_tokens = set(quote_key.split())
+    comment_tokens = set(comment_key.split())
+    if not quote_tokens:
+        return False
+    overlap_ratio = len(quote_tokens & comment_tokens) / len(quote_tokens)
+    return overlap_ratio >= 0.6
 
 
 def looks_like_generic_only_comment(comment: str) -> bool:
@@ -718,113 +726,130 @@ def parse_confidence(value: Any) -> float:
     return max(0.0, min(1.0, confidence))
 
 
-def classify_topic_confirmed(
-    comment: str,
-    topic: str,
-    classification_examples: list[dict[str, Any]] | None = None,
-) -> tuple[bool, str]:
-    """Ask LLM: Does this comment specifically discuss this one topic? 
-    
-    Returns: (is_confirmed, evidence_phrase)
-    """
-    if topic == OTHER:
-        return False, ""  # OTHER is handled separately
-    
-    # Topic-specific guidance for the LLM
-    topic_guidance = {
-        "Course organization and structure": 
-            "Look for: structure, organization, design, sequencing, layout, navigation, flow, well-organized, clearly laid out",
-        "Pace": 
-            "Look for: pace, speed of course, rushing, slow, keeping up, time for material, fast, slow-paced",
-        "Workload": 
-            "Look for: workload, burden, volume, overwhelming, demanding, amount of assignments, too much, manageable",
-        "Student engagement and participation": 
-            "Look for: participation, engagement, discussion, questions, interactive, activities, clicker, discussion board, group work",
-        "Clarity of explanations": 
-            "Look for: explains, clear, easy to understand, comprehensible, logical, made sense, transparent, well-explained",
-        "Effectiveness of assignments": 
-            "Look for: homework, assignments, problem sets, practice, exams being well-designed/structured/helpful (about quality, not just mentioning)",
-        "Classroom atmosphere": 
-            "Look for: atmosphere, climate, environment, welcoming, supportive, motivating, TONE/VIBE/ENERGY/COMFORT (not structure or organization)",
-        "Instructor's communication and availability": 
-            "Look for: office hours, available, responsive, announces, communicates, accessible, quick to respond",
-        "Inclusivity and sense of belonging": 
-            "Look for: inclusive, welcoming, belonging, accessible, accommodating, different backgrounds, different learners",
-        "Assessment": 
-            "Look for: exams/tests being FAIR/ALIGNED with material/APPROPRIATE DIFFICULTY (assessment QUALITY, not just mentioning exams exist)",
-        "Grading and feedback": 
-            "Look for: grading, grades, feedback, partial credit, rubric, grade policy, comments on work",
-        "Learning resources and materials": 
-            "Look for: notes, lecture notes, slides, recordings, textbook, study materials, resources, posted materials",
-    }
-    
-    guidance = topic_guidance.get(topic, "")
-    
-    prompt = f"""Is this course evaluation comment about: {topic}?
-
-TOPIC: {topic}
-DEFINITION: {TOPIC_DEFS.get(topic, topic)}
-
-{guidance}
-
-FEEDBACK:
-\"\"\"{comment}\"\"\"
-
-Answer format: YES <exact phrase from feedback> OR NO
-- If YES: provide the SHORT EXACT PHRASE from feedback that proves this topic
-- If NO: just answer NO
-
-Examples:
-- For comment "Lectures are clear": If topic is "Clarity of explanations", answer: YES Lectures are clear
-- For comment "Great class": If topic is "Clarity": answer: NO (generic, not specific)
-
-Answer ONLY on ONE line:"""
-    
-    response = call_ollama(prompt).strip()
-    is_yes = response.upper().startswith("YES")
-    
-    # Extract evidence phrase if YES
-    evidence = ""
-    if is_yes:
-        parts = response.split(maxsplit=1)  # Split on first space
-        if len(parts) > 1:
-            evidence = parts[1]
-    
-    return is_yes, evidence
-
-
 def classify_with_llama(
     comment: str,
     classification_examples: list[dict[str, Any]] | None = None,
     evidence_filter_mode: str = "soft",
 ) -> dict[str, Any]:
-    """Classify a course-evaluation comment into plausible instructional topics.
-    
-    NEW APPROACH: Loop through each topic and ask per-topic yes/no questions.
-    This prevents hallucination by making focused decisions for each topic.
-    The sentiment validation layer will later filter any topics with false evidence.
-    """
-    
-    confirmed_topics = []
-    
-    # Ask about each real topic (not OTHER)
-    for topic in TOPIC_KEYS:
-        is_confirmed, evidence = classify_topic_confirmed(comment, topic, classification_examples)
-        if is_confirmed:
-            confirmed_topics.append(topic)
-    
-    # If no topics confirmed, check if comment is purely generic, else OTHER
-    if not confirmed_topics:
-        if looks_like_generic_only_comment(comment):
-            return {"topics": [OTHER], "classification_status": "classified"}
-        else:
-            # Has some detail but no specific topics - still OTHER
-            return {"topics": [OTHER], "classification_status": "classified"}
-    
-    # Remove duplicates while preserving order
-    confirmed_topics = list(dict.fromkeys(confirmed_topics))
-    
-    return {"topics": confirmed_topics, "classification_status": "classified"}
+    """Classify a course-evaluation comment into concrete instructional topics."""
+    # Retrieve examples from our baseline that are similar to our current comment
+    retrieved_examples = retrieve_similar_examples(
+        comment,
+        classification_examples or [],
+        limit=RAG_CLASSIFICATION_EXAMPLE_COUNT,
+    )
+
+    # Use one balanced multi-label prompt instead of one model call per topic
+    prompt = f"""You are classifying one course-evaluation comment into instructional topics.
+
+Assign every topic that is directly supported by concrete evidence in the feedback.
+Do not require the exact topic words; close paraphrases are okay.
+Do not assign a topic from broad praise, broad criticism, or assumptions about student success.
+It is okay to assign multiple topics when the comment gives distinct evidence for each one.
+Use "{OTHER}" only when the feedback is generic or has no specific instructional detail.
+If "{OTHER}" is selected, it must be the only topic.
+
+ALLOWED TOPICS:
+{format_topics()}
+- {OTHER}: Generic praise, broad approval/disapproval, or no specific instructional detail.
+
+SIMILAR HUMAN-CODED EXAMPLES:
+{format_classification_examples(retrieved_examples)}
+
+HOW TO USE THE EXAMPLES:
+- Use examples only to calibrate boundaries and multi-topic style.
+- Do not copy labels unless this feedback has similar concrete evidence.
+
+BOUNDARY RULES:
+- Organization: structure, sequencing, logistics, layout, scheduling, course design.
+- Pace: fast/slow movement through material, rushing, keeping up, time pressure.
+- Workload: amount of work, burden, difficulty load, too much or manageable work.
+- Engagement: participation, discussion, questions, interactive work, activities.
+- Clarity: explanations, lectures, examples, understanding concepts.
+- Assignments: homework, practice tasks, worksheets, problem sets, usefulness of assigned work.
+- Atmosphere: emotional class climate, comfort, motivation, stress, supportiveness.
+- Communication/availability: office hours, responsiveness, announcements, access to instructor.
+- Inclusivity/belonging: inclusion, accessibility, respect, feeling welcome across learners.
+- Assessment: exams, tests, quizzes, alignment, difficulty, fairness of assessment design.
+- Grading/feedback: grades, partial credit, grading policy, feedback on work.
+- Resources/materials: notes, slides, recordings, textbooks, review materials, posted resources.
+
+Return ONLY valid JSON in this exact shape:
+{{
+  "topics": ["Topic 1", "Topic 2"],
+  "evidence": {{
+    "Topic 1": "short exact phrase from feedback",
+    "Topic 2": "short exact phrase from feedback"
+  }}
+}}
+
+FEEDBACK:
+\"\"\"{comment}\"\"\"
+"""
+
+    last_error: Exception | None = None
+    parsed = None
+    # Allow for retries since the model can sometimes return incorrect formats.
+    for attempt in range(1, MODEL_TASK_MAX_RETRIES + 1):
+        try:
+            # Call model and ensure result is a JSON object
+            parsed = extract_json_object(call_ollama(prompt))
+            break
+        except Exception as exc:
+            last_error = exc
+            print(f"  Classification attempt {attempt}/{MODEL_TASK_MAX_RETRIES} failed: {exc}")
+
+    # Return with added flags for diagnosis if model failed to provide output
+    if parsed is None:
+        return {
+            "topics": [OTHER],
+            "classification_status": "model_error",
+            "classification_reasoning": (
+                "Failed to classify with model after retries; "
+                f"last error: {last_error}"
+            ),
+        }
+
+    # Pull topics out of the model response and normalize to a list
+    topics = parsed.get("topics", [OTHER])
+    if not isinstance(topics, list):
+        topics = [topics]
+
+    evidence = parsed.get("evidence", {})
+    evidence_by_topic = evidence if isinstance(evidence, dict) else {}
+    valid_topics = []
+    # Keep only known topic names returned by the model
+    for topic in topics:
+        if isinstance(topic, dict):
+            topic = topic.get("topic") or topic.get("name")
+        topic = str(topic).strip()
+        if topic in TOPICS and topic not in valid_topics:
+            valid_topics.append(topic)
+
+    if not valid_topics:
+        return {"topics": [OTHER], "classification_status": "classified"}
+    if valid_topics == [OTHER]:
+        return {"topics": [OTHER], "classification_status": "classified"}
+
+    # If the model gave evidence, keep only topics with evidence grounded in the comment
+    if evidence_by_topic:
+        grounded_topics = []
+        for topic in valid_topics:
+            if topic == OTHER:
+                continue
+            evidence_text = str(evidence_by_topic.get(topic, "")).strip()
+            if evidence_text and evidence_quote_is_grounded(evidence_text, comment):
+                grounded_topics.append(topic)
+            elif not evidence_text and has_topic_evidence(comment, topic):
+                grounded_topics.append(topic)
+        valid_topics = grounded_topics or [OTHER]
+
+    # Run the lightweight generic-comment filter after the model gives candidate topics
+    filtered = filter_topics_by_evidence(comment, valid_topics, mode=evidence_filter_mode)
+    if valid_topics != filtered:
+        print(f"    LLM assigned {valid_topics}; evidence filter kept {filtered}.")
+
+    return {"topics": filtered, "classification_status": "classified"}
 
 
 def sentiment_with_llama(
@@ -925,25 +950,14 @@ For Pace and Workload, score 5 means the condition supports learning well; score
             sentiment = None
         confidence = parse_confidence(parsed.get("confidence", 0.0))
         reasoning = str(parsed.get("reasoning", "")).strip()
-        quote_is_valid = quote_supports_topic(evidence_quote, topic)
-        # Accept the score only when the model provided valid topic evidence
-        # Most critically: verify the evidence quote actually appears in the comment
-        quote_in_comment = (
-            evidence_quote and (evidence_quote in normalize_comment(comment) or 
-            any(word in normalize_comment(comment).split() for word in evidence_quote.split() if len(word) > 4))
-        )
-        
-        if topic_supported and isinstance(score, int) and quote_is_valid and quote_in_comment:
+        quote_is_valid = evidence_quote_is_grounded(evidence_quote, comment)
+        # Accept the score only when the model provided grounded evidence
+        if topic_supported and isinstance(score, int) and quote_is_valid:
             sentiment = sentiment_from_score(score)
         else:
             if topic_supported and not quote_is_valid:
                 reasoning = (
-                    "Evidence quote did not contain topic-specific support; "
-                    f"original model reasoning: {reasoning}"
-                )
-            elif topic_supported and not quote_in_comment:
-                reasoning = (
-                    f"Evidence quote not found in comment (quote: '{evidence_quote[:50]}...'); "
+                    "Evidence quote was not grounded in the comment; "
                     f"original model reasoning: {reasoning}"
                 )
             topic_supported = False
@@ -1629,7 +1643,7 @@ if __name__ == "__main__":
         "course_id": "CHEM_20B_TEST_ONE",
         "raw_comments": [
             "Eric Wu is a HUGE step up from the last professor who taught chemistry. He is a phenomenal educator who focuses mostly on the logical and understanding parts of chemistry. Taking out most of the memorizing parts, it allows students to fully immerse into thinking how chemistry works. Afterall, it is how the exams, homework, and discussions are structured, solving through deconstruction and reconstruction of the problem. The lectures themselves explains thoroughly through the steps of each step, calculations, or concept. Lectures are beautifully structured with multiple options to engage such as asking questions during the lecture through a QR code, provided downloadable notes, office hours, and plenty more.",
-            ]
+        ]
     }
     
     # Extract course_id and comments from JSON

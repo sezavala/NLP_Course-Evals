@@ -5,7 +5,7 @@ TOPIC_DEFS = {
     "Student engagement and participation": "The feedback explicitly mentions student engagement and participation in the course.",
     "Clarity of explanations": "The feedback explicitly states how the instructor explained concepts.",
     "Effectiveness of assignments": "The feedback explicitly mentions the effectiveness of assignments.",
-    "Classroom atmosphere": "The feedback explicitly mentions if the class atmosphere was supportive or not.",
+    "Classroom atmosphere": "The feedback explicitly mentions if the class atmosphere was supportive or welcoming or not.",
     "Instructor's communication and availability": "The feedback explicitly mentions the instructors accessibility and availability.",
     "Inclusivity and sense of belonging": "The feedback explicitly mentions feeling included by the instructor in class.",
     "Assessment": "The feedback explicitly mentions the alignment of assessments with course material.",

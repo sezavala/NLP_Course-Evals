@@ -132,9 +132,9 @@ python3 main.py
 
 Outputs:
 
-- `results/combined/CHEM_14A_Fall2025_COMBINED_REPORT.json`
-- `results/combined/CHEM_14A_Fall2025_COMBINED_REPORT.csv`
-- `results/ML_OUTPUT.json`
+- `results/combined/<COURSE_ID>_COMBINED_REPORT.json`
+- `results/combined/<COURSE_ID>_COMBINED_REPORT.csv`
+- `results/TEST_ONE.json`
 
 The example input is currently embedded in `main.py` under `json_input`. For a new course, update `course_id` and `raw_comments`, or call `analysis_pipeline(course_id, raw_comments)` from another Python file.
 

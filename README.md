@@ -32,7 +32,7 @@ This document explains the combined course-evaluation pipeline in `main.py`, the
 
 1. Load raw course-evaluation comments.
 2. Remove exact duplicate comments.
-3. Retrieve similar human-labeled examples from the baseline CSV files.
+3. Retrieve similar human-labeled examples from the baseline CSV files as calibration only.
 4. Classify each comment into one or more instructional topics.
 5. Score sentiment for each supported topic using the topic-specific rubric.
 6. Filter weak or unsupported topic assignments.
@@ -108,7 +108,7 @@ When changing behavior, update these constants first before changing prompt text
 
 `normalize_comment`, `canonical_comment_key`, `retrieval_tokens`, and `retrieval_similarity` prepare comments for duplicate removal and example retrieval.
 
-`load_classification_examples` and `load_sentiment_examples` read the human baseline CSVs. `retrieve_similar_examples` finds similar baseline rows and passes them into prompts as calibration examples.
+`load_classification_examples` and `load_sentiment_examples` read the human baseline CSVs. `retrieve_similar_examples` finds similar baseline rows and passes them into prompts as calibration examples. Exact comment matches are skipped during retrieval so the baseline is not used as an answer key.
 
 ### Classification
 
@@ -161,7 +161,7 @@ When `write_files=True`, reports are saved to:
 
 The script entry point also writes:
 
-- `results/ML_OUTPUT.json`
+- `results/TEST_ONE.json`
 
 ## How to Run
 

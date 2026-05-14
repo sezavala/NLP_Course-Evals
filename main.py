@@ -3,7 +3,6 @@ from __future__ import annotations
 import csv
 import json
 import re
-import sys
 import time
 import unicodedata
 from difflib import SequenceMatcher
@@ -447,7 +446,7 @@ def retrieve_similar_examples(
         example_feedback = str(example.get("feedback", ""))
         # Normalize feedback comment from baseline
         example_key = canonical_comment_key(example_feedback)
-        # If the comments are exact matches, do not retrieve this comment
+        # Skip exact matches so the baseline acts as guidance, not an answer key
         if exclude_exact_match and comment_key == example_key:
             continue
 
@@ -468,26 +467,6 @@ def retrieve_similar_examples(
         retrieved_example["similarity"] = round(similarity, 3)
         retrieved.append(retrieved_example)
     return retrieved
-
-
-def find_exact_classification_topics(
-    comment: str,
-    classification_examples: list[dict[str, Any]] | None,
-) -> list[str]:
-    """Use human labels directly when the exact comment is already in the baseline."""
-    if not classification_examples:
-        return []
-
-    comment_key = canonical_comment_key(comment)
-    for example in classification_examples:
-        if canonical_comment_key(str(example.get("feedback", ""))) != comment_key:
-            continue
-        topics = example.get("topics", [])
-        if not isinstance(topics, list):
-            continue
-        return [topic for topic in topics if topic in TOPICS]
-
-    return []
 
 
 def format_classification_examples(examples: list[dict[str, Any]]) -> str:
@@ -752,6 +731,8 @@ def add_high_precision_topic_hints(comment: str, topics: list[str]) -> list[str]
             r"\bnotes?\b",
             r"\bslides?\b",
             r"\brecordings?\b",
+            r"\breview sessions?\b",
+            r"\bpractice exams?\b",
             r"\bstudy materials?\b",
         ],
     }
@@ -825,17 +806,6 @@ def classify_with_llama(
     evidence_filter_mode: str = "soft",
 ) -> dict[str, Any]:
     """Classify a course-evaluation comment into concrete instructional topics."""
-    exact_topics = find_exact_classification_topics(comment, classification_examples)
-    if exact_topics:
-        return {
-            "topics": filter_topics_by_evidence(
-                comment,
-                exact_topics,
-                mode=evidence_filter_mode,
-            ),
-            "classification_status": "human_baseline_match",
-        }
-
     # Retrieve examples from our baseline that are similar to our current comment
     retrieved_examples = retrieve_similar_examples(
         comment,
@@ -1594,7 +1564,7 @@ def analysis_pipeline(
                 sentiment_examples=sentiment_examples,
             )
             
-            # Validation: Skip if sentiment model indicates topic mismatch (using topic-specific threshold)
+            # Validation: skip if sentiment model indicates topic mismatch.
 
             # Check if model references a mismatch in reasoning
             is_mismatched = scored.pop("is_mismatched", False)
@@ -1604,17 +1574,6 @@ def analysis_pipeline(
             unsupported_topic = scored.get("topic_supported") is False
             # Use the following factors to determine whether or not to remove topic classification
             if unsupported_topic or (is_mismatched and scored.get("confidence", 0) > threshold):
-                if classification_status == "human_baseline_match":
-                    topic_comments[topic].append(
-                        {
-                            "feedback": feedback,
-                            "classification_status": classification_status,
-                            **scored,
-                            "sentiment": None,
-                            "score": None,
-                            "scoring_status": "unscored",
-                        }
-                    )
                 continue
             
             # Store valid numeric scores for topic and overall averages
@@ -1624,16 +1583,6 @@ def analysis_pipeline(
             # Skip model errors so they do not distort averages
             elif scored.get("scoring_status") == "model_error":
                 failed_score_count += 1
-                if classification_status == "human_baseline_match":
-                    topic_comments[topic].append(
-                        {
-                            "feedback": feedback,
-                            "classification_status": classification_status,
-                            **scored,
-                            "sentiment": None,
-                            "score": None,
-                        }
-                    )
                 continue
             else:
                 continue
